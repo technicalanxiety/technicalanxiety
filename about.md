@@ -3,13 +3,10 @@ layout: page
 title: About
 permalink: /about/
 ---
-
-Some information about you!
+I'll be filling this in with things about me etc.
 
 ### More Information
-
-A place to include any other types of information that you'd like to include about yourself.
+More things will go here of course.
 
 ### Contact me
-
-[email@domain.com](mailto:email@domain.com)
+[admin@technicalanxiety.com](mailto:admin@technicalanxiety.com)
