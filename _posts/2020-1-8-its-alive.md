@@ -2,7 +2,7 @@
 layout: post
 title:  "It's Alive!"
 date:   2020-01-08 18:05:55 +0300
-image:  11.jpg
+image:  06.jpg
 tags:   [Post]
 ---
 
