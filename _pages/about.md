@@ -6,6 +6,7 @@ permalink: /about/
 ---
 
 
+
 > Absorb what is useful, discard what is not, add what is uniquely your own.   - Bruce Lee
 
 

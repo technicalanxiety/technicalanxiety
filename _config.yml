@@ -2,7 +2,7 @@
 # General Site Settings
 
 title: Technical Anxiety | Experience Blog
-description: [description] # this means to ignore newlines until "baseurl:"
+description: # this means to ignore newlines until "baseurl:"
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://technicalanxiety.com" # the base hostname & protocol for your site, e.g. http://example.com
 
@@ -17,7 +17,7 @@ author-avatar: 09.jpg
 # Contact links
 facebook:  https://facebook.com/ # Add your Facebook handle
 twitter:   https://twitter.com/ # Add your Facebook handle
-instagram: https://www.instagram.com/ # Add your Facebook handle
+#instagram: https://www.instagram.com/ # Add your Facebook handle
 linkedin: https://linkedin.com/in/rinehart76 # Add your Facebook handle
 
 
@@ -28,7 +28,7 @@ disqus-identifier: anxiouschat # Add your shortname for Disqus Comment. For exam
 
 #-------------------------------
 # Instagram Feed
-instafeed: true # To enable the instafeed, use the value true. To turn off use the value false.
+instafeed: false # To enable the instafeed, use the value true. To turn off use the value false.
 
 
 #-------------------------------
