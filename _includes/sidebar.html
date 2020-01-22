@@ -24,7 +24,7 @@
   {% endif %}
 
   <div class="widget widget-social">
-    <h3 class="widget-title">Subscribe & Follow</h3>
+    <h3 class="widget-title">Social Stuff</h3>
     <ul class="social-profiles list-reset">
       {% if site.facebook %}
       <li class="social-profiles-item">
@@ -44,9 +44,9 @@
       </li>
       {% else %} {% endif %}
 
-      {% if site.pinterest %}
+      {% if site.linkedin %}
       <li class="social-profiles-item">
-        <a href="{{ site.pinterest }}" class="social-profiles-link"><i class="ion ion-logo-pinterest"></i></a>
+        <a href="{{ site.linkedin }}" class="social-profiles-link"><i class="ion ion-logo-linkedin"></i></a>
       </li>
       {% else %} {% endif %}
     </ul>
@@ -54,7 +54,7 @@
 
   <div class="widget widget-newsletter">
     <h3 class="widget-title">Newsletter</h3>
-    <div class="newsletter-subtitle">Get Interesting News</div>
+    <div class="newsletter-subtitle">Stay in the know!</div>
     <div class="newsletter-text">Receive the latest news via email.</div>
     <form class="c-newsletter-form validate" action="{% if site.mailchimp %}//{{site.mailchimp}}{% else %}#{% endif %}" method="POST"
       id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" novalidate>
