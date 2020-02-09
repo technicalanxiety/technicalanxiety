@@ -140,4 +140,4 @@ Now that you've seen how I work my way into a Log query, hopefully this should h
 
 <br>
 
-**Photo by [Eila Lifflander](https://unsplash.com/@3ilaliff) on [Unsplash](https://unsplash.com/photos/63ZCI1oxIMU)**
+**Photo by [Danielle MacInnes](https://unsplash.com/@dsmacinnes) on [Unsplash](https://unsplash.com/photos/IuLgi9PWETU)**
