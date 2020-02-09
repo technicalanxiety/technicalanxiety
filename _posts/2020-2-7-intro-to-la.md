@@ -2,7 +2,7 @@
 layout: post
 title:  "Intro to Log Analytics"
 date:   2020-02-07 15:53 -0600
-image:  la-perf-query.jpg
+image:  intro-to-la.jpg
 tags:   [Log Analytics]
 ---
 
@@ -140,4 +140,4 @@ Now that you've seen how I work my way into a Log query, hopefully this should h
 
 <br>
 
-**Photo by [RKTKN](https://unsplash.com/@rktkn) on [Unsplash](https://unsplash.com/photos/BZ9z9ZeUjbI)**
+**Photo by [Eila Lifflander](https://unsplash.com/@3ilaliff) on [Unsplash](https://unsplash.com/photos/63ZCI1oxIMU)**
