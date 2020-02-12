@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Intro to Log Analytics"
+title:  "Intro to Log Analytics - Part 1"
 date:   2020-02-07 15:53 -0600
 image:  intro-to-la.jpg
 tags:   [Log Analytics]
