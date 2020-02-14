@@ -46,13 +46,13 @@ I'll first explain how this query works then I'll show what it looks like in the
 
 As you can see, we're looking at the **Perf** log table. In that table, we want to first filter on CounterName and then OS Type. Because there isn't an OS type column in the Perf table, we are taking the *Computer* column and matching that columns data with data in the Heartbeat table where *OSType* matches "Windows". Then, we want to filter out *_total*, *harddisk* and *C:*. This will leave you with all other drive letters only. 
 
-        !has and has
-        If you haven't seen/used this, it's really powerful because it will match, case-insensitive, on the exact string. The *!* means *not*.
+>**!has** and **has**
+If you haven't seen/used this, it's really powerful because it will match, case-insensitive, on the exact string. The *!* means *not*.
 
-        !contains and contains
-        Also very powerful. This will search for a match on the a string using the value provided. If you don't know the exact value like in *has*, use this. 
+>**!contains** and **contains**
+Also very powerful. This will search for a match on the a string using the value provided. If you don't know the exact value like in *has*, use this. 
 
-        Why not == or !=? Both are case sensitive and must be exact. You'll find that query performance is much improved using *has* and *contains* variants.
+>Why not **==** or **!=** ? Both are case sensitive and must be exact. You'll find that query performance is much improved using *has* and *contains* variants.
 
 <br>
 
