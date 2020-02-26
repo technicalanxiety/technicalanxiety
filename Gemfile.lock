@@ -71,7 +71,7 @@ GEM
       liquid (= 4.0.3)
       mercenary (~> 0.3)
       minima (= 2.5.1)
-      nokogiri (>= 1.10.4, < 2.0)
+      nokogiri (>= 1.10.8, < 2.0)
       rouge (= 3.13.0)
       terminal-table (~> 1.4)
     github-pages-health-check (1.16.1)
@@ -204,7 +204,7 @@ GEM
       jekyll-seo-tag (~> 2.1)
     minitest (5.14.0)
     multipart-post (2.1.1)
-    nokogiri (1.10.7)
+    nokogiri (1.10.8)
       mini_portile2 (~> 2.4.0)
     octokit (4.16.0)
       faraday (>= 0.9)
@@ -247,6 +247,7 @@ DEPENDENCIES
   jekyll (>= 3.8.4)
   jekyll-paginate
   jekyll-sitemap
+  nokogiri (>= 1.10.8)
   tzinfo-data
 
 BUNDLED WITH
