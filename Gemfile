@@ -2,9 +2,10 @@ source "https://rubygems.org"
 
 gem "bundler"
 gem "jekyll", ">= 3.8.4"
-gem "nokogiri", ">= 1.11.0.rc4"
+gem "nokogiri", ">= 1.11.4"
 gem "jekyll-paginate"
 gem "jekyll-sitemap"
+gem "kramdown", ">= 2.3.1"
 gem "github-pages", group: :jekyll_plugins
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
