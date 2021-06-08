@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Introduction to Azure Governance"
+title:  "Governance in Azure?"
 date:   2021-06-08 11:30 -0600
 image:  az-governance.jpg
 tags:   [Governance]
@@ -16,4 +16,4 @@ I've been asked to write up something on Azure Governance. A little background o
 ## CONCLUSION
 {: .text-center}
 
-**Photo by [person](https://unsplash.com/) on [Unsplash](https://unsplash.com/photos/)**
+**Photo by [Jonathan Kemper](https://unsplash.com/@jupp) on [Unsplash](https://unsplash.com/photos/OEpC6UQrWQU)**
