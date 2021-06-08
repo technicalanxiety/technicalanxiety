@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Work in Progress"
-date:   2020-01-14 18:05:55 +0300
+date:   2020-01-14 18:05:55 -0600
 image:  workinprogress.jpg
 tags:   [Post]
 ---
