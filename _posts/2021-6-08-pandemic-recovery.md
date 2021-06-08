@@ -3,7 +3,7 @@ layout: post
 title:  "Pandemic Recovery"
 date:   2021-06-08 12:15 -0600
 image:  pandemic.jpg
-tags:   [Anxiety]
+tags:   [Anxiety] [Personal] [Wellness]
 ---
 
 ## PURPOSE
