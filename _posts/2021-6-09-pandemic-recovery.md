@@ -51,5 +51,7 @@ There are endless sources out there for help and understanding. These will just 
 {: .text-center}
 If you're new to your anxiety or you've not yet realized that you have anxiety, my hope is that this has helped you atleast know where to find the help you need. Over the years, I've learned to use my anxiety to get closer to my wife and kids, dive deeper into my work and become a more extroverted community seeking person. Little does my anxiety know but it has helped make me the man, husband, father, friend and cowoker that I am today. It was really rough in the beginning but with the help of your community, a good quality doctor and a good therapist you'll learn to develop the tools necessary to make it through any challenging life event. Even if it's a pandemic :) 
 
+Also, seek out your employer resources. If your employer doesn't provide you with mindfulness resources or ways to get help with any personal situation, perhaps it's time for you to find a place that more aligns with your personal (and professional) needs [Avande is hiring!](https://www.avanade.com/en-us/career/life-at-avanade) 
+
 
 **Photo by [Erik Mclean](https://unsplash.com/@introspectivedsgn) on [Unsplash](https://unsplash.com/photos/tQ5QE587veU)**
