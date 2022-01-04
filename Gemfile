@@ -2,7 +2,7 @@ source "https://rubygems.org"
 
 gem "bundler"
 gem "jekyll", ">= 3.8.4"
-gem "nokogiri", ">= 1.11.4"
+gem "nokogiri", ">= 1.12.5"
 gem "jekyll-paginate"
 gem "jekyll-sitemap"
 gem "kramdown", ">= 2.3.1"
