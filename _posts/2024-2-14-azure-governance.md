@@ -23,7 +23,7 @@ The actual dictionary definition for Governance is simply the act of Governing. 
 * Who can do things where
 * Who can't do things where
 * How resources should be organized
-* Defining why they are they way they are
+* Defining why they are the way they are
 
 <br>
 
