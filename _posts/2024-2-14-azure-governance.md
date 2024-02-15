@@ -50,6 +50,9 @@ So how do you get started with this? There are a few key points to lay the found
 5. Where the Entra ID security groups will be applied
 
 6. Help highlight where Azure Policy should be applied
+    * Thinking about your tagging requirements
+    * What resource types are allowed or not allowed
+    * Policy is the mechanism that you work through from your definitions of what subscriptions mean
 
 This is a very tiny sample of governance topics but if you at the very least start here, you'll be on the right path. I promise.
 
