@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Governance in Azure?"
-date:   2024-02-13 11:30 -0600
+date:   2024-02-14 11:30 -0600
 image:  az-guardrails.jpg
 tags:   [Governance]
 ---
