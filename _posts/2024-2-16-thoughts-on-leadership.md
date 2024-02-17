@@ -12,11 +12,11 @@ I was recently at my dad's house cleaning out my old closet reliving past memori
 
 ## THOUGHTS 
 {: .text-center}
-
+Coming shortly ...
 
 ## CONCLUSION
 {: .text-center}
-
+Coming shortly ...
 
 <br>
 
