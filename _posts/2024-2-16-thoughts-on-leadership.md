@@ -2,7 +2,7 @@
 layout: post
 title:  "Leadership, Drum Major Style"
 date:   2024-02-16 11:30 -0600
-image:  marching-band.jpg
+image:  drum-major.jpg
 tags:   [Leadership]
 ---
 
