@@ -77,15 +77,16 @@ While you are *in the act of being* the Drum Major there are four main responsib
 Controlling your feelings
 
 > I control my thoughts
+>
 > My thoughts control my feelings
+>
 > I control my feelings
 
 <br>
 
 Calculating self-worth
-``` 
-    self-esteem [outside sources] + self-image [inward sources] = self-worth
-```
+
+> self-esteem [outside sources] + self-image [inward sources] = self-worth
 
 <br>
 
