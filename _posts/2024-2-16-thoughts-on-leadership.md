@@ -10,8 +10,8 @@ tags:   [Leadership]
 {: .text-center}
 I was recently at my dad's house cleaning out my old closet reliving past memories as I came across various trinkets and things until I stumbled upon my 3 pages of notes from Drum Major Camp. I thought to myself before I started reading, oh this will be good and chuckled at little. Then I began to read... I was absolutely blown away! I have thought most of my career that the perceptions and ideas around leadership have just developed out of nothing along my travels, however, I know now that I was wrong. Aside from the example of my father and mother, I now know where much of how I think about leadership has come about. I would like to share it with you here. It's pretty neat.
 
-    As you read through this, think about how these thoughts and concepts might 
-    apply to pretty much any organization or situation.
+> As you read through this, think about how these thoughts and concepts might 
+> apply to pretty much any organization or situation.
 
 <br>
 
@@ -34,15 +34,15 @@ Leaders are driven by **the we - the people**, **mission oriented**, and **knowi
 
 The 4 Pillars of Leadership
 
-    1. People are more important than their title
-    2. You cannot lead unless you can lead yourself
-    3. You're only worth what you give away
-    4. You can only give away what you have
+> 1. People are more important than their title
+> 2. You cannot lead unless you can lead yourself
+> 3. You're only worth what you give away
+> 4. You can only give away what you have
 
 
 Inspiration or Enthusiasm/Excitement? Inspiration fosters competition, cooperation and creation. Enthusiasm/Excitement fosters feelings of superiority and 'show-offs'. Enthusiasm is from the greek 'en theos' or 'in the presence of the divine'. We must not strive for enthusiasm but for inspiration.
 
-Discipline to a follower is 90% attitude and 10% skill. Several leadership traits to encourage discipline, knowledgeable, charismatic, fearless, supportive, listener, unselfish. Some leadership traits that  
+Discipline to a follower is 90% attitude and 10% skill. Several leadership traits to encourage discipline: knowledgeable, charismatic, fearless, supportive, listener, unselfish.
 
 #### *Leading as a Drum Major*
 ---
@@ -76,9 +76,9 @@ While you are *in the act of being* the Drum Major there are four main responsib
 ---
 Controlling your feelings
 
-    I control my thoughts
-    My thoughts control my feelings
-    I control my feelings
+> I control my thoughts
+> My thoughts control my feelings
+> I control my feelings
 
 <br>
 
