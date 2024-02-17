@@ -2,7 +2,7 @@
 layout: post
 title:  "Leadership, Drum Major Style"
 date:   2024-02-16 11:30 -0600
-image:  climb-the-mountain.jpg
+image:  marching-band.jpg
 tags:   [Leadership]
 ---
 
@@ -33,10 +33,11 @@ Leaders are driven by **the we - the people**, **mission oriented**, and **knowi
 
 
 The 4 Pillars of Leadership
-1. People are more important than their title
-2. You cannot lead unless you can lead yourself
-3. You're only worth what you give away
-4. You can only give away what you have
+
+    1. People are more important than their title
+    2. You cannot lead unless you can lead yourself
+    3. You're only worth what you give away
+    4. You can only give away what you have
 
 
 Inspiration or Enthusiasm/Excitement? Inspiration fosters competition, cooperation and creation. Enthusiasm/Excitement fosters feelings of superiority and 'show-offs'. Enthusiasm is from the greek 'en theos' or 'in the presence of the divine'. We must not strive for enthusiasm but for inspiration.
@@ -45,32 +46,74 @@ Discipline to a follower is 90% attitude and 10% skill. Several leadership trait
 
 #### *Leading as a Drum Major*
 ---
-Breaking out of your comfort zone. The safest thing to do with your band is to do those that you are most comfortable with. Leaders must take chances and risks *at the right time* to widen your confort zone.
+Breaking out of your comfort zone. The safest thing to do with your band is to do those things that you are most comfortable with. Leaders must take chances and risks *at the right time* to widen your confort zone. In order to lead, we must step out of our comfort zones. When we have left our comfort zones, we can sometimes get discouraged and retreat back into where we feel comfortable. As leaders, we must **encourage** when other leaders and followers are out of their comfort zones.
 
 Establishing a relationship with your superiors is crucial, be adaptable and flexible.
 
 **Don't wait to be told what to do, take charge**
 
 The Drum Major Attitude is made of these points
-1. Commandability - giving commands, how to give them, when to give them, where to give them
-2. Spirit - positivity, excitement
-3. Inspiration - someone to be looked up to, respected
-4. Humility - not being self-righteous or cocky
-5. Respect for others
-6. Self-discipline
-7. Honor
-8. Integrity
-9. Tactfulness
-10. Commanding Presence
+
+* Commandability - giving commands, how/when/where to give them
+* Spirit - positivity, excitement
+* Inspiration - someone to be looked up to, respected
+* Humility - not being self-righteous or cocky
+* Respect for others
+* Self-discipline
+* Honor
+* Integrity
+* Tactfulness
+* Commanding Presence
+
+While you are *in the act of being* the Drum Major there are four main responsibilities
+
+* Maintain control over tempo - stay the course, do not get ahead or fall behind
+* Interpret the music - what's the style, tempo, and volume
+* Inspire musicians to play - movements to temp as the music is interpreted, feel it and flow with it, allow it to take you where it wants to go
+* Showmanship - how you bring it all together
 
 #### *Positivity*
 ---
+Controlling your feelings
 
-
-## CONCLUSION
-{: .text-center}
-Coming shortly ...
+    I control my thoughts
+    My thoughts control my feelings
+    I control my feelings
 
 <br>
 
-**Photo by [Mathias Jensen](https://unsplash.com/@mathiasjensen) on [Unsplash](https://unsplash.com/photos/climbers-hiking-through-mountain-peak-during-daytime-5x4U6InVXpc)**
+Calculating self-worth
+``` 
+    self-esteem [outside sources] + self-image [inward sources] = self-worth
+```
+
+<br>
+
+*A **good** leader, people will admire and respect you*
+
+*A **great** leader, people will admire and respect themselves*
+
+<br>
+
+## CONCLUSION
+{: .text-center}
+So as I reflect on this and put it into perspective of all that my life has taken me through, there are 2 commands that all leaders should set as their north star.
+
+1. Leaders make other leaders
+2. Leaders inspire others to do things they never thought possible
+
+I would challenge everyone to reflect on this as you think about where you are today, whether you're leading up, leading others or leading a household. I realize, not everything here is applicable to everyone but if you break down the concepts it becomes clear where you can apply a few of these thoughts to your every day leadership. Everyone gets better when the leader gets better and people want to follow a leader that's always real, rather than always right. So if you find yourself with fleeing, disengaged, unhappy or angry employees, it's not because you ran out of beer in the break-room kegerator or the ping-pong table is broken, perhaps look inward and reflect on a few things above and you'll find the answer. It's always the leader.
+
+I also want to call out this great podcast (and where my line about everyone getting better, ht Craig Groschel) all about leadership. I've listened to the whole thing and it is truly amazing.
+
+[Craig Groschel Leadership Podcast](https://youtube.com/playlist?list=PLfd9RiSXWAX63y6ZXYrBtyN05jy3BGEPg&si=zqk1jb0E7zT6Jyn5)
+
+You can find this on all the podcast places.
+
+
+Oh, and for those that are curious...
+![This is me](/img/drum-major.png)
+
+<br>
+
+**Photo by [Galen Crout](https://unsplash.com/@galen_crout) on [Unsplash](https://unsplash.com/photos/a-group-of-people-marching-in-a-parade--7HpdHeYUZ4)**
