@@ -76,7 +76,7 @@ The 3 functions use the AzureActivity table to set the values for 3 of the most 
 
 To make things easier, I'm not considering any other potential **state** that a virtual machine could be.
 
-The first `let` statement finds evaluates the `OperationNameValue` column for **deallocate** and **start** actions and summarizes the results by the most recent time stamp by the resource ID. As always, be sure to use `has` as much as possible and to limit the amount of table data by first filtering on **TimeGenerated**. Because the intent of the output is a simple table showing virtual machine state currently, I'm filtering data to the past 1 hour. I'm then filtering out the values we are looking for, deallocate and start. I then summarize that data and only return the resource IDs of each row. It's not important to keep any other details, we'll get those from the `Heartbeat` table in the main query.
+The first `let` function evaluates the `OperationNameValue` column for **deallocate** and **start** actions and summarizes the results by the most recent time stamp by the resource ID. As always, be sure to use `has` as much as possible and to limit the amount of table data by first filtering on **TimeGenerated**. Because the intent of the output is a simple table showing virtual machine state currently, I'm filtering data to the past 1 hour. I'm then filtering out the values we are looking for, deallocate and start. I then summarize that data and only return the resource IDs of each row. It's not important to keep any other details, we'll get those from the `Heartbeat` table in the main query.
 
 >
 > let deallocatedVms = AzureActivity
