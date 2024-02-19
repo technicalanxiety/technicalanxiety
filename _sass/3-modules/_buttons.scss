@@ -10,11 +10,11 @@
   transition: $global-transition;
 
   &--primary {
-    color: $button-color;
+    color: $gray-blue;
     background-color: $button-background-color;
 
     &:hover {
-      background-color: darken($primary-color, 15%);
+      background-color: darken($gray-blue, 15%);
       color: $white;
       transition: $global-transition;
     }
