@@ -28,3 +28,11 @@ So why the name 'Technical Anxiety'? Glad you asked! So I battle with this littl
 Thank you for taking the time to read this!
 
 -Jason a.k.a. 'TechnicalAnxiety'
+
+***
+Especially proud of this recognition
+
+
+![TI Award](/img/JasonRinehart_TI.png)
+
+![The Award](/img/TI_award.png)
