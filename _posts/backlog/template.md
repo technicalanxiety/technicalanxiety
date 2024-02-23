@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "template"
-date:   0000-00-00 00:00:00 -0600
+date:   1900-01-01 00:00:00 -0600
 image:  template.jpg
 tags:   [Post]
 ---
