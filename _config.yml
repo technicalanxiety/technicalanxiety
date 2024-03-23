@@ -62,7 +62,7 @@ sass:
 
 #-------------------------------
 # Exclude from processing.
-# exclude:
+exclude:
 #   - Gemfile
 #   - Gemfile.lock
 #   - node_modules
@@ -70,3 +70,4 @@ sass:
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
+- _posts/backlog
