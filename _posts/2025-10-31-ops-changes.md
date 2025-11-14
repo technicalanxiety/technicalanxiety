@@ -8,7 +8,7 @@ tags:   [Governance, Operations]
 
 ## Operational Change, Cloud Version
 
-I’ve spent over 20 years in the trenches building, scaling, and reinventing managed services for organizations of all sizes. What I’ve learned is simple: embracing Modern Service Management (MSM) isn’t just a technical upgrade—it’s a change you must experience if you want to unlock real business value.
+I’ve spent over 20 years in the trenches building, scaling, and reinventing managed services for organizations of all sizes. What I’ve learned is simple: embracing Modern Service Management (MSM) isn’t just a technical upgrade - it’s a change you must experience if you want to unlock real business value.
 
 Let’s dig into what MSM means and why it matters.
 
@@ -18,7 +18,7 @@ Let’s dig into what MSM means and why it matters.
 
 Remember when IT was the gatekeeper, controlling every server and process? Those days are gone. Today, business units can spin up cloud services with a credit card. IT’s role is evolving rapidly.
 
-Traditional IT Service Management (ITSM) frameworks—built for on-premises, manual environments—can’t keep up with the speed and flexibility that modern organizations demand.
+Traditional IT Service Management (ITSM) frameworks - built for on-premises, manual environments - can’t keep up with the speed and flexibility that modern organizations demand.
 
 **MSM flips the script:**  
 Instead of just keeping the lights on, IT becomes a strategic partner, driving agility, innovation, and outcomes that matter to the business.
@@ -31,7 +31,7 @@ Instead of just keeping the lights on, IT becomes a strategic partner, driving a
 ## What’s Different About MSM Design Principles?
 
 - **Customer Value First:**  
-  Every activity should create business value. If it doesn’t, why are you still doing it?
+  Every activity should create business value. If it doesn’t, why are you still doing it? At Rackspace Technology, we put automation, self-service, and rapid deployment front and center. We call it the Fanatical Experience®.
 
 - **Design for Resilience:**  
   Failure happens. MSM says to plan for it, recover fast, and keep moving. It’s about building systems that bounce back, not just systems that never break.
@@ -41,14 +41,14 @@ Instead of just keeping the lights on, IT becomes a strategic partner, driving a
 
 ---
 
-## Turning MSM Principles Into Action—The Modern Way
+## Turning MSM Principles Into Action - The Modern Way
 
-Here’s how I’ve seen MSM principles come to life in real organizations—and how you can do the same.
+Here’s how I’ve seen MSM principles come to life in real organizations - and how you can do the same.
 
 ### Business Relationship Management
 
 - **Old Approach:** IT builds custom solutions in a vacuum, hoping they’ll fit a business need.
-- **Modern Approach:** IT and business work as partners, co-creating services that move the needle.
+- **Modern Approach:** IT and business work as partners, co-creating services that move the needle. At Rackspace, we formed cross-functional teams with clients and saw successful public cloud adoption jump within the first year.
 
 ### Capacity Management
 
@@ -77,7 +77,7 @@ Here’s how I’ve seen MSM principles come to life in real organizations—and
 ### Financial Management
 
 - **Old Approach:** Huge centralized budgets and little transparency.
-- **Modern Approach:** Move to usage-based, opex-focused models. Cloud platforms give you real-time financial data—use it.
+- **Modern Approach:** Move to usage-based, opex-focused models. Cloud platforms give you real-time financial data - use it.
 
   > **Quick Win:**  
   > Empower product owners to manage their own budgets. Use cloud cost management tools to track and optimize spending.
@@ -94,7 +94,7 @@ Here’s how I’ve seen MSM principles come to life in real organizations—and
 
 ## Service Operations Reimagined
 
-MSM isn’t just about delivery—it’s about how you operate day-to-day.
+MSM isn’t just about delivery - it’s about how you operate day-to-day.
 
 - **Self-Service and Automation:**  
   Ditch the manual ticketing. Give users self-service portals and automate the workflows behind them.
