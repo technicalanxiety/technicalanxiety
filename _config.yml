@@ -42,8 +42,8 @@ social:
     - https://linkedin.com/in/rinehart76
 
 # Default image for social sharing when post doesn't have one
-# Uncomment and set to your preferred default image (1200x630px recommended)
-# logo: /img/about.jpg
+# This appears when sharing posts that don't have a featured image
+logo: /img/social-share-default.svg
 
 
 #-------------------------------

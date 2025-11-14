@@ -229,3 +229,29 @@
     padding: 0 40px;
   }
 }
+// Readi
+ng time
+.post-reading-time, .article-reading-time {
+  .reading-time {
+    font-size: 12px;
+    color: rgba($text, 0.8);
+    text-transform: uppercase;
+    i.ion {
+      font-size: 14px;
+      vertical-align: middle;
+      margin-right: 3px;
+    }
+  }
+}
+
+.post-info {
+  .post-reading-time {
+    margin-left: 15px;
+  }
+}
+
+.article-info {
+  .article-reading-time {
+    margin: 0 10px;
+  }
+}

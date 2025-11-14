@@ -58,6 +58,25 @@ All notable changes to this project will be documented in this file.
 - Open Graph data structure for social platforms
 - Footer now shows Privacy link prominently
 
+## [2025-11-14] - UX Improvements (Reading Time, Social Sharing, Cookie Consent)
+
+### Added
+- Reading time estimates on all posts and article cards
+- Default social sharing image (SVG) for posts without featured images
+- Cookie consent banner with localStorage persistence
+- Styled reading time indicator with clock icon
+- Responsive cookie consent design
+
+### Changed
+- Updated post layout to display reading time
+- Updated homepage article cards to show reading time
+- Added default logo/image for social sharing in config
+
+### Improved
+- Better user experience with reading time estimates
+- Compliance with cookie laws (GDPR/CCPA)
+- Social media sharing appearance for posts without images
+
 ## Next Steps
 
 ### Immediate
@@ -65,12 +84,15 @@ All notable changes to this project will be documented in this file.
 - [x] Add GA4 Measurement ID to _config.yml
 - [x] Test site locally and verify tracking
 - [x] Add privacy policy page
+- [x] Add reading time estimates to posts
+- [x] Create default social sharing image
+- [x] Add cookie consent banner
 
 ### Short-term
 - [ ] Update Ionicons from v4 to v7 (requires template changes)
-- [ ] Consider cookie consent implementation
 - [ ] Add dark mode toggle
-- [ ] Add reading time estimates to posts
+- [ ] Add related posts section
+- [ ] Optimize images for web
 
 ### Long-term
 - [ ] Evaluate Jekyll 4.x migration
