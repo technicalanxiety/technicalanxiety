@@ -2,3 +2,9 @@ _site
 .sass-cache
 .jekyll-metadata
 *.DS_Store
+
+# Image optimization backups
+img/originals/
+
+# Optimization script (keep local only)
+optimize-images.sh
