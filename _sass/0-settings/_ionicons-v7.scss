@@ -1,0 +1,48 @@
+// Ionicons v7 Styling
+// Web components need explicit sizing and styling
+
+ion-icon {
+  font-size: inherit;
+  vertical-align: middle;
+  pointer-events: none;
+  
+  // Ensure icons inherit color
+  color: inherit;
+  
+  // Fix alignment
+  display: inline-block;
+  line-height: 1;
+}
+
+// Specific icon sizes
+.email-icon {
+  font-size: 22px;
+}
+
+.menu-close,
+.search-close-button {
+  font-size: 40px;
+}
+
+.menu-button,
+.search-button {
+  font-size: 20px;
+}
+
+.social-profiles-link ion-icon {
+  font-size: 18px;
+}
+
+.reading-time ion-icon {
+  font-size: 14px;
+  margin-right: 3px;
+}
+
+.post-share ion-icon {
+  font-size: 20px;
+}
+
+// Ensure proper spacing
+.post-nav-arrow ion-icon {
+  vertical-align: middle;
+}

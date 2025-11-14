@@ -28,13 +28,13 @@
     <ul class="social-profiles list-reset">
       {% if site.twitter_url %}
       <li class="social-profiles-item">
-        <a href="{{ site.twitter_url }}" class="social-profiles-link" aria-label="Twitter"><i class="ion ion-logo-twitter"></i></a>
+        <a href="{{ site.twitter_url }}" class="social-profiles-link" aria-label="Twitter"><ion-icon name="logo-twitter"></ion-icon></a>
       </li>
       {% endif %}
 
       {% if site.linkedin %}
       <li class="social-profiles-item">
-        <a href="{{ site.linkedin }}" class="social-profiles-link" aria-label="LinkedIn"><i class="ion ion-logo-linkedin"></i></a>
+        <a href="{{ site.linkedin }}" class="social-profiles-link" aria-label="LinkedIn"><ion-icon name="logo-linkedin"></ion-icon></a>
       </li>
       {% endif %}
     </ul>
@@ -49,7 +49,7 @@
       <div class="newsletter-group">
         <div class="newsletter-group-top">
           <label class="screen-reader-text" for="mce-EMAIL">Email address</label>
-          <i class="email-icon ion ion-ios-mail"></i>
+          <ion-icon name="mail-outline" class="email-icon"></ion-icon>
           <input class="newsletter-email required email" id="mce-EMAIL" type="text" name="EMAIL" placeholder="E-mail">
         </div>
         <input class="newsletter-button" id="mc-embedded-subscribe" type="submit" name="subscribe" value="Subscribe">
