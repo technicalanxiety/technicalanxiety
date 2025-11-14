@@ -31,8 +31,9 @@
   <div class="search">
     <div class="search-box">
       <ion-icon name="close-outline" class="search-close-button"></ion-icon>
-      <label for="js-search-input" class="screen-reader-text"></label>
-      <input type="text" id="js-search-input" class="search-text" autocomplete="off" placeholder="Search Something...">
+      <div class="search-hint">Press <kbd>Ctrl</kbd> + <kbd>K</kbd> to search (or <kbd>⌘</kbd> + <kbd>K</kbd> on Mac)</div>
+      <label for="js-search-input" class="screen-reader-text">Search</label>
+      <input type="text" id="js-search-input" class="search-text" autocomplete="off" placeholder="Search posts by title, content, or tags...">
       <ol id="js-results-container" class="search-results-list"></ol>
     </div>
   </div>

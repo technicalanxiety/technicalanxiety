@@ -22,11 +22,15 @@ ion-icon {
 .menu-close,
 .search-close-button {
   font-size: 40px;
+  cursor: pointer;
+  pointer-events: auto;
 }
 
 .menu-button,
 .search-button {
   font-size: 20px;
+  cursor: pointer;
+  pointer-events: auto;
 }
 
 .social-profiles-link ion-icon {

@@ -2,15 +2,27 @@
 <script src="{{ site.baseurl }}/js/simple-jekyll-search.min.js"></script>
 <script>
   SimpleJekyllSearch({
-  searchInput: document.getElementById("js-search-input"),
-  resultsContainer: document.getElementById("js-results-container"),
-  json: "{{site.baseurl}}/search.json",
-  searchResultTemplate:
-    '<li class="search-item"><a class="search-link" href="{url}">{title}</a></li>',
-  noResultsText: '<li class="search-no-item">No results found</li>'
+    searchInput: document.getElementById("js-search-input"),
+    resultsContainer: document.getElementById("js-results-container"),
+    json: "{{site.baseurl}}/search.json",
+    searchResultTemplate: `
+      <li class="search-item">
+        <a class="search-link" href="{url}">
+          <div class="search-result-title">{title}</div>
+          <div class="search-result-date">{date}</div>
+          <div class="search-result-excerpt">{excerpt}</div>
+          {tags}
+        </a>
+      </li>
+    `,
+    noResultsText: '<li class="search-no-item">No results found. Try different keywords.</li>',
+    searchFields: ['title', 'tags', 'content', 'excerpt'],
+    fuzzy: false,
+    limit: 10
   });
 </script>
 <script src="{{ site.baseurl }}/js/instafeed.min.js"></script>
 <script src="{{ site.baseurl }}/js/jquery.waitforimages.min.js"></script>
 <script src="{{ site.baseurl }}/js/jquery.fitvids.js"></script>
 <script src="{{ site.baseurl }}/js/common.js"></script>
+<script src="{{ site.baseurl }}/js/search-enhancements.js"></script>
