@@ -13,6 +13,7 @@ author:
   name: Jason Rinehart
   avatar: me.jpg
   bio: Cloud architect and technical leader sharing experiences with Azure, leadership, and mental health in tech.
+  twitter: anxiouslytech
   
 # Legacy support (keeping for theme compatibility)
 author-name: Jason Rinehart
@@ -20,11 +21,29 @@ author-avatar: me.jpg
 
 
 #-------------------------------
-# Contact links
+# Social Media & SEO
+# These are used for social sharing cards and SEO
+twitter:
+  username: anxiouslytech
+  card: summary_large_image
+
+# Social profile links (for theme)
 #facebook:  https://facebook.com/ # Add your Facebook handle
-twitter:   https://twitter.com/anxiouslytech # Add your Facebook handle
-#instagram: https://www.instagram.com/ # Add your Facebook handle
-linkedin: https://linkedin.com/in/rinehart76 # Add your Facebook handle
+twitter_url: https://twitter.com/anxiouslytech
+#instagram: https://www.instagram.com/ # Add your Instagram handle
+linkedin: https://linkedin.com/in/rinehart76
+
+# Default social sharing image (1200x630px recommended)
+# Place image in /img/ folder
+social:
+  name: Jason Rinehart
+  links:
+    - https://twitter.com/anxiouslytech
+    - https://linkedin.com/in/rinehart76
+
+# Default image for social sharing when post doesn't have one
+# Uncomment and set to your preferred default image (1200x630px recommended)
+# logo: /img/about.jpg
 
 
 #-------------------------------
@@ -45,8 +64,10 @@ google-analytics: # G-2HB2W9WDMR
 
 
 #-------------------------------
-# Newsletter
-# mailchimp: https://technicalanxiety.us4.list-manage.com/subscribe/post?u=d98ffb1c29c62159ccdfc824c&amp;id=2e886e29d5 # Add your MailChimp form identifier. For example - blogenjoyfreedom.us16.list-manage.com/subscribe/post?u=cd56155d76ddeeb4c0bc4d080&amp;id=7a526cd13e
+# Newsletter (MailChimp)
+# Uncomment and add your MailChimp form action URL to enable newsletter signup
+# Get this from: MailChimp > Audience > Signup forms > Embedded forms
+# mailchimp: https://technicalanxiety.us4.list-manage.com/subscribe/post?u=d98ffb1c29c62159ccdfc824c&amp;id=2e886e29d5
 
 
 #-------------------------------

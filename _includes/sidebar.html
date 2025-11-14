@@ -26,29 +26,17 @@
   <div class="widget widget-social">
     <h3 class="widget-title">Subscribe & Follow</h3>
     <ul class="social-profiles list-reset">
-      {% if site.facebook %}
+      {% if site.twitter_url %}
       <li class="social-profiles-item">
-        <a href="{{ site.facebook }}" class="social-profiles-link"><i class="ion ion-logo-facebook"></i></a>
+        <a href="{{ site.twitter_url }}" class="social-profiles-link" aria-label="Twitter"><i class="ion ion-logo-twitter"></i></a>
       </li>
-      {% else %} {% endif %}
-
-       {% if site.twitter %}
-      <li class="social-profiles-item">
-        <a href="{{ site.twitter }}" class="social-profiles-link"><i class="ion ion-logo-twitter"></i></a>
-      </li>
-      {% else %} {% endif %}
-
-      {% if site.instagram %}
-      <li class="social-profiles-item">
-        <a href="{{ site.instagram }}" class="social-profiles-link"><i class="ion ion-logo-instagram"></i></a>
-      </li>
-      {% else %} {% endif %}
+      {% endif %}
 
       {% if site.linkedin %}
       <li class="social-profiles-item">
-        <a href="{{ site.linkedin }}" class="social-profiles-link"><i class="ion ion-logo-linkedin"></i></a>
+        <a href="{{ site.linkedin }}" class="social-profiles-link" aria-label="LinkedIn"><i class="ion ion-logo-linkedin"></i></a>
       </li>
-      {% else %} {% endif %}
+      {% endif %}
     </ul>
   </div>
 
