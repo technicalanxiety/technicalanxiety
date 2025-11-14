@@ -14,8 +14,8 @@ body {
   font-family: $base-font-family;
   font-size: $base-font-size;
   line-height: $base-line-height;
-  color: $body-color;
-  background: $background;
+  color: var(--text-primary);
+  background: var(--bg-primary);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

@@ -6,6 +6,14 @@
   {% seo %}
   
   <link rel="alternate" type="application/rss+xml" title="{{ site.title | escape }}" href="{{ "/feed.xml" | relative_url }}">
+  
+  <!-- Theme preference (load before styles to prevent flash) -->
+  <script>
+    (function() {
+      const theme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
 
   <!-- Google Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">

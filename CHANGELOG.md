@@ -2,6 +2,32 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2025-11-14] - Light/Dark Mode Toggle
+
+### Added
+- Light/dark mode toggle button (floating bottom-right)
+- Complete light theme with optimized colors
+- CSS custom properties for theme switching
+- localStorage persistence for user preference
+- Smooth theme transitions (0.3s ease)
+- No flash of wrong theme on page load
+- Animated sun/moon icons
+- Mobile-responsive positioning
+- Keyboard accessible with ARIA labels
+
+### Themes
+- **Dark theme** (default): Perfect for nighttime reading
+- **Light theme**: Perfect for daytime reading
+- Both themes meet WCAG AA contrast standards
+- Smooth color transitions between themes
+
+### Technical
+- CSS variables for all theme colors
+- Vanilla JavaScript for toggle logic
+- Theme applied before page render (no flash)
+- Preference saved in localStorage
+- Works in all modern browsers
+
 ## [2025-11-14] - Readability & Typography Improvements
 
 ### Improved

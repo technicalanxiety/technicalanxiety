@@ -5,14 +5,15 @@
 .widget {
   padding: 40px 15px;
   margin-bottom: 30px;
-  background: rgba($blue-darken, .95);
-  box-shadow: 0 9px 18px 0 rgba(0, 0, 0, 0.25);
+  background: var(--bg-secondary);
+  box-shadow: 0 9px 18px 0 var(--shadow);
   .widget-title {
     position: relative;
     padding-bottom: 15px;
     margin-bottom: 20px;
     font-size: 21px;
     text-align: center;
+    color: var(--text-heading);
     &:after {
       content: "";
       position: absolute;
@@ -22,7 +23,7 @@
       display: block;
       width: 50px;
       height: 2px;
-      background: $border-color;
+      background: var(--border-color);
     }
   }
 }
@@ -94,12 +95,16 @@
       font-weight: 700;
       a {
         font-size: 18px;
-        color: $text;
+        color: var(--text-primary);
+        
+        &:hover {
+          color: var(--accent-color);
+        }
       }
     }
     .recent-date {
       font-size: 12px;
-      color: $gray-blue;
+      color: var(--text-secondary);
     }
   }
 }
@@ -115,12 +120,12 @@
     display: inline-block;
     line-height: 16px;
     padding: 8px 10px;
-    border: 1px solid $border-color;
+    border: 1px solid var(--border-color);
     border-radius: $global-radius;
-    color: $border-color;
+    color: var(--text-secondary);
     &:hover {
-      border-color: $primary-color;
-      color: $primary-color;
+      border-color: var(--accent-color);
+      color: var(--accent-color);
     }
     i {
       font-size: 18px;
@@ -176,12 +181,14 @@
   .newsletter-subtitle {
     margin-bottom: 20px;
     font-size: 18px;
+    color: var(--text-heading);
   }
   .newsletter-text {
     max-width: 170px;
     margin: 0 auto 30px;
     font-size: 14px;
     line-height: 19px;
+    color: var(--text-secondary);
   }
   .newsletter-group-top {
     position: relative;
@@ -192,7 +199,7 @@
     left: 10px;
     font-size: 22px;
     transform: translateY(-50%);
-    color: rgba(44, 47, 54, 0.4);
+    color: rgba(155, 163, 184, 0.6);
   }
   .newsletter-email,
   .newsletter-button {
@@ -203,17 +210,24 @@
   }
   .newsletter-email {
     padding: 15px 15px 15px 33px;
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    
+    &::placeholder {
+      color: var(--text-secondary);
+    }
   }
   .newsletter-button {
     margin-top: 20px;
     font-size: 14px;
     font-weight: 700;
     cursor: pointer;
-    color: $white;
-    background: $blue-black;
+    color: var(--white);
+    background: var(--bg-tertiary);
     transition: $global-transition;
     &:hover {
-      background: $primary-color;
+      background: var(--accent-color);
     }
   }
 }
@@ -231,11 +245,11 @@
       padding: 5px 15px;
       font-size: 12px;
       border-radius: $global-radius;
-      color: $text;
-      background: $blue-black;
+      color: var(--text-primary);
+      background: var(--bg-tertiary);
       &:hover {
-        color: $white;
-        background: $primary-color;
+        color: var(--white);
+        background: var(--accent-color);
       }
     }
   }

@@ -143,13 +143,14 @@
   // Better paragraph spacing
   p {
     margin-bottom: 1.5em;
+    color: var(--text-primary);
   }
   
   // Improved heading hierarchy
   h2 {
     margin-top: 2em;
     margin-bottom: 0.75em;
-    color: $heading-font-color;
+    color: var(--text-heading);
     font-weight: 600;
     line-height: 1.3;
   }
@@ -157,7 +158,7 @@
   h3 {
     margin-top: 1.5em;
     margin-bottom: 0.5em;
-    color: lighten($text, 5%);
+    color: var(--text-heading);
     font-weight: 600;
     line-height: 1.3;
   }
@@ -165,18 +166,18 @@
   h4 {
     margin-top: 1.25em;
     margin-bottom: 0.5em;
-    color: $text;
+    color: var(--text-primary);
     font-weight: 600;
   }
   
   // Better blockquotes
   blockquote {
-    background: rgba($primary-color, 0.05);
-    border-left: 4px solid $primary-color;
+    background: rgba(26, 188, 156, 0.05);
+    border-left: 4px solid var(--accent-color);
     padding: 1em 1.5em;
     margin: 1.5em 0;
     font-style: italic;
-    color: lighten($text, 5%);
+    color: var(--text-primary);
     border-radius: 0 4px 4px 0;
     
     p:last-child {
@@ -186,23 +187,24 @@
   
   // Better code blocks
   pre {
-    background: darken($blue-darken, 3%);
-    border-left: 3px solid $primary-color;
+    background: var(--bg-code);
+    border-left: 3px solid var(--accent-color);
     padding: 1.5em;
     margin: 1.5em 0;
     border-radius: 4px;
     overflow-x: auto;
     font-size: 15px;
     line-height: 1.6;
+    color: var(--text-primary);
   }
   
   // Inline code
   code {
-    background: rgba($black, 0.5);
+    background: var(--bg-code);
     padding: 0.2em 0.4em;
     border-radius: 3px;
     font-size: 0.9em;
-    color: lighten($text, 8%);
+    color: var(--text-primary);
   }
   
   // Don't double-style code in pre
@@ -221,24 +223,25 @@
     li {
       margin-bottom: 0.5em;
       line-height: 1.7;
+      color: var(--text-primary);
     }
   }
   
   // Better links in content
   a {
-    color: lighten($link-color, 10%);
+    color: var(--link-color);
     text-decoration: underline;
-    text-decoration-color: rgba($link-color, 0.3);
+    text-decoration-color: var(--link-color);
     text-underline-offset: 2px;
     transition: all 0.2s ease;
     
     &:hover {
-      color: $primary-color;
-      text-decoration-color: rgba($primary-color, 0.5);
+      color: var(--accent-color);
+      text-decoration-color: var(--accent-color);
     }
     
     &:focus {
-      outline: 2px solid $primary-color;
+      outline: 2px solid var(--accent-color);
       outline-offset: 2px;
       border-radius: 2px;
     }
@@ -249,7 +252,7 @@
     margin: 2.5em 0;
     border: 0;
     height: 2px;
-    background: linear-gradient(to right, transparent, $border-color, transparent);
+    background: linear-gradient(to right, transparent, var(--border-color), transparent);
   }
   
   // Better tables
@@ -366,7 +369,7 @@ ng time
 .post-reading-time, .article-reading-time {
   .reading-time {
     font-size: 12px;
-    color: rgba($text, 0.8);
+    color: var(--text-secondary);
     text-transform: uppercase;
     i.ion {
       font-size: 14px;
