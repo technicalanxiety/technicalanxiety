@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "Operational Change, Cloud Version"
+title:  "Operational Change, Part 1"
 date:   2025-10-31 09:00 -0600
-image:  ops-changes.jpg
+image:  ops-changes-1.jpg
 tags:   [Governance, Operations]
 ---
 
