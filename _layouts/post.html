@@ -97,6 +97,15 @@ layout: default
 				</div>
 
 			</div>
+
+			{% if page.tags.size >= 1 %}
+			<div class="related-posts-section">
+				<h2 class="related-posts-heading">Related Posts</h2>
+				<div class="related-posts-grid">
+					{% include related-posts.html %}
+				</div>
+			</div>
+			{% endif %}
 			{% if site.disqus-identifier %}
 				{% include disqus-comments.html %}
 			{% endif %}
