@@ -2,14 +2,20 @@
 # General Site Settings
 
 title: Technical Anxiety | Experience Blog
-description: # this means to ignore newlines until "baseurl:"
+description: A technical blog covering Azure, Log Analytics, leadership, and navigating anxiety in tech. Written by Jason Rinehart.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://technicalanxiety.com" # the base hostname & protocol for your site, e.g. http://example.com
-
+lang: en_US
 
 #-------------------------------
 # About Section
-author-name:   Jason Rinehart
+author:
+  name: Jason Rinehart
+  avatar: me.jpg
+  bio: Cloud architect and technical leader sharing experiences with Azure, leadership, and mental health in tech.
+  
+# Legacy support (keeping for theme compatibility)
+author-name: Jason Rinehart
 author-avatar: me.jpg
 
 
@@ -32,8 +38,10 @@ instafeed: false # To enable the instafeed, use the value true. To turn off use 
 
 
 #-------------------------------
-# Google Analytics
-google-analytics: UA-155892178-1 # Add your identifier. For example UA-99631805-1.
+# Google Analytics 4 (GA4)
+# Replace with your GA4 measurement ID (format: G-XXXXXXXXXX)
+# Old Universal Analytics (UA-155892178-1) was deprecated July 2023
+google-analytics: # G-2HB2W9WDMR
 
 
 #-------------------------------
@@ -48,6 +56,8 @@ permalink: ':title/'
 plugins:
   - jekyll-paginate
   - jekyll-sitemap
+  - jekyll-feed
+  - jekyll-seo-tag
 
 paginate: 7
 paginate_path: "/page/:num"
