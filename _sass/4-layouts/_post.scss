@@ -132,6 +132,138 @@
 
 .post-body {
   padding-bottom: 20px;
+  
+  // Readability improvements
+  font-size: 18px;
+  line-height: 1.8;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+  
+  // Better paragraph spacing
+  p {
+    margin-bottom: 1.5em;
+  }
+  
+  // Improved heading hierarchy
+  h2 {
+    margin-top: 2em;
+    margin-bottom: 0.75em;
+    color: $heading-font-color;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+  
+  h3 {
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+    color: lighten($text, 5%);
+    font-weight: 600;
+    line-height: 1.3;
+  }
+  
+  h4 {
+    margin-top: 1.25em;
+    margin-bottom: 0.5em;
+    color: $text;
+    font-weight: 600;
+  }
+  
+  // Better blockquotes
+  blockquote {
+    background: rgba($primary-color, 0.05);
+    border-left: 4px solid $primary-color;
+    padding: 1em 1.5em;
+    margin: 1.5em 0;
+    font-style: italic;
+    color: lighten($text, 5%);
+    border-radius: 0 4px 4px 0;
+    
+    p:last-child {
+      margin-bottom: 0;
+    }
+  }
+  
+  // Better code blocks
+  pre {
+    background: darken($blue-darken, 3%);
+    border-left: 3px solid $primary-color;
+    padding: 1.5em;
+    margin: 1.5em 0;
+    border-radius: 4px;
+    overflow-x: auto;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  
+  // Inline code
+  code {
+    background: rgba($black, 0.5);
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    font-size: 0.9em;
+    color: lighten($text, 8%);
+  }
+  
+  // Don't double-style code in pre
+  pre code {
+    background: none;
+    padding: 0;
+    font-size: inherit;
+    color: inherit;
+  }
+  
+  // Better lists
+  ul, ol {
+    margin-bottom: 1.5em;
+    padding-left: 2em;
+    
+    li {
+      margin-bottom: 0.5em;
+      line-height: 1.7;
+    }
+  }
+  
+  // Better links in content
+  a {
+    color: lighten($link-color, 10%);
+    text-decoration: underline;
+    text-decoration-color: rgba($link-color, 0.3);
+    text-underline-offset: 2px;
+    transition: all 0.2s ease;
+    
+    &:hover {
+      color: $primary-color;
+      text-decoration-color: rgba($primary-color, 0.5);
+    }
+    
+    &:focus {
+      outline: 2px solid $primary-color;
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+  }
+  
+  // Better horizontal rules
+  hr {
+    margin: 2.5em 0;
+    border: 0;
+    height: 2px;
+    background: linear-gradient(to right, transparent, $border-color, transparent);
+  }
+  
+  // Better tables
+  table {
+    margin: 1.5em 0;
+    font-size: 16px;
+  }
+  
+  // Images with captions
+  img + em {
+    font-size: 14px;
+    color: $gray-blue;
+    font-style: italic;
+  }
 }
 
 .post-share {

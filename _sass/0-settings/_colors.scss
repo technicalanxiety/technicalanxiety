@@ -2,8 +2,8 @@
 $primary-color: #1ABC9C;
 $secondary-color: #C19CD8;
 $highlight: #ffeea8;
-$text: #C9D3E7;
-$gray-blue: #707890;
+$text: #D9E0F0; // Brightened from #C9D3E7 for better readability
+$gray-blue: #8B95B0; // Brightened from #707890 for better link contrast
 $white: #ffffff;
 $black: #101010;
 $lighten-black: #323743;
@@ -18,14 +18,15 @@ $success: #34a74e;
 $background: $blue-black;
 
 // Body Color
-$body-color: #C9D3E7;
+$body-color: #D9E0F0; // Brightened for better readability
 
 // Headings
-$heading-font-color: #404040;
+$heading-font-color: #E5EAF5; // Brightened for better hierarchy
+$heading-font-color-dark: #404040; // For light backgrounds
 
 // Links
 $link-color: $gray-blue;
-$link-color-hover: lighten($link-color, 15%);
+$link-color-hover: lighten($link-color, 12%);
 
 // Button
 $button-color: $gray-blue;

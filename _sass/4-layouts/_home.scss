@@ -229,10 +229,10 @@
       }
     }
     .article-excerpt {
-      max-width: 450px;
+      max-width: 520px;
       margin-bottom: 30px;
-      font-size: 14px;
-      line-height: 23px;
+      font-size: 16px;
+      line-height: 1.6;
     }
     .button {
       font-size: 14px;
@@ -354,9 +354,9 @@
     }
     .article-excerpt {
       margin-bottom: 0;
-      font-size: 15px;
-      line-height: 25px;
-      color: $gray-blue;
+      font-size: 16px;
+      line-height: 1.6;
+      color: lighten($gray-blue, 8%);
     }
   }
 }

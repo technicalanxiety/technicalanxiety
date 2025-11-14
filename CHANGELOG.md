@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2025-11-14] - Readability & Typography Improvements
+
+### Improved
+- Brightened text colors for better readability (#C9D3E7 → #D9E0F0)
+- Improved link contrast (#707890 → #8B95B0) - now WCAG AA compliant
+- Increased post content font size (16px → 18px)
+- Better line height for easier reading (1.75 → 1.8)
+- Added max-width to post content (720px) for optimal line length
+- Enhanced paragraph spacing (1.5em) for better scanning
+- Improved heading hierarchy with distinct colors
+- Better blockquote styling with background tint
+- Enhanced code block appearance with accent border
+- Improved inline code styling
+- Better list spacing and readability
+- Added clear focus states for accessibility
+- Improved article excerpt readability on homepage
+
+### Accessibility
+- Links now meet WCAG AA contrast standards (5.1:1)
+- Clear focus indicators on all interactive elements
+- Better keyboard navigation support
+- Improved visual hierarchy
+
 ## [2025-11-14] - Image Optimization
 
 ### Optimized
