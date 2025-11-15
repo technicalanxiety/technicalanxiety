@@ -1,0 +1,77 @@
+/* ===============================================
+   Breadcrumbs Navigation
+   =============================================== */
+
+.breadcrumbs {
+  margin-bottom: 30px;
+  padding: 15px 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.breadcrumb-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 8px;
+}
+
+.breadcrumb-item {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: var(--text-secondary);
+  
+  a {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    
+    ion-icon {
+      font-size: 16px;
+    }
+    
+    &:hover {
+      color: var(--accent-color);
+    }
+  }
+  
+  &:not(:last-child)::after {
+    content: '/';
+    margin-left: 8px;
+    color: var(--border-color);
+    font-weight: 300;
+  }
+  
+  &.active {
+    color: var(--text-primary);
+    font-weight: 600;
+    
+    // Truncate long titles on mobile
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    
+    @media only screen and (min-width: 768px) {
+      max-width: 400px;
+    }
+  }
+}
+
+// Mobile adjustments
+@media only screen and (max-width: 767px) {
+  .breadcrumbs {
+    margin-bottom: 20px;
+    padding: 12px 0;
+  }
+  
+  .breadcrumb-item {
+    font-size: 13px;
+  }
+}

@@ -1,6 +1,16 @@
 ---
 layout: default
 ---
+{% include reading-progress.html %}
+
+<div class="container">
+	<div class="row">
+		<div class="col col-12">
+			{% include breadcrumbs.html %}
+		</div>
+	</div>
+</div>
+
 <div class="container">
 	<div class="row">
 		<div class="col col-12">
@@ -110,11 +120,12 @@ layout: default
 			{% if site.giscus.repo %}
 				{% include giscus-comments.html %}
 			{% endif %}
-	</article> <!-- /.post -->
+		</article> <!-- /.post -->
 
-	<div class="col col-12 col-t-4">
-		{% include sidebar.html %}
-	</div>
+		<div class="col col-12 col-t-4">
+			{% include table-of-contents.html %}
+			{% include sidebar.html %}
+		</div>
 
 	</div>
 </div>

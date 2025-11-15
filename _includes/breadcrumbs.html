@@ -1,0 +1,44 @@
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <ol class="breadcrumb-list">
+    <li class="breadcrumb-item">
+      <a href="{{ site.baseurl }}/">
+        <ion-icon name="home-outline"></ion-icon>
+        Home
+      </a>
+    </li>
+    
+    {% if page.layout == 'post' %}
+      {% if page.tags.size > 0 %}
+        {% assign first_tag = page.tags[0] | downcase %}
+        {% if first_tag == 'azure' %}
+          <li class="breadcrumb-item">
+            <a href="{{ site.baseurl }}/azure/">Azure</a>
+          </li>
+        {% elsif first_tag == 'governance' %}
+          <li class="breadcrumb-item">
+            <a href="{{ site.baseurl }}/governance/">Governance</a>
+          </li>
+        {% elsif first_tag == 'operations' %}
+          <li class="breadcrumb-item">
+            <a href="{{ site.baseurl }}/operations/">Operations</a>
+          </li>
+        {% elsif first_tag == 'leadership' %}
+          <li class="breadcrumb-item">
+            <a href="{{ site.baseurl }}/leadership/">Leadership</a>
+          </li>
+        {% elsif first_tag == 'log analytics' or first_tag == 'kql' %}
+          <li class="breadcrumb-item">
+            <a href="{{ site.baseurl }}/log-analytics/">Log Analytics</a>
+          </li>
+        {% endif %}
+      {% endif %}
+      <li class="breadcrumb-item active" aria-current="page">
+        {{ page.title }}
+      </li>
+    {% elsif page.layout == 'page' %}
+      <li class="breadcrumb-item active" aria-current="page">
+        {{ page.title }}
+      </li>
+    {% endif %}
+  </ol>
+</nav>
