@@ -55,9 +55,9 @@ logo: /img/social-share-default.svg
 # 4. Fill in the values below
 giscus:
   repo: "technicalanxiety/technicalanxiety.github.io"
-  repo_id: "" # Get from https://giscus.app/
-  category: "Comments" # Create a "Comments" category in Discussions
-  category_id: "" # Get from https://giscus.app/
+  repo_id: "MDEwOlJlcG9zaXRvcnkyMzIzNDc1NDk="
+  category: "Comments"
+  category_id: "DIC_kwDODdlXnc4Cx09X"
 
 
 #-------------------------------
