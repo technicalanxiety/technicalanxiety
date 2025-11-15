@@ -11,13 +11,13 @@
             <ion-icon name="close-outline" class="menu-close"></ion-icon>
             <ul class="menu-list">
               <li class="menu-item"><a href="{{site.baseurl}}/" class="menu-link">Home</a></li>
-              {% for page in site.pages %}
-                {% unless page.name == 'tags.html' or page.name == '404.html' %}
-              {% if page.title %}
-              <li class="menu-item"><a href="{{ page.url | prepend: site.baseurl }}" class="menu-link">{{ page.title }}</a></li>
-              {% endif %}
-                {% endunless %}
-              {% endfor %}
+              <li class="menu-item"><a href="{{site.baseurl}}/start-here/" class="menu-link">Start Here</a></li>
+              <li class="menu-item"><a href="{{site.baseurl}}/azure/" class="menu-link">Azure</a></li>
+              <li class="menu-item"><a href="{{site.baseurl}}/governance/" class="menu-link">Governance</a></li>
+              <li class="menu-item"><a href="{{site.baseurl}}/operations/" class="menu-link">Operations</a></li>
+              <li class="menu-item"><a href="{{site.baseurl}}/leadership/" class="menu-link">Leadership</a></li>
+              <li class="menu-item"><a href="{{site.baseurl}}/log-analytics/" class="menu-link">Log Analytics</a></li>
+              <li class="menu-item"><a href="{{site.baseurl}}/about/" class="menu-link">About</a></li>
             </ul>
           </nav>
           <div class="nav-buttons">
