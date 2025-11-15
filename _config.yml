@@ -47,8 +47,17 @@ logo: /img/social-share-default.svg
 
 
 #-------------------------------
-# Comment Section (Disqus)
-disqus-identifier: anxiouschat # Add your shortname for Disqus Comment. For example mr-brown
+# Comment Section (Giscus - GitHub Discussions)
+# To set up:
+# 1. Enable GitHub Discussions on your repo: Settings > Features > Discussions
+# 2. Install Giscus app: https://github.com/apps/giscus
+# 3. Get your settings: https://giscus.app/
+# 4. Fill in the values below
+giscus:
+  repo: "technicalanxiety/technicalanxiety.github.io"
+  repo_id: "" # Get from https://giscus.app/
+  category: "Comments" # Create a "Comments" category in Discussions
+  category_id: "" # Get from https://giscus.app/
 
 
 #-------------------------------

@@ -1,0 +1,36 @@
+/* ===============================================
+   Comments Section (Giscus)
+   =============================================== */
+
+.comments {
+  margin-top: 60px;
+  padding: 40px 0;
+  border-top: 1px solid var(--border-color);
+}
+
+.comments-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--heading-color);
+  margin-bottom: 30px;
+  text-align: left;
+}
+
+// Giscus theme integration
+.giscus {
+  // Giscus will automatically adapt to the theme
+  // using data-theme="preferred_color_scheme"
+}
+
+// Mobile adjustments
+@media only screen and (max-width: 767px) {
+  .comments {
+    margin-top: 40px;
+    padding: 30px 0;
+  }
+  
+  .comments-title {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+}

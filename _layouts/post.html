@@ -106,8 +106,9 @@ layout: default
 				</div>
 			</div>
 			{% endif %}
-			{% if site.disqus-identifier %}
-				{% include disqus-comments.html %}
+			
+			{% if site.giscus.repo %}
+				{% include giscus-comments.html %}
 			{% endif %}
 	</article> <!-- /.post -->
 
