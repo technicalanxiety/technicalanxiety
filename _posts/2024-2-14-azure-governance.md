@@ -3,8 +3,12 @@ layout: post
 title:  "Governance in Azure?"
 date:   2024-02-14 11:30 -0600
 image:  az-guardrails.jpg
-tags:   [Governance]
+tags:   [Governance, Azure]
 ---
+
+## Update Nov 2025
+
+> For a deeper look at how landing zones implement these governance concepts based on lessons from 100+ production environments, see [From Base Camp to Summit](https://www.technicalanxiety.com/base-camp/).
 
 ## PURPOSE
 {: .text-center}

@@ -3,7 +3,7 @@ layout: post
 title:  "Intro to Log Analytics - Part 2"
 date:   2020-02-10 21:52 -0600
 image:  more-la.jpg
-tags:   [Log Analytics]
+tags:   [Log Analytics, Azure]
 ---
 
 ## PURPOSE

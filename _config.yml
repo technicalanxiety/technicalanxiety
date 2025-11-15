@@ -60,7 +60,7 @@ instafeed: false # To enable the instafeed, use the value true. To turn off use 
 # Google Analytics 4 (GA4)
 # Replace with your GA4 measurement ID (format: G-XXXXXXXXXX)
 # Old Universal Analytics (UA-155892178-1) was deprecated July 2023
-google-analytics: # G-2HB2W9WDMR
+google-analytics: G-2HB2W9WDMR
 
 
 #-------------------------------
