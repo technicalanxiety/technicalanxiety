@@ -1,0 +1,62 @@
+/* ===============================================
+   Topic Cards (Start Here Page)
+   =============================================== */
+
+.topic-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 25px;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    border-color: var(--accent-color);
+  }
+  
+  h3 {
+    margin: 0 0 15px 0;
+    font-size: 20px;
+    font-weight: 700;
+    
+    a {
+      color: var(--heading-color);
+      text-decoration: none;
+      transition: color 0.3s ease;
+      
+      &:hover {
+        color: var(--accent-color);
+      }
+    }
+  }
+  
+  p {
+    margin: 0;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    flex: 1;
+    
+    strong {
+      color: var(--accent-color);
+      font-weight: 600;
+    }
+  }
+}
+
+// Mobile adjustments
+@media only screen and (max-width: 767px) {
+  .topic-card {
+    padding: 20px;
+    margin-bottom: 15px;
+    
+    h3 {
+      font-size: 18px;
+      margin-bottom: 12px;
+    }
+  }
+}
