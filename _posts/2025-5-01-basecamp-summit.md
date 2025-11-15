@@ -128,4 +128,4 @@ The question isn't whether you'll implement proper governance. It's whether you'
 
 Choose wisely.
 
-**Photo by [<Gustavo Leighton>](https://unsplash.com/@g_leighton) on [Unsplash](https://unsplash.com/photos/yellow-dome-tent-on-snow-covered-ground-during-night-time-czTtFVgyypI)**
+**Photo by [Gustavo Leighton](https://unsplash.com/@g_leighton) on [Unsplash](https://unsplash.com/photos/yellow-dome-tent-on-snow-covered-ground-during-night-time-czTtFVgyypI)**
