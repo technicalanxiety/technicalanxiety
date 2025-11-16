@@ -8,7 +8,7 @@ tags:   [Governance, Azure]
 
 ## Update Nov 2025
 
-> For a deeper look at how landing zones implement these governance concepts based on lessons from 100+ production environments, see [From Base Camp to Summit](https://www.technicalanxiety.com/base-camp/).
+> For a deeper look at how landing zones implement these governance concepts based on lessons from 100+ production environments, see [From Base Camp to Summit](https://www.technicalanxiety.com/basecamp-summit/).
 
 ## PURPOSE
 {: .text-center}
