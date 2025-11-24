@@ -1,4 +1,12 @@
-# From Fear to Freedom: How Psychological Safety Rewired My Career
+---
+layout: post
+title:  "From Fear to Freedom"
+date:   2025-11-24 09:00 -0600
+image:  no-fear.jpg
+tags:   [Anxiety, Leadership]
+---
+
+# How Psychological Safety Rewired My Career
 
 ---
 
@@ -77,3 +85,5 @@ What would change in your career if fear was not the driver?
 What would your team build if mistakes were not fatal?
 
 Here is the truth. Safety is not soft. It is the hardest skill you will ever learn.
+
+**Photo by [Etienne Girardet](https://unsplash.com/@etiennegirardet) on [Unsplash](https://unsplash.com/photos/text-NJ7_RKmfsXw)**
