@@ -66,7 +66,7 @@ Once I embraced this, my career trajectory shifted.
 - I stopped fearing mistakes and started embracing them as fuel for innovation.  
 - I watched collaboration replace compliance.  
 
-Before, I killed ideas before they left my notebook. Today, my team ships prototypes in days because mistakes are not career-ending. That is the power of safety.
+Before, I killed ideas before they left my notebook. Today, my team understands mistakes are not career-ending but key to innovation. That is the power of safety.
 
 ---
 
