@@ -1,9 +1,10 @@
-// Body
+// Body - Tech-forward typography inspired by Tron aesthetic
+// Rajdhani provides excellent readability with a modern, geometric feel
 $base-font-size: 16px;
 $base-font-style: normal;
 $base-font-variant: normal;
-$base-font-weight: normal;
-$base-font-family: 'Nunito', sans-serif;
+$base-font-weight: 400;
+$base-font-family: 'Rajdhani', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 $base-line-height: 28px;
 
 *, *::after, *::before {
@@ -17,8 +18,10 @@ body {
   color: var(--text-primary);
   background: var(--bg-primary);
   overflow-x: hidden;
+  // Font rendering optimizations for crisp, tech-forward appearance
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
   input, textarea {
 		border: $border-color 1px solid;
 		outline: none;
@@ -41,9 +44,10 @@ body {
 }
 
 
-// Headings
+// Headings - Orbitron for futuristic, Tron-inspired display typography
+// This geometric sans-serif evokes digital interfaces and tech aesthetics
 $heading-font-weight: 700;
-$heading-font-family: 'Nunito', -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
+$heading-font-family: 'Orbitron', 'Rajdhani', -apple-system, BlinkMacSystemFont, sans-serif;
 
 $font-size-h1:  36px;
 $font-size-h2:  28px;
@@ -60,7 +64,10 @@ h3,
 h4,
 h5,
 h6 {
+  font-family: $heading-font-family;
+  font-weight: $heading-font-weight;
   line-height: initial;
+  letter-spacing: 0.02em; // Slight letter spacing for that tech aesthetic
 }
 
 h1 {
@@ -96,15 +103,18 @@ blockquote {
 }
 
 
-// Pre
+// Pre - Fira Code for code blocks with programming ligatures
+// Provides enhanced readability for code with support for common programming symbols
 pre {
   overflow: auto;
   padding: 15px;
   margin-bottom: 0;
+  font-family: 'Fira Code', 'Courier New', monospace;
   font-size: 14px;
   white-space: pre-wrap;
   word-wrap: break-word;
   word-break: break-all;
+  font-variant-ligatures: normal; // Enable programming ligatures (e.g., => becomes arrow)
 }
 
 
@@ -165,15 +175,11 @@ blockquote {
 }
 
 
-// Pre
-pre {
-  overflow: auto;
-  padding: 15px;
-  margin-bottom: 0;
-  font-size: 14px;
-  white-space: pre-wrap;
-  word-wrap: break-word;
-  word-break: break-all;
+// Code inline elements - consistent monospace styling
+code {
+  font-family: 'Fira Code', 'Courier New', monospace;
+  font-size: 0.9em;
+  font-variant-ligatures: normal;
 }
 
 // Table
