@@ -4,6 +4,8 @@ title:  "Operational Change, Part 2"
 date:   2025-11-14 09:00 -0600
 image:  ops-changes-2.jpg
 tags:   [Governance, Operations]
+series: "Operational Change"
+series_part: 2
 ---
 
 # The AI Revolution in Service Management: Intelligent Operations and Continuous Innovation

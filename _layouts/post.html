@@ -35,6 +35,9 @@ layout: default
 					</div>
 					{% endif %}
 					<h1 class="post-title">{{ page.title | escape }}</h1>
+					
+					{% comment %} Series navigation - shows if post is part of a series {% endcomment %}
+					{% include series-navigation.html %}
 					<div class="post-info">
 						<div class="post-info-author">
 							<div class="info-author-avatar" style="background-image: url({{"/img/" | prepend: site.baseurl | append : site.author-avatar}})"></div>

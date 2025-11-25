@@ -1,0 +1,87 @@
+// Series Navigation Component Styles
+// Provides visual styling for multi-part blog series navigation
+
+.series-navigation {
+  margin: 30px 0;
+  padding: 25px;
+  background: var(--bg-secondary);
+  border-left: 4px solid $primary-color;
+  border-radius: $global-radius;
+  
+  // Header section with series title
+  .series-header {
+    margin-bottom: 15px;
+    
+    .series-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0;
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text-primary);
+      
+      ion-icon {
+        font-size: 24px;
+        color: $primary-color;
+      }
+    }
+  }
+  
+  // Ordered list of series parts
+  .series-list {
+    margin: 0;
+    padding-left: 25px;
+    list-style: none;
+    counter-reset: series-counter;
+    
+    .series-item {
+      margin: 10px 0;
+      padding: 8px 0;
+      position: relative;
+      
+      // Current post indicator
+      &.current {
+        .series-current {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          font-weight: 600;
+          color: $primary-color;
+          
+          ion-icon {
+            font-size: 18px;
+          }
+        }
+      }
+      
+      // Links to other parts
+      .series-link {
+        color: var(--text-primary);
+        text-decoration: none;
+        transition: $global-transition;
+        
+        &:hover {
+          color: $primary-color;
+          padding-left: 5px;
+        }
+      }
+    }
+  }
+}
+
+// Responsive adjustments for mobile
+@media only screen and (max-width: 768px) {
+  .series-navigation {
+    padding: 20px 15px;
+    
+    .series-header .series-title {
+      font-size: 18px;
+    }
+    
+    .series-list {
+      padding-left: 20px;
+      font-size: 14px;
+    }
+  }
+}

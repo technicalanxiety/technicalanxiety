@@ -1,0 +1,43 @@
+{% comment %}
+  Series Navigation Component
+  
+  Displays navigation for multi-part blog series. Automatically generates
+  previous/next links and shows all parts in the series.
+  
+  Usage: Include in post layout. Requires 'series' and 'series_part' in post front matter.
+  
+  Example front matter:
+    series: "Decide or Drown"
+    series_part: 1
+{% endcomment %}
+
+{% if page.series %}
+<div class="series-navigation">
+  <div class="series-header">
+    <h3 class="series-title">
+      <ion-icon name="list-outline"></ion-icon>
+      {{ page.series }} Series
+    </h3>
+  </div>
+  
+  {% comment %} Collect all posts in this series {% endcomment %}
+  {% assign series_posts = site.posts | where: "series", page.series | sort: "series_part" %}
+  
+  <ol class="series-list">
+    {% for post in series_posts %}
+      <li class="series-item {% if post.url == page.url %}current{% endif %}">
+        {% if post.url == page.url %}
+          <span class="series-current">
+            <ion-icon name="arrow-forward-outline"></ion-icon>
+            Part {{ post.series_part }}: {{ post.title | remove: page.series | remove: "Part " | remove: post.series_part | remove: "-" | strip }}
+          </span>
+        {% else %}
+          <a href="{{ post.url | prepend: site.baseurl }}" class="series-link">
+            Part {{ post.series_part }}: {{ post.title | remove: page.series | remove: "Part " | remove: post.series_part | remove: "-" | strip }}
+          </a>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ol>
+</div>
+{% endif %}

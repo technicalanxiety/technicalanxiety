@@ -4,6 +4,8 @@ title:  "Operational Change, Part 1"
 date:   2025-10-31 09:00 -0600
 image:  ops-changes-1.jpg
 tags:   [Governance, Operations]
+series: "Operational Change"
+series_part: 1
 ---
 
 ## Operational Change, Cloud Version
