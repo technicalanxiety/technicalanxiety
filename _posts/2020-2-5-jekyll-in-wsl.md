@@ -4,6 +4,7 @@ title:  "Jekyll in WSL"
 date:   2020-02-05 22:32:55 -0600
 image:  jekyll-in-wsl.jpg
 tags:   [Jekyll]
+description: "A complete walkthrough for setting up Jekyll in Windows Subsystem for Linux to edit and preview your GitHub Pages site locally."
 ---
 
 ## PURPOSE

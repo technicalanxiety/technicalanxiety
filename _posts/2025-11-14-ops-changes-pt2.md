@@ -6,6 +6,7 @@ image:  ops-changes-2.jpg
 tags:   [Governance, Operations]
 series: "Operational Change"
 series_part: 2
+description: "AI isn't just a buzzword anymore. It's quietly transforming how we deliver, operate, and support IT services."
 ---
 
 # The AI Revolution in Service Management: Intelligent Operations and Continuous Innovation

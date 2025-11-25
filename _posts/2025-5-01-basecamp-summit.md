@@ -4,6 +4,7 @@ title:  "From Base Camp to Summit"
 date:   2025-05-01 15:00:00 -0600
 image:  base-camp.jpg
 tags:   [Azure, Governance]
+description: "Why cloud migrations fail without proper governance - lessons from 100+ Azure environments on building foundations before scaling."
 ---
 
 # Why Your Cloud Migration Will Fail Without Proper Governance

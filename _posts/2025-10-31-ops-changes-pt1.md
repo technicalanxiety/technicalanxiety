@@ -6,6 +6,7 @@ image:  ops-changes-1.jpg
 tags:   [Governance, Operations]
 series: "Operational Change"
 series_part: 1
+description: "Embracing Modern Service Management isn't just a technical upgrade - it's a change you must experience to unlock real business value."
 ---
 
 ## Operational Change, Cloud Version

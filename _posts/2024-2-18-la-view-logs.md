@@ -6,6 +6,7 @@ image:  la-view-logs.jpg
 tags:   [Log Analytics, Azure]
 series: "Intro to Log Analytics"
 series_part: 3
+description: "Using Log Analytics as an actual log aggregation tool - building human-readable tables to view VM status with KQL functions."
 ---
 
 ## PURPOSE
