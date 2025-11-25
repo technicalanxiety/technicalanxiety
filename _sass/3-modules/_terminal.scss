@@ -14,6 +14,16 @@
   width: 500px;
   align-self: start;
   
+  // Make terminal responsive on smaller screens
+  @media only screen and (max-width: 991px) {
+    width: 100%;
+    max-width: 500px;
+  }
+  
+  @media only screen and (max-width: 576px) {
+    max-width: calc(100vw - 40px);
+  }
+  
   // Dark theme terminal colors
   --terminal-bg: #1e1e1e;
   --terminal-header-bg: #323233;
