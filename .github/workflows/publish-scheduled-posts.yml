@@ -1,0 +1,91 @@
+name: Publish Scheduled Posts
+
+# Runs daily at 9 AM UTC (adjust timezone as needed)
+# Also allows manual triggering from Actions tab
+on:
+  schedule:
+    - cron: '0 9 * * *'  # Daily at 9 AM UTC
+  workflow_dispatch:  # Allows manual trigger
+
+jobs:
+  publish-posts:
+    runs-on: ubuntu-latest
+    
+    steps:
+      # Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          
+      # Set up Git configuration for commits
+      - name: Configure Git
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "actions@github.com"
+          
+      # Run Python script to move posts from backlog to main posts folder
+      - name: Publish scheduled posts
+        run: |
+          python3 << 'EOF'
+          import os
+          import re
+          from datetime import datetime, timezone
+          from pathlib import Path
+          
+          # Define paths
+          backlog_dir = Path('_posts/backlog')
+          posts_dir = Path('_posts')
+          
+          # Get current date in UTC
+          today = datetime.now(timezone.utc).date()
+          
+          # Track if any posts were published
+          published_posts = []
+          
+          # Check if backlog directory exists
+          if not backlog_dir.exists():
+              print("No backlog directory found")
+              exit(0)
+          
+          # Iterate through all markdown files in backlog
+          for post_file in backlog_dir.glob('*.md'):
+              # Read the file content
+              content = post_file.read_text(encoding='utf-8')
+              
+              # Extract the date from front matter
+              # Looking for: date: 2024-11-25 or date: 2024-11-25 12:00:00
+              date_match = re.search(r'^date:\s*(\d{4}-\d{2}-\d{2})', content, re.MULTILINE)
+              
+              if date_match:
+                  post_date_str = date_match.group(1)
+                  post_date = datetime.strptime(post_date_str, '%Y-%m-%d').date()
+                  
+                  # Check if post date is today or earlier
+                  if post_date <= today:
+                      # Move the post to main posts directory
+                      destination = posts_dir / post_file.name
+                      post_file.rename(destination)
+                      published_posts.append(post_file.name)
+                      print(f"Published: {post_file.name} (dated {post_date_str})")
+          
+          # Output summary
+          if published_posts:
+              print(f"\n✓ Published {len(published_posts)} post(s)")
+              exit(0)
+          else:
+              print("No posts ready to publish")
+              exit(0)
+          EOF
+          
+      # Commit and push if there are changes
+      - name: Commit and push changes
+        run: |
+          if [[ -n $(git status --porcelain) ]]; then
+            git add _posts/
+            git commit -m "Auto-publish scheduled posts [skip ci]"
+            git push
+            echo "✓ Changes committed and pushed"
+          else
+            echo "No changes to commit"
+          fi
