@@ -2,7 +2,7 @@
 layout: post
 title:  "Decide or Drown - Part 1"
 date:   2025-12-02 00:00:00 -0600
-image:  template.jpg
+image:  drown-pt1.jpg
 tags:   [Leadership]
 series: "Decide or Drown"
 series_part: 1
@@ -94,5 +94,6 @@ That's not removing choice. That's removing friction.
 Your teams will thank you for it. Even if they never know what you took off their plate.
 
 ---
+**Photo by [Victoriano Izquierdo](https://unsplash.com/@victoriano) on [Unsplash](https://unsplash.com/photos/man-on-front-of-vending-machines-at-nighttime-JG35CpZLfVs)**
 
 *This is Part 1 of the "Decide or Drown" series. In [Part 2: Technical Gluttony](/technical-gluttony), we look at what happens when organizations don't make these upstream decisions - and how to dig out from years of accumulated tool sprawl when the "do more with less" mandate finally arrives.*

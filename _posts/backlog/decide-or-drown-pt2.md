@@ -2,7 +2,7 @@
 layout: post
 title:  "Decide or Drown - Part 2"
 date:   2025-12-09 00:00:00 -0600
-image:  template.jpg
+image:  drown-pt2.jpg
 tags:   [Leadership]
 series: "Decide or Drown"
 series_part: 2
@@ -102,5 +102,6 @@ The technical debt collector is calling. You can keep dodging, and watch the int
 The reckoning has arrived. What you do with it is up to you.
 
 ---
+**Photo by [Europeana](https://unsplash.com/@europeana) on [Unsplash](https://unsplash.com/photos/Z4JS44xPGYw)**
 
 *This is Part 2 of the "Decide or Drown" series. In [Part 3: The Four Pillars](/four-pillars), we move from diagnosis to action - a repeatable framework for evaluating technology decisions that accounts for your people, your customers, your business, and the measurement criteria that most organizations skip entirely.*

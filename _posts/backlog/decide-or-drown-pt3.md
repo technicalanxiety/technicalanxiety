@@ -2,7 +2,7 @@
 layout: post
 title:  "Decide or Drown - Part 3"
 date:   2025-12-16 00:00:00 -0600
-image:  template.jpg
+image:  drown-pt3.jpg
 tags:   [Leadership]
 series: "Decide or Drown"
 series_part: 3
@@ -128,3 +128,6 @@ Part 3 is the method: four pillars that turn technology evaluation from a politi
 The rest is execution. Pick a domain. Apply the framework. Make the call. Measure the outcome. Repeat.
 
 Your organization is waiting for someone to clear the path. Now you have the tools. Go decide.
+
+---
+**Photo by [JF Martin](https://unsplash.com/@numericcitizen) on [Unsplash](https://unsplash.com/photos/brown-wooden-house-interior-LQkZnlL_1ZQ)**
