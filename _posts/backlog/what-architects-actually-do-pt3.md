@@ -2,7 +2,7 @@
 layout: post
 title:  "What Architects Actually Do - Part 3"
 date:   2026-01-06 00:00:00 -0600
-image:  template.jpg
+image:  architects-pt3.jpg
 tags:   [Leadership, Architecture]
 series: "What Architects Actually Do"
 series_part: 3
@@ -182,5 +182,6 @@ The path is long. There are no shortcuts. But architects who master these fundam
 That's what architects actually do.
 
 ---
+**Photo by [Alex Shute](https://unsplash.com/@faithgiant) on [Unsplash](https://unsplash.com/photos/a-wooden-block-that-says-trust-surrounded-by-blue-flowers-bGOemOApXo4)**
 
 *This concludes the "What Architects Actually Do" series. If you found it valuable, the ["Decide or Drown" series](/decide-or-drown) covers the leadership side of technology decision-making - written for the IT leaders these architects work with.*

@@ -2,7 +2,7 @@
 layout: post
 title:  "What Architects Actually Do - Part 1"
 date:   2025-12-23 00:00:00 -0600
-image:  template.jpg
+image:  architects-pt1.jpg
 tags:   [Leadership, Architecture]
 series: "What Architects Actually Do"
 series_part: 1
@@ -128,5 +128,6 @@ In Part 2 of this series, we'll get concrete. I'll walk through what translation
 For now, start listening differently. The gap between C-suite and practitioners is where architects live. Learn to hear both sides, and you'll never lack for valuable work.
 
 ---
+**Photo by [Ling App](https://unsplash.com/@lingapp) on [Unsplash](https://unsplash.com/photos/a-wooden-block-that-says-translation-on-it-p5VW_ZUon7o)**
 
 *This is Part 1 of the "What Architects Actually Do" series. [Part 2: Translation in Practice](/translation-in-practice) gets concrete with real scenarios and frameworks. [Part 3: Earning Technical Credibility](/technical-credibility) covers the foundation that makes it all possible.*

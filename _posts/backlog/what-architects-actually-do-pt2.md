@@ -2,7 +2,7 @@
 layout: post
 title:  "What Architects Actually Do - Part 2"
 date:   2025-12-30 00:00:00 -0600
-image:  template.jpg
+image:  architects-pt2.jpg
 tags:   [Leadership, Architecture]
 series: "What Architects Actually Do"
 series_part: 2
@@ -157,5 +157,6 @@ After two years, you're the person everyone calls when there's a gap between bus
 That's the architect's real value. And it only comes from practicing translation deliberately, in every interaction, until it becomes automatic.
 
 ---
+**Photo by [Brett Jordan](https://unsplash.com/@brett_jordan) on [Unsplash](https://unsplash.com/photos/brown-wooden-cross-on-white-surface-Fp4ERdkR5jU)**
 
 *This is Part 2 of the "What Architects Actually Do" series. [Part 1](/translation-layer) covered why translation matters. This piece covered how to do it. [Part 3: Earning Technical Credibility](/technical-credibility) addresses the foundation that makes translation possible - how to build trust with practitioners who know more than you, and leadership who needs to trust your judgment.*
