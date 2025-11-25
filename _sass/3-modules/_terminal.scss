@@ -1,0 +1,196 @@
+/**
+ * Terminal Window Component
+ * Animated terminal that displays a typing effect for mental health deployment
+ * Supports both light and dark themes
+ */
+
+.terminal-window {
+  background: var(--terminal-bg);
+  border-radius: 8px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  margin: 0;
+  overflow: hidden;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', monospace;
+  width: 650px;
+  align-self: start;
+  
+  // Dark theme terminal colors
+  --terminal-bg: #1e1e1e;
+  --terminal-header-bg: #323233;
+  --terminal-text: #d4d4d4;
+  --terminal-command: #4ec9b0;
+  --terminal-success: #4ec9b0;
+  --terminal-info: #569cd6;
+  --terminal-package: #9cdcfe;
+  --terminal-cursor: #ffffff;
+  
+  // Light theme overrides
+  [data-theme="light"] & {
+    --terminal-bg: #f5f5f5;
+    --terminal-header-bg: #e0e0e0;
+    --terminal-text: #333333;
+    --terminal-command: #0066cc;
+    --terminal-success: #22863a;
+    --terminal-info: #6f42c1;
+    --terminal-package: #005cc5;
+    --terminal-cursor: #333333;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/**
+ * Terminal header with macOS-style window controls
+ */
+.terminal-header {
+  background: var(--terminal-header-bg);
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/**
+ * Window control buttons (close, minimize, maximize)
+ */
+.terminal-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.terminal-button {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.terminal-close {
+  background: #ff5f56;
+}
+
+.terminal-minimize {
+  background: #ffbd2e;
+}
+
+.terminal-maximize {
+  background: #27c93f;
+}
+
+/**
+ * Terminal title bar text
+ */
+.terminal-title {
+  color: var(--terminal-text);
+  font-size: 12px;
+  opacity: 0.7;
+  flex: 1;
+  text-align: center;
+  margin-right: 60px; // Offset for centered appearance
+}
+
+/**
+ * Terminal body containing the animated content
+ * Fixed height prevents layout shift during animation
+ */
+.terminal-body {
+  padding: 20px;
+  height: 380px;
+  color: var(--terminal-text);
+  font-size: 14px;
+  line-height: 1.6;
+  position: relative;
+  overflow: hidden;
+}
+
+/**
+ * Individual terminal lines with different types
+ */
+.terminal-line {
+  margin: 4px 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+// Command line styling (user input)
+.terminal-command {
+  color: var(--terminal-command);
+  font-weight: 600;
+}
+
+// Success messages (checkmarks)
+.terminal-success {
+  color: var(--terminal-success);
+}
+
+// Info messages (gears, packages)
+.terminal-info {
+  color: var(--terminal-info);
+}
+
+// Package names
+.terminal-package {
+  color: var(--terminal-package);
+  padding-left: 10px;
+}
+
+// Blank lines for spacing
+.terminal-blank {
+  height: 8px;
+}
+
+/**
+ * Blinking cursor animation
+ */
+.terminal-cursor {
+  color: var(--terminal-cursor);
+  animation: blink 1s step-end infinite;
+  font-weight: bold;
+  margin-left: 2px;
+}
+
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
+/**
+ * Responsive adjustments for smaller screens
+ */
+@media only screen and (max-width: 768px) {
+  .terminal-window {
+    margin: 20px 0;
+    font-size: 13px;
+  }
+  
+  .terminal-body {
+    padding: 15px;
+    height: 320px;
+    font-size: 12px;
+  }
+  
+  .terminal-title {
+    font-size: 11px;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .terminal-window {
+    font-size: 12px;
+  }
+  
+  .terminal-body {
+    padding: 12px;
+    height: 280px;
+    font-size: 11px;
+  }
+  
+  .terminal-button {
+    width: 10px;
+    height: 10px;
+  }
+}

@@ -30,9 +30,35 @@
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
+  grid-template-columns: 500px 650px 400px;
+  gap: 40px;
   align-items: start;
+  justify-content: center;
+  
+  @media only screen and (max-width: 1600px) {
+    grid-template-columns: 450px 650px 380px;
+    gap: 30px;
+  }
+  
+  @media only screen and (max-width: 1500px) {
+    grid-template-columns: 400px 650px 350px;
+    gap: 25px;
+  }
+  
+  @media only screen and (max-width: 1400px) {
+    grid-template-columns: 1fr 650px 1fr;
+    gap: 20px;
+  }
+  
+  @media only screen and (max-width: 1200px) {
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    
+    .terminal-window {
+      grid-column: 1 / -1;
+      justify-self: center;
+    }
+  }
   
   @media only screen and (max-width: 991px) {
     grid-template-columns: 1fr;
@@ -41,7 +67,7 @@
 }
 
 .hero-text {
-  padding-top: 20px;
+  // Removed padding-top to align with other columns
 }
 
 .hero-title {
@@ -173,6 +199,7 @@
   border-radius: 12px;
   padding: 30px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  align-self: start;
 }
 
 .hero-topics-title {
