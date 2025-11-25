@@ -5,7 +5,7 @@ date:   2024-02-18 09:00 -0600
 image:  la-view-logs.jpg
 tags:   [Log Analytics, Azure]
 series: "Intro to Log Analytics"
-series_part: 2
+series_part: 3
 ---
 
 ## PURPOSE
