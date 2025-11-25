@@ -5,6 +5,3 @@ _site
 
 # Image optimization backups
 img/originals/
-
-# Optimization script (keep local only)
-optimize-images.sh

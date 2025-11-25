@@ -1,16 +1,144 @@
 ---
 layout: page
 title: Page not found
-image: 04.jpg
 permalink: /404.html
 ---
 
+<style>
+  .error-container {
+    text-align: center;
+    padding: 80px 20px;
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .error-code {
+    font-size: 120px;
+    font-weight: 800;
+    color: var(--accent-color);
+    line-height: 1;
+    margin: 0 0 20px 0;
+    font-family: 'Monaco', 'Consolas', monospace;
+  }
+  
+  .error-terminal {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 30px;
+    max-width: 600px;
+    margin: 30px auto;
+    text-align: left;
+    font-family: 'Monaco', 'Consolas', monospace;
+    font-size: 14px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .error-terminal-line {
+    margin: 8px 0;
+    color: var(--text-color);
+  }
+  
+  .error-prompt {
+    color: var(--accent-color);
+    font-weight: 600;
+  }
+  
+  .error-output {
+    color: #ff6b6b;
+  }
+  
+  .error-message {
+    font-size: 24px;
+    color: var(--heading-color);
+    margin: 20px 0;
+    font-weight: 600;
+  }
+  
+  .error-description {
+    font-size: 16px;
+    color: var(--text-secondary);
+    margin: 0 0 30px 0;
+    max-width: 500px;
+  }
+  
+  .error-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .error-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: var(--accent-color);
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+  
+  .error-button:hover {
+    background: var(--link-color-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(26, 188, 156, 0.3);
+  }
+  
+  .error-button-secondary {
+    background: transparent;
+    color: var(--heading-color);
+    border: 2px solid var(--border-color);
+  }
+  
+  .error-button-secondary:hover {
+    background: transparent;
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+  }
+</style>
+
 <div class="container">
   <div class="row">
-    <div class="col col-12" style="text-align: center">
-      <h2>404</h2>
-      <p>The requested page could not be found.</p>
-      <p><a href="{{site.baseurl}}/">Back to the bLog</a></p>
+    <div class="col col-12">
+      <div class="error-container">
+        <div class="error-code">404</div>
+        
+        <div class="error-terminal">
+          <div class="error-terminal-line">
+            <span class="error-prompt">&gt;</span> npm run find-page
+          </div>
+          <div class="error-terminal-line error-output">
+            ✗ Error: Page not found
+          </div>
+          <div class="error-terminal-line">
+            <span style="color: var(--text-secondary);">The requested resource doesn't exist in this deployment.</span>
+          </div>
+        </div>
+        
+        <h2 class="error-message">This page took an unexpected detour</h2>
+        <p class="error-description">
+          The page you're looking for might have been moved, deleted, or never existed. 
+          Let's get you back on track.
+        </p>
+        
+        <div class="error-actions">
+          <a href="{{site.baseurl}}/" class="error-button">
+            <ion-icon name="home-outline"></ion-icon>
+            Back to Home
+          </a>
+          <a href="{{site.baseurl}}/start-here/" class="error-button error-button-secondary">
+            <ion-icon name="compass-outline"></ion-icon>
+            Start Here
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 </div>
