@@ -69,7 +69,7 @@ I'll begin by putting the entire query here and then we'll disect it.
 
 <br>
 
-In this query we've introduced a more advanced technique of creating **functions** outside of our main query on the `Heartbeat` table. Doing this improves the query be avoiding joining other tables inside the main query. It also simplifies the query significantly. This method is especially useful if you are calculating or comparing, as you'll notice, values. More complex functions can be created and stored in the workspace and called directly from KQL.
+In this query we've introduced a more advanced technique of creating **functions** outside of our main query on the `Heartbeat` table. Doing this improves the query by avoiding joining other tables inside the main query. It also simplifies the query significantly. This method is especially useful if you are calculating or comparing, as you'll notice, values. More complex functions can be created and stored in the workspace and called directly from KQL.
 
 The 3 functions use the AzureActivity table to set the values for 3 of the most common virtual machine states. So, we're really creating 3 functions called.
 * deallocatedVMs
