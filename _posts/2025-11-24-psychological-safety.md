@@ -53,7 +53,7 @@ Without psychological safety, we would have never achieved together what none of
 ---
 
 ## My Definition
-For me, psychological safety means speaking through honesty and love. Not belligerence. Not hate. It means creating space where ideas can breathe, mistakes are not fatal, and feedback is not a weapon.
+For me, psychological safety means speaking honestly without fear of judgement or reprisal. It means creating space where ideas can breathe, mistakes are not fatal they are encouraged, and feedback is not a weapon but a tool for success.
 
 It is not about being nice. It is about being real without fear.
 
