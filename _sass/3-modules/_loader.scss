@@ -1,4 +1,9 @@
-// Loader Settings
+/**
+ * Loader/Preloader Component
+ * Displays a "Deploying..." message with spinning circle animation
+ * Shown during page transitions and initial load
+ */
+
 .preloader {
   position: fixed;
   top: 0;
@@ -15,40 +20,42 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
   font-family: 'Nunito', sans-serif;
-  font-size: 21px;
-  letter-spacing: .5em;
-  text-transform: uppercase;
-  font-weight: 700;
-  color: #fff;
-  background: $black;
 
   span {
+    font-size: 21px;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    font-weight: 700;
     color: #fff;
-    mix-blend-mode: difference;
-  }
-
-  &:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 60px;
-    height: 100%;
-    background: #fff;
-    animation: animate 3s linear infinite;
   }
 }
 
-@keyframes animate {
+/**
+ * Spinning circle loader animation
+ * Creates a circular spinner with accent color
+ */
+.loader-spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid rgba(255, 255, 255, 0.1);
+  border-top-color: #1abc9c; // Accent color
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/**
+ * Spin animation for the loader circle
+ */
+@keyframes spin {
   0% {
-    left: 0;
-  }
-  50% {
-    left: calc(100% - 70px);
+    transform: rotate(0deg);
   }
   100% {
-    left: 0;
+    transform: rotate(360deg);
   }
 }
