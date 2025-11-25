@@ -43,7 +43,10 @@ social:
 
 # Default image for social sharing when post doesn't have one
 # This appears when sharing posts that don't have a featured image
-logo: /img/social-share-default.svg
+logo: /img/social-share-default.png
+
+# Open Graph default image
+image: /img/social-share-default.png
 
 
 #-------------------------------

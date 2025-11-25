@@ -1,35 +1,62 @@
-<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
-  <!-- Background gradient -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <!-- Dark background matching site theme -->
+  <rect width="1200" height="630" fill="#1a1a1a"/>
+  
+  <!-- Subtle grid pattern for tech aesthetic -->
   <defs>
-    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#2C2F36;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#1a1c20;stop-opacity:1" />
-    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#2a2a2a" stroke-width="1"/>
+    </pattern>
   </defs>
+  <rect width="1200" height="630" fill="url(#grid)" opacity="0.3"/>
   
-  <!-- Background -->
-  <rect width="1200" height="630" fill="url(#grad)"/>
+  <!-- Terminal window mockup -->
+  <rect x="100" y="150" width="500" height="330" rx="12" fill="#2d2d2d" stroke="#3a3a3a" stroke-width="2"/>
   
-  <!-- Accent line -->
-  <rect x="60" y="280" width="8" height="70" fill="#1ABC9C"/>
+  <!-- Terminal header with buttons -->
+  <rect x="100" y="150" width="500" height="40" rx="12" fill="#323233"/>
+  <circle cx="125" cy="170" r="6" fill="#ff5f56"/>
+  <circle cx="145" cy="170" r="6" fill="#ffbd2e"/>
+  <circle cx="165" cy="170" r="6" fill="#27c93f"/>
   
-  <!-- Main text -->
-  <text x="100" y="330" font-family="Arial, sans-serif" font-size="72" font-weight="bold" fill="#C9D3E7">
-    TECHNICAL_ANXIETY
+  <!-- Terminal content with prompt -->
+  <text x="130" y="230" font-family="Monaco, Consolas, monospace" font-size="20" fill="#1abc9c" font-weight="600">
+    &gt; npm run deploy-calm
+  </text>
+  <text x="130" y="270" font-family="Monaco, Consolas, monospace" font-size="18" fill="#4ec9b0">
+    ✓ Removing imposter syndrome
+  </text>
+  <text x="130" y="300" font-family="Monaco, Consolas, monospace" font-size="18" fill="#4ec9b0">
+    ✓ Installing confidence@latest
+  </text>
+  <text x="130" y="330" font-family="Monaco, Consolas, monospace" font-size="18" fill="#4ec9b0">
+    ✓ Configuring work-life balance
+  </text>
+  <text x="130" y="360" font-family="Monaco, Consolas, monospace" font-size="18" fill="#569cd6">
+    📦 Building sustainable practices...
+  </text>
+  <text x="130" y="420" font-family="Monaco, Consolas, monospace" font-size="18" fill="#4ec9b0">
+    ✓ Deployment successful. Time to relax.
   </text>
   
-  <!-- Subtitle -->
-  <text x="100" y="380" font-family="Arial, sans-serif" font-size="28" fill="#707890">
+  <!-- Site branding on the right -->
+  <text x="700" y="250" font-family="Arial, sans-serif" font-size="64" font-weight="800" fill="#ffffff">
+    Technical Anxiety
+  </text>
+  <text x="700" y="310" font-family="Arial, sans-serif" font-size="48" font-weight="800" fill="#1abc9c">
     Experience Blog
   </text>
   
-  <!-- Bottom text -->
-  <text x="100" y="540" font-family="Arial, sans-serif" font-size="20" fill="#707890">
-    Azure • Leadership • Mental Health in Tech
+  <!-- Tagline -->
+  <text x="700" y="380" font-family="Arial, sans-serif" font-size="24" fill="#cccccc">
+    Cloud Architecture &amp; Leadership
+  </text>
+  <text x="700" y="420" font-family="Arial, sans-serif" font-size="24" fill="#1abc9c">
+    Without the Anxiety
   </text>
   
-  <!-- URL -->
-  <text x="100" y="575" font-family="Arial, sans-serif" font-size="18" fill="#1ABC9C">
-    technicalanxiety.com
+  <!-- URL at bottom -->
+  <text x="600" y="580" font-family="Arial, sans-serif" font-size="22" fill="#888888" text-anchor="middle">
+    www.technicalanxiety.com
   </text>
 </svg>
