@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "What Architects Actually Do - Part 3"
-date:   2026-01-06 00:00:00 -0600
+date:   2026-01-05 00:00:00 -0600
 image:  architects-pt3.jpg
 tags:   [Leadership, Architecture]
 series: "What Architects Actually Do"
