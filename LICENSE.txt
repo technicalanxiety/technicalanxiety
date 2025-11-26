@@ -1,9 +1,37 @@
 The MIT License
 
-Copyright (c) 2018 Artem Sheludko
+Original Theme Copyright (c) 2018 Artem Sheludko
+Modifications and Enhancements Copyright (c) 2024 Jason Rinehart
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+---
+
+MODIFICATIONS AND ENHANCEMENTS (2024)
+
+This site includes significant modifications and enhancements to the original theme:
+
+- Custom terminal animation component with mental health deployment theme
+- Animated "Deploying..." loader with spinning circle
+- Custom favicon with terminal prompt branding
+- Social share image with terminal theme
+- Enhanced 404 error page with terminal styling
+- Dark/light theme toggle system
+- Responsive hero section with 3-column layout
+- Automated scheduled post publishing workflow
+- Series navigation component
+- Table of contents component
+- Reading progress indicator
+- Breadcrumb navigation
+- Related posts functionality
+- Enhanced search with keyboard shortcuts
+- Cookie consent management
+- Giscus comments integration
+- Custom topic cards and navigation
+- Comprehensive documentation and internal tooling
+
+All modifications are released under the same MIT License.
