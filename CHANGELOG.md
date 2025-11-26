@@ -2,6 +2,64 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2024-11-25] - Terminal Theme & Automation
+
+### Added
+- **Animated terminal component** on hero section with "mental health deployment" theme
+  - Typing animation showing deployment of calm, confidence, and work-life balance
+  - Terminal window with macOS-style controls
+  - Supports both light and dark themes
+  - Fully responsive for mobile devices
+- **Custom "Deploying..." loader** with spinning circle animation
+- **Custom favicon** with terminal prompt ("> TA") branding in SVG and ICO formats
+- **Social share image** (1200x630px) with terminal theme and site branding
+- **Automated scheduled post publishing** via GitHub Actions
+  - Daily workflow checks `_posts/backlog/` for posts ready to publish
+  - Automatically moves posts to `_posts/` based on date
+  - Manual trigger option from GitHub Actions tab
+  - Documentation in `.github/SCHEDULED_PUBLISHING.md`
+- **RSS feed subscription widget** replacing newsletter signup
+  - Prominent "Subscribe" button with RSS icon
+  - Links to `/feed.xml` for RSS readers
+  - Matches site theme and design language
+- **Enhanced 404 error page** with terminal theme
+  - Terminal-style error output
+  - Helpful navigation buttons
+  - Matches site's deployment theme
+
+### Changed
+- **Hero section layout** redesigned with 3-column grid (500px each)
+  - Left: Hero text with title, description, buttons, and stats
+  - Middle: Animated terminal window
+  - Right: Popular topics cards
+  - Responsive breakpoints for tablet and mobile
+- **Sidebar reorganization**: RSS "Subscribe" section now appears before social "Follow" links
+- **Social widget** renamed from "Subscribe & Follow" to just "Follow"
+- **Internal documentation** moved from `_posts/backlog/` to `.github/`
+  - `template.md` → `.github/POST_TEMPLATE.md`
+  - `SERIES-USAGE.md` → `.github/SERIES_USAGE.md`
+  - `forward-thinking-opportunities.md` → `.github/CONTENT_IDEAS.md`
+
+### Improved
+- Terminal animation runs continuously with realistic typing speed
+- Mobile responsiveness for terminal (adapts to screen width)
+- Favicon now shows in browser tabs and bookmarks
+- Social sharing previews now show custom branded image
+- 404 page provides better user experience with clear navigation
+- Cleaner root directory structure
+
+### Fixed
+- Removed `.DS_Store` file and added to `.gitignore`
+- Moved `optimize-images.sh` to `.github/` directory
+- Updated LICENSE.txt to credit both original theme and modifications
+
+### Technical
+- GitHub Actions workflow for scheduled publishing (Python-based)
+- Terminal animation uses vanilla JavaScript with character-by-character typing
+- CSS custom properties for theme-aware terminal colors
+- SVG to PNG conversion using librsvg for social share image
+- Responsive grid layout with CSS Grid and media queries
+
 ## [2025-11-14] - Light/Dark Mode Toggle
 
 ### Added
@@ -148,7 +206,7 @@ All notable changes to this project will be documented in this file.
 
 ## Next Steps
 
-### Immediate
+### Completed
 - [x] Set up Google Analytics 4 property
 - [x] Add GA4 Measurement ID to _config.yml
 - [x] Test site locally and verify tracking
@@ -156,15 +214,23 @@ All notable changes to this project will be documented in this file.
 - [x] Add reading time estimates to posts
 - [x] Create default social sharing image
 - [x] Add cookie consent banner
+- [x] Add dark mode toggle
+- [x] Add related posts section
+- [x] Optimize images for web
+- [x] Update Ionicons to v7
+- [x] Automated scheduled post publishing
+- [x] RSS feed subscription widget
+- [x] Custom terminal animation theme
 
 ### Short-term
-- [ ] Update Ionicons from v4 to v7 (requires template changes)
-- [ ] Add dark mode toggle
-- [ ] Add related posts section
-- [ ] Optimize images for web
+- [ ] Write and schedule blog series content
+- [ ] Create additional social share images for key posts
+- [ ] Add more topic cards to hero section as content grows
+- [ ] Consider adding search analytics to track popular queries
 
 ### Long-term
 - [ ] Evaluate Jekyll 4.x migration
-- [ ] Consider modern icon library alternatives (Lucide, Heroicons)
 - [ ] Implement PWA features for offline reading
-- [ ] Add related posts section
+- [ ] Add newsletter integration if RSS adoption is low
+- [ ] Consider adding comments moderation dashboard
+- [ ] Explore content recommendation engine based on reading patterns
