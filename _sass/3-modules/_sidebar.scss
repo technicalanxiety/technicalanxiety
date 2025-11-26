@@ -176,59 +176,47 @@
   }
 }
 
-// Newsletter Widget
-.widget-newsletter {
+// RSS Widget
+.widget-rss {
   text-align: center;
-  .newsletter-subtitle {
+  
+  .rss-subtitle {
     margin-bottom: 20px;
     font-size: 18px;
     color: var(--text-heading);
   }
-  .newsletter-text {
-    max-width: 170px;
+  
+  .rss-text {
+    max-width: 200px;
     margin: 0 auto 30px;
     font-size: 14px;
     line-height: 19px;
     color: var(--text-secondary);
   }
-  .newsletter-group-top {
-    position: relative;
-  }
-  .email-icon {
-    position: absolute;
-    top: 50%;
-    left: 10px;
-    font-size: 22px;
-    transform: translateY(-50%);
-    color: rgba(155, 163, 184, 0.6);
-  }
-  .newsletter-email,
-  .newsletter-button {
+  
+  .rss-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
     width: 100%;
-    height: 50px;
-    border: none;
-    outline: none;
-  }
-  .newsletter-email {
-    padding: 15px 15px 15px 33px;
-    background: var(--bg-tertiary);
-    color: var(--text-primary);
-    border: 1px solid var(--border-color);
-    
-    &::placeholder {
-      color: var(--text-secondary);
-    }
-  }
-  .newsletter-button {
-    margin-top: 20px;
+    padding: 15px 20px;
     font-size: 14px;
     font-weight: 700;
-    cursor: pointer;
     color: var(--white);
-    background: var(--bg-tertiary);
+    background: var(--accent-color);
+    border-radius: $global-radius;
+    text-decoration: none;
     transition: $global-transition;
+    
+    ion-icon {
+      font-size: 20px;
+    }
+    
     &:hover {
-      background: var(--accent-color);
+      background: var(--link-color-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(26, 188, 156, 0.3);
     }
   }
 }
