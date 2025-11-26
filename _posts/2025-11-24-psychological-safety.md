@@ -12,7 +12,7 @@ description: "For years, I worked scared. Here's how psychological safety transf
 ---
 
 ## For years, I worked afraid.
-Scared of being wrong. Scared of being replaced. Scared that one mistake would end everything I had worked for.
+Afraid of being wrong. Afraid of being replaced. Afraid that one mistake would end everything I had worked for.
 
 Early in my career, fear was not just part of the job. It was the operating system. I worked for organizations where silence meant survival. Speaking up meant risk. Failure was not a learning opportunity. It was a scarlet letter.
 
