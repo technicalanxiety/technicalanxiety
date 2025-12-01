@@ -102,6 +102,14 @@ The technical debt collector is calling. You can keep dodging, and watch the int
 The reckoning has arrived. What you do with it is up to you.
 
 ---
-**Photo by [Europeana](https://unsplash.com/@europeana) on [Unsplash](https://unsplash.com/photos/Z4JS44xPGYw)**
 
-*This is Part 2 of the "Decide or Drown" series. In [Part 3: The Four Pillars](/four-pillars), we move from diagnosis to action - a repeatable framework for evaluating technology decisions that accounts for your people, your customers, your business, and the measurement criteria that most organizations skip entirely.*
+## What's Next?
+
+<!-- NEXT_PART: 2025-12-15-decide-or-drown-pt3.md -->
+**Coming Next:** Part 3: The Four Pillars (Publishing December 15, 2025)
+
+In the next part, we move from diagnosis to action - a repeatable framework for evaluating technology decisions that accounts for your people, your customers, your business, and the measurement criteria that most organizations skip entirely.
+<!-- END_NEXT_PART -->
+
+---
+**Photo by [Europeana](https://unsplash.com/@europeana) on [Unsplash](https://unsplash.com/photos/Z4JS44xPGYw)**

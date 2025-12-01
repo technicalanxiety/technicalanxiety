@@ -128,6 +128,14 @@ In Part 2 of this series, we'll get concrete. I'll walk through what translation
 For now, start listening differently. The gap between C-suite and practitioners is where architects live. Learn to hear both sides, and you'll never lack for valuable work.
 
 ---
-**Photo by [Ling App](https://unsplash.com/@lingapp) on [Unsplash](https://unsplash.com/photos/a-wooden-block-that-says-translation-on-it-p5VW_ZUon7o)**
 
-*This is Part 1 of the "What Architects Actually Do" series. [Part 2: Translation in Practice](/translation-in-practice) gets concrete with real scenarios and frameworks. [Part 3: Earning Technical Credibility](/technical-credibility) covers the foundation that makes it all possible.*
+## What's Next?
+
+<!-- NEXT_PART: 2025-12-29-what-architects-actually-do-pt2.md -->
+**Coming Next:** Part 2: Translation in Practice (Publishing December 29, 2025)
+
+In the next part, we'll get concrete with real scenarios and frameworks for bridging the gap between business and technology.
+<!-- END_NEXT_PART -->
+
+---
+**Photo by [Ling App](https://unsplash.com/@lingapp) on [Unsplash](https://unsplash.com/photos/a-wooden-block-that-says-translation-on-it-p5VW_ZUon7o)**

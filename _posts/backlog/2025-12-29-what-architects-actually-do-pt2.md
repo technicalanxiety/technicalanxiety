@@ -157,6 +157,14 @@ After two years, you're the person everyone calls when there's a gap between bus
 That's the architect's real value. And it only comes from practicing translation deliberately, in every interaction, until it becomes automatic.
 
 ---
-**Photo by [Brett Jordan](https://unsplash.com/@brett_jordan) on [Unsplash](https://unsplash.com/photos/brown-wooden-cross-on-white-surface-Fp4ERdkR5jU)**
 
-*This is Part 2 of the "What Architects Actually Do" series. [Part 1](/translation-layer) covered why translation matters. This piece covered how to do it. [Part 3: Earning Technical Credibility](/technical-credibility) addresses the foundation that makes translation possible - how to build trust with practitioners who know more than you, and leadership who needs to trust your judgment.*
+## What's Next?
+
+<!-- NEXT_PART: 2026-01-05-what-architects-actually-do-pt3.md -->
+**Coming Next:** Part 3: Earning Technical Credibility (Publishing January 5, 2026)
+
+In the final part, we'll address the foundation that makes translation possible - how to build trust with practitioners who know more than you, and leadership who needs to trust your judgment.
+<!-- END_NEXT_PART -->
+
+---
+**Photo by [Brett Jordan](https://unsplash.com/@brett_jordan) on [Unsplash](https://unsplash.com/photos/brown-wooden-cross-on-white-surface-Fp4ERdkR5jU)**
