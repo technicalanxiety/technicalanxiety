@@ -37,6 +37,54 @@ tags: [azure, leadership]
 ---
 ```
 
+## Series Navigation with Auto-Linking
+
+For multi-part series, you can use placeholder comments that automatically convert to links when the next part publishes.
+
+### How to Use Series Links
+
+**In Part 1 (before Part 2 is published):**
+```markdown
+---
+## What's Next?
+
+<!-- NEXT_PART: 2024-12-08-my-series-pt2.md -->
+**Coming Next:** Part 2: The Deep Dive (Publishing December 8, 2024)
+<!-- END_NEXT_PART -->
+```
+
+**After Part 2 Publishes:**
+The workflow automatically updates Part 1 to:
+```markdown
+---
+## What's Next?
+
+**Next in Series:** [Part 2: The Deep Dive →](/my-series-pt2/)
+```
+
+### Rules for Series Links
+
+1. **Filename must match exactly**: Use the full filename including date prefix
+2. **Use comment markers**: Wrap with `<!-- NEXT_PART: filename -->` and `<!-- END_NEXT_PART -->`
+3. **Everything between markers gets replaced**: The entire section is replaced with the link
+4. **Works retroactively**: When Part 3 publishes, it updates Part 2 automatically
+
+### Example Multi-Part Series
+
+**Part 1 → Part 2:**
+```markdown
+<!-- NEXT_PART: 2024-12-08-decide-or-drown-pt2.md -->
+**Coming Next:** Part 2: Decision Frameworks (Publishing December 8, 2024)
+<!-- END_NEXT_PART -->
+```
+
+**Part 2 → Part 3:**
+```markdown
+<!-- NEXT_PART: 2024-12-15-decide-or-drown-pt3.md -->
+**Coming Next:** Part 3: Implementation Strategies (Publishing December 15, 2024)
+<!-- END_NEXT_PART -->
+```
+
 ## Workflow Schedule
 
 The workflow runs:

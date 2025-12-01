@@ -24,8 +24,8 @@ jobs:
           git config user.name "GitHub Actions Bot"
           git config user.email "actions@github.com"
           
-      # Run Python script to move posts from backlog to main posts folder
-      - name: Publish scheduled posts
+      # Run Python script to move posts from backlog and update series links
+      - name: Publish scheduled posts and update series links
         run: |
           python3 << 'EOF'
           import os
@@ -40,8 +40,9 @@ jobs:
           # Get current date in UTC
           today = datetime.now(timezone.utc).date()
           
-          # Track if any posts were published
+          # Track published posts and updated links
           published_posts = []
+          updated_links = []
           
           # Check if backlog directory exists
           if not backlog_dir.exists():
@@ -68,10 +69,45 @@ jobs:
                       post_file.rename(destination)
                       published_posts.append(post_file.name)
                       print(f"Published: {post_file.name} (dated {post_date_str})")
+                      
+                      # Extract slug from filename (remove date prefix and .md extension)
+                      slug_match = re.search(r'\d{4}-\d{2}-\d{2}-(.*?)\.md', post_file.name)
+                      if slug_match:
+                          slug = slug_match.group(1)
+                          
+                          # Extract title from the newly published post
+                          title_match = re.search(r'^title:\s*["\']?(.+?)["\']?\s*$', content, re.MULTILINE)
+                          title = title_match.group(1) if title_match else "Next Part"
+                          
+                          # Now scan all published posts for placeholders referencing this post
+                          for existing_post in posts_dir.glob('*.md'):
+                              if existing_post.name == post_file.name:
+                                  continue  # Skip the newly published post itself
+                              
+                              existing_content = existing_post.read_text(encoding='utf-8')
+                              
+                              # Look for placeholder pattern: <!-- NEXT_PART: filename -->...<!-- END_NEXT_PART -->
+                              placeholder_pattern = f'<!-- NEXT_PART: {post_file.name} -->.*?<!-- END_NEXT_PART -->'
+                              
+                              if re.search(placeholder_pattern, existing_content, re.DOTALL):
+                                  # Replace placeholder with actual link
+                                  new_content = re.sub(
+                                      placeholder_pattern,
+                                      f'**Next in Series:** [{title} →](/{slug}/)',
+                                      existing_content,
+                                      flags=re.DOTALL
+                                  )
+                                  
+                                  # Write back the updated content
+                                  existing_post.write_text(new_content, encoding='utf-8')
+                                  updated_links.append(existing_post.name)
+                                  print(f"Updated series link in: {existing_post.name}")
           
           # Output summary
           if published_posts:
               print(f"\n✓ Published {len(published_posts)} post(s)")
+              if updated_links:
+                  print(f"✓ Updated series links in {len(updated_links)} post(s)")
               exit(0)
           else:
               print("No posts ready to publish")

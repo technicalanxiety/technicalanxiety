@@ -94,6 +94,14 @@ That's not removing choice. That's removing friction.
 Your teams will thank you for it. Even if they never know what you took off their plate.
 
 ---
-**Photo by [Victoriano Izquierdo](https://unsplash.com/@victoriano) on [Unsplash](https://unsplash.com/photos/man-on-front-of-vending-machines-at-nighttime-JG35CpZLfVs)**
 
-*This is Part 1 of the "Decide or Drown" series. In [Part 2: Technical Gluttony](/technical-gluttony), we look at what happens when organizations don't make these upstream decisions - and how to dig out from years of accumulated tool sprawl when the "do more with less" mandate finally arrives.*
+## What's Next?
+
+<!-- NEXT_PART: 2025-12-08-decide-or-drown-pt2.md -->
+**Coming Next:** Part 2: Decision Frameworks (Publishing December 8, 2025)
+
+In the next part, we'll explore practical frameworks for making these upstream decisions and how to communicate them effectively to your teams.
+<!-- END_NEXT_PART -->
+
+---
+**Photo by [Victoriano Izquierdo](https://unsplash.com/@victoriano) on [Unsplash](https://unsplash.com/photos/man-on-front-of-vending-machines-at-nighttime-JG35CpZLfVs)**
