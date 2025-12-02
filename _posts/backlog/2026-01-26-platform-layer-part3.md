@@ -191,3 +191,5 @@ This concludes "The Platform Layer" series.
 **Related Reading:**
 - The ["Decide or Drown" series](/tags#Leadership) covers technology decision-making for IT leaders
 - The ["Operational Change" series](/tags#Operations) explores modern service management transformation
+
+**Photo by [Miguel Picq](https://unsplash.com/@miguelpicq) on [Unsplash](https://unsplash.com/photos/a-stone-building-with-a-sign-on-it-zR19Xcd7Fbc)**

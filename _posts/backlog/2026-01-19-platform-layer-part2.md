@@ -161,3 +161,5 @@ The platform is the base. What you build on it depends entirely on how solid you
 
 In the final part, we'll cover how to operationalize platform architecture in your organization - from defining scope to sustaining the function over time.
 <!-- END_NEXT_PART -->
+
+**Photo by [Wojciech Rzepka](https://unsplash.com/@wrzepka) on [Unsplash](https://unsplash.com/photos/ancient-wooden-house-with-a-unique-design-s6l26WiU-Yk)**
