@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Decide or Drown - Part 2"
-date:   2025-12-08 00:00:00 -0600
+date:   2025-12-03 00:00:00 -0600
 image:  drown-pt2.jpg
 tags:   [Leadership]
 series: "Decide or Drown"
