@@ -1,0 +1,13 @@
+{
+  "name": "Update Changelog for Website Changes",
+  "description": "Prompts to update CHANGELOG.md when making website changes (not blog posts)",
+  "trigger": {
+    "type": "onFileSave",
+    "filePattern": "{_layouts/**/*,_includes/**/*,_sass/**/*,js/**/*,_config.yml,Gemfile}"
+  },
+  "action": {
+    "type": "sendMessage",
+    "message": "You modified website code/configuration. Should I update CHANGELOG.md with this change?\n\nIf yes, tell me what changed and I'll add an entry."
+  },
+  "enabled": true
+}

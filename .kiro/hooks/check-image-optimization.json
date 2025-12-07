@@ -1,0 +1,13 @@
+{
+  "name": "Check Image Optimization",
+  "description": "Checks if images are optimized when saved to img/ directory",
+  "trigger": {
+    "type": "onFileSave",
+    "filePattern": "img/**/*.{jpg,jpeg,png}"
+  },
+  "action": {
+    "type": "sendMessage",
+    "message": "I just saved an image. Please check:\n1. File size is under 200KB\n2. Featured images are 1200x630px\n3. Image is properly compressed\n\nIf not optimized, suggest tools: TinyPNG, ImageOptim, or ImageMagick command."
+  },
+  "enabled": true
+}

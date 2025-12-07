@@ -1,0 +1,13 @@
+{
+  "name": "Validate Post on Save",
+  "description": "Validates blog post front matter, images, attribution, and reading time when saving posts",
+  "trigger": {
+    "type": "onFileSave",
+    "filePattern": "_posts/**/*.md"
+  },
+  "action": {
+    "type": "sendMessage",
+    "message": "I just saved a post. Please validate:\n1. Front matter is complete (title, date, image, tags, description)\n2. Image file exists in /img/\n3. Unsplash attribution is present at end of post\n4. Reading time is under 10 minutes (~2,500 words)\n5. Code blocks have language tags\n\nReport any issues found."
+  },
+  "enabled": true
+}

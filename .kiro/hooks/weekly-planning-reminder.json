@@ -1,0 +1,15 @@
+{
+  "name": "Weekly Post Planning Reminder",
+  "description": "Weekly reminder to plan next blog post",
+  "trigger": {
+    "type": "scheduled",
+    "schedule": "weekly",
+    "dayOfWeek": "Monday",
+    "time": "09:00"
+  },
+  "action": {
+    "type": "sendMessage",
+    "message": "📝 Weekly Planning Reminder\n\nTime to plan your next blog post!\n\n**Questions to consider:**\n- What topic are you thinking about?\n- Any ideas from .github/POST_IDEAS.md ready to develop?\n- Target publish date? (Bi-weekly cadence)\n- Need to research anything?\n\n**Current publishing target:** Bi-weekly (every 2 weeks)\n\nWant to review POST_IDEAS.md or start a new draft?"
+  },
+  "enabled": true
+}

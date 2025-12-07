@@ -1,0 +1,12 @@
+{
+  "name": "Pre-Commit Checklist Reminder",
+  "description": "Reminds about pre-publish checklist before committing",
+  "trigger": {
+    "type": "beforeCommit"
+  },
+  "action": {
+    "type": "sendMessage",
+    "message": "Before you commit, here's the pre-publish checklist:\n\n- [ ] Front matter complete (title, date, image, tags, description)\n- [ ] Image optimized and in /img/ directory\n- [ ] Image attribution included at end of post\n- [ ] Code blocks have proper syntax highlighting\n- [ ] Links tested (no broken links)\n- [ ] Reading time under 10 minutes\n- [ ] SEO description under 160 characters\n- [ ] Tags are consistent with existing taxonomy\n- [ ] Series metadata added (if applicable)\n\nReady to commit?"
+  },
+  "enabled": true
+}
