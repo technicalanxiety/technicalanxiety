@@ -5,3 +5,6 @@ _site
 
 # Image optimization backups
 img/originals/
+
+# Global Kiro configuration (outside workspace)
+~/.kiro/
