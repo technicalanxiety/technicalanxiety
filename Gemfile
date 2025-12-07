@@ -11,18 +11,7 @@ gem "bigdecimal"
 
 # GitHub Pages gem manages Jekyll and plugin versions
 # This keeps you compatible with GitHub Pages hosting
-gem "github-pages", "~> 230", group: :jekyll_plugins
-
-# Security updates - these override github-pages defaults when needed
-gem "nokogiri", ">= 1.18.0"
-gem "kramdown", ">= 2.4.0"
-gem "commonmarker", ">= 0.23.12"
-
-# Additional plugins (already included in github-pages but explicit for clarity)
-gem "jekyll-paginate"
-gem "jekyll-sitemap"
-gem "jekyll-feed"
-gem "jekyll-seo-tag"
+gem "github-pages", group: :jekyll_plugins
 
 # Platform-specific gems
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
