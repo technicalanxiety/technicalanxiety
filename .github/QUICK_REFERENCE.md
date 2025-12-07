@@ -1,251 +1,227 @@
-# Quick Reference Guide
+# Quick Reference Cheat Sheet
 
-## Common Tasks
+Fast reference for common tasks and patterns.
 
-### Local Development
+## Creating a New Post
 
 ```bash
-# Install dependencies
-bundle install
+# 1. Create draft
+touch _posts/backlog/2025-01-15-post-slug.md
 
-# Build site
-bundle exec jekyll build
+# 2. Add front matter (see template below)
 
-# Serve locally (with live reload)
-bundle exec jekyll serve
+# 3. Write content
 
-# Serve with drafts
-bundle exec jekyll serve --drafts
+# 4. When ready, move to _posts/
+mv _posts/backlog/2025-01-15-post-slug.md _posts/
 
-# Production build
-JEKYLL_ENV=production bundle exec jekyll build
+# 5. Commit and push
+git add _posts/2025-01-15-post-slug.md img/image.jpg
+git commit -m "post: publish new post about topic"
+git push
 ```
 
-### Creating New Content
+## Front Matter Templates
 
-#### New Blog Post
-```bash
-# Create file: _posts/YYYY-MM-DD-title.md
+### Standard Post
+```yaml
 ---
 layout: post
-title: "Your Post Title"
-date: YYYY-MM-DD HH:MM -0600
-image: your-image.jpg
-tags: [Tag1, Tag2]
-description: "Brief description for SEO and social sharing"
+title: "Post Title"
+date: 2025-01-15 09:00 -0600
+image: filename.jpg
+tags: [Azure, Leadership]
+description: "SEO description 150-160 characters that entices clicks from search results and social media"
 ---
-
-Your content here...
 ```
 
-#### New Page
-```bash
-# Create file: _pages/page-name.md
+### Series Post
+```yaml
 ---
-layout: page
-title: "Page Title"
-permalink: /page-name/
-image: optional-image.jpg
+layout: post
+title: "Series Name, Part 1"
+date: 2025-01-15 09:00 -0600
+image: filename.jpg
+tags: [Azure, Governance]
+series: "Series Name"
+series_part: 1
+description: "SEO description for this part of the series"
 ---
-
-Your content here...
 ```
 
-### Updating Configuration
-
-#### Add New Social Platform
-Edit `_config.yml`:
-```yaml
-social:
-  links:
-    - https://twitter.com/username
-    - https://linkedin.com/in/username
-    - https://github.com/username  # Add new platform
-```
-
-#### Change Site Description
-Edit `_config.yml`:
-```yaml
-description: Your new description here
-```
-
-#### Update Google Analytics
-Edit `_config.yml`:
-```yaml
-google-analytics: G-XXXXXXXXXX  # Your GA4 Measurement ID
-```
-
-### Managing Dependencies
+## Image Workflow
 
 ```bash
-# Update all dependencies
-bundle update
+# 1. Download from Unsplash
+# 2. Optimize (TinyPNG, ImageOptim, or ImageMagick):
+convert input.jpg -resize 1200x630^ -gravity center -extent 1200x630 -quality 85 output.jpg
 
-# Update specific gem
-bundle update jekyll
+# 3. Save to img/
+cp optimized-image.jpg img/
 
-# Check for outdated gems
-bundle outdated
+# 4. Add to front matter
+image: optimized-image.jpg
 
-# Audit for security issues
-bundle audit
+# 5. Add attribution at end of post
 ```
 
-### Git Workflow
+## Unsplash Attribution Template
+
+```markdown
+**Photo by [Photographer Name](https://unsplash.com/@username) on [Unsplash](https://unsplash.com/photos/photo-id)**
+```
+
+## Common Code Block Languages
+
+````markdown
+```python
+# Python code
+```
+
+```javascript
+// JavaScript code
+```
+
+```powershell
+# PowerShell code
+```
 
 ```bash
+# Bash commands
+```
+
+```bicep
+// Bicep/ARM templates
+```
+
+```yaml
+# YAML configuration
+```
+
+```json
+{
+  "json": "data"
+}
+```
+````
+
+## Markdown Quick Reference
+
+```markdown
+## H2 Section Header
+### H3 Subsection
+
+**Bold text** for emphasis
+*Italic text* for subtle emphasis
+
+> Blockquote for callouts or important notes
+
+- Unordered list
+- Another item
+
+1. Ordered list
+2. Another item
+
+[Link text](https://example.com)
+[Internal link](/about/)
+
+`inline code` for commands or variables
+
+---
+
+Horizontal rule for section breaks
+```
+
+## Git Workflow
+
+```bash
+# Create feature branch
+git checkout -b post/new-post-title
+
 # Check status
 git status
 
 # Stage changes
-git add .
+git add file.md
 
-# Commit with message
-git commit -m "Description of changes"
+# Commit with conventional commit message
+git commit -m "post: add new post about topic"
 
-# Push to GitHub (triggers rebuild)
-git push origin master
+# Push and create PR
+git push origin post/new-post-title
 
-# View recent commits
-git log --oneline -5
+# After PR merged, update main
+git checkout main
+git pull origin main
 ```
 
-### Troubleshooting
+## Conventional Commit Types
 
-#### Build Fails
+- `post:` - New blog post
+- `draft:` - Draft post changes
+- `fix:` - Bug fixes or corrections
+- `feat:` - New features
+- `docs:` - Documentation updates
+- `style:` - Formatting, CSS changes
+- `refactor:` - Code refactoring
+- `chore:` - Maintenance tasks
+
+## Jekyll Commands
+
 ```bash
-# Clean and rebuild
-bundle exec jekyll clean
+# Start dev server
+bundle exec jekyll serve --livereload
+
+# Build site
 bundle exec jekyll build
 
-# Check for errors
-bundle exec jekyll build --verbose
+# Build with future posts
+bundle exec jekyll build --future
+
+# Clean build
+bundle exec jekyll clean && bundle exec jekyll build
+
+# Update dependencies
+bundle update
+
+# Check for outdated gems
+bundle outdated
 ```
 
-#### Ruby Version Issues
-```bash
-# Check Ruby version
-ruby --version
+## Pre-Publish Checklist
 
-# Should be 3.4.x or compatible with Gemfile
-```
+- [ ] Front matter complete (title, date, image, tags, description)
+- [ ] Image optimized and in /img/
+- [ ] Image attribution at end of post
+- [ ] Code blocks have language tags
+- [ ] Links tested
+- [ ] Reading time under 10 minutes (~2,500 words)
+- [ ] SEO description 150-160 characters
+- [ ] Tags match existing taxonomy
+- [ ] Series metadata (if applicable)
 
-#### Port Already in Use
-```bash
-# Kill process on port 4000
-lsof -ti:4000 | xargs kill -9
+## Existing Tags
 
-# Or use different port
-bundle exec jekyll serve --port 4001
-```
+- Anxiety
+- Leadership
+- Azure
+- Governance
+- Operations
+- Log Analytics
 
-## File Structure
+## Target Metrics
 
-```
-.
-├── _config.yml           # Main configuration
-├── _includes/            # Reusable components
-│   ├── head.html
-│   ├── header.html
-│   ├── footer.html
-│   └── sidebar.html
-├── _layouts/             # Page templates
-│   ├── default.html
-│   ├── post.html
-│   └── page.html
-├── _pages/               # Static pages
-│   ├── about.md
-│   └── privacy.md
-├── _posts/               # Blog posts
-│   └── YYYY-MM-DD-title.md
-├── _sass/                # Stylesheets
-├── img/                  # Images
-├── Gemfile               # Ruby dependencies
-└── index.html            # Homepage
-```
+- **Reading time**: Sub-10 minutes (~1,500-2,500 words)
+- **Description**: 150-160 characters
+- **Title**: 50-60 characters
+- **Image size**: < 200KB
+- **Image dimensions**: 1200x630px (featured)
+- **Publishing**: Bi-weekly (every 2 weeks)
 
-## Important URLs
+## Useful Links
 
-### Local
-- Site: http://localhost:4000
-- RSS Feed: http://localhost:4000/feed.xml
-- Privacy: http://localhost:4000/privacy/
-
-### Production
-- Site: https://technicalanxiety.com
-- RSS Feed: https://technicalanxiety.com/feed.xml
-- Privacy: https://technicalanxiety.com/privacy/
-
-### Admin
-- GitHub Repo: https://github.com/technicalanxiety/technicalanxiety.github.io
-- GitHub Pages Settings: https://github.com/technicalanxiety/technicalanxiety.github.io/settings/pages
-- Dependabot Alerts: https://github.com/technicalanxiety/technicalanxiety.github.io/security/dependabot
-- Google Analytics: https://analytics.google.com
-
-## SEO Checklist for New Posts
-
-- [ ] Add descriptive title (50-60 characters)
-- [ ] Write meta description (150-160 characters)
-- [ ] Add relevant tags (3-5 tags)
-- [ ] Include featured image (1200x630px for social sharing)
-- [ ] Use proper heading hierarchy (H2, H3, etc.)
-- [ ] Add alt text to images
-- [ ] Include internal links to related posts
-- [ ] Preview social sharing cards
-
-## Performance Tips
-
-1. **Optimize Images**: Compress before uploading (use TinyPNG, ImageOptim)
-2. **Image Sizes**: 
-   - Featured images: 1200x630px
-   - In-post images: Max 1200px wide
-   - Thumbnails: 400x300px
-3. **Keep Posts Focused**: Aim for 800-2000 words
-4. **Use Code Blocks**: Properly format code with syntax highlighting
-
-## Backup Strategy
-
-1. **GitHub**: Primary backup (automatic)
-2. **Local**: Keep local copy synced
-3. **Images**: Consider separate backup of /img/ folder
-4. **Database**: Not applicable (static site)
-
-## Support Resources
-
-- [Jekyll Documentation](https://jekyllrb.com/docs/)
-- [GitHub Pages Documentation](https://docs.github.com/en/pages)
-- [Liquid Template Language](https://shopify.github.io/liquid/)
-- [Markdown Guide](https://www.markdownguide.org/)
-- [Google Analytics 4 Help](https://support.google.com/analytics/answer/10089681)
-
-## Quick Fixes
-
-### Broken Links
-```bash
-# Check for broken links (requires htmlproofer)
-gem install html-proofer
-bundle exec jekyll build
-htmlproofer ./_site --disable-external
-```
-
-### Clear Cache
-```bash
-# Clear Jekyll cache
-rm -rf .jekyll-cache _site
-
-# Rebuild
-bundle exec jekyll build
-```
-
-### Reset to Last Commit
-```bash
-# Discard all local changes
-git reset --hard HEAD
-
-# Pull latest from GitHub
-git pull origin master
-```
-
----
-
-**Last Updated**: November 14, 2025
+- **Live Site**: https://technicalanxiety.com
+- **GitHub Repo**: https://github.com/technicalanxiety/technicalanxiety.github.io
+- **Unsplash**: https://unsplash.com
+- **TinyPNG**: https://tinypng.com
+- **Jekyll Docs**: https://jekyllrb.com/docs/
