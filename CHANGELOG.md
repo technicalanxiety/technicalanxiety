@@ -2,6 +2,56 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2025-12-07] - Kiro Configuration & Image Optimization
+
+### Added
+- **New blog post**: "How Kiro Turned an Architect Into a Developer"
+  - Complete Kiro AI assistant configuration guide
+  - Personal story of discovering Kiro at Rackspace Technology
+  - Steering rules setup (global and workspace)
+  - MCP server configuration (fetch, microsoft-learn, filesystem)
+  - Agent hooks for automation
+  - Token optimization strategies
+  - References AWS re:Invent 2025 presentation and Rackspace blog post
+- **Kiro configuration files**:
+  - Global steering rules in `~/.kiro/steering/` (personal-profile, anti-patterns, learning-goals)
+  - Workspace steering rules in `.kiro/steering/` (blog-content-standards, jekyll-technical-guide, automated-checks, plus domain-specific rules)
+  - Agent hooks in `.kiro/hooks/` for automated validation and reminders
+  - MCP server configuration in `~/.kiro/settings/mcp.json`
+- **Cross-platform image optimization script** (`.github/optimize-images.sh`)
+  - Works on both macOS (sips) and Linux (ImageMagick)
+  - Auto-detects OS and uses appropriate tools
+  - Only processes unoptimized images (>200KB or >1200px wide)
+  - No backup copies (Unsplash images can be re-downloaded)
+  - Standardizes all images to 1200x630px at 85% quality
+
+### Changed
+- **Image optimization**: Optimized 45 images, saved 16MB (70% reduction)
+  - All blog images now standardized to 1200x630px
+  - File sizes reduced from 23MB to 7MB total
+  - Improved page load times across the site
+- **Steering rules optimization**: Reduced token consumption by 89%
+  - Global always-included: ~1,200 tokens
+  - Workspace always-included: ~400 tokens
+  - Domain-specific (loaded on demand): ~8,000 tokens
+  - Total always-loaded: ~1,600 tokens (down from ~15,000)
+- **Gemfile cleanup**: Removed version overrides conflicting with github-pages gem
+  - Let github-pages gem manage all Jekyll and plugin versions
+  - Fixed build error: "github-pages gem can't satisfy your Gemfile's dependencies"
+
+### Fixed
+- **Jekyll configuration**: Added `future: true` to `_config.yml` to allow posts dated today
+- **Post date**: Corrected date from 2024 to 2025 (WSL timezone was set to future)
+- **Image optimization script**: Fixed line endings for cross-platform compatibility
+- **Gemfile dependencies**: Resolved conflicts between explicit version constraints and github-pages requirements
+
+### Technical
+- Kiro steering rules use smart inclusion patterns (always, fileMatch, manual)
+- MCP servers extend Kiro capabilities (web fetch, Microsoft docs, filesystem)
+- Agent hooks automate validation and reminders
+- Image optimization script detects OS and adapts commands
+- Token optimization through strategic file organization and inclusion patterns
+
 ## [2024-11-25] - Terminal Theme & Automation
 
 ### Added
