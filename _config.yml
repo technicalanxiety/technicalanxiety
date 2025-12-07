@@ -75,11 +75,7 @@ instafeed: false # To enable the instafeed, use the value true. To turn off use 
 google-analytics: G-2HB2W9WDMR
 
 
-#-------------------------------
-# Newsletter (MailChimp)
-# Uncomment and add your MailChimp form action URL to enable newsletter signup
-# Get this from: MailChimp > Audience > Signup forms > Embedded forms
-# mailchimp: https://technicalanxiety.us4.list-manage.com/subscribe/post?u=d98ffb1c29c62159ccdfc824c&amp;id=2e886e29d5
+# Newsletter disabled - not using email subscriptions
 
 
 #-------------------------------
