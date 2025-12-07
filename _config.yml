@@ -82,6 +82,7 @@ google-analytics: G-2HB2W9WDMR
 # Build settings
 markdown: kramdown
 permalink: ':title/'
+future: true  # Allow posts with future dates to be published
 plugins:
   - jekyll-paginate
   - jekyll-sitemap
