@@ -9,11 +9,6 @@ series_part: 1
 description: "Defining platform architecture - the role nobody understands but every organization needs."
 ---
 
-# The Platform Layer: Part 1 - What is Platform Architecture
-## Defining the Role Nobody Understands
-
----
-
 Ask ten people what a platform architect does and you'll get twelve answers.
 
 That's not an exaggeration. I've held this title for nearly a decade, and I still encounter confusion about what it means. Colleagues mistake it for enterprise architecture. Leadership conflates it with cloud architecture. Practitioners assume it's just infrastructure architecture with a fancier name.

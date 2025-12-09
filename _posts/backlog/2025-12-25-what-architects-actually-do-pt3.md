@@ -6,11 +6,7 @@ image:  architects-pt3.jpg
 tags:   [Leadership, Architecture]
 series: "What Architects Actually Do"
 series_part: 3
----
-
-# What Architects Actually Do: Part 3 - Earning Technical Credibility When You're Not the Expert
-## The Foundation Nobody Talks About
-
+description: "How to maintain credibility with practitioners who know more than you in their domains."
 ---
 
 Here's the uncomfortable truth about being an architect: you will never be the smartest technical person in the room.
@@ -85,23 +81,23 @@ Credibility compounds slowly. It can collapse quickly. Treat it accordingly.
 
 I've developed a set of questions I use in almost every technical discussion. They work because they demonstrate engagement without requiring deep expertise:
 
-**"What's the tradeoff?"**
+### "What's the tradeoff?"
 
 Every technical decision has tradeoffs. Asking this question signals that you understand nothing is free and you want to understand the cost.
 
-**"What happens when this fails?"**
+### "What happens when this fails?"
 
 Systems fail. Asking about failure modes shows you're thinking about operational reality, not just happy path functionality.
 
-**"Who else is affected by this decision?"**
+### "Who else is affected by this decision?"
 
 Technical decisions have ripple effects. This question shows you're thinking systemically, which is exactly what architects are supposed to do.
 
-**"What would make you change your mind?"**
+### "What would make you change your mind?"
 
 This is a credibility builder because it shows you're genuinely open to being wrong. It also surfaces the assumptions underlying someone's recommendation.
 
-**"What are we not talking about that we should be?"**
+### "What are we not talking about that we should be?"
 
 This invites the expertise in the room to surface. It's a humble question that often produces the most valuable information.
 
@@ -133,15 +129,21 @@ Leadership doesn't care if you can go deep technically. They care if you can tra
 
 Your credibility with leadership comes from:
 
-**Being right more often than you're wrong.**
+### Being right more often than you're wrong
+
+
 
 This sounds obvious, but it requires courage. You have to make calls. You have to take positions. If you hedge everything, you're not valuable. If you take positions and they consistently turn out well, you build trust.
 
-**Framing technical decisions in business terms.**
+### Framing technical decisions in business terms
+
+
 
 We covered this in Parts 1 and 2. The ability to translate is itself a credibility builder with leadership. When you explain technology in terms of risk, cost, and opportunity, you demonstrate that you understand what matters to them.
 
-**Not overselling or underselling.**
+### Not overselling or underselling
+
+
 
 Leaders have been burned by technologists who overpromise and underdeliver. They've also been frustrated by technologists who are so conservative that nothing ever gets done.
 
@@ -185,3 +187,4 @@ That's what architects actually do.
 **Photo by [Alex Shute](https://unsplash.com/@faithgiant) on [Unsplash](https://unsplash.com/photos/a-wooden-block-that-says-trust-surrounded-by-blue-flowers-bGOemOApXo4)**
 
 *This concludes the "What Architects Actually Do" series. If you found it valuable, the ["Decide or Drown" series](/decide-or-drown) covers the leadership side of technology decision-making - written for the IT leaders these architects work with.*
+

@@ -9,11 +9,6 @@ series_part: 3
 description: "How to operationalize platform architecture in your organization - practical guidance for building the function."
 ---
 
-# The Platform Layer: Part 3 - Building the Platform Function
-## Operationalizing Platform Architecture in Your Organization
-
----
-
 Understanding what platform architecture is and why it matters doesn't help if you can't operationalize it. This final piece in the series addresses the practical question: how do you build the platform function in your organization?
 
 There's no single template. The right approach depends on organizational size, maturity, industry, and existing capabilities. But there are principles that apply broadly and patterns that work across contexts.
@@ -186,9 +181,10 @@ Choose solid ground.
 
 ## Series Complete
 
-This concludes "The Platform Layer" series. 
+This concludes "The Platform Layer" series.
 
 **Related Reading:**
+
 - The ["Decide or Drown" series](/tags#Leadership) covers technology decision-making for IT leaders
 - The ["Operational Change" series](/tags#Operations) explores modern service management transformation
 

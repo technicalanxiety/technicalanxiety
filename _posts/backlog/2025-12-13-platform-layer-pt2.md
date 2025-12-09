@@ -9,11 +9,6 @@ series_part: 2
 description: "The consequences of strong and weak platforms - why platform decisions compound over time."
 ---
 
-# The Platform Layer: Part 2 - Why the Platform Layer Matters
-## The Consequences of Strong and Weak Foundations
-
----
-
 Part 1 established what platform architecture is. Now let's talk about why it matters.
 
 The short answer: because the platform is the base upon which everything else is built. When the base is solid, organizations can move with confidence. When the base is shaky, everything built on top becomes unstable.

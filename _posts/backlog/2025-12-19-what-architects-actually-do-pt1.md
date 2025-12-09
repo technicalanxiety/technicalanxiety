@@ -6,11 +6,7 @@ image:  architects-pt1.jpg
 tags:   [Leadership, Architecture]
 series: "What Architects Actually Do"
 series_part: 1
----
-
-# What Architects Actually Do: Part 1 - The Translation Layer
-## The Skill Nobody Teaches You
-
+description: "The real job of architects isn't technical depth - it's translation between business and technology."
 ---
 
 I was supposed to be a doctor.
@@ -137,5 +133,5 @@ For now, start listening differently. The gap between C-suite and practitioners 
 In the next part, we'll get concrete with real scenarios and frameworks for bridging the gap between business and technology.
 <!-- END_NEXT_PART -->
 
----
 **Photo by [Ling App](https://unsplash.com/@lingapp) on [Unsplash](https://unsplash.com/photos/a-wooden-block-that-says-translation-on-it-p5VW_ZUon7o)**
+

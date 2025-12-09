@@ -6,11 +6,7 @@ image:  architects-pt2.jpg
 tags:   [Leadership, Architecture]
 series: "What Architects Actually Do"
 series_part: 2
----
-
-# What Architects Actually Do: Part 2 - Translation in Practice
-## Real Scenarios, Real Conversations, Real Frameworks
-
+description: "Real scenarios and frameworks for translating between business needs and technical reality."
 ---
 
 Part 1 was philosophy. This is the playbook.
@@ -72,6 +68,7 @@ You've translated a technical request into business language: risk, customer imp
 Over time, you'll develop an ear for the phrases that signal a translation moment is happening. Here are some I've learned to listen for:
 
 **From leadership:**
+
 - "We need to be more agile" → They're frustrated with how long things take. Dig into what specifically feels slow.
 - "What's our cloud strategy?" → They've been asked this question by someone else and didn't have an answer. Find out who's asking and why.
 - "Can we do what [competitor] is doing?" → They've seen something that made them nervous. Understand what they actually saw and what they think it means.
@@ -79,6 +76,7 @@ Over time, you'll develop an ear for the phrases that signal a translation momen
 - "I need this by [impossible date]" → They've made a commitment they don't know how to keep. Find out what's actually driving the date.
 
 **From practitioners:**
+
 - "This is technical debt" → They're frustrated with shortcuts that are now causing pain. Quantify the pain in terms leadership cares about.
 - "We need to modernize" → They want to work with newer, better tools. Find the business case or help them understand there isn't one.
 - "This won't scale" → They see a future problem. Translate when that problem becomes real and what the cost of waiting is.
@@ -166,5 +164,5 @@ That's the architect's real value. And it only comes from practicing translation
 In the final part, we'll address the foundation that makes translation possible - how to build trust with practitioners who know more than you, and leadership who needs to trust your judgment.
 <!-- END_NEXT_PART -->
 
----
 **Photo by [Brett Jordan](https://unsplash.com/@brett_jordan) on [Unsplash](https://unsplash.com/photos/brown-wooden-cross-on-white-surface-Fp4ERdkR5jU)**
+
