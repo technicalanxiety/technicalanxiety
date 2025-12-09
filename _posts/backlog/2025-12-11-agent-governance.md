@@ -1,4 +1,15 @@
-# Governance of Agents: Why Agent 365 Changes Everything
+---
+layout: post
+title: "Governance of Agents: Why Agent 365 Changes Everything"
+date: 2025-12-11 08:00 -0600
+image: agent-governance.jpg
+tags: [Azure, Governance]
+description: "Microsoft gave agents human identity in Entra ID. Your governance framework just developed a hole you didn't know existed. Here's how to prepare for it."
+---
+
+*This post extends the governance framework established in [From Base Camp to Summit](/basecamp-summit/) and [Governance Disciplines Deep Dive](/gov-deep-dive/). If you're not familiar with the Five Disciplines, start there - this builds on that foundation.*
+
+---
 
 ## The Moment It Hit Me
 
@@ -100,6 +111,4 @@ If you skipped governance fundamentals, agent adoption is going to expose that g
 
 The Five Disciplines still hold. They just need to account for a world where identity isn't only human anymore.
 
----
-
-*This post extends the governance framework established in [From Base Camp to Summit](/basecamp-summit/) and [Governance Disciplines Deep Dive](/gov-deep-dive/). If you haven't read those, start there. The foundation matters more than the extension.*
+**Photo by [Scott Graham](https://unsplash.com/@homajob) on [Unsplash](https://unsplash.com/photos/5fNmWej4tAA)**
