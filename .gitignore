@@ -2,6 +2,7 @@ _site
 .sass-cache
 .jekyll-metadata
 *.DS_Store
+*:Zone.Identifier
 
 # Image optimization backups
 img/originals/
