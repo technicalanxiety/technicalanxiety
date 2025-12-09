@@ -5,15 +5,24 @@
 $ErrorActionPreference = "Stop"
 
 # Configuration
-$BackupDir = "kiro-backup-$(Get-Date -Format 'yyyyMMdd-HHmmss')"
+$BackupBaseDir = "kiro-backup"
+$Timestamp = Get-Date -Format 'yyyyMMdd-HHmmss'
+$BackupFile = "kiro-backup-$Timestamp.zip"
 $CurrentDir = Get-Location
+$MaxBackups = 3
 
 Write-Host "=== Kiro Configuration Backup ===" -ForegroundColor Green
-Write-Host "Backup directory: $BackupDir"
+Write-Host "Backup directory: $BackupBaseDir"
+Write-Host "Backup file: $BackupFile"
 Write-Host ""
 
-# Create backup directory
-New-Item -ItemType Directory -Path $BackupDir -Force | Out-Null
+# Create backup directory if it doesn't exist
+if (-not (Test-Path $BackupBaseDir)) {
+    New-Item -ItemType Directory -Path $BackupBaseDir -Force | Out-Null
+}
+
+# Create temporary directory for this backup
+$TempBackupDir = New-Item -ItemType Directory -Path (Join-Path $env:TEMP "kiro-backup-$Timestamp") -Force
 
 # Function to backup with error handling
 function Backup-Path {

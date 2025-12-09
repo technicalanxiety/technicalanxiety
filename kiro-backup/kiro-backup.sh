@@ -13,15 +13,22 @@ YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
 # Configuration
-BACKUP_DIR="kiro-backup-$(date +%Y%m%d-%H%M%S)"
+BACKUP_BASE_DIR="kiro-backup"
+TIMESTAMP=$(date +%Y%m%d-%H%M%S)
+BACKUP_FILE="kiro-backup-${TIMESTAMP}.tar.gz"
 CURRENT_DIR=$(pwd)
+MAX_BACKUPS=3
 
 echo -e "${GREEN}=== Kiro Configuration Backup ===${NC}"
-echo "Backup directory: $BACKUP_DIR"
+echo "Backup directory: $BACKUP_BASE_DIR"
+echo "Backup file: $BACKUP_FILE"
 echo ""
 
-# Create backup directory
-mkdir -p "$BACKUP_DIR"
+# Create backup directory if it doesn't exist
+mkdir -p "$BACKUP_BASE_DIR"
+
+# Create temporary directory for this backup
+TEMP_BACKUP_DIR=$(mktemp -d)
 
 # Function to backup with error handling
 backup_path() {
@@ -43,26 +50,26 @@ backup_path() {
 # Backup user-level settings
 echo -e "\n${YELLOW}User-Level Settings:${NC}"
 if [ -d "$HOME/.kiro/settings" ]; then
-    backup_path "$HOME/.kiro/settings" "$BACKUP_DIR/user-settings" "user-level settings"
+    backup_path "$HOME/.kiro/settings" "$TEMP_BACKUP_DIR/user-settings" "user-level settings"
 else
     echo -e "${YELLOW}⚠${NC} No user-level settings found"
 fi
 
 # Backup workspace-level settings
 echo -e "\n${YELLOW}Workspace Settings:${NC}"
-backup_path ".kiro/settings" "$BACKUP_DIR/workspace-settings" "workspace settings"
+backup_path ".kiro/settings" "$TEMP_BACKUP_DIR/workspace-settings" "workspace settings"
 
 # Backup hooks
 echo -e "\n${YELLOW}Agent Hooks:${NC}"
-backup_path ".kiro/hooks" "$BACKUP_DIR/hooks" "agent hooks"
+backup_path ".kiro/hooks" "$TEMP_BACKUP_DIR/hooks" "agent hooks"
 
 # Backup steering files
 echo -e "\n${YELLOW}Steering Files:${NC}"
-backup_path ".kiro/steering" "$BACKUP_DIR/steering" "steering files"
+backup_path ".kiro/steering" "$TEMP_BACKUP_DIR/steering" "steering files"
 
 # Create system info file
 echo -e "\n${YELLOW}System Information:${NC}"
-cat > "$BACKUP_DIR/system-info.txt" << EOF
+cat > "$TEMP_BACKUP_DIR/system-info.txt" << EOF
 Kiro Backup Information
 =======================
 Date: $(date)
@@ -81,7 +88,7 @@ EOF
 echo -e "${GREEN}✓${NC} Created system info file"
 
 # Create restoration instructions
-cat > "$BACKUP_DIR/RESTORE.md" << 'EOF'
+cat > "$TEMP_BACKUP_DIR/RESTORE.md" << 'EOF'
 # Kiro Configuration Restoration Guide
 
 ## Prerequisites
@@ -192,20 +199,36 @@ echo -e "${GREEN}✓${NC} Created restoration guide"
 
 # Create archive
 echo -e "\n${YELLOW}Creating Archive:${NC}"
-tar -czf "$BACKUP_DIR.tar.gz" "$BACKUP_DIR"
-echo -e "${GREEN}✓${NC} Created archive: $BACKUP_DIR.tar.gz"
+tar -czf "$BACKUP_BASE_DIR/$BACKUP_FILE" -C "$TEMP_BACKUP_DIR" .
+echo -e "${GREEN}✓${NC} Created archive: $BACKUP_BASE_DIR/$BACKUP_FILE"
+
+# Clean up temporary directory
+rm -rf "$TEMP_BACKUP_DIR"
+
+# Cleanup old backups - keep only the 3 most recent
+echo -e "\n${YELLOW}Cleaning up old backups:${NC}"
+BACKUP_COUNT=$(ls -1 "$BACKUP_BASE_DIR"/kiro-backup-*.tar.gz 2>/dev/null | wc -l)
+if [ "$BACKUP_COUNT" -gt "$MAX_BACKUPS" ]; then
+    # List backups sorted by modification time, oldest first, skip the newest MAX_BACKUPS
+    ls -1t "$BACKUP_BASE_DIR"/kiro-backup-*.tar.gz | tail -n +$((MAX_BACKUPS + 1)) | while read -r old_backup; do
+        echo -e "${YELLOW}  Removing old backup: $(basename "$old_backup")${NC}"
+        rm -f "$old_backup"
+    done
+    echo -e "${GREEN}✓${NC} Kept $MAX_BACKUPS most recent backups"
+else
+    echo -e "${GREEN}✓${NC} Currently have $BACKUP_COUNT backup(s), no cleanup needed"
+fi
 
 # Summary
 echo -e "\n${GREEN}=== Backup Complete ===${NC}"
 echo ""
-echo "Backup location: $CURRENT_DIR/$BACKUP_DIR"
-echo "Archive: $CURRENT_DIR/$BACKUP_DIR.tar.gz"
+echo "Backup location: $CURRENT_DIR/$BACKUP_BASE_DIR/$BACKUP_FILE"
 echo ""
-echo "Files backed up:"
-ls -lh "$BACKUP_DIR" | tail -n +2
+echo "Available backups:"
+ls -lh "$BACKUP_BASE_DIR"/kiro-backup-*.tar.gz 2>/dev/null || echo "  No backups found"
 echo ""
 echo -e "${YELLOW}Next steps:${NC}"
-echo "1. Copy $BACKUP_DIR.tar.gz to safe location"
+echo "1. Backups are tracked in git under $BACKUP_BASE_DIR/"
 echo "2. On new system, extract and follow RESTORE.md"
 echo "3. Update paths in MCP configurations"
 echo ""
