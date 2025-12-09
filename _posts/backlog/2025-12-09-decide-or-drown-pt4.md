@@ -272,4 +272,3 @@ Be that leader.
 *This is Part 4 of the "Decide or Drown" series. If you're asking who builds these preconditions and where this work lives organizationally, that's exactly what "The Platform Layer" series addresses.*
 
 **Photo by [Marielle Ursua](https://unsplash.com/@heyimmarielle_03) on [Unsplash](https://unsplash.com/photos/a-person-using-a-cell-phone-while-sitting-in-front-of-a-laptop-31w2Muz6Ydg)**
-
