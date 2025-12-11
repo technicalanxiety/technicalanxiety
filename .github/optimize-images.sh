@@ -10,6 +10,11 @@ MAX_HEIGHT=630
 QUALITY=85
 TARGET_SIZE_KB=200
 
+# Excluded files (never optimize these)
+EXCLUDED_FILES=(
+    "drum-major.png"
+)
+
 echo "Starting image optimization..."
 echo "Target: ${MAX_WIDTH}x${MAX_HEIGHT}px, Quality: ${QUALITY}%, Max size: ${TARGET_SIZE_KB}KB"
 echo ""
@@ -113,10 +118,28 @@ total_after=0
 count=0
 skipped=0
 
+# Function to check if file is excluded
+is_excluded() {
+    local filename=$(basename "$1")
+    for excluded in "${EXCLUDED_FILES[@]}"; do
+        if [ "$filename" = "$excluded" ]; then
+            return 0  # true, file is excluded
+        fi
+    done
+    return 1  # false, file is not excluded
+}
+
 # Process all JPG and PNG files
 for img in img/*.jpg img/*.jpeg img/*.png; do
     # Skip if file doesn't exist
     [ -e "$img" ] || continue
+    
+    # Skip if file is excluded
+    if is_excluded "$img"; then
+        echo "Skipping: $(basename "$img") (excluded from optimization)"
+        skipped=$((skipped + 1))
+        continue
+    fi
     
     # Skip if already optimized
     if ! needs_optimization "$img"; then
