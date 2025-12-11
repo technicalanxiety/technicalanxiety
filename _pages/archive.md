@@ -96,14 +96,14 @@ permalink: /archive/
 .archive-tag {
   font-size: 0.75rem;
   padding: 4px 10px;
-  background: rgba(26, 188, 156, 0.9);
+  background: rgba(33, 150, 243, 0.9);
   color: #ffffff;
   border-radius: 3px;
   border: none;
 }
 
 .archive-tag:hover {
-  background: rgba(26, 188, 156, 1);
+  background: rgba(33, 150, 243, 1);
 }
 
 /* Light mode override */

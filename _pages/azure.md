@@ -2,7 +2,7 @@
 layout: page
 title: Azure
 permalink: /azure/
-image: azure-home.jpg
+image: azure-new.jpg
 ---
 
 # Azure Architecture & Cloud Engineering
@@ -79,3 +79,7 @@ These posts share what I've learned from real implementations, not vendor market
 ---
 
 *Have questions about Azure architecture or governance? Leave a comment on any post or [connect on LinkedIn]({{ site.linkedin }}).*
+
+---
+
+**Photo by [Growtika](https://unsplash.com/@growtika) on [Unsplash](https://unsplash.com/photos/a-computer-generated-image-of-a-computer-WELyMatW3mw)**

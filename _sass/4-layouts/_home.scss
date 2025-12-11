@@ -166,7 +166,7 @@
       outline: none;
       border-color: var(--accent-color);
       background: var(--bg-secondary);
-      box-shadow: 0 0 0 3px rgba(26, 188, 156, 0.1);
+      box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
     }
   }
 }
@@ -310,13 +310,13 @@ mark {
     .article-tag {
       .tag {
         font-size: 12px;
-        background: rgba(26, 188, 156, 0.9);
+        background: rgba(33, 150, 243, 0.9);
         color: #ffffff;
         border: none;
         padding: 4px 10px;
         
         &:hover {
-          background: rgba(26, 188, 156, 1);
+          background: rgba(33, 150, 243, 1);
         }
       }
     }
@@ -337,7 +337,7 @@ mark {
         transition: $global-transition;
         
         &:hover {
-          color: #1ABC9C;
+          color: #2196F3;
         }
       }
     }
@@ -358,8 +358,8 @@ mark {
       backdrop-filter: blur(4px);
       transition: $global-transition;
       &:hover {
-        border: 2px solid #1ABC9C;
-        background: #1ABC9C;
+        border: 2px solid #2196F3;
+        background: #2196F3;
         color: #ffffff;
         backdrop-filter: blur(4px);
       }
