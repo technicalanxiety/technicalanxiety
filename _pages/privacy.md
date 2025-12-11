@@ -2,7 +2,7 @@
 layout: page
 title: Privacy Policy
 permalink: /privacy/
-image: 
+image: article-header.jpg
 ---
 
 **Last Updated: November 14, 2025**

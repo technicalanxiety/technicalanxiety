@@ -2,7 +2,7 @@
 layout: page
 title: Cloud Operations
 permalink: /operations/
-image: ops-changes-2.jpg
+image: article-header.jpg
 ---
 
 # Modern Cloud Operations

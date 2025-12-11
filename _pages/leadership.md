@@ -2,7 +2,7 @@
 layout: page
 title: Technical Leadership
 permalink: /leadership/
-image: marching-band.jpg
+image: article-header.jpg
 ---
 
 # Leadership in Tech

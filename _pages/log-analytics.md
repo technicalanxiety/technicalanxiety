@@ -2,7 +2,7 @@
 layout: page
 title: Log Analytics
 permalink: /log-analytics/
-image: la-view-logs.jpg
+image: article-header.jpg
 ---
 
 # Azure Log Analytics & KQL

@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Archive
-image: 10.jpg
+image: article-header.jpg
 permalink: /archive/
 ---
 

@@ -2,7 +2,7 @@
 layout: page
 title: Start Here
 permalink: /start-here/
-image: about.jpg
+image: article-header.jpg
 ---
 
 # Welcome to Technical Anxiety

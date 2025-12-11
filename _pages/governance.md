@@ -2,7 +2,7 @@
 layout: page
 title: Cloud Governance
 permalink: /governance/
-image: az-governance.jpg
+image: article-header.jpg
 ---
 
 # Cloud Governance & Compliance
