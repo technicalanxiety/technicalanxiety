@@ -2,6 +2,48 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2025-12-11] - Series Collection Widget & Theme Fixes
+
+### Added
+- **Article Series widget** in sidebar for content discovery
+  - Displays multi-part article series with post counts
+  - Shows series with 2+ published posts only
+  - Sorted by most recent post in series
+  - Links to first post in each series
+  - Responsive design with hover effects
+- **Series collection functionality**
+  - Automatic detection of series from post front matter
+  - Filters out draft posts in `_posts/backlog/`
+  - Clean, minimal implementation with theme support
+
+### Fixed
+- **Light mode text contrast issues** across the site
+  - Hero section titles now properly display light text on dark backgrounds
+  - Subscribe widget text now readable in light mode
+  - Series widget text properly adapts to theme
+  - Tag cloud and series widgets now have consistent styling
+- **RSS button centering** - "Subscribe to RSS Feed" text now perfectly centered
+- **Theme consistency** between sidebar widgets
+  - Tag cloud and series widgets have matching borders, font sizes, and alignment
+  - Consistent light/dark mode behavior across all widgets
+
+### Changed
+- **Sidebar widget styling** for visual consistency
+  - Added borders to tag cloud to match series widget
+  - Standardized font sizes (12px) across tag and series widgets
+  - Removed bold font weights for consistent appearance
+  - Center-aligned tag cloud layout
+- **CSS architecture improvements**
+  - Better scoped CSS rules to prevent conflicts
+  - Proper theme variable usage for responsive design
+  - Cleaner separation between widget-specific styles
+
+### Technical
+- Series widget uses Jekyll Liquid templating for dynamic content
+- Theme-responsive CSS with proper light/dark mode support
+- JavaScript-enhanced hover effects and theme switching
+- Optimized CSS specificity to prevent style conflicts
+
 ## [2025-12-07] - Kiro Configuration & Image Optimization
 
 ### Added

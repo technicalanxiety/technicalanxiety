@@ -185,8 +185,8 @@ hr,
   }
 }
 
-// Article cards
-.article-content {
+// Article cards (but not the featured article)
+.article-content:not(.article-content-first) {
   .article-title a {
     color: var(--text-primary);
   }
@@ -378,24 +378,12 @@ hr,
   }
 }
 
-// Article first (featured post)
+// Article first (featured post) - let home.scss handle the colors since it has dark background
 .article-first {
   background: var(--bg-tertiary);
   
   .article-content-first {
-    color: var(--text-primary);
-    
-    .article-title a {
-      color: var(--text-primary);
-      
-      &:hover {
-        color: var(--accent-color);
-      }
-    }
-    
-    .article-excerpt {
-      color: var(--text-secondary);
-    }
+    // Remove color overrides - the home.scss file handles colors for dark background
     
     .article-date .date {
       color: var(--text-secondary);
@@ -687,14 +675,7 @@ textarea {
     }
   }
   
-  // Featured article in light mode
-  .article-first .article-content-first {
-    color: var(--text-primary);
-    
-    .article-title a {
-      color: var(--text-heading);
-    }
-  }
+  // Featured article - let home.scss handle colors (dark background needs light text)
   
   // Sidebar in light mode - keep dark backgrounds with light text
   .widget {
@@ -741,6 +722,28 @@ textarea {
     color: #9BA3B8 !important;
   }
   
+  // RSS widget - light text on dark background in light mode
+  .rss-subtitle {
+    color: #E8E6E3 !important;
+  }
+  
+  .rss-text {
+    color: #9BA3B8 !important;
+  }
+  
+  // Series widget - light background with dark text in light mode (match tag cloud)
+  .clean-series-name {
+    color: var(--text-heading) !important;
+  }
+  
+  .clean-series-count {
+    color: var(--text-secondary) !important;
+  }
+  
+  .series-subtitle {
+    color: #9BA3B8 !important;
+  }
+  
   .newsletter-email {
     background: #1a1c1f;
     color: #E8E6E3;
@@ -777,14 +780,15 @@ textarea {
     }
   }
   
-  // Post/Page header - keep light text on dark background
+  // Post/Page header - light text on dark backgrounds (hero images, etc.)
   .post-content,
   .page-content {
     .post-head,
     .page-head {
+      // These elements are typically over dark hero images, so keep light text
       .post-title,
       .page-title {
-        color: #E8E6E3 !important;
+        color: #E8E6E3;
       }
       
       .post-tag .tag {

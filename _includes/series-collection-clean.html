@@ -1,0 +1,94 @@
+{% comment %}
+Clean Series Collection Widget - No CSS interference
+{% endcomment %}
+
+{% assign all_series = site.posts | where_exp: "post", "post.series != nil" | group_by: "series" %}
+{% assign display_series = "" | split: "" %}
+
+{% for series_group in all_series %}
+  {% assign published_posts = series_group.items | where_exp: "post", "post.path contains '_posts/'" %}
+  {% if published_posts.size >= 2 %}
+    {% assign latest_post = published_posts | sort: "date" | reverse | first %}
+    {% assign series_entry = latest_post.date | append: "|" | append: series_group.name | append: "|" | append: published_posts.size %}
+    {% assign display_series = display_series | push: series_entry %}
+  {% endif %}
+{% endfor %}
+
+{% assign sorted_series = display_series | sort | reverse %}
+
+{% if sorted_series.size > 0 %}
+<div class="widget widget-series-clean">
+  <h3 class="widget-title">Article Series</h3>
+  <div class="series-subtitle" style="margin-bottom: 20px; font-size: 14px; text-align: center; color: var(--text-secondary);">Multi-part deep dives</div>
+  <ul style="list-style: none; margin: 0; padding: 0;">
+    {% for series_entry in sorted_series limit: 5 %}
+      {% assign entry_parts = series_entry | split: "|" %}
+      {% assign series_name = entry_parts[1] %}
+      {% assign post_count = entry_parts[2] %}
+      
+      {% assign series_posts = site.posts | where: "series", series_name | where_exp: "post", "post.path contains '_posts/'" | sort: "series_part" %}
+      {% assign first_post = series_posts.first %}
+      
+      <li style="margin-bottom: 12px;">
+        <a href="{{ first_post.url | prepend: site.baseurl }}" 
+           class="clean-series-link"
+           data-series-name="{{ series_name }}"
+           data-post-count="{{ post_count }}"
+           style="display: flex; justify-content: space-between; align-items: center; padding: 12px 15px; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 6px; text-decoration: none; transition: all 0.3s ease;">
+          <span class="clean-series-name" style="font-size: 12px;">{{ series_name }}</span>
+          <span class="clean-series-count" style="font-size: 12px;">{{ post_count }} parts</span>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+
+<script>
+(function() {
+  function updateSeriesColors() {
+    const links = document.querySelectorAll('.clean-series-link');
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    
+    links.forEach(link => {
+      const name = link.querySelector('.clean-series-name');
+      const count = link.querySelector('.clean-series-count');
+      
+      if (name) name.style.color = isDark ? '#F0EEE9' : '#1B1F23';
+      if (count) count.style.color = isDark ? '#9BA3B8' : '#586069';
+    });
+  }
+  
+  document.addEventListener('DOMContentLoaded', updateSeriesColors);
+  
+  // Watch for theme changes
+  new MutationObserver(updateSeriesColors).observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['data-theme']
+  });
+  
+  // Hover effects
+  document.addEventListener('mouseenter', function(e) {
+    if (e.target.matches('.clean-series-link')) {
+      e.target.style.background = 'var(--accent-color)';
+      e.target.style.borderColor = 'var(--accent-color)';
+      e.target.style.transform = 'translateY(-1px)';
+      
+      const name = e.target.querySelector('.clean-series-name');
+      const count = e.target.querySelector('.clean-series-count');
+      if (name) name.style.color = 'white';
+      if (count) count.style.color = 'rgba(255, 255, 255, 0.9)';
+    }
+  }, true);
+  
+  document.addEventListener('mouseleave', function(e) {
+    if (e.target.matches('.clean-series-link')) {
+      e.target.style.background = 'var(--bg-tertiary)';
+      e.target.style.borderColor = 'var(--border-color)';
+      e.target.style.transform = 'translateY(0)';
+      
+      updateSeriesColors();
+    }
+  }, true);
+})();
+</script>
+{% endif %}

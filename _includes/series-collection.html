@@ -1,0 +1,114 @@
+{% comment %}
+Series Collection Widget
+Shows published series with 2+ parts, sorted by most recent post in series
+{% endcomment %}
+
+{% assign all_series = site.posts | where_exp: "post", "post.series != nil" | group_by: "series" %}
+{% assign display_series = "" | split: "" %}
+
+{% comment %} Build series data for display {% endcomment %}
+{% for series_group in all_series %}
+  {% assign published_posts = series_group.items | where_exp: "post", "post.path contains '_posts/'" %}
+  {% if published_posts.size >= 2 %}
+    {% assign latest_post = published_posts | sort: "date" | reverse | first %}
+    {% assign series_entry = latest_post.date | append: "|" | append: series_group.name | append: "|" | append: published_posts.size %}
+    {% assign display_series = display_series | push: series_entry %}
+  {% endif %}
+{% endfor %}
+
+{% comment %} Sort by date (most recent first) {% endcomment %}
+{% assign sorted_series = display_series | sort | reverse %}
+
+{% if sorted_series.size > 0 %}
+<div class="widget widget-series">
+  <h3 class="widget-title">Article Series</h3>
+  <div class="series-subtitle" style="margin-bottom: 20px; font-size: 14px; text-align: center; color: var(--text-secondary);">Multi-part deep dives</div>
+  <ul class="series-list list-reset" style="list-style: none; margin: 0; padding: 0;">
+    {% for series_entry in sorted_series limit: 5 %}
+      {% assign entry_parts = series_entry | split: "|" %}
+      {% assign series_name = entry_parts[1] %}
+      {% assign post_count = entry_parts[2] %}
+      
+      {% comment %} Find first post in series {% endcomment %}
+      {% assign series_posts = site.posts | where: "series", series_name | where_exp: "post", "post.path contains '_posts/'" | sort: "series_part" %}
+      {% assign first_post = series_posts.first %}
+      
+      <li class="series-item">
+        <a href="{{ first_post.url | prepend: site.baseurl }}" class="series-link" style="display: flex; justify-content: space-between; align-items: center; padding: 12px 15px; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 6px; text-decoration: none; margin-bottom: 12px; transition: all 0.3s ease;">
+          <span class="series-name" style="font-size: 14px; font-weight: 600; transition: all 0.3s ease;">{{ series_name }}</span>
+          <span class="series-count" style="font-size: 12px; font-weight: 500; transition: all 0.3s ease;">{{ post_count }} parts</span>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+
+<style>
+/* No CSS - using JavaScript only for theme colors */
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  function setSeriesColors() {
+    const seriesLinks = document.querySelectorAll('.widget-series .series-link');
+    const isDarkMode = document.documentElement.getAttribute('data-theme') === 'dark';
+    
+    seriesLinks.forEach(link => {
+      const seriesName = link.querySelector('.series-name');
+      const seriesCount = link.querySelector('.series-count');
+      
+      if (seriesName) {
+        seriesName.style.color = isDarkMode ? '#F0EEE9' : '#1B1F23';
+      }
+      if (seriesCount) {
+        seriesCount.style.color = isDarkMode ? '#9BA3B8' : '#586069';
+      }
+    });
+  }
+  
+  // Set initial colors
+  setSeriesColors();
+  
+  // Watch for theme changes
+  const observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
+        setSeriesColors();
+      }
+    });
+  });
+  
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['data-theme']
+  });
+  
+  // Add hover effects
+  const seriesLinks = document.querySelectorAll('.widget-series .series-link');
+  
+  seriesLinks.forEach(link => {
+    link.addEventListener('mouseenter', function() {
+      this.style.background = 'var(--accent-color)';
+      this.style.borderColor = 'var(--accent-color)';
+      this.style.transform = 'translateY(-1px)';
+      this.style.boxShadow = '0 4px 12px rgba(26, 188, 156, 0.2)';
+      
+      const seriesName = this.querySelector('.series-name');
+      const seriesCount = this.querySelector('.series-count');
+      if (seriesName) seriesName.style.color = 'white';
+      if (seriesCount) seriesCount.style.color = 'rgba(255, 255, 255, 0.9)';
+    });
+    
+    link.addEventListener('mouseleave', function() {
+      this.style.background = 'var(--bg-tertiary)';
+      this.style.borderColor = 'var(--border-color)';
+      this.style.transform = 'translateY(0)';
+      this.style.boxShadow = 'none';
+      
+      // Restore theme-appropriate colors
+      setSeriesColors();
+    });
+  });
+});
+</script>
+{% endif %}
