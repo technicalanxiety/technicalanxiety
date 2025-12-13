@@ -233,7 +233,7 @@ Professional references available upon request.
 **Website**: [https://technicalanxiety.com](https://technicalanxiety.com)  
 **LinkedIn**: [linkedin.com/in/rinehart76](https://linkedin.com/in/rinehart76)  
 **Phone**: 405.537.6839  
-**Location**: 1500 SW Elk Trail, Claremore, OK 74019
+**Location**: Claremore, OK
 
 ---
 
