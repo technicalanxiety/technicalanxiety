@@ -2,6 +2,38 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2025-12-13] - Professional Resume Page
+
+### Added
+- **Complete professional resume page** at `/resume/`
+  - Comprehensive career history from 2006-present
+  - 20+ years of cloud architecture and technology leadership experience
+  - Detailed work experience including Rackspace Technology, Avanade, Children's Mercy Hospital, and more
+  - Complete education background (Oklahoma Baptist University)
+  - Extensive certification portfolio (17+ professional certifications)
+  - Key projects and achievements with quantified business impact
+  - Professional philosophy and technical writing section
+- **Resume navigation integration**
+  - Added "Resume" link to main site navigation
+  - Professional styling consistent with site theme
+  - Mobile-responsive design with clean typography
+- **Privacy protection**
+  - Professional references section with privacy-conscious approach
+  - Contact information properly formatted and accessible
+
+### Changed
+- **Site navigation** updated to include Resume page
+- **Professional contact information** standardized across site
+  - Updated LinkedIn profile URL to correct handle (rinehart76)
+  - Consistent contact details formatting
+
+### Technical
+- Markdown-based resume with professional styling
+- Responsive design optimized for both web viewing and printing
+- SEO-optimized with proper meta descriptions
+- Clean, accessible HTML structure
+- Professional typography and spacing
+
 ## [2025-12-11] - Series Collection Widget & Theme Fixes
 
 ### Added
