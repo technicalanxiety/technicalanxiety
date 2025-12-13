@@ -545,6 +545,17 @@ mark {
 }
 
 @media only screen and (min-width: 992px) {
+  .header-box {
+    .nav-menu {
+      order: 2;
+      margin-right: 5px;
+    }
+    .nav-buttons {
+      order: 3;
+      flex-shrink: 0;
+    }
+  }
+  
   .nav-menu {
     position: relative;
     display: block;
@@ -555,12 +566,12 @@ mark {
     .menu-list {
       padding: 0;
       margin: 0;
-      text-align: right;
+      display: flex;
+      align-items: center;
       .menu-item {
-        display: inline-block;
-        margin: 0 15px 0 0;
-        &:last-child {
-          margin-right: 0;
+        margin: 0 0 0 15px;
+        &:first-child {
+          margin-left: 0;
         }
       }
       .menu-link {
