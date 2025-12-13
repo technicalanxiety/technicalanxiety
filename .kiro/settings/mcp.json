@@ -1,32 +1,38 @@
 {
   "mcpServers": {
+    "fetch": {
+      "command": "uvx",
+      "args": ["mcp-server-fetch"],
+      "env": {},
+      "disabled": false,
+      "autoApprove": []
+    },
     "filesystem": {
-  "command": "npx",
-  "args": [
-    "-y",
-    "@modelcontextprotocol/server-filesystem",
-    "C:\\Users\\jason",
-    "C:\\Users\\jason\\.kiro"
-  ],
-  "env": {
-    "FASTMCP_LOG_LEVEL": "ERROR"
-  },
-  "disabled": false,
-  "autoApprove": [
-    "read_file",
-    "read_multiple_files",
-    "list_directory",
-    "search_files"
-  ]
-}
-,
-   "microsoft-learn": {
-  "url": "https://learn.microsoft.com/api/mcp",
-  "disabled": false,
-  "autoApprove": [
-    "search_documentation",
-    "get_article"
-  ]
-}
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/Users/jason.rinehart",
+        "/Users/jason.rinehart/.kiro"
+      ],
+      "env": {
+        "FASTMCP_LOG_LEVEL": "ERROR"
+      },
+      "disabled": false,
+      "autoApprove": [
+        "read_file",
+        "read_multiple_files",
+        "list_directory",
+        "search_files"
+      ]
+    },
+    "microsoft-learn": {
+      "url": "https://learn.microsoft.com/api/mcp",
+      "disabled": false,
+      "autoApprove": [
+        "search_documentation",
+        "get_article"
+      ]
+    }
   }
 }
