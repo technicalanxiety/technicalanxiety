@@ -3,7 +3,7 @@ layout: post
 title: "The Poetry of Code: Part 2 - Addressing the Fear"
 date: 2025-12-20
 image: code-craftsmanship.jpg
-tags: [Leadership, Anxiety]
+tags: [Leadership, Anxiety, AI]
 description: "Addressing real objections to AI adoption: quality concerns, supportability, and what happens when your craft becomes accessible to everyone."
 series: "The Poetry of Code"
 series_part: 2
