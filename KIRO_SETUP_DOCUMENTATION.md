@@ -1,7 +1,8 @@
 # Kiro Setup Documentation
 
 **Generated:** December 7, 2025  
-**System:** Windows 11 Pro (WSL2 - Ubuntu)  
+**Updated:** December 14, 2025  
+**Systems:** Windows 11 Pro (WSL2) + macOS (Apple Silicon)  
 **User:** <jason.rinehart@live.com>  
 **Workspace:** ~/technicalanxiety.github.io
 
@@ -9,12 +10,20 @@
 
 ## System Specifications
 
+### Primary Workstation (Personal)
 - **OS:** Windows 11 Pro (Build 26200)
 - **CPU:** AMD Ryzen (4-core ~3.3GHz)
 - **RAM:** 32GB (upgraded from 14GB)
 - **Storage:** NVMe SSD
 - **Shell:** WSL2 (Ubuntu) - Primary development environment
 - **Network:** WiFi (Realtek 8821CE)
+
+### Secondary Workstation (Work)
+- **OS:** macOS Tahoe 26.2 (Apple Silicon)
+- **CPU:** Apple M4 (8-core)
+- **RAM:** 16GB
+- **Storage:** SSD
+- **Shell:** zsh (native macOS)
 
 ---
 
@@ -32,16 +41,28 @@ Currently empty - no user-level MCP configurations found.
 
 #### MCP Servers (`.kiro/settings/mcp.json`)
 
+**Platform-Specific Configurations:**
+
 1. **Filesystem Server**
    - Command: `npx -y @modelcontextprotocol/server-filesystem`
-   - Paths: `C:\Users\jason`, `C:\Users\jason\.kiro`
    - Auto-approved: `read_file`, `read_multiple_files`, `list_directory`, `search_files`
    - Status: Enabled
+   
+   **Windows (WSL2):**
+   ```json
+   "args": ["C:\\Users\\jason", "C:\\Users\\jason\\.kiro"]
+   ```
+   
+   **macOS:**
+   ```json
+   "args": ["/Users/jason.rinehart", "/Users/jason.rinehart/.kiro"]
+   ```
 
 2. **Microsoft Learn**
    - URL: `https://learn.microsoft.com/api/mcp`
    - Auto-approved: `search_documentation`, `get_article`
    - Status: Enabled
+   - **Note:** Platform-independent configuration
 
 ---
 
@@ -108,38 +129,94 @@ Currently empty - no user-level MCP configurations found.
 
 ---
 
-## Migration Notes
+## Dual-Platform Usage
 
-### Cross-Platform Considerations
+### Active Workstations
 
-**Current:** WSL2 (Ubuntu) on Windows 11  
-**Future:** Native Linux or macOS
+**Windows (Personal):** WSL2 Ubuntu environment  
+**macOS (Work):** Native zsh shell
 
-#### Path Differences
+### Platform-Specific Considerations
 
-- **Windows (WSL):** `/home/anxiety/.kiro/`
-- **Linux:** `/home/[user]/.kiro/`
-- **macOS:** `/Users/[user]/.kiro/`
+#### File Paths
+- **Windows:** `C:\Users\jason\.kiro\`
+- **macOS:** `/Users/jason.rinehart/.kiro/`
 
-#### MCP Configuration Adjustments Needed
-
-**Filesystem Server** - Windows paths need conversion:
-
-```json
-// Current (Windows)
-"args": ["C:\\Users\\jason", "C:\\Users\\jason\\.kiro"]
-
-// Linux
-"args": ["/home/anxiety", "/home/anxiety/.kiro"]
-
-// macOS
-"args": ["/Users/jason", "/Users/jason/.kiro"]
+#### Git Configuration
+Ensure consistent git config across both systems:
+```bash
+git config --global user.name "Jason Rinehart"
+git config --global user.email "jason.rinehart@live.com"
 ```
 
-**Commands** - Should work cross-platform:
+#### MCP Server Compatibility
+- **npx commands:** Work on both platforms (requires Node.js)
+- **uvx commands:** Work on both platforms (requires uv/Python)
+- **File paths:** Must be updated per platform in `.kiro/settings/mcp.json`
 
-- `npx` - Works on all platforms (requires Node.js)
-- `uvx` - Works on all platforms (requires uv/Python)
+## Platform Switching Workflow
+
+### When Moving Between Workstations
+
+1. **Commit and push** current work:
+   ```bash
+   git add .
+   git commit -m "Work in progress"
+   git push
+   ```
+
+2. **Pull latest** on new workstation:
+   ```bash
+   git pull origin master
+   ```
+
+3. **Verify MCP configuration** matches platform:
+   - Check `.kiro/settings/mcp.json` file paths
+   - Reconnect MCP servers if needed from Kiro MCP panel
+
+4. **Test environment:**
+   - Verify Jekyll serves correctly: `bundle exec jekyll serve`
+   - Check image optimization tools
+   - Confirm hooks are working
+
+### Platform-Specific Setup Commands
+
+**macOS (First Time Setup):**
+```bash
+# Install Homebrew if needed
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# Install dependencies
+brew install node ruby git
+gem install bundler jekyll
+
+# Clone and setup
+git clone git@github.com-personal:technicalanxiety/technicalanxiety.github.io.git
+cd technicalanxiety.github.io
+bundle install
+
+# Update MCP configuration for macOS paths
+# Edit .kiro/settings/mcp.json to use /Users/jason.rinehart paths
+```
+
+**Windows (WSL2 Setup):**
+```bash
+# Install Node.js
+curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
+sudo apt-get install -y nodejs
+
+# Install Ruby and Jekyll
+sudo apt update
+sudo apt install ruby-full build-essential zlib1g-dev
+gem install bundler jekyll
+
+# Clone and setup
+git clone git@github.com-personal:technicalanxiety/technicalanxiety.github.io.git
+cd technicalanxiety.github.io
+bundle install
+
+# MCP configuration uses C:\Users\jason paths
+```
 
 ---
 
@@ -199,12 +276,24 @@ Currently empty - no user-level MCP configurations found.
 
 ## Dependencies
 
-### Required Software
+### Required Software (Both Platforms)
 
 - **Node.js** - For npx and filesystem MCP server
 - **Git** - Version control
 - **Ruby** - For Jekyll (project-specific)
 - **Bundler** - Ruby dependency management (project-specific)
+
+### Platform-Specific Installation
+
+**Windows (WSL2):**
+- Node.js via NodeSource repository
+- Ruby via apt package manager
+- Git via apt package manager
+
+**macOS:**
+- Node.js via Homebrew
+- Ruby via Homebrew (or system Ruby)
+- Git via Homebrew or Xcode Command Line Tools
 
 ### Optional Software
 
@@ -215,10 +304,17 @@ Currently empty - no user-level MCP configurations found.
 
 ## Security Notes
 
-- MCP filesystem server has access to `C:\Users\jason` and `.kiro` directories
-- Auto-approved tools are read-only operations
+### File System Access
+- **Windows:** MCP filesystem server has access to `C:\Users\jason` and `.kiro` directories
+- **macOS:** MCP filesystem server has access to `/Users/jason.rinehart` and `.kiro` directories
+- Auto-approved tools are read-only operations only
 - No secrets stored in Kiro configuration files
 - Steering files contain best practices, no sensitive data
+
+### Cross-Platform Considerations
+- Git SSH keys should be configured on both systems
+- Consistent user identity across platforms
+- No sensitive data in committed configuration files
 
 ---
 
@@ -235,11 +331,15 @@ Currently empty - no user-level MCP configurations found.
 
 - **Owner:** <jason.rinehart@live.com>
 - **Blog:** <https://technicalanxiety.github.io>
-- **System Name:** ANXIETY-DESKTOP
+- **Systems:** 
+  - **Personal:** ANXIETY-DESKTOP (Windows 11 Pro)
+  - **Work:** MacBook Pro M4 (macOS)
 
 ---
 
 ## Changelog
 
 - **2025-12-07:** Initial documentation created
-- **2025-12-07:** RAM upgraded to 32GB
+- **2025-12-07:** RAM upgraded to 32GB (Windows workstation)
+- **2025-12-14:** Updated for dual-platform usage (Windows + macOS)
+- **2025-12-14:** Added platform switching workflow and setup instructions
