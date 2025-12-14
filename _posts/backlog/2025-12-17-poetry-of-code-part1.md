@@ -3,7 +3,7 @@ layout: post
 title: "The Poetry of Code: Part 1 - Building Your Digital Self"
 date: 2025-12-17
 image: ai-collaboration.jpg
-tags: [Leadership, Anxiety]
+tags: [Leadership, Anxiety, AI]
 description: "Why AI tools are extensions of you, not replacements. A practitioner's guide to AI adoption for the uncertain and skeptical."
 series: "The Poetry of Code"
 series_part: 1
