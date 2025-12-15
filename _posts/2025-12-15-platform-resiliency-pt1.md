@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Platform Resiliency Part 1: The Promise That Couldn't Travel"
-date: 2025-12-15
+date: 2025-12-15 09:00:00 -0600
 image: resiliency-part1.jpg
 tags: [Operations, Leadership, Platform]
 description: "Why SRE adoption failed outside Google and what we learned from attempting to transplant a complete system rather than adapting principles to organizational reality."
@@ -161,7 +161,7 @@ The goal isn't to give you another system to implement wholesale. It's to give y
 
 ---
 
-*This is Part 1 of the "Platform Resiliency" series. Part 2: The Promise That Can covers the reframe, operational model, and path forward.*
+*This is Part 1 of the "Platform Resiliency" series. [Part 2: The Promise That Can](/platform-resiliency-part-2-the-promise-that-can) covers the reframe, operational model, and path forward.*
 
 *If you want background on the organizational preconditions that enable this work, start with [Decide or Drown Part 4: Why Organizations Won't Do It](/decide-or-drown-pt4). If you want context on platform architecture as a discipline, see [The Platform Layer Part 1: What is Platform Architecture](/platform-layer-pt1).*
 
