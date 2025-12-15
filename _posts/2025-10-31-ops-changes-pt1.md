@@ -147,7 +147,16 @@ MSM is the foundation for delivering managed services that are agile, resilient,
 
 ## What’s Next?
 
-Stay tuned for the next article, where we’ll dive into how AI and intelligent operations are taking service management to the next level. Discover how to make your operations predictive, proactive, and always improving.
+<!-- NEXT_PART: 2025-11-14-ops-changes-pt2.md -->
+**Coming Next:** Part 2: The AI Revolution in Service Management (Published November 14, 2025)
+
+In the next part, we’ll dive into how AI and intelligent operations are taking service management to the next level. Discover how to make your operations predictive, proactive, and always improving.
+
+<!-- END_NEXT_PART -->
+
+---
+
+*This is Part 1 of the "Operational Change" series. [Part 2: The AI Revolution in Service Management](/operational-change-part-2) dives into how AI and intelligent operations are taking service management to the next level.*
 
 **Photo by [Alex Kotliarskyi](https://unsplash.com/@frantic) on [Unsplash](https://unsplash.com/photos/people-doing-office-works-QBpZGqEMsKg)**
       

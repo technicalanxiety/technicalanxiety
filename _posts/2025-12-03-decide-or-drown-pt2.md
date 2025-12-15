@@ -112,4 +112,8 @@ In the next part, we move from diagnosis to action - a repeatable framework for 
 <!-- END_NEXT_PART -->
 
 ---
+
+*This is Part 2 of the "Decide or Drown" series. [Part 1: The Illusion of Choice](/illusion-of-choice) covered why technology decisions need to be made upstream. [Part 3: A Framework for Technology Decisions That Actually Stick](/decide-or-drown-pt3) explores how to actually make those decisions well.*
+
+---
 **Photo by [Europeana](https://unsplash.com/@europeana) on [Unsplash](https://unsplash.com/photos/Z4JS44xPGYw)**

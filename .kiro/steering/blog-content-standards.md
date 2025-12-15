@@ -33,6 +33,13 @@ fileMatchPattern: "_posts/**/*.md"
 - Always credit: `**Photo by [Name](url) on [Unsplash](url)**`
 - Location: /img/ directory
 
+**File Formatting**:
+- **Encoding**: UTF-8 (no BOM)
+- **Line endings**: Unix (LF) - never Windows (CRLF)
+- **Characters**: Use ASCII quotes (`'` `"`) not smart quotes (`'` `"`)
+- **Validation**: Check with `file filename.md` - should show "UTF-8 text" without "CRLF"
+- **Fix CRLF**: `tr -d '\r' < file.md > file-fixed.md && mv file-fixed.md file.md`
+
 ## Workflow
 
 **Drafts**: `_posts/backlog/` → **Published**: `_posts/`
@@ -45,6 +52,10 @@ fileMatchPattern: "_posts/**/*.md"
 - Code blocks have language tags
 - Links tested, reading time <10 min
 - SEO description 150-160 chars
+- **File formatting**: Unix line endings (LF), UTF-8 encoding
+- **Series posts**: "What's Next" section included (non-final parts)
+- **Series posts**: Navigation links to other parts included
+- **Series posts**: Previous parts updated to link forward (if applicable)
 
 ## Tags
 **Existing**: Anxiety, Leadership, Azure, Governance, Operations, Log Analytics
@@ -55,6 +66,61 @@ fileMatchPattern: "_posts/**/*.md"
 - Number sequentially (1, 2, 3...)
 - Each part stands alone but references others
 - See `.github/SNIPPETS.md` for front matter template
+
+**Series Navigation Requirements**:
+- **Every series part** must include navigation to other parts at the end
+- Place navigation section before the photo attribution
+- Format: `*This is Part X of the "Series Name" series. [Part Y: Title](/url) covers topic.*`
+- **Part 1**: Link to Part 2 (if published)
+- **Middle parts**: Link to previous and next parts
+- **Final part**: Reference previous parts and conclude series
+- **When publishing new parts**: Update previous parts to link forward
+
+**"What's Next" Section Requirements**:
+- **Required for all non-final series parts**
+- Place after main content, before series navigation
+- Include teaser for next part's content
+- Format: `## What's Next?` followed by preview text
+- **Template**: `**Coming Next:** Part X: Title (Publishing Date)` + content preview
+
+**Complete Series Template**:
+```markdown
+## What's Next?
+
+**Coming Next:** Part 3: Title (Publishing Date)
+
+Brief preview of what the next part will cover.
+
+---
+
+*This is Part 2 of the "Series Name" series. [Part 1: Title](/part-1-url) covered topic. [Part 3: Title](/part-3-url) explores next topic.*
+
+**Photo by [Name](url) on [Unsplash](url)**
+```
+
+## File Formatting Troubleshooting
+
+**Problem**: String replacements fail during editing
+**Cause**: Mixed line endings (CRLF vs LF) or Unicode characters
+**Solution**: 
+```bash
+# Check file format
+file _posts/filename.md
+
+# Fix CRLF line endings
+tr -d '\r' < _posts/filename.md > temp.md && mv temp.md _posts/filename.md
+
+# Check for smart quotes (shows hex)
+grep -P "[\u2018\u2019\u201C\u201D]" _posts/filename.md
+
+# Fix all markdown files at once
+find _posts -name "*.md" -exec sh -c 'tr -d "\r" < "$1" > "$1.tmp" && mv "$1.tmp" "$1"' _ {} \;
+```
+
+**Prevention**: 
+- Configure editor to use Unix line endings
+- Use ASCII quotes in markdown
+- Validate files before committing
 
 ## Reference
 - Templates: `.github/SNIPPETS.md`

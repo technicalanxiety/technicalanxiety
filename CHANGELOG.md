@@ -2,6 +2,64 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2025-12-15] - Series Navigation & File Formatting Standards
+
+### Added
+- **Complete series navigation system** across all blog series
+  - "What's Next" sections for all non-final series parts (5 posts updated)
+  - Cross-references between series parts with proper linking
+  - Automation markers (`<!-- NEXT_PART -->`) for GitHub Actions workflow integration
+  - Consistent navigation templates across all series
+- **File formatting standards and validation**
+  - Unix line endings (LF) requirement for all markdown files
+  - UTF-8 encoding standards without BOM
+  - ASCII quote requirements (no smart quotes)
+  - Validation commands and troubleshooting guide
+  - Bulk conversion tools for existing files
+- **Enhanced blog content standards**
+  - Series navigation requirements in steering document
+  - "What's Next" section templates and guidelines
+  - File formatting validation in pre-publish checklist
+  - Troubleshooting section for common formatting issues
+
+### Fixed
+- **Series navigation inconsistencies** across all blog series
+  - Decide or Drown series: Added missing Part 2→3 and Part 3→4 navigation
+  - Platform Layer series: Added missing Part 1→2 navigation
+  - Platform Resiliency series: Added missing Part 1→2 navigation  
+  - Operational Change series: Added missing Part 1→2 navigation
+  - Log Analytics series: Added missing Part 1→2 and Part 2→3 navigation
+- **File formatting issues** causing editing difficulties
+  - Converted all markdown files from CRLF to Unix line endings (28 files)
+  - Resolved string replacement failures in ops-changes-pt1.md
+  - Standardized encoding across all blog posts
+  - Fixed Unicode smart quote issues preventing edits
+
+### Changed
+- **Steering document updates** (`.kiro/steering/blog-content-standards.md`)
+  - Added comprehensive series navigation requirements
+  - Added "What's Next" section requirements for non-final parts
+  - Added file formatting validation and troubleshooting
+  - Updated pre-publish checklist with formatting requirements
+- **Automation workflow compatibility**
+  - All series posts now have automation markers for scheduled publishing
+  - Consistent template structure for GitHub Actions processing
+  - Standardized "Coming Next" format across all series
+
+### Technical
+- **Root cause analysis**: Mixed line endings (CRLF vs LF) and Unicode characters
+- **Bulk file conversion**: `find _posts -name "*.md" -exec sh -c 'tr -d "\r" < "$1" > "$1.tmp" && mv "$1.tmp" "$1"' _ {} \;`
+- **Validation tools**: `file` command integration for format checking
+- **Prevention measures**: Editor configuration guidance and validation commands
+- **Series automation**: HTML comment markers for workflow processing
+
+### Impact
+- **Reader experience**: Seamless navigation between series parts
+- **Content discovery**: Clear progression through multi-part content
+- **Editorial workflow**: Consistent formatting prevents editing issues
+- **Automation compatibility**: All series ready for scheduled publishing
+- **Maintainability**: Standardized templates and validation processes
+
 ## [2025-12-13] - Professional Resume Page
 
 ### Added

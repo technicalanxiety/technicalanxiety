@@ -159,6 +159,14 @@ In Part 2, I'll lay out what Platform Resiliency looks like in practice. How ope
 
 The goal isn't to give you another system to implement wholesale. It's to give you a framework you can absorb, adapt, and make your own.
 
+## What's Next?
+
+<!-- NEXT_PART: 2025-12-15-platform-resiliency-pt2.md -->
+**Coming Next:** Part 2: The Promise That Can (Published December 15, 2025)
+
+In Part 2, I'll lay out what Platform Resiliency looks like in practice. How operations and platform teams share responsibility without fighting over boundaries. Where AI tooling fits as platform infrastructure rather than SRE replacement. And why this model is more adaptable than what came before.
+<!-- END_NEXT_PART -->
+
 ---
 
 *This is Part 1 of the "Platform Resiliency" series. [Part 2: The Promise That Can](/platform-resiliency-pt2) covers the reframe, operational model, and path forward.*
