@@ -82,4 +82,8 @@ AI and intelligent operations aren’t just the future; they’re already here. 
 The organizations that thrive will be those that combine human ingenuity with the power of intelligent automation. The future of service management is proactive, predictive, and always improving - and it’s yours to shape.
 
 
+---
+
+*This is Part 2 of the "Operational Change" series. [Part 1: Embracing Modern Service Management](/operational-change-part-1) covered the foundation for delivering managed services that are agile and resilient.*
+
 **Photo by [Growtika](https://unsplash.com/@growtika) on [Unsplash](https://unsplash.com/photos/an-abstract-image-of-a-sphere-with-dots-and-lines-nGoCBxiaRO0)**

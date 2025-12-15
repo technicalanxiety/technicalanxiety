@@ -145,4 +145,8 @@ In Part 2 of this series, we'll explore why this matters in practice - what happ
 In the next part, we'll explore the consequences of strong and weak platforms, and how platform decisions compound over time to shape organizational capability.
 <!-- END_NEXT_PART -->
 
+---
+
+*This is Part 1 of "The Platform Layer" series. [Part 2: Why the Platform Layer Matters](/platform-layer-pt2) explores the consequences of strong and weak platforms, and how platform decisions compound over time.*
+
 **Photo by [Aaron](https://unsplash.com/@ar0n) on [Unsplash](https://unsplash.com/photos/brown-sand-castle-during-daytime-TNKn6hUwCLY)**
