@@ -161,7 +161,7 @@ The goal isn't to give you another system to implement wholesale. It's to give y
 
 ---
 
-*This is Part 1 of the "Platform Resiliency" series. [Part 2: The Promise That Can](/platform-resiliency-part-2) covers the reframe, operational model, and path forward.*
+*This is Part 1 of the "Platform Resiliency" series. Part 2: The Promise That Can covers the reframe, operational model, and path forward.*
 
 *If you want background on the organizational preconditions that enable this work, start with [Decide or Drown Part 4: Why Organizations Won't Do It](/decide-or-drown-pt4). If you want context on platform architecture as a discipline, see [The Platform Layer Part 1: What is Platform Architecture](/platform-layer-pt1).*
 
