@@ -6,6 +6,7 @@ image:  intro-to-la.jpg
 tags:   [Log Analytics, Azure]
 series: "Intro to Log Analytics"
 series_part: 1
+description: "Getting started with Azure Log Analytics and KQL - learn to write your first queries and create visualizations from VM performance data."
 ---
 
 ## PURPOSE
@@ -152,6 +153,6 @@ In the next part, we'll explore joining tables and creating more complex visuali
 
 ---
 
-*This is Part 1 of the "Intro to Log Analytics" series. [Part 2: More Advanced Queries](/intro-to-log-analytics-pt2) covers joining tables and creating more complex visualizations.*
+*This is Part 1 of the "Intro to Log Analytics" series. [Part 2: More Advanced Queries](/intro-to-la-pt2) covers joining tables and creating more complex visualizations.*
 
 **Photo by [Danielle MacInnes](https://unsplash.com/@dsmacinnes) on [Unsplash](https://unsplash.com/photos/IuLgi9PWETU)**

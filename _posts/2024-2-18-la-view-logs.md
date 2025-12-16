@@ -127,6 +127,10 @@ Now for the fun part. The query itself.
 
 ---
 
-*This is Part 3 of the "Intro to Log Analytics" series. [Part 1: Getting Started with KQL](/intro-to-log-analytics-pt1) covered the basics. [Part 2: More Advanced Queries](/intro-to-log-analytics-pt2) explored joining tables and complex visualizations.*
+## Series Complete
+
+This concludes the "Intro to Log Analytics" series.
+
+*This is Part 3 of the "Intro to Log Analytics" series. [Part 1: Getting Started with KQL](/intro-to-la-pt1) covered the basics of writing queries. [Part 2: More Advanced Queries](/intro-to-la-pt2) explored joining tables and creating more complex visualizations.*
 
 **Photo by [Radek Grzybowski](https://unsplash.com/@rgrzybowski) on [Unsplash](https://unsplash.com/photos/8tem2WpFPhM)**
