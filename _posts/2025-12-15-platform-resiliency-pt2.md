@@ -9,7 +9,7 @@ series: "Platform Resiliency"
 series_part: 2
 ---
 
-*This is Part 2 of the "Platform Resiliency" series. [Part 1: The Promise That Couldn't Travel](/platform-resiliency-part-1) covered why SRE failed to transfer outside Google.*
+*This is Part 2 of the "Platform Resiliency" series. [Part 1: The Promise That Couldn't Travel](/platform-resiliency-pt1) covered why SRE failed to transfer outside Google.*
 
 ---
 
@@ -17,13 +17,11 @@ series_part: 2
 
 ---
 
-In Part 1, I argued that SRE adoption failed not because organizations executed poorly, but because they attempted transplantation. Google's model required conditions most organizations don't have. The four pillars collapsed under real-world constraints.
+Part 1 ended with a claim: resiliency belongs in platform architecture, not a separate SRE function.
 
-But the core principles remain sound. Reliability as an engineering concern. Toil as something to eliminate. Feedback loops that drive improvement.
+This piece makes that concrete. What does it mean to weave resiliency into the platform? Who owns what? Where do the feedback loops live? And what makes this model more adaptable than what came before?
 
-The question is: where do these principles live if not in a separate SRE function?
-
-The answer is platform architecture. Not resiliency as a team's responsibility, but resiliency as a design principle woven into the platform itself. This is Platform Resiliency.
+The answer starts with how we think about resiliency itself.
 
 ### Resiliency as Design Principle
 
@@ -159,8 +157,18 @@ When conditions allow, it flows. When obstacles appear, it finds the way around 
 
 Be water, my friend. That's always been how good engineering works.
 
+## What's Next?
+
+<!-- NEXT_PART: 2025-12-15-platform-resiliency-pt3.md -->
+**Coming Next:** Part 3: Promises Made, Promises Kept (Published December 15, 2025)
+
+Parts 1 and 2 gave you the model. Part 3 is about Monday morning - the practical first moves that start building the muscle. If you read Parts 1 and 2 and thought "this makes sense but I don't know where to start," Part 3 is where to start.
+<!-- END_NEXT_PART -->
+
 ---
 
-*This concludes the "Platform Resiliency" series. For background on platform architecture as a discipline, see [The Platform Layer Part 1: What is Platform Architecture](/platform-layer-pt1). For the organizational preconditions that enable this work, see [Decide or Drown Part 4: Why Organizations Won't Do It](/decide-or-drown-pt4). For psychological safety and blameless culture, see [From Fear to Freedom](/fear-to-freedom).*
+*This is Part 2 of the "Platform Resiliency" series. [Part 1: The Promise That Couldn't Travel](/platform-resiliency-pt1) covered why SRE failed outside Google. [Part 3: Promises Made, Promises Kept](/platform-resiliency-pt3) provides practical implementation steps.*
+
+*For background on platform architecture as a discipline, see [The Platform Layer Part 1: What is Platform Architecture](/platform-layer-pt1). For the organizational preconditions that enable this work, see [Decide or Drown Part 4: Why Organizations Won't Do It](/decide-or-drown-pt4). For psychological safety and blameless culture, see [From Fear to Freedom](/fear-to-freedom).*
 
 **Photo by [Mohammad Honarmand](https://unsplash.com/@ihonarrmand) on [Unsplash](https://unsplash.com/photos/a-group-of-potted-plants-on-a-window-sill-aY5Ydr1gPG0)**

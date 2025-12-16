@@ -159,6 +159,8 @@ In Part 2, I'll lay out what Platform Resiliency looks like in practice. How ope
 
 The goal isn't to give you another system to implement wholesale. It's to give you a framework you can absorb, adapt, and make your own.
 
+Part 2 makes that concrete.
+
 ## What's Next?
 
 <!-- NEXT_PART: 2025-12-15-platform-resiliency-pt2.md -->
@@ -169,7 +171,7 @@ In Part 2, I'll lay out what Platform Resiliency looks like in practice. How ope
 
 ---
 
-*This is Part 1 of the "Platform Resiliency" series. [Part 2: The Promise That Can](/platform-resiliency-pt2) covers the reframe, operational model, and path forward.*
+*This is Part 1 of the "Platform Resiliency" series. [Part 2: The Promise That Can](/platform-resiliency-pt2) covers the reframe and operational model. [Part 3: Promises Made, Promises Kept](/platform-resiliency-pt3) provides practical implementation steps.*
 
 *If you want background on the organizational preconditions that enable this work, start with [Decide or Drown Part 4: Why Organizations Won't Do It](/decide-or-drown-pt4). If you want context on platform architecture as a discipline, see [The Platform Layer Part 1: What is Platform Architecture](/platform-layer-pt1).*
 
