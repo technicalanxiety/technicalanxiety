@@ -66,10 +66,20 @@ This document tracks planned technical Azure topics that build on your leadershi
 ## Observability & Operations
 *Extending Log Analytics expertise*
 
-- [ ] **Beyond Azure Monitor: Building a Complete Observability Stack**
-  - *Focus: Integrating Application Insights, Log Analytics, third-party tools*
-  - *Estimated: 2,100 words, Part 1 of 3*
-  - *Target: Q1 2026*
+- [ ] **Beyond Azure Monitor - Part 1: The Reality of Enterprise Monitoring**
+  - *Focus: Problems with basic Azure Monitor, intelligent monitoring patterns*
+  - *Completed: 2,500 words, Part 1 of 3*
+  - *Target: January 2, 2026*
+
+- [ ] **Beyond Azure Monitor - Part 2: Advanced KQL Patterns for Real-World Monitoring**
+  - *Focus: Correlation analysis, anomaly detection, advanced query techniques*
+  - *Completed: 2,200 words, Part 2 of 3*
+  - *Target: January 5, 2026*
+
+- [ ] **Beyond Azure Monitor - Part 3: Building Production-Ready Monitoring Solutions**
+  - *Focus: Automation, alerting strategies, integration with external tools*
+  - *Completed: 2,300 words, Part 3 of 3*
+  - *Target: January 8, 2026*
 
 - [ ] **KQL for Infrastructure Teams**
   - *Focus: Practical Kusto queries for Azure operations*
@@ -212,9 +222,11 @@ This document tracks planned technical Azure topics that build on your leadershi
 *Track current drafts here*
 
 ### Next Up (Priority Queue)
-1. **Bicep vs Terraform: The Honest Comparison** - High demand topic
-2. **Azure OpenAI Service: From Proof of Concept to Production** - Builds on AI theme
-3. **Beyond Azure Monitor: Building a Complete Observability Stack** - Extends Log Analytics expertise
+1. **Beyond Azure Monitor - Part 1: Enterprise Monitoring Reality** - Start new series (January 2, 2026)
+2. **Beyond Azure Monitor - Part 2: Advanced KQL Patterns** - Continue series (January 5, 2026)
+3. **Beyond Azure Monitor - Part 3: Production-Ready Solutions** - Complete series (January 8, 2026)
+4. **Bicep vs Terraform: The Honest Comparison** - High demand topic
+5. **Azure OpenAI Service: From Proof of Concept to Production** - Builds on AI theme
 
 ---
 

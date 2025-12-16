@@ -54,6 +54,7 @@ fileMatchPattern: "_posts/**/*.md"
 - SEO description 150-160 chars
 - **File formatting**: Unix line endings (LF), UTF-8 encoding
 - **Series posts**: "What's Next" section included (non-final parts)
+- **Series posts**: HTML comment with next part filename included
 - **Series posts**: Navigation links to other parts included
 - **Series posts**: Previous parts updated to link forward (if applicable)
 
@@ -82,14 +83,17 @@ fileMatchPattern: "_posts/**/*.md"
 - Include teaser for next part's content
 - Format: `## What's Next?` followed by preview text
 - **Template**: `**Coming Next:** Part X: Title (Publishing Date)` + content preview
+- **HTML Comments**: Add `<!-- NEXT_PART: YYYY-MM-DD-post-slug.md -->` before and `<!-- END_NEXT_PART -->` after the "What's Next" section for linking reference
 
 **Complete Series Template**:
 ```markdown
+<!-- NEXT_PART: 2025-MM-DD-series-name-pt3.md -->
 ## What's Next?
 
 **Coming Next:** Part 3: Title (Publishing Date)
 
 Brief preview of what the next part will cover.
+<!-- END_NEXT_PART -->
 
 ---
 
