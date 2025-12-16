@@ -25,15 +25,26 @@
   
   <ol class="series-list">
     {% for post in series_posts %}
+      {% comment %} Use description if available, otherwise clean title {% endcomment %}
+      {% assign display_text = post.description %}
+      {% unless display_text %}
+        {% assign cleaned_title = post.title | remove: page.series | remove: "Part " | remove: post.series_part | remove: "-" | strip %}
+        {% if cleaned_title == "" %}
+          {% assign display_text = post.title %}
+        {% else %}
+          {% assign display_text = cleaned_title %}
+        {% endif %}
+      {% endunless %}
+      
       <li class="series-item {% if post.url == page.url %}current{% endif %}">
         {% if post.url == page.url %}
           <span class="series-current">
             <ion-icon name="arrow-forward-outline"></ion-icon>
-            Part {{ post.series_part }}: {{ post.title | remove: page.series | remove: "Part " | remove: post.series_part | remove: "-" | strip }}
+            Part {{ post.series_part }}: {{ display_text }}
           </span>
         {% else %}
           <a href="{{ post.url | prepend: site.baseurl }}" class="series-link">
-            Part {{ post.series_part }}: {{ post.title | remove: page.series | remove: "Part " | remove: post.series_part | remove: "-" | strip }}
+            Part {{ post.series_part }}: {{ display_text }}
           </a>
         {% endif %}
       </li>
