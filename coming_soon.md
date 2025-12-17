@@ -41,9 +41,14 @@ This document tracks planned technical Azure topics that build on your leadershi
 ## Modern Azure Architecture Patterns
 *Advanced patterns for mature environments*
 
-- [ ] **Landing Zone Evolution: Beyond the CAF Blueprint**
-  - *Focus: Advanced patterns for mature Azure environments*
+- [ ] **Landing Zone Evolution: Beyond the CAF Blueprint - Part 1**
+  - *Focus: Advanced patterns for mature Azure environments, custom policy frameworks*
   - *Estimated: 2,200 words, Part 1 of 2*
+  - *Target: Q1 2026*
+
+- [ ] **Landing Zone Evolution: Beyond the CAF Blueprint - Part 2**
+  - *Focus: Multi-tenant architectures, advanced networking, governance at scale*
+  - *Estimated: 2,400 words, Part 2 of 2*
   - *Target: Q1 2026*
 
 - [ ] **Azure Container Apps vs AKS: The Decision Framework**
@@ -51,9 +56,14 @@ This document tracks planned technical Azure topics that build on your leadershi
   - *Estimated: 1,800 words, standalone*
   - *Target: Q2 2026*
 
-- [ ] **Event-Driven Architecture on Azure: Patterns That Actually Work**
-  - *Focus: Service Bus, Event Grid, Event Hubs in real scenarios*
+- [ ] **Event-Driven Architecture on Azure: Patterns That Actually Work - Part 1**
+  - *Focus: Service Bus, Event Grid, Event Hubs architecture decisions and patterns*
   - *Estimated: 2,000 words, Part 1 of 2*
+  - *Target: Q2 2026*
+
+- [ ] **Event-Driven Architecture on Azure: Patterns That Actually Work - Part 2**
+  - *Focus: Error handling, dead letter queues, monitoring, and operational patterns*
+  - *Estimated: 2,100 words, Part 2 of 2*
   - *Target: Q2 2026*
 
 - [ ] **Azure API Management: The Platform Team's Perspective**
@@ -104,10 +114,15 @@ This document tracks planned technical Azure topics that build on your leadershi
 ## Security & Compliance
 *Building on governance expertise*
 
-- [ ] **Zero Trust Architecture on Azure: Implementation Reality**
-  - *Focus: Moving beyond buzzwords to actual implementation*
+- [ ] **Zero Trust Architecture on Azure: Implementation Reality - Part 1**
+  - *Focus: Moving beyond buzzwords to actual implementation, identity and access foundations*
   - *Estimated: 2,300 words, Part 1 of 2*
   - *Target: Q1 2026*
+
+- [ ] **Zero Trust Architecture on Azure: Implementation Reality - Part 2**
+  - *Focus: Network segmentation, device compliance, data protection, and monitoring*
+  - *Estimated: 2,200 words, Part 2 of 2*
+  - *Target: Q2 2026*
 
 - [ ] **Azure Key Vault: Patterns for Enterprise Scale**
   - *Focus: Advanced key management and secrets handling*
@@ -119,9 +134,14 @@ This document tracks planned technical Azure topics that build on your leadershi
   - *Estimated: 1,600 words, standalone*
   - *Target: Q2 2026*
 
-- [ ] **Azure Policy at Scale: Advanced Patterns and Pitfalls**
-  - *Focus: Beyond basic governance policies*
+- [ ] **Azure Policy at Scale: Advanced Patterns and Pitfalls - Part 1**
+  - *Focus: Beyond basic governance policies, custom policy development, testing strategies*
   - *Estimated: 2,000 words, Part 1 of 2*
+  - *Target: Q3 2026*
+
+- [ ] **Azure Policy at Scale: Advanced Patterns and Pitfalls - Part 2**
+  - *Focus: Policy remediation, compliance reporting, multi-tenant policy management*
+  - *Estimated: 1,900 words, Part 2 of 2*
   - *Target: Q3 2026*
 
 ---
@@ -169,9 +189,14 @@ This document tracks planned technical Azure topics that build on your leadershi
   - *Estimated: 1,900 words, standalone*
   - *Target: Q3 2026*
 
-- [ ] **GitOps for Azure: Patterns and Anti-Patterns**
-  - *Focus: What works and what doesn't in Azure environments*
+- [ ] **GitOps for Azure: Patterns and Anti-Patterns - Part 1**
+  - *Focus: What works and what doesn't in Azure environments, toolchain selection*
   - *Estimated: 2,000 words, Part 1 of 2*
+  - *Target: Q3 2026*
+
+- [ ] **GitOps for Azure: Patterns and Anti-Patterns - Part 2**
+  - *Focus: Security considerations, secret management, multi-environment strategies*
+  - *Estimated: 1,800 words, Part 2 of 2*
   - *Target: Q3 2026*
 
 ---
@@ -179,10 +204,15 @@ This document tracks planned technical Azure topics that build on your leadershi
 ## Data & Analytics
 *New territory complementing platform focus*
 
-- [ ] **Azure Data Factory: The Platform Architect's Guide**
-  - *Focus: Building scalable data pipelines*
+- [ ] **Azure Data Factory: The Platform Architect's Guide - Part 1**
+  - *Focus: Building scalable data pipelines, architecture patterns, performance optimization*
   - *Estimated: 2,100 words, Part 1 of 2*
   - *Target: Q3 2026*
+
+- [ ] **Azure Data Factory: The Platform Architect's Guide - Part 2**
+  - *Focus: CI/CD for data pipelines, monitoring, error handling, cost optimization*
+  - *Estimated: 2,000 words, Part 2 of 2*
+  - *Target: Q4 2026*
 
 - [ ] **Synapse Analytics: When It Makes Sense**
   - *Focus: Honest assessment of when to use Synapse*
@@ -194,9 +224,14 @@ This document tracks planned technical Azure topics that build on your leadershi
   - *Estimated: 1,800 words, standalone*
   - *Target: Q4 2026*
 
-- [ ] **Real-Time Analytics on Azure: Architecture Patterns**
-  - *Focus: Stream Analytics, Event Hubs, Cosmos DB*
+- [ ] **Real-Time Analytics on Azure: Architecture Patterns - Part 1**
+  - *Focus: Stream Analytics, Event Hubs, Cosmos DB architecture and design patterns*
   - *Estimated: 2,000 words, Part 1 of 2*
+  - *Target: Q4 2026*
+
+- [ ] **Real-Time Analytics on Azure: Architecture Patterns - Part 2**
+  - *Focus: Scaling strategies, performance tuning, operational monitoring, cost management*
+  - *Estimated: 1,900 words, Part 2 of 2*
   - *Target: Q4 2026*
 
 ---
@@ -209,9 +244,14 @@ This document tracks planned technical Azure topics that build on your leadershi
   - *Estimated: 1,900 words, standalone*
   - *Target: Q4 2026*
 
-- [ ] **Multi-Cloud Networking: Azure as the Hub**
-  - *Focus: Practical hybrid connectivity patterns*
+- [ ] **Multi-Cloud Networking: Azure as the Hub - Part 1**
+  - *Focus: Practical hybrid connectivity patterns, network architecture design*
   - *Estimated: 2,200 words, Part 1 of 2*
+  - *Target: Q4 2026*
+
+- [ ] **Multi-Cloud Networking: Azure as the Hub - Part 2**
+  - *Focus: Security considerations, traffic routing, monitoring, troubleshooting*
+  - *Estimated: 2,100 words, Part 2 of 2*
   - *Target: Q4 2026*
 
 ---
@@ -264,11 +304,11 @@ This document tracks planned technical Azure topics that build on your leadershi
 
 ## Notes
 
-- **Estimated Total**: 30 posts, ~54,000 words
+- **Estimated Total**: 38 posts, ~70,000 words
 - **Completed**: 3 posts, 9,100 words (Beyond Azure Monitor series)
-- **Remaining**: 27 posts, ~45,000 words
+- **Remaining**: 35 posts, ~61,000 words
 - **Timeline**: 18-24 months at bi-weekly cadence
-- **Mix**: 70% standalone, 30% series
+- **Mix**: 58% standalone (22 posts), 42% series (16 posts across 8 series)
 - **Focus**: Practical implementation over theoretical concepts
 - **Audience**: Platform teams and architects implementing Azure at scale
 
