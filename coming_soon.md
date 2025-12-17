@@ -174,10 +174,11 @@ This document tracks planned technical Azure topics that build on your leadershi
 ## Infrastructure as Code & DevOps
 *Platform engineering focus*
 
-- [ ] **Bicep vs Terraform: The Honest Comparison**
-  - *Focus: Real-world tradeoffs from extensive experience*
-  - *Estimated: 2,200 words, standalone*
-  - *Target: Q1 2026*
+- [x] **Bicep vs Terraform: A Debate That Shouldn't Exist**
+  - *Focus: Direct, no-nonsense take on why Azure-only shops should stop overcomplicating this decision*
+  - *Completed: 3,400 words, standalone*
+  - *Status: Draft complete, image optimized, ready for publication*
+  - *Target: January 11, 2026*
 
 - [ ] **Azure DevOps vs GitHub Actions: Platform Team Perspective**
   - *Focus: When to use which for Azure workloads*
@@ -266,11 +267,16 @@ This document tracks planned technical Azure topics that build on your leadershi
 - *Total: 9,100 words across 3 parts*
 - *Status: Complete series ready for publication*
 
+**Bicep vs Terraform: A Debate That Shouldn't Exist (January 2026)**
+- Direct, frustrated take on why Azure-only shops overcomplicate this decision - 3,400 words
+- *Status: Draft complete, image optimized, ready for publication*
+- *Target: January 11, 2026*
+
 ### In Progress
-*No active drafts - Beyond Azure Monitor series completed December 2025*
+*No active drafts - Bicep vs Terraform completed December 2025*
 
 ### Next Up (Priority Queue)
-1. **Bicep vs Terraform: The Honest Comparison** - High demand topic (Q1 2026)
+1. **Bicep vs Terraform: A Debate That Shouldn't Exist** - Complete, publishing January 11, 2026
 2. **Azure OpenAI Service: From Proof of Concept to Production** - Builds on AI theme (Q1 2026)
 3. **Landing Zone Evolution: Beyond the CAF Blueprint** - Advanced patterns for mature environments (Q1 2026)
 4. **Zero Trust Architecture on Azure: Implementation Reality** - Moving beyond buzzwords (Q1 2026)
@@ -305,8 +311,8 @@ This document tracks planned technical Azure topics that build on your leadershi
 ## Notes
 
 - **Estimated Total**: 38 posts, ~70,000 words
-- **Completed**: 3 posts, 9,100 words (Beyond Azure Monitor series)
-- **Remaining**: 35 posts, ~61,000 words
+- **Completed**: 4 posts, 12,500 words (Beyond Azure Monitor series + Bicep vs Terraform)
+- **Remaining**: 34 posts, ~57,500 words
 - **Timeline**: 18-24 months at bi-weekly cadence
 - **Mix**: 58% standalone (22 posts), 42% series (16 posts across 8 series)
 - **Focus**: Practical implementation over theoretical concepts
@@ -314,6 +320,7 @@ This document tracks planned technical Azure topics that build on your leadershi
 
 **Recent Achievements:**
 - Completed first major technical series (Beyond Azure Monitor)
+- Completed high-demand Bicep vs Terraform post with direct, no-BS approach
 - Established KQL writing standards and editorial processes
 - Optimized content pipeline for consistent quality and publishing standards
 
