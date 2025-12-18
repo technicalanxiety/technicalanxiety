@@ -7,8 +7,7 @@ tags: [Azure, Infrastructure, Operations]
 description: "You bought a 4K smart TV to play VHS tapes. Why Azure-only shops keep choosing tools that solve problems they don't have."
 ---
 
-# Bicep vs Terraform: The 4K TV Playing VHS Tapes
-## Why Azure-Only Shops Keep Buying Capability They'll Never Use
+# Why Azure-Only Shops Keep Buying Capability They'll Never Use
 
 ---
 
