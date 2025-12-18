@@ -184,6 +184,9 @@ The path is long. There are no shortcuts. But architects who master these fundam
 That's what architects actually do.
 
 ---
+
+*This is Part 3 of the "What Architects Actually Do" series. [Part 1: The Translation Layer](/what-architects-actually-do-pt1) covered the core skill. [Part 2: Translation in Practice](/what-architects-actually-do-pt2) provided real scenarios and frameworks.*
+
 **Photo by [Alex Shute](https://unsplash.com/@faithgiant) on [Unsplash](https://unsplash.com/photos/a-wooden-block-that-says-trust-surrounded-by-blue-flowers-bGOemOApXo4)**
 
 *This concludes the "What Architects Actually Do" series. If you found it valuable, the ["Decide or Drown" series](/decide-or-drown) covers the leadership side of technology decision-making - written for the IT leaders these architects work with.*

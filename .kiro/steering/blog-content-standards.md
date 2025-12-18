@@ -85,6 +85,13 @@ fileMatchPattern: "_posts/**/*.md"
 - **Template**: `**Coming Next:** Part X: Title (Publishing Date)` + content preview
 - **HTML Comments**: Add `<!-- NEXT_PART: YYYY-MM-DD-post-slug.md -->` before and `<!-- END_NEXT_PART -->` after the "What's Next" section for linking reference
 
+**GitHub Actions Auto-Linking**:
+- The daily publish workflow automatically processes these HTML comments
+- When a new series part publishes, the workflow scans all existing posts for matching `<!-- NEXT_PART: filename -->` comments
+- The entire "What's Next" section gets replaced with a clean link: `**Next in Series:** [Title →](/slug/)`
+- This creates seamless forward linking without manual updates
+- The automation runs daily at 9 AM UTC and processes posts with dates <= today
+
 **Complete Series Template**:
 ```markdown
 <!-- NEXT_PART: 2025-MM-DD-series-name-pt3.md -->

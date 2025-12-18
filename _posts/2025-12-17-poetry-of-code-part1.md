@@ -111,7 +111,17 @@ This framing changes everything about how you approach AI adoption. You're not h
 
 ---
 
-*This is Part 1 of "The Poetry of Code" series. [Part 2: Addressing the Fear](/poetry-of-code-part-2/) takes on the real objections - quality, supportability, and what happens when the craft you've spent years mastering becomes something anyone with vision can do.*
+<!-- NEXT_PART: 2025-12-19-poetry-of-code-part2.md -->
+## What's Next?
+
+**Coming Next:** Part 2: Addressing the Fear (December 19, 2025)
+
+Part 1 established AI tools as extensions of self rather than replacements. Part 2 tackles the real objections head-on: quality concerns, supportability questions, and what happens when the craft you've spent years mastering becomes something anyone with vision can do. I'll address the fear directly and show why it's misplaced.
+<!-- END_NEXT_PART -->
+
+---
+
+*This is Part 1 of "The Poetry of Code" series. Part 2: Addressing the Fear takes on the real objections - quality, supportability, and what happens when the craft you've spent years mastering becomes something anyone with vision can do.*
 
 *For a practical walkthrough of setting up AI-assisted development, see my post on [configuring Kiro](/setting-up-kiro-ai-assistant/).*
 
