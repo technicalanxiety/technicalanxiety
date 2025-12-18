@@ -111,3 +111,4 @@ exclude:
 #   - vendor/gems/
 #   - vendor/ruby/
 - _posts/backlog/
+- _posts/abandoned/
