@@ -133,5 +133,9 @@ For now, start listening differently. The gap between C-suite and practitioners 
 In the next part, we'll get concrete with real scenarios and frameworks for bridging the gap between business and technology.
 <!-- END_NEXT_PART -->
 
+---
+
+*This is Part 1 of the "What Architects Actually Do" series. Part 2: Translation in Practice covers real scenarios and frameworks for bridging business and technology.*
+
 **Photo by [Ling App](https://unsplash.com/@lingapp) on [Unsplash](https://unsplash.com/photos/a-wooden-block-that-says-translation-on-it-p5VW_ZUon7o)**
 

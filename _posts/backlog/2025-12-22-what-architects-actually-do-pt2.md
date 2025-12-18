@@ -164,5 +164,9 @@ That's the architect's real value. And it only comes from practicing translation
 In the final part, we'll address the foundation that makes translation possible - how to build trust with practitioners who know more than you, and leadership who needs to trust your judgment.
 <!-- END_NEXT_PART -->
 
+---
+
+*This is Part 2 of the "What Architects Actually Do" series. [Part 1: The Translation Layer](/what-architects-actually-do-pt1) covered the core skill. Part 3: Earning Technical Credibility covers the foundation that makes translation possible.*
+
 **Photo by [Brett Jordan](https://unsplash.com/@brett_jordan) on [Unsplash](https://unsplash.com/photos/brown-wooden-cross-on-white-surface-Fp4ERdkR5jU)**
 
