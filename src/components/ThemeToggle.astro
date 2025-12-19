@@ -1,0 +1,181 @@
+---
+// No server-side logic needed for theme toggle
+---
+
+<button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark/light mode" title="Toggle theme">
+  <span class="theme-toggle-icon">
+    <svg class="cloud-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M18 10h-1.26A8 8 0 109 20h9a5 5 0 000-10z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <svg class="storm-cloud-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M18 10h-1.26A8 8 0 109 20h9a5 5 0 000-10z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M13 16l-3 5 3-5z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M10 11l-2 3 2-3z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </span>
+</button>
+
+<style>
+.theme-toggle {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--accent-color);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px var(--shadow);
+  transition: all 0.3s ease;
+  z-index: 999;
+  color: var(--white);
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 16px var(--shadow);
+}
+
+.theme-toggle:active {
+  transform: scale(0.95);
+}
+
+.theme-toggle:focus {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 3px;
+}
+
+.theme-toggle-icon {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cloud-icon,
+.storm-cloud-icon {
+  position: absolute;
+  transition: all 0.3s ease;
+}
+
+/* Default: show storm cloud (for dark mode) */
+.cloud-icon {
+  opacity: 0;
+  transform: rotate(90deg) scale(0);
+}
+
+.storm-cloud-icon {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+/* Light mode: show regular cloud */
+:global([data-theme="light"]) .cloud-icon {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+:global([data-theme="light"]) .storm-cloud-icon {
+  opacity: 0;
+  transform: rotate(-90deg) scale(0);
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .theme-toggle {
+    bottom: 20px;
+    right: 20px;
+    width: 45px;
+    height: 45px;
+  }
+}
+
+/* Ensure it doesn't overlap with cookie consent */
+.cookie-consent ~ .theme-toggle {
+  bottom: 120px;
+}
+
+@media (max-width: 768px) {
+  .cookie-consent ~ .theme-toggle {
+    bottom: 180px;
+  }
+}
+</style>
+
+<script>
+  // Theme toggle functionality
+  function initThemeToggle() {
+    const themeToggle = document.getElementById('theme-toggle');
+    const htmlElement = document.documentElement;
+    
+    if (!themeToggle) return;
+    
+    // Check for saved theme preference, system preference, or default to dark
+    function getInitialTheme() {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme) return savedTheme;
+      
+      // Check system preference
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+        return 'light';
+      }
+      
+      return 'dark';
+    }
+    
+    const currentTheme = getInitialTheme();
+    htmlElement.setAttribute('data-theme', currentTheme);
+    
+    // Force a reflow to ensure CSS is applied
+    htmlElement.offsetHeight;
+    
+    // Update aria-label based on current theme
+    function updateAriaLabel(theme: string) {
+      if (themeToggle) {
+        themeToggle.setAttribute('aria-label', 
+          theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'
+        );
+      }
+    }
+    
+    updateAriaLabel(currentTheme);
+    
+    // Toggle theme
+    themeToggle.addEventListener('click', function() {
+      const currentTheme = htmlElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      
+      htmlElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      updateAriaLabel(newTheme);
+    });
+    
+    // Listen for system theme changes
+    if (window.matchMedia) {
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+        // Only update if no manual preference is saved
+        if (!localStorage.getItem('theme')) {
+          const newTheme = e.matches ? 'dark' : 'light';
+          htmlElement.setAttribute('data-theme', newTheme);
+          updateAriaLabel(newTheme);
+        }
+      });
+    }
+  }
+  
+  // Initialize on DOM content loaded
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initThemeToggle);
+  } else {
+    initThemeToggle();
+  }
+  
+  // Also initialize on page navigation (for SPA-like behavior)
+  document.addEventListener('astro:page-load', initThemeToggle);
+</script>

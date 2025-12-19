@@ -1,63 +1,43 @@
-# Technical Anxiety Blog
+# Astro Starter Kit: Minimal
 
-Personal blog by Jason Rinehart covering Azure architecture, cloud governance, technical leadership, and managing anxiety in tech.
-
-**Live Site**: [technicalanxiety.com](https://technicalanxiety.com)
-
-## Purpose
-
-This repository contains the source code for my personal technical blog. I write about:
-- Microsoft Azure architecture and governance
-- Cloud adoption patterns and best practices
-- Technical leadership and team building
-- Managing anxiety and mental health in tech careers
-- Real-world experiences from 20+ years in technology
-
-## Tech Stack
-
-- **Platform**: Jekyll static site generator
-- **Hosting**: GitHub Pages
-- **Theme**: Custom theme based on Jekyll
-- **Ruby**: 3.2.3
-- **Deployment**: Automatic on push to main branch
-
-## Local Development
-
-```bash
-# Install dependencies
-bundle install
-
-# Start local server with live reload
-bundle exec jekyll serve --livereload
-
-# Visit http://127.0.0.1:4000
+```sh
+npm create astro@latest -- --template minimal
 ```
 
-## Project Structure
+> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
 
-- `_posts/` - Published blog posts
-- `_posts/backlog/` - Draft posts (not published)
-- `_pages/` - Static pages (About, Start Here, etc.)
-- `img/` - Images and graphics
-- `.github/` - Documentation, ideas, and maintenance files
-- `.kiro/` - Kiro AI assistant configuration
+## 🚀 Project Structure
 
-## Writing & Publishing
+Inside of your Astro project, you'll see the following folders and files:
 
-Posts are written in Markdown with YAML front matter. See `.kiro/steering/blog-content-standards.md` for detailed guidelines.
+```text
+/
+├── public/
+├── src/
+│   └── pages/
+│       └── index.astro
+└── package.json
+```
 
-**Quick workflow:**
-1. Create draft in `_posts/backlog/`
-2. Write and refine content
-3. Move to `_posts/` when ready to publish
-4. Push to main branch - site updates automatically
+Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
 
-## License
+There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
 
-Content is © Jason Rinehart. Code is MIT licensed (see LICENSE.txt).
+Any static assets, like images, can be placed in the `public/` directory.
 
-## Contact
+## 🧞 Commands
 
-- **LinkedIn**: [linkedin.com/in/rinehart76](https://linkedin.com/in/rinehart76)
-- **Twitter**: [@anxiouslytech](https://twitter.com/anxiouslytech)
-- **Website**: [technicalanxiety.com](https://technicalanxiety.com)
+All commands are run from the root of the project, from a terminal:
+
+| Command                   | Action                                           |
+| :------------------------ | :----------------------------------------------- |
+| `npm install`             | Installs dependencies                            |
+| `npm run dev`             | Starts local dev server at `localhost:4321`      |
+| `npm run build`           | Build your production site to `./dist/`          |
+| `npm run preview`         | Preview your build locally, before deploying     |
+| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
+| `npm run astro -- --help` | Get help using the Astro CLI                     |
+
+## 👀 Want to learn more?
+
+Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).

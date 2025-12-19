@@ -1,0 +1,263 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+// Get all posts and group by year and month
+const posts = await getCollection('posts');
+const sortedPosts = posts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+// Group posts by year
+const postsByYear = sortedPosts.reduce((acc, post) => {
+  const year = post.data.date.getFullYear().toString();
+  if (!acc[year]) {
+    acc[year] = [];
+  }
+  acc[year].push(post);
+  return acc;
+}, {} as Record<string, typeof posts>);
+
+// Group posts by month within each year, sorted chronologically (newest first)
+const postsByYearAndMonth = Object.entries(postsByYear)
+  .sort(([yearA], [yearB]) => parseInt(yearB) - parseInt(yearA)) // Sort years newest first
+  .map(([year, yearPosts]) => {
+    const monthGroups = yearPosts.reduce((acc, post) => {
+      const month = post.data.date.toLocaleDateString('en-US', { month: 'long' });
+      const monthNumber = post.data.date.getMonth(); // Get month number for sorting
+      if (!acc[month]) {
+        acc[month] = { posts: [], monthNumber };
+      }
+      acc[month].posts.push(post);
+      return acc;
+    }, {} as Record<string, { posts: typeof posts, monthNumber: number }>);
+    
+    return {
+      year,
+      months: Object.entries(monthGroups)
+        .sort(([, a], [, b]) => b.monthNumber - a.monthNumber) // Sort months newest first
+        .map(([month, { posts: monthPosts }]) => ({
+          month,
+          posts: monthPosts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf()) // Sort posts newest first within month
+        }))
+    };
+  });
+---
+
+<BaseLayout title="Archive - Technical Anxiety" description="Complete archive of all blog posts organized by year and month.">
+  <Header />
+  
+  <main class="main-content">
+    <div class="container">
+      <div class="row">
+        <div class="col col-12">
+          <div class="archive-page">
+            <header class="archive-header">
+              <h1 class="archive-title">Archive</h1>
+              <p class="archive-description">
+                Complete archive of all {sortedPosts.length} blog posts organized by year and month.
+              </p>
+            </header>
+            
+            <div class="archive">
+              {postsByYearAndMonth.map(({ year, months }) => (
+                <div class="archive-year-section">
+                  <h2 class="archive-year">{year}</h2>
+                  <div class="archive-year-group">
+                    {months.map(({ month, posts }) => (
+                      <div class="archive-month-section">
+                        <h3 class="archive-month">{month}</h3>
+                        <ul class="archive-list">
+                          {posts.map((post) => (
+                            <li class="archive-item">
+                              <span class="archive-date">
+                                {post.data.date.toLocaleDateString('en-US', { 
+                                  month: 'short', 
+                                  day: '2-digit' 
+                                })}
+                              </span>
+                              <a class="archive-link" href={`/${post.slug}/`}>
+                                {post.data.title}
+                              </a>
+                              {post.data.tags && post.data.tags.length > 0 && (
+                                <span class="archive-tags">
+                                  {post.data.tags.map((tag) => (
+                                    <span class="archive-tag">{tag}</span>
+                                  ))}
+                                </span>
+                              )}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .archive-page {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: var(--space-2xl) 0;
+  }
+
+  .archive-header {
+    text-align: center;
+    margin-bottom: var(--space-2xl);
+  }
+
+  .archive-title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--text-heading);
+    margin-bottom: var(--space-md);
+  }
+
+  .archive-description {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .archive-year-section {
+    margin-bottom: var(--space-2xl);
+  }
+
+  .archive-year {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    font-weight: bold;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 0.5rem;
+    color: var(--text-heading);
+  }
+
+  .archive-year-group {
+    margin-left: 1rem;
+  }
+
+  .archive-month-section {
+    margin-bottom: var(--space-xl);
+  }
+
+  .archive-month {
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+  }
+
+  .archive-list {
+    list-style: none;
+    padding-left: 0;
+    margin-left: 1rem;
+  }
+
+  .archive-item {
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .archive-date {
+    font-family: 'Fira Code', monospace;
+    color: var(--text-secondary);
+    min-width: 60px;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .archive-link {
+    flex: 1;
+    text-decoration: none;
+    color: var(--text-heading);
+    font-weight: 500;
+    transition: color var(--transition-fast);
+  }
+
+  .archive-link:hover {
+    color: var(--accent-color);
+    text-decoration: underline;
+  }
+
+  .archive-tags {
+    display: inline-flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .archive-tag {
+    font-size: 0.75rem;
+    padding: 4px 10px;
+    background: rgba(33, 150, 243, 0.9);
+    color: #ffffff;
+    border-radius: 3px;
+    border: none;
+    font-weight: 600;
+  }
+
+  .archive-tag:hover {
+    background: rgba(33, 150, 243, 1);
+  }
+
+  /* Light mode override */
+  [data-theme="light"] .archive-tag {
+    color: #ffffff;
+  }
+
+  /* Mobile adjustments */
+  @media (max-width: 767px) {
+    .archive-page {
+      padding: var(--space-xl) var(--space-md);
+    }
+
+    .archive-title {
+      font-size: 2.5rem;
+    }
+
+    .archive-year {
+      font-size: 1.75rem;
+    }
+
+    .archive-month {
+      font-size: 1.25rem;
+    }
+
+    .archive-year-group {
+      margin-left: 0.5rem;
+    }
+
+    .archive-list {
+      margin-left: 0.5rem;
+    }
+
+    .archive-item {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.25rem;
+    }
+
+    .archive-date {
+      min-width: auto;
+    }
+
+    .archive-tags {
+      margin-top: 0.25rem;
+    }
+  }
+</style>

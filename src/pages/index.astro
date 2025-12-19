@@ -1,0 +1,365 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Hero from '../components/Hero.astro';
+import Sidebar from '../components/Sidebar.astro';
+import BackToTop from '../components/BackToTop.astro';
+import { siteConfig } from '../config';
+
+const posts = await getCollection('posts');
+const sortedPosts = posts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const recentPosts = sortedPosts.slice(0, siteConfig.postsPerPage);
+---
+
+<BaseLayout title="Technical Anxiety | Experience Blog" description="A technical blog covering Azure, Log Analytics, leadership, and navigating anxiety in tech.">
+  <Header />
+  
+  <Hero />
+  
+  <main class="main-content">
+    <div class="container">
+      <div class="section-heading">
+        <h2 class="section-title">Latest Articles</h2>
+        <p class="section-description">Real-world insights from the field</p>
+      </div>
+
+      <!-- Featured Article -->
+      {recentPosts.length > 0 && (
+        <article class="featured-article">
+          <div class="featured-image" style={`background-image: url(/img/${recentPosts[0].data.image || 'article-header.jpg'})`}>
+            <div class="featured-content">
+              <div class="featured-tags">
+                {recentPosts[0].data.tags && recentPosts[0].data.tags.map((tag) => (
+                  <a href={`/tags/${tag}/`} class="tag">{tag}</a>
+                ))}
+              </div>
+              <div class="featured-date">
+                <time datetime={recentPosts[0].data.date.toISOString()}>
+                  {recentPosts[0].data.date.toLocaleDateString('en-US', { 
+                    year: 'numeric', 
+                    month: 'short', 
+                    day: 'numeric' 
+                  })}
+                </time>
+              </div>
+              <h2 class="featured-title">
+                <a href={`/${recentPosts[0].slug}/`}>{recentPosts[0].data.title}</a>
+              </h2>
+              <p class="featured-excerpt">
+                {recentPosts[0].data.description || 'Read more about this article...'}
+              </p>
+              <a href={`/${recentPosts[0].slug}/`} class="button button-primary">Read More</a>
+            </div>
+          </div>
+        </article>
+      )}
+
+      <!-- Content Grid -->
+      <div class="content-grid">
+        <!-- Regular Articles -->
+        <section class="articles-section">
+          <div class="articles-grid">
+            {recentPosts.slice(1).map((post) => (
+              <article class="article">
+                <div class="article-image" style={`background-image: url(/img/${post.data.image || 'article-header.jpg'})`}>
+                  <a href={`/${post.slug}/`} class="image-link">
+                  </a>
+                </div>
+                <div class="article-content">
+                  <div class="article-header">
+                    <div class="article-date">
+                      <time datetime={post.data.date.toISOString()}>
+                        {post.data.date.toLocaleDateString('en-US', { 
+                          year: 'numeric', 
+                          month: 'short', 
+                          day: 'numeric' 
+                        })}
+                      </time>
+                    </div>
+                    {post.data.tags && post.data.tags.length > 0 && (
+                      <div class="article-tags">
+                        {post.data.tags.map((tag) => (
+                          <a href={`/tags/${tag}/`} class="tag">{tag}</a>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                  <h3 class="article-title">
+                    <a href={`/${post.slug}/`}>{post.data.title}</a>
+                  </h3>
+                  <p class="article-excerpt">
+                    {post.data.description || 'Read more about this article...'}
+                  </p>
+                </div>
+              </article>
+            ))}
+          </div>
+          
+          {sortedPosts.length > siteConfig.postsPerPage && (
+            <div class="explore-more">
+              <div class="explore-content">
+                <h3 class="explore-title">Ready to Dive Deeper?</h3>
+                <p class="explore-description">
+                  Explore our complete archive of cloud architecture insights, leadership lessons, and mental health in tech.
+                </p>
+                <div class="explore-actions">
+                  <a href="/archive/" class="button button-primary">
+                    <ion-icon name="library-outline"></ion-icon>
+                    Browse All Articles
+                  </a>
+                  <a href="/tags/" class="button button-secondary">
+                    <ion-icon name="pricetags-outline"></ion-icon>
+                    Explore by Topic
+                  </a>
+                </div>
+              </div>
+            </div>
+          )}
+        </section>
+        
+        <!-- Sidebar -->
+        <Sidebar />
+      </div>
+    </div>
+  </main>
+  
+  <BackToTop />
+  <Footer />
+</BaseLayout>
+
+<style>
+  .section-heading {
+    text-align: center;
+    margin-bottom: var(--space-2xl);
+  }
+
+  .section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-heading);
+    margin-bottom: var(--space-sm);
+  }
+
+  .section-description {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+  }
+
+  /* Featured Article */
+  .featured-article {
+    margin-bottom: var(--space-2xl);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .featured-image {
+    position: relative;
+    min-height: 450px;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .featured-content {
+    position: relative;
+    padding: var(--space-2xl);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.7) 60%, rgba(0, 0, 0, 0) 100%);
+    width: 100%;
+  }
+
+  .featured-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    margin-bottom: var(--space-sm);
+  }
+
+  .featured-tags .tag {
+    background: rgba(33, 150, 243, 0.9);
+    color: white;
+    border-color: transparent;
+  }
+
+  .featured-date {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: var(--space-md);
+  }
+
+  .featured-title {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-md);
+  }
+
+  .featured-title a {
+    color: white;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  .featured-title a:hover {
+    color: var(--color-accent);
+  }
+
+  .featured-excerpt {
+    max-width: 600px;
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.95);
+    margin-bottom: var(--space-lg);
+  }
+
+  /* Articles Grid */
+  .articles-grid {
+    display: grid;
+    gap: var(--space-xl);
+    margin-bottom: var(--space-xl);
+  }
+
+  @media (min-width: 768px) {
+    .articles-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .article-image {
+    position: relative;
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    overflow: hidden;
+  }
+
+  /* Image hover effect without overlay text */
+  .image-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    transition: transform var(--transition-base);
+    overflow: hidden;
+  }
+
+  .image-link:hover {
+    transform: scale(1.02);
+  }
+
+  /* Explore More Section */
+  .explore-more {
+    margin-top: var(--space-2xl);
+    padding: var(--space-2xl);
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .explore-more::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 70%, rgba(33, 150, 243, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .explore-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .explore-title {
+    font-family: 'Orbitron', 'Rajdhani', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-heading);
+    margin-bottom: var(--space-md);
+  }
+
+  .explore-description {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-xl);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+  }
+
+  .explore-actions {
+    display: flex;
+    gap: var(--space-md);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .explore-actions .button {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-md) var(--space-xl);
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    transition: all var(--transition-base);
+    border: 2px solid transparent;
+  }
+
+  .explore-actions .button-primary {
+    background: var(--accent-color);
+    color: white;
+    border-color: var(--accent-color);
+  }
+
+  .explore-actions .button-primary:hover {
+    background: var(--link-hover);
+    border-color: var(--link-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(33, 150, 243, 0.3);
+  }
+
+  .explore-actions .button-secondary {
+    background: transparent;
+    color: var(--text-heading);
+    border-color: var(--border-color);
+  }
+
+  .explore-actions .button-secondary:hover {
+    background: transparent;
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .explore-actions ion-icon {
+    font-size: 1.25rem;
+  }
+
+  .view-more {
+    text-align: center;
+    margin-top: var(--space-xl);
+  }
+
+  @media (max-width: 767px) {
+    .section-title {
+      font-size: 2rem;
+    }
+
+    .featured-title {
+      font-size: 1.75rem;
+    }
+
+    .featured-content {
+      padding: var(--space-lg);
+    }
+  }
+</style>

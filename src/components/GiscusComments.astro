@@ -1,0 +1,68 @@
+---
+import { siteConfig } from '../config';
+
+export interface Props {
+  theme?: 'light' | 'dark' | 'auto';
+}
+
+const { theme = 'auto' } = Astro.props;
+---
+
+<div id="giscus-container" class="giscus-container">
+  <script 
+    is:inline
+    src="https://giscus.app/client.js"
+    data-repo={siteConfig.giscus.repo}
+    data-repo-id={siteConfig.giscus.repoId}
+    data-category={siteConfig.giscus.category}
+    data-category-id={siteConfig.giscus.categoryId}
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme={theme}
+    data-lang="en"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+
+<script>
+  // Handle theme synchronization
+  function updateGiscusTheme(theme: string) {
+    const iframe = document.querySelector<HTMLIFrameElement>('iframe.giscus-frame');
+    if (iframe) {
+      iframe.contentWindow?.postMessage(
+        { giscus: { setConfig: { theme } } },
+        'https://giscus.app'
+      );
+    }
+  }
+
+  // Listen for theme changes
+  document.addEventListener('theme-changed', (event: Event) => {
+    const customEvent = event as CustomEvent;
+    const newTheme = customEvent.detail.theme;
+    updateGiscusTheme(newTheme);
+  });
+
+  // Set initial theme based on current theme
+  document.addEventListener('DOMContentLoaded', () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+    updateGiscusTheme(currentTheme);
+  });
+</script>
+
+<style>
+  .giscus-container {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color, #e1e5e9);
+  }
+
+  /* Dark theme styles */
+  [data-theme="dark"] .giscus-container {
+    border-top-color: var(--border-color-dark, #30363d);
+  }
+</style>

@@ -1,0 +1,247 @@
+---
+import { siteConfig } from '../config';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('posts');
+const postCount = posts.length;
+---
+
+<section class="hero">
+  <div class="container">
+    <div class="row">
+      <div class="col col-12">
+        <div class="hero-content">
+          <div class="hero-text">
+            <h1 class="hero-title">
+              Cloud Architecture & Leadership<br>
+              <span class="hero-subtitle">Without the Anxiety</span>
+            </h1>
+            <p class="hero-description">
+              Real-world patterns from 100+ organizations. Azure architecture, governance frameworks, and technical leadership—written by someone who's been in the trenches.
+            </p>
+            
+            <div class="hero-buttons">
+              <a href="/start-here/" class="button button-primary">
+                <ion-icon name="rocket-outline"></ion-icon>
+                Start Here
+              </a>
+              <a href="/azure/" class="button button-secondary">
+                <ion-icon name="cloud-outline"></ion-icon>
+                Explore Azure
+              </a>
+            </div>
+            <div class="hero-stats">
+              <div class="stat">
+                <span class="stat-number">{postCount}</span>
+                <span class="stat-label">Articles</span>
+              </div>
+              <div class="stat">
+                <span class="stat-number">20+</span>
+                <span class="stat-label">Years Experience</span>
+              </div>
+              <div class="stat">
+                <span class="stat-number">5</span>
+                <span class="stat-label">Topics</span>
+              </div>
+            </div>
+          </div>
+          <!-- Animated Terminal Window -->
+          <div class="terminal-window">
+            <div class="terminal-header">
+              <div class="terminal-buttons">
+                <span class="terminal-button terminal-close"></span>
+                <span class="terminal-button terminal-minimize"></span>
+                <span class="terminal-button terminal-maximize"></span>
+              </div>
+              <div class="terminal-title">mental-health-deploy.sh</div>
+            </div>
+            <div class="terminal-body">
+              <div id="terminal-content"></div>
+              <span class="terminal-cursor">_</span>
+            </div>
+          </div>
+          
+          <div class="hero-topics">
+            <h3 class="hero-topics-title">Popular Topics</h3>
+            <div class="hero-topic-grid">
+              <a href="/azure/" class="hero-topic-card">
+                <div class="hero-topic-icon">☁️</div>
+                <div class="hero-topic-info">
+                  <h4>Azure</h4>
+                  <p>Cloud architecture & landing zones</p>
+                </div>
+              </a>
+              <a href="/governance/" class="hero-topic-card">
+                <div class="hero-topic-icon">🔒</div>
+                <div class="hero-topic-info">
+                  <h4>Governance</h4>
+                  <p>Frameworks that enable speed</p>
+                </div>
+              </a>
+              <a href="/operations/" class="hero-topic-card">
+                <div class="hero-topic-icon">⚙️</div>
+                <div class="hero-topic-info">
+                  <h4>Operations</h4>
+                  <p>Modern service management</p>
+                </div>
+              </a>
+              <a href="/leadership/" class="hero-topic-card">
+                <div class="hero-topic-icon">👥</div>
+                <div class="hero-topic-info">
+                  <h4>Leadership</h4>
+                  <p>Technical leadership & mental health</p>
+                </div>
+              </a>
+              <a href="/log-analytics/" class="hero-topic-card">
+                <div class="hero-topic-icon">📊</div>
+                <div class="hero-topic-info">
+                  <h4>Log Analytics</h4>
+                  <p>KQL queries & monitoring</p>
+                </div>
+              </a>
+              <a href="/about/" class="hero-topic-card">
+                <div class="hero-topic-icon">ℹ️</div>
+                <div class="hero-topic-info">
+                  <h4>About</h4>
+                  <p>My story & approach</p>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Terminal animation sequence - each line with its type and delay
+  const terminalSequence = [
+    { text: '> npm run deploy-calm', type: 'command', delay: 100 },
+    { text: '', type: 'blank', delay: 300 },
+    { text: '⚙️  Initializing mental health deployment...', type: 'info', delay: 800 },
+    { text: '✓ Removing imposter syndrome', type: 'success', delay: 1200 },
+    { text: '✓ Installing confidence@latest', type: 'success', delay: 1000 },
+    { text: '✓ Configuring work-life balance', type: 'success', delay: 1000 },
+    { text: '✓ Applying burnout prevention policies', type: 'success', delay: 1200 },
+    { text: '', type: 'blank', delay: 400 },
+    { text: '📦 Building sustainable practices...', type: 'info', delay: 1000 },
+    { text: '  + clarity@2.0.0', type: 'package', delay: 600 },
+    { text: '  + perspective@1.5.3', type: 'package', delay: 600 },
+    { text: '  + resilience@3.2.1', type: 'package', delay: 600 },
+    { text: '', type: 'blank', delay: 400 },
+    { text: '✓ Deployment successful. Time to relax.', type: 'success', delay: 2000 }
+  ];
+
+  let currentLine = 0;
+  let currentChar = 0;
+  let isTyping = false;
+  let terminalContent;
+  let cursor;
+
+  /**
+   * Initialize the terminal animation
+   * Sets up DOM references and starts the typing sequence
+   */
+  function initTerminal() {
+    terminalContent = document.getElementById('terminal-content');
+    cursor = document.querySelector('.terminal-cursor');
+    
+    if (!terminalContent) return;
+    
+    // Start the animation after a brief delay
+    setTimeout(startTyping, 500);
+  }
+
+  /**
+   * Start typing the current line character by character
+   */
+  function startTyping() {
+    if (currentLine >= terminalSequence.length) {
+      // Animation complete - restart after delay
+      setTimeout(resetTerminal, 3000);
+      return;
+    }
+
+    isTyping = true;
+    const line = terminalSequence[currentLine];
+    
+    // Handle blank lines immediately
+    if (line.type === 'blank') {
+      addLine('', line.type);
+      currentLine++;
+      setTimeout(startTyping, line.delay);
+      return;
+    }
+
+    // Type out the line character by character
+    typeCharacter();
+  }
+
+  /**
+   * Type a single character and schedule the next one
+   */
+  function typeCharacter() {
+    const line = terminalSequence[currentLine];
+    
+    if (currentChar < line.text.length) {
+      // Add character to current line
+      const currentLineElement = terminalContent.lastElementChild;
+      if (currentLineElement && currentLineElement.classList.contains('typing')) {
+        currentLineElement.textContent = line.text.substring(0, currentChar + 1);
+      } else {
+        // Create new line element
+        const lineElement = document.createElement('div');
+        lineElement.className = `terminal-line terminal-${line.type} typing`;
+        lineElement.textContent = line.text.substring(0, currentChar + 1);
+        terminalContent.appendChild(lineElement);
+      }
+      
+      currentChar++;
+      
+      // Random typing speed for more natural feel (30-80ms per character)
+      const typingSpeed = Math.random() * 50 + 30;
+      setTimeout(typeCharacter, typingSpeed);
+    } else {
+      // Line complete
+      const currentLineElement = terminalContent.lastElementChild;
+      if (currentLineElement) {
+        currentLineElement.classList.remove('typing');
+      }
+      
+      currentChar = 0;
+      currentLine++;
+      isTyping = false;
+      
+      // Delay before next line
+      setTimeout(startTyping, line.delay);
+    }
+  }
+
+  /**
+   * Add a complete line to the terminal (for blank lines)
+   */
+  function addLine(text, type) {
+    const lineElement = document.createElement('div');
+    lineElement.className = `terminal-line terminal-${type}`;
+    lineElement.textContent = text;
+    terminalContent.appendChild(lineElement);
+  }
+
+  /**
+   * Reset the terminal and restart the animation
+   */
+  function resetTerminal() {
+    terminalContent.innerHTML = '';
+    currentLine = 0;
+    currentChar = 0;
+    startTyping();
+  }
+
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTerminal);
+  } else {
+    initTerminal();
+  }
+</script>

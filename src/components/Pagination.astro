@@ -1,0 +1,192 @@
+---
+export interface Props {
+  currentPage: number;
+  totalPages: number;
+  baseUrl?: string;
+  showFirstLast?: boolean;
+  maxVisible?: number;
+}
+
+const {
+  currentPage,
+  totalPages,
+  baseUrl = '/page',
+  showFirstLast = true,
+  maxVisible = 5
+} = Astro.props;
+
+// Calculate which page numbers to show
+function getVisiblePages(current: number, total: number, maxVisible: number) {
+  if (total <= maxVisible) {
+    return Array.from({ length: total }, (_, i) => i + 1);
+  }
+
+  const half = Math.floor(maxVisible / 2);
+  let start = Math.max(1, current - half);
+  let end = Math.min(total, start + maxVisible - 1);
+
+  // Adjust start if we're near the end
+  if (end - start + 1 < maxVisible) {
+    start = Math.max(1, end - maxVisible + 1);
+  }
+
+  return Array.from({ length: end - start + 1 }, (_, i) => start + i);
+}
+
+const visiblePages = getVisiblePages(currentPage, totalPages, maxVisible);
+const hasPrevious = currentPage > 1;
+const hasNext = currentPage < totalPages;
+
+function getPageUrl(page: number): string {
+  if (page === 1) {
+    return '/';
+  }
+  return `${baseUrl}/${page}/`;
+}
+---
+
+{totalPages > 1 && (
+  <nav class="pagination" aria-label="Pagination Navigation">
+    <ul class="pagination-list">
+      
+      <!-- First page link -->
+      {showFirstLast && currentPage > 1 && (
+        <li class="pagination-item">
+          <a href={getPageUrl(1)} class="pagination-link" aria-label="Go to first page">
+            ««
+          </a>
+        </li>
+      )}
+      
+      <!-- Previous page link -->
+      {hasPrevious && (
+        <li class="pagination-item">
+          <a href={getPageUrl(currentPage - 1)} class="pagination-link" aria-label="Go to previous page">
+            ‹ Previous
+          </a>
+        </li>
+      )}
+      
+      <!-- Page number links -->
+      {visiblePages.map((page) => (
+        <li class="pagination-item">
+          {page === currentPage ? (
+            <span class="pagination-link pagination-current" aria-current="page" aria-label={`Current page ${page}`}>
+              {page}
+            </span>
+          ) : (
+            <a href={getPageUrl(page)} class="pagination-link" aria-label={`Go to page ${page}`}>
+              {page}
+            </a>
+          )}
+        </li>
+      ))}
+      
+      <!-- Next page link -->
+      {hasNext && (
+        <li class="pagination-item">
+          <a href={getPageUrl(currentPage + 1)} class="pagination-link" aria-label="Go to next page">
+            Next ›
+          </a>
+        </li>
+      )}
+      
+      <!-- Last page link -->
+      {showFirstLast && currentPage < totalPages && (
+        <li class="pagination-item">
+          <a href={getPageUrl(totalPages)} class="pagination-link" aria-label="Go to last page">
+            »»
+          </a>
+        </li>
+      )}
+      
+    </ul>
+    
+    <div class="pagination-info">
+      Page {currentPage} of {totalPages}
+    </div>
+  </nav>
+)}
+
+<style>
+  .pagination {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin: 3rem 0;
+  }
+
+  .pagination-list {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 0.25rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .pagination-item {
+    display: flex;
+  }
+
+  .pagination-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.5rem;
+    height: 2.5rem;
+    padding: 0 0.75rem;
+    border: 1px solid var(--color-border, #e2e8f0);
+    border-radius: 6px;
+    background: var(--color-bg-primary, #ffffff);
+    color: var(--color-text-primary, #1a202c);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+  }
+
+  .pagination-link:hover {
+    background: var(--color-bg-secondary, #f8fafc);
+    border-color: var(--color-primary, #2563eb);
+    color: var(--color-primary, #2563eb);
+  }
+
+  .pagination-current {
+    background: var(--color-primary, #2563eb);
+    border-color: var(--color-primary, #2563eb);
+    color: white;
+    cursor: default;
+  }
+
+  .pagination-current:hover {
+    background: var(--color-primary, #2563eb);
+    border-color: var(--color-primary, #2563eb);
+    color: white;
+  }
+
+  .pagination-info {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary, #4a5568);
+    text-align: center;
+  }
+
+  @media (max-width: 480px) {
+    .pagination-list {
+      gap: 0.125rem;
+    }
+
+    .pagination-link {
+      min-width: 2rem;
+      height: 2rem;
+      padding: 0 0.5rem;
+      font-size: 0.8rem;
+    }
+
+    .pagination-info {
+      font-size: 0.8rem;
+    }
+  }
+</style>

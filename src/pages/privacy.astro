@@ -1,0 +1,329 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+
+const title = 'Privacy Policy';
+const description = 'Privacy policy for Technical Anxiety website - how we collect, use, and protect your information.';
+---
+
+<BaseLayout title={title} description={description}>
+  <Header />
+  
+  <main class="main">
+    <div class="container">
+      <div class="row">
+        <div class="col col-12">
+          <Breadcrumbs currentPage="Privacy Policy" />
+          
+          <article class="page-content">
+            <header class="page-header">
+              <h1 class="page-title">Privacy Policy</h1>
+              <p class="page-description">How we collect, use, and protect your information when you visit Technical Anxiety.</p>
+              <p class="last-updated"><strong>Last Updated:</strong> December 19, 2025</p>
+            </header>
+
+            <div class="privacy-content">
+              <section class="privacy-section">
+                <h2>Overview</h2>
+                <p>Technical Anxiety ("we", "our", or "us") operates technicalanxiety.com. This page informs you of our policies regarding the collection, use, and disclosure of personal information we receive from users of the site.</p>
+              </section>
+
+              <section class="privacy-section">
+                <h2>Information We Collect</h2>
+                
+                <h3>Analytics Data</h3>
+                <p>We use Google Analytics 4 to understand how visitors use our site. Google Analytics collects information such as:</p>
+                <ul>
+                  <li>Pages you visit</li>
+                  <li>Time spent on pages</li>
+                  <li>Browser and device information</li>
+                  <li>Geographic location (country/city level)</li>
+                  <li>Referring websites</li>
+                </ul>
+                <p>This data is anonymized and aggregated. We do not collect personally identifiable information through Google Analytics.</p>
+
+                <h3>Cookies</h3>
+                <p>Our site uses cookies for:</p>
+                <ul>
+                  <li><strong>Analytics:</strong> Google Analytics uses cookies to track visitor behavior</li>
+                  <li><strong>Functionality:</strong> Theme preferences (light/dark mode)</li>
+                  <li><strong>Consent:</strong> Cookie consent banner preferences</li>
+                </ul>
+                <p>You can control cookies through your browser settings. Note that disabling cookies may affect site functionality.</p>
+              </section>
+
+              <section class="privacy-section">
+                <h2>Third-Party Services</h2>
+                
+                <h3>Google Analytics</h3>
+                <p>We use Google Analytics 4 to analyze site traffic. Google's use of data is governed by their privacy policy:</p>
+                <ul>
+                  <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a></li>
+                  <li><a href="https://support.google.com/analytics/answer/6004245" target="_blank" rel="noopener">Google Analytics Data Privacy</a></li>
+                </ul>
+
+                <h3>Giscus Comments</h3>
+                <p>If you choose to comment on posts, we use Giscus, a GitHub-based commenting system. Giscus uses GitHub's authentication and stores comments in GitHub Discussions. Data handling is governed by:</p>
+                <ul>
+                  <li><a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement" target="_blank" rel="noopener">GitHub Privacy Statement</a></li>
+                  <li><a href="https://github.com/giscus/giscus/blob/main/PRIVACY-POLICY.md" target="_blank" rel="noopener">Giscus Privacy Policy</a></li>
+                </ul>
+
+                <h3>Social Media</h3>
+                <p>Our site includes links to social media platforms (Twitter/X, LinkedIn). These platforms may track your interactions according to their own privacy policies.</p>
+              </section>
+
+              <section class="privacy-section">
+                <h2>Data Retention</h2>
+                <ul>
+                  <li><strong>Analytics Data:</strong> Retained for 26 months (Google Analytics default)</li>
+                  <li><strong>Comments:</strong> Retained by GitHub according to their policy</li>
+                  <li><strong>Cookies:</strong> Theme preferences stored locally in your browser</li>
+                </ul>
+              </section>
+
+              <section class="privacy-section">
+                <h2>Your Rights</h2>
+                <p>You have the right to:</p>
+                <ul>
+                  <li><strong>Access:</strong> Request information about data we collect</li>
+                  <li><strong>Deletion:</strong> Request deletion of your data</li>
+                  <li><strong>Opt-out:</strong> Disable cookies or use browser privacy features</li>
+                  <li><strong>Do Not Track:</strong> We respect Do Not Track browser settings</li>
+                </ul>
+
+                <h3>How to Opt Out</h3>
+                <div class="opt-out-methods">
+                  <div class="opt-out-item">
+                    <h4>Google Analytics</h4>
+                    <p>Use the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">Google Analytics Opt-out Browser Add-on</a></p>
+                  </div>
+                  <div class="opt-out-item">
+                    <h4>Cookies</h4>
+                    <p>Adjust your browser settings to block cookies</p>
+                  </div>
+                  <div class="opt-out-item">
+                    <h4>Comments</h4>
+                    <p>Don't sign in with GitHub or comment on posts</p>
+                  </div>
+                </div>
+              </section>
+
+              <section class="privacy-section">
+                <h2>Children's Privacy</h2>
+                <p>Our site is not directed to children under 13. We do not knowingly collect information from children under 13.</p>
+              </section>
+
+              <section class="privacy-section">
+                <h2>External Links</h2>
+                <p>Our site contains links to external websites. We are not responsible for the privacy practices of other sites. We encourage you to read their privacy policies.</p>
+              </section>
+
+              <section class="privacy-section">
+                <h2>Changes to This Policy</h2>
+                <p>We may update this privacy policy from time to time. Changes will be posted on this page with an updated "Last Updated" date.</p>
+              </section>
+
+              <section class="privacy-section">
+                <h2>Contact</h2>
+                <p>If you have questions about this privacy policy, contact us:</p>
+                <ul>
+                  <li><strong>Twitter/X:</strong> <a href="https://twitter.com/anxiouslytech" target="_blank" rel="noopener">@anxiouslytech</a></li>
+                  <li><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/rinehart76" target="_blank" rel="noopener">Jason Rinehart</a></li>
+                </ul>
+              </section>
+
+              <section class="privacy-section">
+                <h2>GDPR Compliance</h2>
+                <p>If you are in the European Economic Area (EEA), you have additional rights under GDPR:</p>
+                <ul>
+                  <li>Right to access your personal data</li>
+                  <li>Right to rectification of inaccurate data</li>
+                  <li>Right to erasure ("right to be forgotten")</li>
+                  <li>Right to restrict processing</li>
+                  <li>Right to data portability</li>
+                  <li>Right to object to processing</li>
+                </ul>
+                <p>To exercise these rights, contact us using the information above.</p>
+              </section>
+
+              <section class="privacy-section">
+                <h2>California Privacy Rights</h2>
+                <p>If you are a California resident, you have rights under the California Consumer Privacy Act (CCPA):</p>
+                <ul>
+                  <li>Right to know what personal information is collected</li>
+                  <li>Right to know if personal information is sold or disclosed</li>
+                  <li>Right to opt-out of the sale of personal information</li>
+                  <li>Right to deletion of personal information</li>
+                  <li>Right to non-discrimination</li>
+                </ul>
+                <p><strong>We do not sell personal information.</strong></p>
+              </section>
+
+              <div class="privacy-footer">
+                <p>This privacy policy is provided for transparency. We are committed to protecting your privacy and using data responsibly.</p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <Footer />
+</BaseLayout>
+
+<style>
+  .page-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .page-header {
+    text-align: center;
+    margin-bottom: var(--space-2xl);
+    padding-bottom: var(--space-xl);
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .page-title {
+    font-family: 'Orbitron', 'Rajdhani', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--text-heading);
+    margin-bottom: var(--space-md);
+  }
+
+  .page-description {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto var(--space-md) auto;
+  }
+
+  .last-updated {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-style: italic;
+  }
+
+  .privacy-content {
+    line-height: 1.7;
+  }
+
+  .privacy-section {
+    margin-bottom: var(--space-2xl);
+    padding-bottom: var(--space-xl);
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .privacy-section:last-of-type {
+    border-bottom: none;
+  }
+
+  .privacy-section h2 {
+    font-family: 'Orbitron', 'Rajdhani', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: var(--text-heading);
+    margin-bottom: var(--space-lg);
+  }
+
+  .privacy-section h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--accent-color);
+    margin: var(--space-lg) 0 var(--space-md) 0;
+  }
+
+  .privacy-section h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-heading);
+    margin: var(--space-md) 0 var(--space-sm) 0;
+  }
+
+  .privacy-section p {
+    margin-bottom: var(--space-md);
+    color: var(--text-primary);
+  }
+
+  .privacy-section ul {
+    margin-bottom: var(--space-lg);
+  }
+
+  .privacy-section li {
+    margin-bottom: var(--space-sm);
+    color: var(--text-primary);
+  }
+
+  .privacy-section strong {
+    color: var(--text-heading);
+  }
+
+  .privacy-section a {
+    color: var(--accent-color);
+    text-decoration: none;
+  }
+
+  .privacy-section a:hover {
+    color: var(--link-hover);
+    text-decoration: underline;
+  }
+
+  /* Opt-out Methods */
+  .opt-out-methods {
+    display: grid;
+    gap: var(--space-lg);
+    margin: var(--space-lg) 0;
+  }
+
+  @media (min-width: 768px) {
+    .opt-out-methods {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+  }
+
+  .opt-out-item {
+    background: var(--bg-secondary);
+    padding: var(--space-lg);
+    border-radius: var(--radius-md);
+    border-left: 4px solid var(--accent-color);
+  }
+
+  .opt-out-item h4 {
+    margin-top: 0;
+    margin-bottom: var(--space-sm);
+  }
+
+  .opt-out-item p {
+    margin-bottom: 0;
+    font-size: 0.9rem;
+  }
+
+  /* Footer */
+  .privacy-footer {
+    margin-top: var(--space-2xl);
+    padding-top: var(--space-xl);
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+  }
+
+  .privacy-footer p {
+    color: var(--text-secondary);
+    font-style: italic;
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 768px) {
+    .page-title {
+      font-size: 2.25rem;
+    }
+
+    .privacy-section h2 {
+      font-size: 1.5rem;
+    }
+  }
+</style>

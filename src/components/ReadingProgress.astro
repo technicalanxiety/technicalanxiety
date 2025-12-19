@@ -1,0 +1,56 @@
+---
+// ReadingProgress component - displays a progress bar showing reading progress
+---
+
+<div id="reading-progress" class="reading-progress">
+  <div class="reading-progress-bar"></div>
+</div>
+
+<style>
+  .reading-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+  }
+
+  .reading-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #007acc, #00a8ff);
+    width: 0%;
+    transition: width 0.1s ease-out;
+  }
+
+  /* Dark theme support */
+  :global([data-theme="dark"]) .reading-progress {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+</style>
+
+<script>
+  function updateReadingProgress() {
+    const progressBar = document.querySelector('.reading-progress-bar') as HTMLElement;
+    if (!progressBar) return;
+
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollPercent = (scrollTop / docHeight) * 100;
+    
+    progressBar.style.width = `${Math.min(scrollPercent, 100)}%`;
+  }
+
+  // Initialize on page load
+  document.addEventListener('DOMContentLoaded', () => {
+    updateReadingProgress();
+    window.addEventListener('scroll', updateReadingProgress);
+  });
+
+  // Handle navigation (for SPA-like behavior)
+  document.addEventListener('astro:page-load', () => {
+    updateReadingProgress();
+    window.addEventListener('scroll', updateReadingProgress);
+  });
+</script>

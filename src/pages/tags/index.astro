@@ -1,0 +1,258 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Sidebar from '../../components/Sidebar.astro';
+import { siteConfig } from '../../config';
+
+const posts = await getCollection('posts');
+
+// Get all tags with their post counts
+const tagCounts = new Map();
+posts.forEach(post => {
+  if (post.data.tags) {
+    post.data.tags.forEach(tag => {
+      tagCounts.set(tag, (tagCounts.get(tag) || 0) + 1);
+    });
+  }
+});
+
+// Sort tags by post count (descending) then alphabetically
+const sortedTags = Array.from(tagCounts.entries())
+  .sort((a, b) => {
+    if (b[1] !== a[1]) {
+      return b[1] - a[1]; // Sort by count descending
+    }
+    return a[0].localeCompare(b[0]); // Then alphabetically
+  });
+
+const totalTags = sortedTags.length;
+---
+
+<BaseLayout 
+  title={`All Tags | ${siteConfig.title}`}
+  description={`Browse all ${totalTags} tags used in blog posts. Find posts by topic and category.`}
+>
+  <Header />
+  
+  <main class="main-content">
+    <div class="container">
+      <div class="content-grid">
+        <section class="tags-section">
+          <header class="tags-header">
+            <h1 class="tags-title">All Tags</h1>
+            <p class="tags-description">
+              Browse posts by topic. {totalTags} tag{totalTags !== 1 ? 's' : ''} available.
+            </p>
+          </header>
+          
+          <div class="tags-cloud">
+            {sortedTags.map(([tag, count]) => (
+              <a href={`/tags/${tag}/`} class="tag-item">
+                <span class="tag-name">{tag}</span>
+                <span class="tag-count">({count})</span>
+              </a>
+            ))}
+          </div>
+          
+          <div class="tags-list">
+            <h2 class="list-title">All Tags (Alphabetical)</h2>
+            <ul class="alphabetical-list">
+              {Array.from(tagCounts.keys())
+                .sort((a, b) => a.localeCompare(b))
+                .map(tag => (
+                  <li class="list-item">
+                    <a href={`/tags/${tag}/`} class="list-link">
+                      {tag}
+                      <span class="list-count">({tagCounts.get(tag)})</span>
+                    </a>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        </section>
+        
+        <Sidebar />
+      </div>
+    </div>
+  </main>
+  
+  <Footer />
+</BaseLayout>
+
+<style>
+  .main-content {
+    padding: 2rem 0;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .content-grid {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .tags-section {
+    min-width: 0; /* Prevent grid overflow */
+  }
+
+  .tags-header {
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+
+  .tags-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--color-text-primary, #1a202c);
+  }
+
+  .tags-description {
+    font-size: 1.1rem;
+    color: var(--color-text-secondary, #4a5568);
+    margin: 0;
+  }
+
+  .tags-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 4rem;
+    padding: 2rem;
+    background: var(--color-bg-secondary, #f8fafc);
+    border-radius: 12px;
+    border: 1px solid var(--color-border, #e2e8f0);
+  }
+
+  .tag-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    background: var(--color-bg-primary, #ffffff);
+    color: var(--color-text-primary, #1a202c);
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    text-decoration: none;
+    border: 1px solid var(--color-border, #e2e8f0);
+    transition: all 0.2s ease;
+    font-weight: 500;
+  }
+
+  .tag-item:hover {
+    background: var(--color-primary, #2563eb);
+    color: white;
+    border-color: var(--color-primary, #2563eb);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+  }
+
+  .tag-name {
+    font-size: 0.9rem;
+  }
+
+  .tag-count {
+    font-size: 0.8rem;
+    opacity: 0.7;
+  }
+
+  .tags-list {
+    background: var(--color-bg-primary, #ffffff);
+    border: 1px solid var(--color-border, #e2e8f0);
+    border-radius: 8px;
+    padding: 2rem;
+  }
+
+  .list-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: var(--color-text-primary, #1a202c);
+    text-align: center;
+  }
+
+  .alphabetical-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.5rem;
+  }
+
+  .list-item {
+    margin: 0;
+  }
+
+  .list-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0.75rem;
+    color: var(--color-text-primary, #1a202c);
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+    font-weight: 500;
+  }
+
+  .list-link:hover {
+    background: var(--color-bg-secondary, #f8fafc);
+    color: var(--color-primary, #2563eb);
+  }
+
+  .list-count {
+    font-size: 0.8rem;
+    color: var(--color-text-secondary, #4a5568);
+    font-weight: normal;
+  }
+
+  @media (max-width: 768px) {
+    .content-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .tags-title {
+      font-size: 2rem;
+    }
+
+    .tags-cloud {
+      padding: 1.5rem;
+      gap: 0.75rem;
+    }
+
+    .tag-item {
+      padding: 0.4rem 0.8rem;
+    }
+
+    .alphabetical-list {
+      grid-template-columns: 1fr;
+    }
+
+    .main-content {
+      padding: 1rem 0;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .tags-cloud {
+      padding: 1rem;
+      gap: 0.5rem;
+    }
+
+    .tag-item {
+      padding: 0.3rem 0.6rem;
+      font-size: 0.85rem;
+    }
+  }
+</style>

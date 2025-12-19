@@ -1,0 +1,220 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout title="About - Technical Anxiety" description="Learn about Jason Rinehart, cloud architect and technical leader sharing experiences with Azure, leadership, and mental health in tech.">
+  <Header />
+  
+  <main class="main-content">
+    <div class="container">
+      <div class="row">
+        <div class="col col-12">
+          <article class="about-page">
+            <!-- Hero Image -->
+            <div class="hero-image">
+              <img src="/img/about.jpg" alt="About Technical Anxiety" />
+            </div>
+            
+            <header class="about-header">
+              <h1 class="about-title">About</h1>
+            </header>
+            
+            <div class="about-content">
+              <blockquote class="about-quote">
+                Absorb what is useful, discard what is not, add what is uniquely your own. - Bruce Lee
+              </blockquote>
+
+              <hr />
+
+              <section class="about-section">
+                <h3>What are we doing here?</h3>
+                <p>
+                  Over 20+ years in technology, I've learned more from technical blogs than from any formal training. The people who took time to document their hard-won knowledge, their failures, and their breakthroughs shaped my career. This site exists to pay that forward. If one person solves a problem faster because I documented what I learned, then this effort matters.
+                </p>
+              </section>
+
+              <hr />
+
+              <section class="about-section">
+                <h3>A little about me (if you're curious).</h3>
+                <p>
+                  My name is Jason Rinehart and I'm currently a Senior Product Architect at Rackspace Technology, focused entirely on Microsoft Azure. I've architected Azure environments for over 100 organizations across healthcare, energy, and enterprise sectors. I've established governance frameworks in regulated environments supporting thousands of users. I've built managed service practices from inception. I've automated deployments that reduced manual workload by 40% while improving security and compliance.
+                </p>
+                <p>
+                  I started on a helpdesk in Tulsa, Oklahoma. If you're reading this from a helpdesk role right now, keep going. You've only just begun. The path from tier-1 support to enterprise architecture isn't linear, and I've failed more often than I've succeeded, but failure teaches faster than success ever could.
+                </p>
+                <p>
+                  Until about 2016, I spent most of my career in traditional infrastructure: racks, switches, storage, servers. Then I moved fully into cloud architecture and haven't looked back. My particular focus is Azure at scale, bending and stretching what's possible through the platform to solve real business problems. This blog captures some of that experience, plus things I'm learning that might save you time.
+                </p>
+                <p>
+                  The best part of my career journey happened on that first helpdesk job where I met Jamie, the woman who became my wife, my best friend, and the mother of our three children. She'll never admit this, but she's the real reason I've made it this far. My faith guides me, my family drives me, and my love of technology fuels the whole thing.
+                </p>
+                <p>
+                  So why 'Technical Anxiety'? I deal with Generalized Anxiety Disorder, which is a clinical way of saying I didn't take care of myself for too long. Through learning how anxiety impacts your body and mind, I discovered that technology itself can be therapeutic for me. Shutting my office door, putting on headphones, and diving into a complex architectural problem becomes a form of focused meditation. Collaborating with others on tough technical challenges creates connection that reduces isolation. I've learned to use my daily work as an advantage in managing stress rather than letting it create more stress.
+                </p>
+                <p>
+                  I want to mix technical content with thoughts on managing anxiety, burnout, and sustainable careers in IT because these topics intersect constantly in our field. We work in an industry that glorifies overwork and dismisses mental health, and that needs to change.
+                </p>
+                <p>
+                  These posts won't write themselves, so let's get to it.
+                </p>
+                <p>
+                  Thank you for reading.
+                </p>
+                <p>
+                  -Jason a.k.a. 'TechnicalAnxiety'
+                </p>
+              </section>
+
+              <hr />
+
+              <section class="about-section">
+                <h3>Especially proud of this recognition</h3>
+                <div class="awards">
+                  <img src="/img/JasonRinehart_TI.png" alt="Jason Rinehart TI Award" class="award-image" />
+                  <img src="/img/TI_award.png" alt="TI Award" class="award-image" />
+                </div>
+              </section>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .about-page {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: var(--space-2xl) 0;
+  }
+
+  .hero-image {
+    margin-bottom: var(--space-2xl);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .hero-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .about-header {
+    text-align: center;
+    margin-bottom: var(--space-2xl);
+  }
+
+  .about-title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--text-heading);
+    margin-bottom: var(--space-md);
+  }
+
+  .about-content {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: var(--text-primary);
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .about-quote {
+    font-size: 1.25rem;
+    font-style: italic;
+    text-align: center;
+    color: var(--text-secondary);
+    border-left: 4px solid var(--accent-color);
+    padding: var(--space-lg);
+    margin: var(--space-xl) 0;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-md);
+  }
+
+  .about-section {
+    margin-bottom: var(--space-xl);
+  }
+
+  .about-section h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-heading);
+    text-align: center;
+    margin-bottom: var(--space-lg);
+  }
+
+  .about-section p {
+    margin-bottom: var(--space-md);
+  }
+
+  .awards {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-xl);
+    flex-wrap: wrap;
+    margin-top: var(--space-lg);
+  }
+
+  .award-image {
+    max-width: 800px;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    transition: transform var(--transition-base);
+  }
+
+  .award-image:hover {
+    transform: scale(1.02);
+    box-shadow: 0 12px 24px rgba(33, 150, 243, 0.25);
+  }
+
+  hr {
+    border: none;
+    height: 1px;
+    background: var(--border-color);
+    margin: var(--space-xl) 0;
+  }
+
+  /* Mobile adjustments */
+  @media (max-width: 767px) {
+    .about-page {
+      padding: var(--space-xl) var(--space-md);
+    }
+
+    .about-title {
+      font-size: 2.5rem;
+    }
+
+    .about-content {
+      font-size: 1rem;
+    }
+
+    .social-links {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .social-link {
+      width: 200px;
+      justify-content: center;
+    }
+
+    .awards {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .award-image {
+      max-width: 600px;
+    }
+  }
+</style>

@@ -1,0 +1,246 @@
+---
+import { siteConfig } from '../config';
+import { getCollection } from 'astro:content';
+
+// Get recent posts for sidebar
+const posts = await getCollection('posts');
+const sortedPosts = posts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const recentPosts = sortedPosts.slice(0, 5);
+
+// Get all unique tags
+const allTags = [...new Set(posts.flatMap(post => post.data.tags || []))].sort();
+---
+
+<aside class="sidebar">
+  <!-- Author Bio Widget -->
+  <div class="widget">
+    <h3 class="widget-title">About</h3>
+    <div class="author-bio">
+      <img src={siteConfig.author.avatar} alt={siteConfig.author.name} class="author-avatar" />
+      <h4 class="author-name">{siteConfig.author.name}</h4>
+      <p class="author-description">{siteConfig.author.bio}</p>
+      <div class="social-links">
+        <a href={`https://twitter.com/${siteConfig.author.twitter}`} target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Follow on Twitter">
+          <ion-icon name="logo-twitter"></ion-icon>
+        </a>
+        <a href={`https://linkedin.com/in/${siteConfig.author.linkedin}`} target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Connect on LinkedIn">
+          <ion-icon name="logo-linkedin"></ion-icon>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stay Connected Widget -->
+  <div class="widget">
+    <h3 class="widget-title">Stay Connected</h3>
+    <p class="widget-description">Subscribe to get the latest posts delivered right to your feed.</p>
+    <div class="connect-links">
+      <a href="/rss.xml" class="connect-link" target="_blank" rel="noopener noreferrer" aria-label="Subscribe to RSS Feed">
+        <ion-icon name="radio-outline"></ion-icon>
+        <span>RSS Feed</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Recent Posts Widget -->
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="recent-posts-list">
+      {recentPosts.map((post) => (
+        <article class="recent-post">
+          <div class="recent-image" style={`background-image: url(/img/${post.data.image || 'article-header.jpg'})`}></div>
+          <div class="recent-content">
+            <h4 class="recent-title">
+              <a href={`/${post.slug}/`}>{post.data.title}</a>
+            </h4>
+            <div class="recent-date">
+              {post.data.date.toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'short', 
+                day: 'numeric' 
+              })}
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+
+  <!-- Tags Widget -->
+  <div class="widget">
+    <h3 class="widget-title">Popular Tags</h3>
+    <div class="tags-cloud">
+      {allTags.slice(0, 12).map((tag) => (
+        <a href={`/tags/${tag}/`} class="tag">{tag}</a>
+      ))}
+    </div>
+  </div>
+
+
+</aside>
+
+<style>
+  .author-bio {
+    text-align: center;
+  }
+
+  .author-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin: 0 auto var(--space-md);
+    display: block;
+    object-fit: cover;
+    box-shadow: var(--shadow);
+  }
+
+  .author-name {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: var(--space-sm);
+    color: var(--text-heading);
+  }
+
+  .author-description {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin-bottom: var(--space-md);
+  }
+
+  .social-links {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-md);
+    margin-top: var(--space-md);
+  }
+
+  .social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    transition: all var(--transition-fast);
+    text-decoration: none;
+  }
+
+  /* Light mode styling for social links */
+  [data-theme="light"] .social-link {
+    background: #f8f9fa;
+    border: 2px solid #e1e4e8;
+  }
+
+  .social-link:hover {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(33, 150, 243, 0.25);
+  }
+
+  .social-link ion-icon {
+    font-size: 1.25rem;
+  }
+
+  .connect-links {
+    display: flex;
+    justify-content: center;
+    margin-top: var(--space-md);
+  }
+
+  .connect-link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-md);
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    transition: all var(--transition-fast);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+
+  /* Light mode styling for connect links */
+  [data-theme="light"] .connect-link {
+    background: #f8f9fa;
+    border: 2px solid #e1e4e8;
+  }
+
+  .connect-link:hover {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(33, 150, 243, 0.25);
+  }
+
+  .connect-link ion-icon {
+    font-size: 1.125rem;
+  }
+
+  .recent-posts-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .recent-post {
+    display: flex;
+    gap: var(--space-sm);
+    align-items: flex-start;
+  }
+
+  .recent-image {
+    width: 60px;
+    height: 60px;
+    background-size: cover;
+    background-position: center;
+    border-radius: var(--radius-md);
+    flex-shrink: 0;
+  }
+
+  .recent-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .recent-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: var(--space-xs);
+  }
+
+  .recent-title a {
+    color: var(--text-primary);
+    transition: color var(--transition-fast);
+  }
+
+  .recent-title a:hover {
+    color: var(--color-accent);
+  }
+
+  .recent-date {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+  }
+
+  .tags-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+  }
+
+  .widget-description {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin-bottom: var(--space-md);
+  }
+</style>

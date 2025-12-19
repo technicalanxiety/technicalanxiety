@@ -1,0 +1,37 @@
+---
+import { siteConfig } from '../config';
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col col-12">
+        <div class="footer-top">
+          <h2 class="logo-title">
+            <a href="/" class="logo-text">TECHNICAL_ANXIETY</a>
+          </h2>
+        </div>
+        <div class="footer-bottom">
+          <div class="copyright">
+            <p>Copyright &copy; {currentYear} Crafted & Designed by Jason and Kiro</p>
+          </div>
+          <div class="footer-social">
+            <ul class="list-reset">
+              <li><a href={`https://twitter.com/${siteConfig.author.twitter}`}>Twitter</a></li>
+              <li><a href={`https://linkedin.com/in/${siteConfig.author.linkedin}`}>LinkedIn</a></li>
+              <li><a href="/privacy/">Privacy Policy</a></li>
+              <li><a href="/changelog/">Changelog</a></li>
+              <li><a href="/security/">Security</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Footer functionality can be added here if needed
+</script>

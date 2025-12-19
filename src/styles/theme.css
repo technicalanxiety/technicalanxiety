@@ -1,0 +1,85 @@
+/**
+ * Theme Variables - Modern CSS Custom Properties
+ * Maintains visual parity with Jekyll while using modern CSS
+ */
+
+:root {
+  /* Color Palette */
+  --color-primary: #2196F3;
+  --color-secondary: #C19CD8;
+  --color-accent: #2196F3;
+  --accent-color: #2196F3;
+  
+  /* Dark Theme (Default) */
+  --bg-primary: #2C2F36;
+  --bg-secondary: #232427;
+  --bg-tertiary: #1a1c1f;
+  --bg-code: #1a1c1f;
+  
+  --text-primary: #E8E6E3;
+  --text-secondary: #9BA3B8;
+  --text-heading: #F0EEE9;
+  
+  --link-color: #9BA3B8;
+  --link-hover: #2196F3;
+  
+  --border-color: #3E4250;
+  
+  --shadow: rgba(0, 0, 0, 0.25);
+  --shadow-lg: 0 9px 18px 0 rgba(0, 0, 0, 0.25);
+  
+  /* Typography */
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  --font-mono: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+  
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 350ms ease;
+  
+  /* Breakpoints (for reference in JS) */
+  --breakpoint-mobile: 576px;
+  --breakpoint-tablet: 768px;
+  --breakpoint-desktop: 992px;
+  --breakpoint-wide: 1200px;
+}
+
+/* Light Theme */
+[data-theme="light"] {
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #FAFBFC;
+  --bg-tertiary: #F6F8FA;
+  --bg-code: #F6F8FA;
+  
+  --text-primary: #24292E;
+  --text-secondary: #586069;
+  --text-heading: #1B1F23;
+  
+  --link-color: #0366D6;
+  --link-hover: #1976D2;
+  
+  --border-color: #E1E4E8;
+  --color-accent: #1976D2;
+  --accent-color: #1976D2;
+  
+  --shadow: rgba(27, 31, 35, 0.15);
+  --shadow-lg: 0 9px 18px 0 rgba(27, 31, 35, 0.15);
+}
+
+/* Smooth theme transitions */
+body {
+  transition: background-color var(--transition-base), color var(--transition-base);
+}
