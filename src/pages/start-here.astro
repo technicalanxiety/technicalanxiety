@@ -1,0 +1,492 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Sidebar from '../components/Sidebar.astro';
+import { siteConfig } from '../config';
+
+const posts = await getCollection('posts');
+const recentPosts = posts
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 6);
+
+// Get some featured posts for getting started
+const featuredPosts = posts.filter(post => 
+  post.slug === 'basecamp-summit' || 
+  post.slug === 'azure-governance' || 
+  post.slug === 'psychological-safety' ||
+  post.slug === 'decide-or-drown-pt1'
+).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<BaseLayout 
+  title="Start Here | Technical Anxiety"
+  description="New to Technical Anxiety? Start here to understand my approach to cloud architecture, leadership, and navigating anxiety in tech."
+>
+  <Header />
+  
+  <main class="topic-page">
+    <div class="container">
+      <div class="topic-hero">
+        <div class="topic-icon">🚀</div>
+        <h1 class="topic-title">Start Here</h1>
+        <h2 class="topic-subtitle">Welcome to Technical Anxiety</h2>
+        <p class="topic-description">
+          New to the blog? This is your guide to understanding my approach to cloud architecture, technical leadership, and navigating anxiety in tech.
+        </p>
+      </div>
+
+      <div class="content-grid">
+        <section class="topic-content">
+          <div class="topic-intro">
+            <h3>About This Blog</h3>
+            <p>
+              Technical Anxiety is where I share real-world insights from architecting cloud solutions for 100+ organizations. 
+              It's about the technical patterns that work, the leadership lessons learned the hard way, and the mental health 
+              challenges that come with working in tech.
+            </p>
+            
+            <p>
+              I'm Jason Rinehart, a cloud architect and technical leader with 20+ years of experience. I've worked across 
+              healthcare, energy, and enterprise sectors, building Azure environments that actually scale. But more importantly, 
+              I've learned that technical excellence means nothing if we're not taking care of ourselves and our teams.
+            </p>
+          </div>
+
+          <div class="getting-started">
+            <h3>Getting Started</h3>
+            <div class="start-sections">
+              <div class="start-section">
+                <h4>🏔️ New to Leadership?</h4>
+                <p>Start with <a href="/basecamp-summit/">From Base Camp to Summit</a> - my framework for technical leadership that actually works.</p>
+              </div>
+              
+              <div class="start-section">
+                <h4>☁️ New to Azure?</h4>
+                <p>Check out <a href="/azure-governance/">Azure Governance</a> to understand how to build cloud environments that scale.</p>
+              </div>
+              
+              <div class="start-section">
+                <h4>🧠 Struggling with Anxiety?</h4>
+                <p>Read <a href="/psychological-safety/">From Fear to Freedom</a> - my personal journey with anxiety and what I've learned.</p>
+              </div>
+              
+              <div class="start-section">
+                <h4>🎯 Making Tech Decisions?</h4>
+                <p>Start with <a href="/decide-or-drown-pt1/">Decide or Drown</a> - the framework for strategic technology decisions.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="topics-overview">
+            <h3>What You'll Find Here</h3>
+            <div class="topic-cards">
+              <a href="/azure/" class="topic-card">
+                <div class="topic-card-icon">☁️</div>
+                <div class="topic-card-content">
+                  <h4>Azure</h4>
+                  <p>Cloud architecture patterns, governance frameworks, and real-world implementation strategies.</p>
+                </div>
+              </a>
+              
+              <a href="/governance/" class="topic-card">
+                <div class="topic-card-icon">🔒</div>
+                <div class="topic-card-content">
+                  <h4>Governance</h4>
+                  <p>Frameworks that enable speed, not slow it down. Security, compliance, and organizational patterns.</p>
+                </div>
+              </a>
+              
+              <a href="/operations/" class="topic-card">
+                <div class="topic-card-icon">⚙️</div>
+                <div class="topic-card-content">
+                  <h4>Operations</h4>
+                  <p>Modern service management, operational change, and building resilient systems.</p>
+                </div>
+              </a>
+              
+              <a href="/leadership/" class="topic-card">
+                <div class="topic-card-icon">👥</div>
+                <div class="topic-card-content">
+                  <h4>Leadership</h4>
+                  <p>Technical leadership, decision-making frameworks, and mental health in tech.</p>
+                </div>
+              </a>
+              
+              <a href="/log-analytics/" class="topic-card">
+                <div class="topic-card-icon">📊</div>
+                <div class="topic-card-content">
+                  <h4>Log Analytics</h4>
+                  <p>KQL queries, monitoring strategies, and making sense of your data.</p>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="posts-section">
+            <h3>Recent Posts</h3>
+            <div class="posts-grid">
+              {recentPosts.map((post) => (
+                <article class="post-card">
+                  <div class="post-image" style={`background-image: url(/img/${post.data.image || 'article-header.jpg'})`}>
+                    <a href={`/${post.slug}/`} class="image-link"></a>
+                  </div>
+                  <div class="post-content">
+                    <div class="post-meta">
+                      <time datetime={post.data.date.toISOString()}>
+                        {post.data.date.toLocaleDateString('en-US', { 
+                          year: 'numeric', 
+                          month: 'short', 
+                          day: 'numeric' 
+                        })}
+                      </time>
+                      <span class="read-time">
+                        {Math.ceil(post.body.split(' ').length / 225)} min read
+                      </span>
+                    </div>
+                    <h4 class="post-title">
+                      <a href={`/${post.slug}/`}>{post.data.title}</a>
+                    </h4>
+                    <p class="post-excerpt">
+                      {post.data.description || 'Read more about this article...'}
+                    </p>
+                    <div class="post-tags">
+                      {post.data.tags && post.data.tags.map((tag) => (
+                        <a href={`/tags/${tag}/`} class="tag">{tag}</a>
+                      ))}
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+        
+        <Sidebar />
+      </div>
+    </div>
+  </main>
+  
+  <Footer />
+</BaseLayout>
+
+<style>
+  .topic-page {
+    padding: 2rem 0;
+  }
+
+  .topic-hero {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 3rem 0;
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
+  }
+
+  .topic-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+  }
+
+  .topic-title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--text-heading);
+    margin-bottom: 0.5rem;
+  }
+
+  .topic-subtitle {
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    font-weight: 400;
+  }
+
+  .topic-description {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  .content-grid {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  @media (max-width: 1024px) {
+    .content-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+
+  .topic-intro {
+    background: var(--bg-secondary);
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
+    margin-bottom: 3rem;
+  }
+
+  .topic-intro h3 {
+    font-size: 1.5rem;
+    color: var(--text-heading);
+    margin-bottom: 1rem;
+  }
+
+  .topic-intro p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .topic-intro p:last-child {
+    margin-bottom: 0;
+  }
+
+  .getting-started {
+    margin-bottom: 3rem;
+  }
+
+  .getting-started h3 {
+    font-size: 2rem;
+    color: var(--text-heading);
+    margin-bottom: 2rem;
+  }
+
+  .start-sections {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .start-sections {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .start-section {
+    background: var(--bg-secondary);
+    padding: 1.5rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+  }
+
+  .start-section h4 {
+    color: var(--text-heading);
+    margin-bottom: 0.75rem;
+    font-size: 1.125rem;
+  }
+
+  .start-section p {
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .start-section a {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .start-section a:hover {
+    text-decoration: underline;
+  }
+
+  .topics-overview {
+    margin-bottom: 3rem;
+  }
+
+  .topics-overview h3 {
+    font-size: 2rem;
+    color: var(--text-heading);
+    margin-bottom: 2rem;
+  }
+
+  .topic-cards {
+    display: grid;
+    gap: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .topic-cards {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .topic-cards {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .topic-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    transition: all var(--transition-base);
+  }
+
+  .topic-card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+  }
+
+  .topic-card-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+  }
+
+  .topic-card-content h4 {
+    color: var(--text-heading);
+    margin-bottom: 0.5rem;
+    font-size: 1.125rem;
+  }
+
+  .topic-card-content p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin: 0;
+  }
+
+  .posts-section h3 {
+    font-size: 2rem;
+    color: var(--text-heading);
+    margin-bottom: 2rem;
+  }
+
+  .posts-grid {
+    display: grid;
+    gap: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .posts-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .post-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: box-shadow var(--transition-base);
+  }
+
+  .post-card:hover {
+    box-shadow: var(--shadow-lg);
+  }
+
+  .post-image {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  }
+
+  .image-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    transition: transform var(--transition-base);
+  }
+
+  .image-link:hover {
+    transform: scale(1.02);
+  }
+
+  .post-content {
+    padding: 1.5rem;
+  }
+
+  .post-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+  }
+
+  .post-title {
+    margin-bottom: 0.75rem;
+  }
+
+  .post-title a {
+    color: var(--text-heading);
+    text-decoration: none;
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  .post-title a:hover {
+    color: var(--accent-color);
+  }
+
+  .post-excerpt {
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin-bottom: 1rem;
+  }
+
+  .post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tag {
+    background: rgba(33, 150, 243, 0.1);
+    color: var(--accent-color);
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 500;
+    border: 1px solid rgba(33, 150, 243, 0.2);
+    transition: all var(--transition-fast);
+  }
+
+  .tag:hover {
+    background: var(--accent-color);
+    color: white;
+    border-color: var(--accent-color);
+  }
+
+  @media (max-width: 768px) {
+    .topic-title {
+      font-size: 2.5rem;
+    }
+
+    .topic-hero {
+      padding: 2rem 1rem;
+    }
+
+    .posts-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .topic-cards {
+      grid-template-columns: 1fr;
+    }
+
+    .start-sections {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

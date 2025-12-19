@@ -74,7 +74,7 @@ I use multiple AI tools, and I use them very differently. This isn't about picki
 
 **Kiro** is my hands-on learning environment. I use it to build things I never would have attempted before. Code projects that would have taken me weeks of learning now come together in focused sessions. The AI handles syntax and implementation details while I focus on architecture and logic. I'm learning faster because I have a collaborator that can bridge my knowledge gaps in real time.
 
-I wrote about my Kiro setup in a [previous post](/setting-up-kiro-ai-assistant). The key insight there was configuration: these tools perform radically better when you give them context about who you are, how you work, and what you're trying to accomplish.
+I wrote about my Kiro setup in a [previous post](/setting-up-kiro-ai-assistant/). The key insight there was configuration: these tools perform radically better when you give them context about who you are, how you work, and what you're trying to accomplish.
 
 **Claude** serves a different purpose entirely. Claude is my mirror. My digital self, as much as that's possible today.
 

@@ -10,7 +10,7 @@ series_part: 3
 # Decide or Drown: Part 3 - The Four Pillars
 ## A Framework for Technology Decisions That Actually Stick
 
-*This is Part 3 of the "Decide or Drown" series. [Part 1: The Illusion of Choice](/illusion-of-choice) covered why technology decisions need to be made upstream. [Part 2: Technical Gluttony](/technical-gluttony) explored what happens when they're not. This piece is about how to actually make those decisions well.*
+*This is Part 3 of the "Decide or Drown" series. [Part 1: The Illusion of Choice](/decide-or-drown-pt1/) covered why technology decisions need to be made upstream. [Part 2: Technical Gluttony](/decide-or-drown-pt2/) explored what happens when they're not. This piece is about how to actually make those decisions well.*
 
 ---
 
@@ -138,7 +138,7 @@ The framework is clear. The method is proven. So why don't organizations impleme
 
 ---
 
-*This is Part 3 of the "Decide or Drown" series. [Part 1: The Illusion of Choice](/illusion-of-choice) covered why technology decisions need to be made upstream. [Part 2: Technical Gluttony](/technical-gluttony) explored what happens when they're not. [Part 4: Why Organizations Won't Do It](/decide-or-drown-pt4) covers the organizational preconditions that enable this work.*
+*This is Part 3 of the "Decide or Drown" series. [Part 1: The Illusion of Choice](/decide-or-drown-pt1/) covered why technology decisions need to be made upstream. [Part 2: Technical Gluttony](/decide-or-drown-pt2/) explored what happens when they're not. [Part 4: Why Organizations Won't Do It](/decide-or-drown-pt4/) covers the organizational preconditions that enable this work.*
 
 ---
 **Photo by [JF Martin](https://unsplash.com/@numericcitizen) on [Unsplash](https://unsplash.com/photos/brown-wooden-house-interior-LQkZnlL_1ZQ)**

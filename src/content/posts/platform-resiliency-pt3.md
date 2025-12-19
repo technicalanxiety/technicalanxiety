@@ -8,7 +8,7 @@ series: "Platform Resiliency"
 series_part: 3
 ---
 
-*This is Part 3 of the "Platform Resiliency" series. [Part 1: The Promise That Couldn't Travel](/platform-resiliency-pt1) covered why SRE failed outside Google. [Part 2: The Promise That Can](/platform-resiliency-pt2) introduced resiliency as a platform design principle.*
+*This is Part 3 of the "Platform Resiliency" series. [Part 1: The Promise That Couldn't Travel](/platform-resiliency-pt1/) covered why SRE failed outside Google. [Part 2: The Promise That Can](/platform-resiliency-pt2/) introduced resiliency as a platform design principle.*
 
 ---
 
@@ -189,6 +189,6 @@ Promises are easy. Parts 1 and 2 were promises. This is the part where they get 
 
 ---
 
-*This concludes the "Platform Resiliency" series. For background on platform architecture as a discipline, see [The Platform Layer Part 1: What is Platform Architecture](/platform-layer-pt1). For the organizational preconditions that enable this work, see [Decide or Drown Part 4: Why Organizations Won't Do It](/decide-or-drown-pt4).*
+*This concludes the "Platform Resiliency" series. For background on platform architecture as a discipline, see [The Platform Layer Part 1: What is Platform Architecture](/platform-layer-pt1/). For the organizational preconditions that enable this work, see [Decide or Drown Part 4: Why Organizations Won't Do It](/decide-or-drown-pt4/).*
 
 **Photo by [dlxmedia.hu](https://unsplash.com/@dlxmedia) on [Unsplash](https://unsplash.com/photos/two-people-are-shaking-hands-Pfs5Xf0kiG8)**

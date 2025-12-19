@@ -85,7 +85,7 @@ const canonicalURL = new URL(`/${post.slug}/`, Astro.site).href;
                 {post.data.tags && post.data.tags.length > 0 && (
                   <div class="post-tags">
                     {post.data.tags.map(tag => (
-                      <a href={`/tags/${tag.toLowerCase().replace(/\s+/g, '-')}/`} class="post-tag">
+                      <a href={`/tags/${tag}/`} class="post-tag">
                         {tag}
                       </a>
                     ))}

@@ -17,4 +17,18 @@ export default defineConfig({
       wrap: true,
     },
   },
+  vite: {
+    build: {
+      rollupOptions: {
+        onwarn(warning, warn) {
+          // Suppress warnings about unused imports in Astro's internal code
+          if (warning.code === 'UNUSED_EXTERNAL_IMPORT' && 
+              warning.message.includes('@astrojs/internal-helpers/remote')) {
+            return;
+          }
+          warn(warning);
+        },
+      },
+    },
+  },
 });

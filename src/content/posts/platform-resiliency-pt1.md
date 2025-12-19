@@ -170,8 +170,8 @@ In Part 2, I'll lay out what Platform Resiliency looks like in practice. How ope
 
 ---
 
-*This is Part 1 of the "Platform Resiliency" series. [Part 2: The Promise That Can](/platform-resiliency-pt2) covers the reframe and operational model. [Part 3: Promises Made, Promises Kept](/platform-resiliency-pt3) provides practical implementation steps.*
+*This is Part 1 of the "Platform Resiliency" series. [Part 2: The Promise That Can](/platform-resiliency-pt2/) covers the reframe and operational model. [Part 3: Promises Made, Promises Kept](/platform-resiliency-pt3/) provides practical implementation steps.*
 
-*If you want background on the organizational preconditions that enable this work, start with [Decide or Drown Part 4: Why Organizations Won't Do It](/decide-or-drown-pt4). If you want context on platform architecture as a discipline, see [The Platform Layer Part 1: What is Platform Architecture](/platform-layer-pt1).*
+*If you want background on the organizational preconditions that enable this work, start with [Decide or Drown Part 4: Why Organizations Won't Do It](/decide-or-drown-pt4/). If you want context on platform architecture as a discipline, see [The Platform Layer Part 1: What is Platform Architecture](/platform-layer-pt1/).*
 
 **Photo by [Mohammad Honarmand](https://unsplash.com/@ihonarrmand) on [Unsplash](https://unsplash.com/photos/a-plant-growing-out-of-the-ground-on-the-side-of-the-road-54mN6aN_488)**

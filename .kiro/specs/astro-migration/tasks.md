@@ -195,7 +195,7 @@ This plan implements the migration from Jekyll to Astro in phases, with testing 
     - Deploy to Azure Static Web Apps preview environment
     - Configure build settings for Astro
     - _Requirements: 6.1_
-  - [ ] 11.2 Run automated link checker
+  - [x] 11.2 Run automated link checker
     - Check all internal links resolve
     - Verify no broken image references
     - _Requirements: 6.2, 6.3_
