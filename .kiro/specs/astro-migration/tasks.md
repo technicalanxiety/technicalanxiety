@@ -190,10 +190,10 @@ This plan implements the migration from Jekyll to Astro in phases, with testing 
     - Verify code blocks have highlighting classes
     - **Validates: Requirements 2.5**
 
-- [ ] 11. Pre-cutover testing
-  - [ ] 11.1 Set up preview deployment
-    - Deploy to Netlify/Vercel preview URL
-    - Configure build settings
+- [x] 11. Pre-cutover testing
+  - [x] 11.1 Set up preview deployment
+    - Deploy to Azure Static Web Apps preview environment
+    - Configure build settings for Astro
     - _Requirements: 6.1_
   - [ ] 11.2 Run automated link checker
     - Check all internal links resolve
