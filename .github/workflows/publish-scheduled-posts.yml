@@ -96,7 +96,7 @@ jobs:
         run: |
           if [[ -n $(git status --porcelain) ]]; then
             git add _posts/
-            git commit -m "Auto-publish scheduled posts [skip ci]"
+            git commit -m "Auto-publish scheduled posts"
             git push
             echo "✓ Changes committed and pushed"
           else
