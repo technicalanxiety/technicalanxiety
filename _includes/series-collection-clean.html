@@ -68,7 +68,7 @@ Clean Series Collection Widget - No CSS interference
   
   // Hover effects
   document.addEventListener('mouseenter', function(e) {
-    if (e.target.matches('.clean-series-link')) {
+    if (e.target && e.target.matches && e.target.matches('.clean-series-link')) {
       e.target.style.background = 'var(--accent-color)';
       e.target.style.borderColor = 'var(--accent-color)';
       e.target.style.transform = 'translateY(-1px)';
@@ -81,7 +81,7 @@ Clean Series Collection Widget - No CSS interference
   }, true);
   
   document.addEventListener('mouseleave', function(e) {
-    if (e.target.matches('.clean-series-link')) {
+    if (e.target && e.target.matches && e.target.matches('.clean-series-link')) {
       e.target.style.background = 'var(--bg-tertiary)';
       e.target.style.borderColor = 'var(--border-color)';
       e.target.style.transform = 'translateY(0)';
