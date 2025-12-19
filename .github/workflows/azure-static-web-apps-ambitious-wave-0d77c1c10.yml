@@ -43,9 +43,9 @@ jobs:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_AMBITIOUS_WAVE_0D77C1C10 }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
-          app_location: "/"
+          app_location: "dist" # Point to the built Astro output directory
           api_location: ""
-          output_location: "dist"
+          output_location: "" # Leave empty since we're pointing app_location to the built files
           skip_app_build: true
           # Deploy to staging slot if not master branch
           deployment_environment: ${{ github.ref == 'refs/heads/master' && 'Production' || 'Staging' }}
