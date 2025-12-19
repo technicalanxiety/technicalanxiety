@@ -1,0 +1,332 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Sidebar from '../components/Sidebar.astro';
+import { siteConfig } from '../config';
+
+const posts = await getCollection('posts');
+const azurePosts = posts
+  .filter(post => post.data.tags && post.data.tags.includes('Azure'))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<BaseLayout 
+  title="Azure Architecture & Cloud Engineering | Technical Anxiety"
+  description="Deep dives into Azure architecture, cloud governance, and real-world implementation patterns from 100+ organizations."
+>
+  <Header />
+  
+  <main class="topic-page">
+    <div class="container">
+      <div class="topic-hero">
+        <div class="topic-icon">☁️</div>
+        <h1 class="topic-title">Azure</h1>
+        <h2 class="topic-subtitle">Azure Architecture & Cloud Engineering</h2>
+        <p class="topic-description">
+          Deep dives into Azure architecture, cloud governance, and real-world implementation patterns from 100+ organizations.
+        </p>
+      </div>
+
+      <div class="content-grid">
+        <section class="topic-content">
+          <div class="topic-intro">
+            <h3>What You'll Find Here</h3>
+            <p>
+              I've spent years architecting Azure environments for healthcare, energy, and enterprise sectors. 
+              These posts share the patterns that work, the mistakes to avoid, and the governance frameworks that actually scale.
+            </p>
+            
+            <div class="topics-covered">
+              <h4>Topics covered:</h4>
+              <ul>
+                <li>Cloud governance and landing zones</li>
+                <li>Azure architecture patterns</li>
+                <li>Cost optimization strategies</li>
+                <li>Security and compliance</li>
+                <li>Migration strategies</li>
+                <li>Infrastructure as Code</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="posts-section">
+            <h3>Latest Azure Posts</h3>
+            <div class="posts-grid">
+              {azurePosts.map((post) => (
+                <article class="post-card">
+                  <div class="post-image" style={`background-image: url(/img/${post.data.image || 'article-header.jpg'})`}>
+                    <a href={`/${post.slug}/`} class="image-link"></a>
+                  </div>
+                  <div class="post-content">
+                    <div class="post-meta">
+                      <time datetime={post.data.date.toISOString()}>
+                        {post.data.date.toLocaleDateString('en-US', { 
+                          year: 'numeric', 
+                          month: 'short', 
+                          day: 'numeric' 
+                        })}
+                      </time>
+                      <span class="read-time">
+                        {Math.ceil(post.body.split(' ').length / 225)} min read
+                      </span>
+                    </div>
+                    <h4 class="post-title">
+                      <a href={`/${post.slug}/`}>{post.data.title}</a>
+                    </h4>
+                    <p class="post-excerpt">
+                      {post.data.description || 'Read more about this article...'}
+                    </p>
+                    <div class="post-tags">
+                      {post.data.tags && post.data.tags.map((tag) => (
+                        <a href={`/tags/${tag}/`} class="tag">{tag}</a>
+                      ))}
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+            
+            {azurePosts.length === 0 && (
+              <p class="no-posts">No Azure posts found. Check back soon!</p>
+            )}
+          </div>
+        </section>
+        
+        <Sidebar />
+      </div>
+    </div>
+  </main>
+  
+  <Footer />
+</BaseLayout>
+
+<style>
+  .topic-page {
+    padding: 2rem 0;
+  }
+
+  .topic-hero {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 3rem 0;
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
+  }
+
+  .topic-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+  }
+
+  .topic-title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--text-heading);
+    margin-bottom: 0.5rem;
+  }
+
+  .topic-subtitle {
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    font-weight: 400;
+  }
+
+  .topic-description {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  .content-grid {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  @media (max-width: 1024px) {
+    .content-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+
+  .topic-intro {
+    background: var(--bg-secondary);
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
+    margin-bottom: 3rem;
+  }
+
+  .topic-intro h3 {
+    font-size: 1.5rem;
+    color: var(--text-heading);
+    margin-bottom: 1rem;
+  }
+
+  .topic-intro p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .topics-covered h4 {
+    color: var(--text-heading);
+    margin-bottom: 0.75rem;
+    font-size: 1.125rem;
+  }
+
+  .topics-covered ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .topics-covered li {
+    color: var(--text-secondary);
+    padding: 0.25rem 0;
+    position: relative;
+    padding-left: 1.5rem;
+  }
+
+  .topics-covered li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent-color);
+    font-weight: bold;
+  }
+
+  .posts-section h3 {
+    font-size: 2rem;
+    color: var(--text-heading);
+    margin-bottom: 2rem;
+  }
+
+  .posts-grid {
+    display: grid;
+    gap: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .posts-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .post-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: box-shadow var(--transition-base);
+  }
+
+  .post-card:hover {
+    box-shadow: var(--shadow-lg);
+  }
+
+  .post-image {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  }
+
+  .image-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    transition: transform var(--transition-base);
+  }
+
+  .image-link:hover {
+    transform: scale(1.02);
+  }
+
+  .post-content {
+    padding: 1.5rem;
+  }
+
+  .post-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+  }
+
+  .post-title {
+    margin-bottom: 0.75rem;
+  }
+
+  .post-title a {
+    color: var(--text-heading);
+    text-decoration: none;
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  .post-title a:hover {
+    color: var(--accent-color);
+  }
+
+  .post-excerpt {
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin-bottom: 1rem;
+  }
+
+  .post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tag {
+    background: rgba(33, 150, 243, 0.1);
+    color: var(--accent-color);
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 500;
+    border: 1px solid rgba(33, 150, 243, 0.2);
+    transition: all var(--transition-fast);
+  }
+
+  .tag:hover {
+    background: var(--accent-color);
+    color: white;
+    border-color: var(--accent-color);
+  }
+
+  .no-posts {
+    text-align: center;
+    color: var(--text-secondary);
+    font-style: italic;
+    padding: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    .topic-title {
+      font-size: 2.5rem;
+    }
+
+    .topic-hero {
+      padding: 2rem 1rem;
+    }
+
+    .posts-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

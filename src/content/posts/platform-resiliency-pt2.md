@@ -8,7 +8,7 @@ series: "Platform Resiliency"
 series_part: 2
 ---
 
-*This is Part 2 of the "Platform Resiliency" series. [Part 1: The Promise That Couldn't Travel](/platform-resiliency-pt1) covered why SRE failed to transfer outside Google.*
+*This is Part 2 of the "Platform Resiliency" series. [Part 1: The Promise That Couldn't Travel](/platform-resiliency-pt1/) covered why SRE failed to transfer outside Google.*
 
 ---
 
@@ -166,8 +166,8 @@ Parts 1 and 2 gave you the model. Part 3 is about Monday morning - the practical
 
 ---
 
-*This is Part 2 of the "Platform Resiliency" series. [Part 1: The Promise That Couldn't Travel](/platform-resiliency-pt1) covered why SRE failed outside Google. [Part 3: Promises Made, Promises Kept](/platform-resiliency-pt3) provides practical implementation steps.*
+*This is Part 2 of the "Platform Resiliency" series. [Part 1: The Promise That Couldn't Travel](/platform-resiliency-pt1/) covered why SRE failed outside Google. [Part 3: Promises Made, Promises Kept](/platform-resiliency-pt3/) provides practical implementation steps.*
 
-*For background on platform architecture as a discipline, see [The Platform Layer Part 1: What is Platform Architecture](/platform-layer-pt1). For the organizational preconditions that enable this work, see [Decide or Drown Part 4: Why Organizations Won't Do It](/decide-or-drown-pt4). For psychological safety and blameless culture, see [From Fear to Freedom](/fear-to-freedom).*
+*For background on platform architecture as a discipline, see [The Platform Layer Part 1: What is Platform Architecture](/platform-layer-pt1/). For the organizational preconditions that enable this work, see [Decide or Drown Part 4: Why Organizations Won't Do It](/decide-or-drown-pt4/). For psychological safety and blameless culture, see [From Fear to Freedom](/psychological-safety/).*
 
 **Photo by [Mohammad Honarmand](https://unsplash.com/@ihonarrmand) on [Unsplash](https://unsplash.com/photos/a-group-of-potted-plants-on-a-window-sill-aY5Ydr1gPG0)**

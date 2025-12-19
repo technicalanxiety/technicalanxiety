@@ -158,6 +158,6 @@ In the final part, we'll cover how to operationalize platform architecture in yo
 
 ---
 
-*This is Part 2 of "The Platform Layer" series. [Part 1: What is Platform Architecture](/platform-layer-pt1) defined the role and discipline. Part 3: Building the Platform Function covers how to operationalize platform architecture in your organization.*
+*This is Part 2 of "The Platform Layer" series. [Part 1: What is Platform Architecture](/platform-layer-pt1/) defined the role and discipline. Part 3: Building the Platform Function covers how to operationalize platform architecture in your organization.*
 
 **Photo by [Wojciech Rzepka](https://unsplash.com/@wrzepka) on [Unsplash](https://unsplash.com/photos/ancient-wooden-house-with-a-unique-design-s6l26WiU-Yk)**

@@ -155,7 +155,7 @@ In the next part, we’ll dive into how AI and intelligent operations are taking
 
 ---
 
-*This is Part 1 of the "Operational Change" series. [Part 2: The AI Revolution in Service Management](/operational-change-part-2) dives into how AI and intelligent operations are taking service management to the next level.*
+*This is Part 1 of the "Operational Change" series. [Part 2: The AI Revolution in Service Management](/ops-changes-pt2/) dives into how AI and intelligent operations are taking service management to the next level.*
 
 **Photo by [Alex Kotliarskyi](https://unsplash.com/@frantic) on [Unsplash](https://unsplash.com/photos/people-doing-office-works-QBpZGqEMsKg)**
       
