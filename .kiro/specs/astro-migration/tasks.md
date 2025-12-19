@@ -1,0 +1,253 @@
+# Implementation Plan: Astro Migration
+
+## Overview
+
+This plan implements the migration from Jekyll to Astro in phases, with testing integrated throughout. Each phase builds on the previous, ensuring no orphaned code and continuous validation.
+
+## Tasks
+
+- [ ] 1. Initialize Astro project and configure build
+  - [ ] 1.1 Create new Astro project in `astro-site/` directory
+    - Initialize with `npm create astro@latest`
+    - Configure for static output (SSG)
+    - Set up TypeScript support
+    - _Requirements: 1.1_
+  - [ ] 1.2 Configure Astro for Jekyll-compatible URLs
+    - Set `trailingSlash: 'always'` for `:title/` format
+    - Configure `site` URL in astro.config.mjs
+    - _Requirements: 4.3_
+  - [ ] 1.3 Set up content collections for blog posts
+    - Create `src/content/config.ts` with post schema
+    - Define frontmatter validation (title, date, tags, series)
+    - _Requirements: 1.2_
+  - [ ] 1.4 Install and configure integrations
+    - Add `@astrojs/sitemap` for sitemap generation
+    - Add `@astrojs/rss` for RSS feed
+    - Add syntax highlighting (Shiki or Prism)
+    - _Requirements: 4.4, 4.5, 2.5_
+
+- [ ] 2. Migrate content from Jekyll
+  - [ ] 2.1 Copy and adapt blog posts
+    - Move `_posts/*.md` to `src/content/posts/`
+    - Convert Jekyll date-prefixed filenames to Astro format
+    - Validate frontmatter against schema
+    - _Requirements: 1.1, 1.2_
+  - [ ] 2.2 Migrate static assets
+    - Copy `img/` to `public/img/`
+    - Copy favicon files to `public/`
+    - Verify all image paths work
+    - _Requirements: 6.3_
+  - [ ] 2.3 Write property test for post content preservation
+    - **Property 1: Post Content Preservation**
+    - Verify all Jekyll posts have corresponding Astro pages
+    - **Validates: Requirements 1.1, 1.2**
+
+- [ ] 3. Implement base layouts and core components
+  - [ ] 3.1 Create BaseLayout with SEO meta tags
+    - Implement `src/layouts/BaseLayout.astro`
+    - Add meta tags (title, description, og:*, twitter:*)
+    - Include canonical URL
+    - _Requirements: 4.1, 4.2_
+  - [ ] 3.2 Implement Header component
+    - Create `src/components/Header.astro`
+    - Include navigation and theme toggle button
+    - _Requirements: 2.4_
+  - [ ] 3.3 Implement Footer component
+    - Create `src/components/Footer.astro`
+    - Include social links and copyright
+    - _Requirements: 2.4_
+  - [ ] 3.4 Implement ThemeToggle component
+    - Create `src/components/ThemeToggle.astro`
+    - Persist preference to localStorage
+    - Support system preference detection
+    - _Requirements: 2.2_
+  - [ ] 3.5 Write property test for theme toggle round-trip
+    - **Property 5: Theme Toggle Round-Trip**
+    - Verify toggling twice returns to original state
+    - **Validates: Requirements 2.2**
+
+- [ ] 4. Implement post-specific components
+  - [ ] 4.1 Create PostLayout with reading progress
+    - Implement `src/layouts/PostLayout.astro`
+    - Include ReadingProgress component
+    - Calculate and display reading time
+    - _Requirements: 1.4, 3.3_
+  - [ ] 4.2 Implement TableOfContents component
+    - Create `src/components/TableOfContents.astro`
+    - Auto-generate from h2/h3 headings
+    - Include anchor links
+    - _Requirements: 3.2_
+  - [ ] 4.3 Implement Breadcrumbs component
+    - Create `src/components/Breadcrumbs.astro`
+    - Show path: Home > [Category] > Post Title
+    - _Requirements: 3.7_
+  - [ ] 4.4 Implement SeriesNavigation component
+    - Create `src/components/SeriesNavigation.astro`
+    - Display prev/next posts in series
+    - Handle first/last post edge cases
+    - _Requirements: 1.3_
+  - [ ] 4.5 Write property test for series navigation
+    - **Property 2: Series Navigation Consistency**
+    - Verify all series links resolve to valid pages
+    - **Validates: Requirements 1.3**
+  - [ ] 4.6 Write property test for table of contents
+    - **Property 8: Table of Contents Generation**
+    - Verify TOC contains links to all h2/h3 headings
+    - **Validates: Requirements 3.2**
+
+- [ ] 5. Checkpoint - Core functionality verification
+  - Ensure all posts render correctly
+  - Verify layouts display properly
+  - Run existing property tests
+  - Ask user if questions arise
+
+- [ ] 6. Implement interactive features
+  - [ ] 6.1 Implement GiscusComments component
+    - Create `src/components/GiscusComments.astro`
+    - Configure with repo settings from _config.yml
+    - Handle theme synchronization
+    - _Requirements: 3.4_
+  - [ ] 6.2 Implement CookieConsent component
+    - Create `src/components/CookieConsent.astro`
+    - Show banner on first visit
+    - Persist consent to localStorage
+    - _Requirements: 3.5_
+  - [ ] 6.3 Implement search functionality
+    - Create search index at build time
+    - Implement client-side search with Pagefind or Fuse.js
+    - Create search results page
+    - _Requirements: 3.1_
+  - [ ] 6.4 Write property test for search relevance
+    - **Property 7: Search Result Relevance**
+    - Verify matching queries return relevant posts
+    - **Validates: Requirements 3.1**
+
+- [ ] 7. Implement listing pages and pagination
+  - [ ] 7.1 Create homepage with post listing
+    - Implement `src/pages/index.astro`
+    - Display hero section and recent posts
+    - Include sidebar with author bio
+    - _Requirements: 2.4_
+  - [ ] 7.2 Implement Pagination component
+    - Create `src/components/Pagination.astro`
+    - Generate paginated listing pages
+    - Configure 7 posts per page (matching Jekyll)
+    - _Requirements: 3.6_
+  - [ ] 7.3 Create tag pages
+    - Implement `src/pages/tags/[tag].astro`
+    - List all posts with given tag
+    - Create tag index page
+    - _Requirements: 1.5_
+  - [ ] 7.4 Write property test for tag linking
+    - **Property 4: Tag Page Linking**
+    - Verify all tag links resolve to valid pages
+    - **Validates: Requirements 1.5**
+  - [ ] 7.5 Write property test for pagination validity
+    - **Property 9: Pagination Validity**
+    - Verify pagination math and link validity
+    - **Validates: Requirements 3.6**
+
+- [ ] 8. Implement SEO and feeds
+  - [ ] 8.1 Generate sitemap.xml
+    - Configure @astrojs/sitemap integration
+    - Verify all pages included
+    - _Requirements: 4.4_
+  - [ ] 8.2 Generate RSS feed
+    - Create `src/pages/rss.xml.js`
+    - Include recent posts with full content
+    - _Requirements: 4.5_
+  - [ ] 8.3 Create custom 404 page
+    - Implement `src/pages/404.astro`
+    - Include search and navigation options
+    - _Requirements: 4.6_
+  - [ ] 8.4 Write property test for meta tag completeness
+    - **Property 11: Meta Tag Completeness**
+    - Verify all pages have required meta tags
+    - **Validates: Requirements 4.1, 4.2**
+  - [ ] 8.5 Write property test for URL preservation
+    - **Property 12: URL Structure Preservation**
+    - Verify Astro URLs match Jekyll URLs
+    - **Validates: Requirements 4.3**
+
+- [ ] 9. Checkpoint - Feature completeness verification
+  - Run all property tests
+  - Verify all features work end-to-end
+  - Check for console errors
+  - Ask user if questions arise
+
+- [ ] 10. Style migration and visual parity
+  - [ ] 10.1 Migrate SCSS styles
+    - Copy `_sass/` styles to `src/styles/`
+    - Adapt imports for Astro
+    - Verify dark/light theme CSS variables
+    - _Requirements: 2.1_
+  - [ ] 10.2 Implement responsive layouts
+    - Test at mobile, tablet, desktop breakpoints
+    - Verify sidebar behavior on mobile
+    - _Requirements: 2.3_
+  - [ ] 10.3 Write property test for code syntax highlighting
+    - **Property 6: Code Block Syntax Highlighting**
+    - Verify code blocks have highlighting classes
+    - **Validates: Requirements 2.5**
+
+- [ ] 11. Pre-cutover testing
+  - [ ] 11.1 Set up preview deployment
+    - Deploy to Netlify/Vercel preview URL
+    - Configure build settings
+    - _Requirements: 6.1_
+  - [ ] 11.2 Run automated link checker
+    - Check all internal links resolve
+    - Verify no broken image references
+    - _Requirements: 6.2, 6.3_
+  - [ ] 11.3 Run Lighthouse audits
+    - Verify 90+ scores on all categories
+    - Document any issues for resolution
+    - _Requirements: 5.1, 5.2, 5.3, 5.4, 5.5_
+  - [ ] 11.4 Cross-browser testing
+    - Test on Chrome, Firefox, Safari
+    - Test on mobile devices
+    - _Requirements: 6.4_
+
+- [ ] 12. Final checkpoint - Pre-cutover approval
+  - All property tests passing
+  - Lighthouse scores meet targets
+  - Visual comparison approved
+  - Ask user for cutover approval
+
+- [ ] 13. Cutover preparation
+  - [ ] 13.1 Prepare rollback branch
+    - Tag current Jekyll site as `pre-astro-migration`
+    - Document rollback procedure
+    - _Requirements: 7.1_
+  - [ ] 13.2 Configure production deployment
+    - Update GitHub Pages or hosting configuration
+    - Set up DNS if needed
+    - _Requirements: 7.2_
+
+- [ ] 14. Execute cutover
+  - [ ] 14.1 Deploy Astro site to production
+    - Merge Astro branch to main
+    - Verify deployment completes
+    - _Requirements: 7.2_
+  - [ ] 14.2 Verify critical paths
+    - Test homepage, recent posts, search
+    - Verify comments load
+    - Check analytics tracking
+    - _Requirements: 7.4_
+
+- [ ] 15. Post-cutover monitoring
+  - [ ] 15.1 Monitor for 24 hours
+    - Watch for 404 errors in analytics
+    - Monitor for user-reported issues
+    - _Requirements: 7.5_
+  - [ ] 15.2 Document migration completion
+    - Update README with new build instructions
+    - Archive Jekyll-specific files
+    - _Requirements: 7.5_
+
+## Notes
+
+- All property-based tests are required for comprehensive validation
+- Each checkpoint ensures incremental validation before proceeding
+- Rollback is possible at any point before task 14 by simply not deploying
+- Property tests use fast-check with minimum 100 iterations
