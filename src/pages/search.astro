@@ -1,0 +1,540 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = 'Search';
+const description = 'Search through all blog posts on Technical Anxiety';
+---
+
+<BaseLayout title={title} description={description}>
+  <main class="search-page">
+    <div class="container">
+      <header class="search-header">
+        <h1>Search Posts</h1>
+        <p>Find articles about Azure, leadership, and technical topics</p>
+      </header>
+
+      <div class="search-form-container">
+        <form class="search-form-large" role="search">
+          <input
+            type="search"
+            id="search-input-large"
+            class="search-input-large"
+            placeholder="Search posts..."
+            aria-label="Search posts"
+            autocomplete="off"
+          />
+          <button type="submit" class="search-button-large" aria-label="Search">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.35-4.35"></path>
+            </svg>
+          </button>
+        </form>
+      </div>
+
+      <div id="search-results-page" class="search-results-page">
+        <div class="search-status">
+          <p class="search-instructions">Enter a search term to find relevant posts</p>
+        </div>
+        <div class="search-results-list-page"></div>
+      </div>
+    </div>
+  </main>
+</BaseLayout>
+
+<script>
+  import Fuse from 'fuse.js';
+
+  interface SearchItem {
+    id: string;
+    title: string;
+    description: string;
+    content: string;
+    tags: string[];
+    date: string;
+    url: string;
+  }
+
+  class SearchPageManager {
+    private fuse: Fuse<SearchItem> | null = null;
+    private searchInput: HTMLInputElement | null = null;
+    private searchResultsList: HTMLElement | null = null;
+    private searchStatus: HTMLElement | null = null;
+    private searchIndex: SearchItem[] = [];
+
+    constructor() {
+      this.searchInput = document.getElementById('search-input-large') as HTMLInputElement;
+      this.searchResultsList = document.querySelector('.search-results-list-page');
+      this.searchStatus = document.querySelector('.search-status');
+
+      this.init();
+    }
+
+    private async init() {
+      await this.loadSearchIndex();
+      this.setupEventListeners();
+      this.handleInitialQuery();
+    }
+
+    private async loadSearchIndex() {
+      try {
+        const response = await fetch('/search.json');
+        this.searchIndex = await response.json();
+        
+        // Initialize Fuse.js with search options
+        this.fuse = new Fuse(this.searchIndex, {
+          keys: [
+            { name: 'title', weight: 0.4 },
+            { name: 'description', weight: 0.3 },
+            { name: 'content', weight: 0.2 },
+            { name: 'tags', weight: 0.1 }
+          ],
+          threshold: 0.3,
+          includeScore: true,
+          includeMatches: true,
+          minMatchCharLength: 2,
+        });
+      } catch (error) {
+        console.error('Failed to load search index:', error);
+        this.updateStatus('Failed to load search index. Please try again later.');
+      }
+    }
+
+    private setupEventListeners() {
+      // Search input events
+      this.searchInput?.addEventListener('input', (e) => {
+        const query = (e.target as HTMLInputElement).value.trim();
+        this.updateURL(query);
+        if (query.length >= 2) {
+          this.performSearch(query);
+        } else if (query.length === 0) {
+          this.clearResults();
+        }
+      });
+
+      // Form submission
+      document.querySelector('.search-form-large')?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const query = this.searchInput?.value.trim();
+        if (query && query.length >= 2) {
+          this.performSearch(query);
+        }
+      });
+    }
+
+    private handleInitialQuery() {
+      // Check URL for initial query
+      const urlParams = new URLSearchParams(window.location.search);
+      const query = urlParams.get('q');
+      if (query && this.searchInput) {
+        this.searchInput.value = query;
+        if (query.length >= 2) {
+          this.performSearch(query);
+        }
+      }
+    }
+
+    private updateURL(query: string) {
+      const url = new URL(window.location.href);
+      if (query) {
+        url.searchParams.set('q', query);
+      } else {
+        url.searchParams.delete('q');
+      }
+      window.history.replaceState({}, '', url.toString());
+    }
+
+    private performSearch(query: string) {
+      if (!this.fuse) {
+        this.updateStatus('Search is not ready. Please try again in a moment.');
+        return;
+      }
+
+      const results = this.fuse.search(query);
+      this.displayResults(results, query);
+    }
+
+    private displayResults(results: import('fuse.js').FuseResult<SearchItem>[], query: string) {
+      if (!this.searchResultsList) return;
+
+      // Update status
+      this.updateStatus(`${results.length} result${results.length !== 1 ? 's' : ''} for "${query}"`);
+
+      // Clear previous results
+      this.searchResultsList.innerHTML = '';
+
+      if (results.length === 0) {
+        this.searchResultsList.innerHTML = `
+          <div class="search-no-results">
+            <h2>No posts found</h2>
+            <p>No posts found for "${query}". Try different keywords or browse <a href="/archive/">all posts</a>.</p>
+            <div class="search-suggestions">
+              <h3>Popular topics:</h3>
+              <ul>
+                <li><a href="/search/?q=azure">Azure</a></li>
+                <li><a href="/search/?q=leadership">Leadership</a></li>
+                <li><a href="/search/?q=log analytics">Log Analytics</a></li>
+                <li><a href="/search/?q=governance">Governance</a></li>
+              </ul>
+            </div>
+          </div>
+        `;
+      } else {
+        // Display all results
+        results.forEach(result => {
+          const item = result.item;
+          const resultElement = this.createResultElement(item, query);
+          this.searchResultsList!.appendChild(resultElement);
+        });
+      }
+    }
+
+    private createResultElement(item: SearchItem, query: string): HTMLElement {
+      const resultDiv = document.createElement('article');
+      resultDiv.className = 'search-result-item-page';
+
+      // Format date
+      const date = new Date(item.date).toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+
+      // Create excerpt with highlighted search terms
+      const excerpt = this.createExcerpt(item.content, query, 200);
+
+      resultDiv.innerHTML = `
+        <a href="${item.url}" class="search-result-link-page">
+          <header class="search-result-header-page">
+            <h2 class="search-result-title-page">${this.highlightText(item.title, query)}</h2>
+            <time class="search-result-date-page" datetime="${item.date}">${date}</time>
+          </header>
+          ${item.description ? `<p class="search-result-description-page">${this.highlightText(item.description, query)}</p>` : ''}
+          <p class="search-result-excerpt-page">${excerpt}</p>
+          ${item.tags.length > 0 ? `
+            <footer class="search-result-footer-page">
+              <div class="search-result-tags-page">
+                ${item.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+              </div>
+            </footer>
+          ` : ''}
+        </a>
+      `;
+
+      return resultDiv;
+    }
+
+    private createExcerpt(content: string, query: string, maxLength: number = 200): string {
+      // Remove markdown and HTML
+      const cleanContent = content.replace(/[#*`_\[\]()]/g, '').replace(/<[^>]*>/g, '');
+      
+      // Find the first occurrence of the search term
+      const queryIndex = cleanContent.toLowerCase().indexOf(query.toLowerCase());
+      
+      if (queryIndex === -1) {
+        // If query not found, return beginning of content
+        return this.highlightText(cleanContent.substring(0, maxLength) + '...', query);
+      }
+
+      // Extract excerpt around the search term
+      const start = Math.max(0, queryIndex - 75);
+      const end = Math.min(cleanContent.length, start + maxLength);
+      let excerpt = cleanContent.substring(start, end);
+
+      if (start > 0) excerpt = '...' + excerpt;
+      if (end < cleanContent.length) excerpt = excerpt + '...';
+
+      return this.highlightText(excerpt, query);
+    }
+
+    private highlightText(text: string, query: string): string {
+      if (!query) return text;
+      
+      const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+      return text.replace(regex, '<mark>$1</mark>');
+    }
+
+    private updateStatus(message: string) {
+      if (this.searchStatus) {
+        this.searchStatus.innerHTML = `<p>${message}</p>`;
+      }
+    }
+
+    private clearResults() {
+      if (this.searchResultsList) {
+        this.searchResultsList.innerHTML = '';
+      }
+      this.updateStatus('Enter a search term to find relevant posts');
+    }
+  }
+
+  // Initialize search when DOM is loaded
+  document.addEventListener('DOMContentLoaded', () => {
+    new SearchPageManager();
+  });
+</script>
+
+<style>
+  .search-page {
+    padding: 2rem 0;
+    min-height: 60vh;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .search-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .search-header h1 {
+    margin: 0 0 0.5rem 0;
+    font-size: 2.5rem;
+    color: var(--text-color, #333333);
+  }
+
+  .search-header p {
+    margin: 0;
+    font-size: 1.1rem;
+    color: var(--text-color-muted, #666666);
+  }
+
+  .search-form-container {
+    margin-bottom: 2rem;
+  }
+
+  .search-form-large {
+    position: relative;
+    display: flex;
+    align-items: center;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .search-input-large {
+    width: 100%;
+    padding: 1rem 3rem 1rem 1.5rem;
+    border: 2px solid var(--border-color, #e1e5e9);
+    border-radius: 8px;
+    font-size: 1.1rem;
+    background: var(--bg-color, #ffffff);
+    color: var(--text-color, #333333);
+    transition: all 0.2s ease;
+  }
+
+  .search-input-large:focus {
+    outline: none;
+    border-color: var(--accent-color, #007acc);
+    box-shadow: 0 0 0 3px rgba(0, 122, 204, 0.2);
+  }
+
+  .search-button-large {
+    position: absolute;
+    right: 1rem;
+    background: none;
+    border: none;
+    color: var(--text-color-muted, #666666);
+    cursor: pointer;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .search-button-large:hover {
+    color: var(--accent-color, #007acc);
+  }
+
+  .search-status {
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  .search-status p {
+    margin: 0;
+    font-size: 1rem;
+    color: var(--text-color-muted, #666666);
+  }
+
+  .search-results-list-page {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .search-result-item-page {
+    border: 1px solid var(--border-color, #e1e5e9);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.2s ease;
+  }
+
+  .search-result-item-page:hover {
+    border-color: var(--accent-color, #007acc);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .search-result-link-page {
+    display: block;
+    padding: 1.5rem;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .search-result-header-page {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+    gap: 1rem;
+  }
+
+  .search-result-title-page {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--accent-color, #007acc);
+    line-height: 1.3;
+    flex: 1;
+  }
+
+  .search-result-date-page {
+    font-size: 0.9rem;
+    color: var(--text-color-muted, #666666);
+    flex-shrink: 0;
+  }
+
+  .search-result-description-page {
+    margin: 0 0 1rem 0;
+    font-size: 1rem;
+    color: var(--text-color, #333333);
+    line-height: 1.5;
+  }
+
+  .search-result-excerpt-page {
+    margin: 0 0 1rem 0;
+    font-size: 0.95rem;
+    color: var(--text-color-muted, #666666);
+    line-height: 1.5;
+  }
+
+  .search-result-footer-page {
+    margin-top: 1rem;
+  }
+
+  .search-result-tags-page {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .search-result-tags-page .tag {
+    font-size: 0.8rem;
+    padding: 0.25rem 0.75rem;
+    background: var(--tag-bg, #f0f0f0);
+    color: var(--tag-color, #666666);
+    border-radius: 16px;
+  }
+
+  .search-no-results {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--text-color-muted, #666666);
+  }
+
+  .search-no-results h2 {
+    margin: 0 0 1rem 0;
+    color: var(--text-color, #333333);
+  }
+
+  .search-no-results p {
+    margin: 0 0 2rem 0;
+    font-size: 1.1rem;
+  }
+
+  .search-suggestions h3 {
+    margin: 0 0 1rem 0;
+    color: var(--text-color, #333333);
+  }
+
+  .search-suggestions ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .search-suggestions a {
+    color: var(--accent-color, #007acc);
+    text-decoration: underline;
+  }
+
+  .search-suggestions a:hover {
+    text-decoration: none;
+  }
+
+  /* Highlight search terms */
+  mark {
+    background: var(--highlight-bg, #ffeb3b);
+    color: var(--highlight-color, #333333);
+    padding: 0 0.125rem;
+    border-radius: 2px;
+  }
+
+  /* Dark theme styles */
+  [data-theme="dark"] .search-input-large {
+    background: var(--bg-color-dark, #1a1a1a);
+    color: var(--text-color-dark, #e6e6e6);
+    border-color: var(--border-color-dark, #30363d);
+  }
+
+  [data-theme="dark"] .search-result-item-page {
+    border-color: var(--border-color-dark, #30363d);
+  }
+
+  [data-theme="dark"] .search-result-item-page:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  [data-theme="dark"] .search-result-tags-page .tag {
+    background: var(--tag-bg-dark, #2a2a2a);
+    color: var(--tag-color-dark, #cccccc);
+  }
+
+  [data-theme="dark"] mark {
+    background: var(--highlight-bg-dark, #ffa000);
+    color: var(--highlight-color-dark, #000000);
+  }
+
+  /* Mobile responsive */
+  @media (max-width: 768px) {
+    .search-header h1 {
+      font-size: 2rem;
+    }
+
+    .search-result-header-page {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .search-result-date-page {
+      margin-top: 0.5rem;
+    }
+
+    .search-result-title-page {
+      font-size: 1.25rem;
+    }
+
+    .search-suggestions ul {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+</style>

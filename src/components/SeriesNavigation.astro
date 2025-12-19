@@ -1,0 +1,321 @@
+---
+import { getCollection } from 'astro:content';
+
+export interface Props {
+  currentSeries?: string;
+  currentPart?: number;
+}
+
+const { currentSeries, currentPart } = Astro.props;
+
+// Only show series navigation if we have series info
+if (!currentSeries || !currentPart) {
+  // Return empty component
+}
+
+let seriesPosts: any[] = [];
+let previousPost: any = null;
+let nextPost: any = null;
+
+if (currentSeries && currentPart) {
+  // Get all posts in the same series
+  const allPosts = await getCollection('posts');
+  seriesPosts = allPosts
+    .filter(post => post.data.series === currentSeries && !post.data.draft)
+    .sort((a, b) => (a.data.series_part || 0) - (b.data.series_part || 0));
+
+  // Find previous and next posts
+  const currentIndex = seriesPosts.findIndex(post => post.data.series_part === currentPart);
+  
+  if (currentIndex > 0) {
+    previousPost = seriesPosts[currentIndex - 1];
+  }
+  
+  if (currentIndex < seriesPosts.length - 1) {
+    nextPost = seriesPosts[currentIndex + 1];
+  }
+}
+
+// Only render if we have series info and posts
+const shouldRender = currentSeries && seriesPosts.length > 1;
+---
+
+{shouldRender && (
+  <nav class="series-navigation" aria-label="Series navigation">
+    <div class="series-header">
+      <h3 class="series-title">
+        <span class="series-label">Series:</span>
+        {currentSeries}
+      </h3>
+      <p class="series-progress">
+        Part {currentPart} of {seriesPosts.length}
+      </p>
+    </div>
+
+    <div class="series-nav-links">
+      {previousPost ? (
+        <a href={`/${previousPost.slug}/`} class="series-nav-link series-nav-prev">
+          <span class="nav-direction">← Previous</span>
+          <span class="nav-title">{previousPost.data.title}</span>
+          <span class="nav-part">Part {previousPost.data.series_part}</span>
+        </a>
+      ) : (
+        <div class="series-nav-placeholder"></div>
+      )}
+
+      {nextPost ? (
+        <a href={`/${nextPost.slug}/`} class="series-nav-link series-nav-next">
+          <span class="nav-direction">Next →</span>
+          <span class="nav-title">{nextPost.data.title}</span>
+          <span class="nav-part">Part {nextPost.data.series_part}</span>
+        </a>
+      ) : (
+        <div class="series-nav-placeholder"></div>
+      )}
+    </div>
+
+    {seriesPosts.length > 2 && (
+      <details class="series-all-posts">
+        <summary class="series-toggle">
+          View all posts in this series ({seriesPosts.length})
+        </summary>
+        <ul class="series-list">
+          {seriesPosts.map(post => (
+            <li class="series-list-item">
+              <a 
+                href={`/${post.slug}/`} 
+                class={`series-list-link ${post.data.series_part === currentPart ? 'current' : ''}`}
+                aria-current={post.data.series_part === currentPart ? 'page' : undefined}
+              >
+                <span class="series-list-part">Part {post.data.series_part}</span>
+                <span class="series-list-title">{post.data.title}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </details>
+    )}
+  </nav>
+)}
+
+<style>
+  .series-navigation {
+    background: var(--series-bg, #f8f9fa);
+    border: 1px solid var(--series-border, #e9ecef);
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 3rem 0;
+    max-width: 100%;
+  }
+
+  .series-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--accent-color, #007acc);
+  }
+
+  .series-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem 0;
+    color: var(--text-color, #333333);
+  }
+
+  .series-label {
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--text-muted, #666666);
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  .series-progress {
+    font-size: 0.9rem;
+    color: var(--text-muted, #666666);
+    margin: 0;
+  }
+
+  .series-nav-links {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .series-nav-link {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    background: var(--nav-bg, #ffffff);
+    border: 1px solid var(--nav-border, #e0e0e0);
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    min-height: 100px;
+  }
+
+  .series-nav-link:hover {
+    background: var(--nav-hover-bg, #f5f5f5);
+    border-color: var(--accent-color, #007acc);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .series-nav-prev {
+    text-align: left;
+  }
+
+  .series-nav-next {
+    text-align: right;
+  }
+
+  .nav-direction {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--accent-color, #007acc);
+    margin-bottom: 0.5rem;
+  }
+
+  .nav-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-color, #333333);
+    line-height: 1.3;
+    margin-bottom: 0.25rem;
+  }
+
+  .nav-part {
+    font-size: 0.8rem;
+    color: var(--text-muted, #666666);
+  }
+
+  .series-nav-placeholder {
+    /* Empty space for alignment when no prev/next */
+  }
+
+  .series-all-posts {
+    border-top: 1px solid var(--series-border, #e9ecef);
+    padding-top: 1.5rem;
+  }
+
+  .series-toggle {
+    font-weight: 500;
+    color: var(--accent-color, #007acc);
+    cursor: pointer;
+    padding: 0.5rem 0;
+    user-select: none;
+  }
+
+  .series-toggle:hover {
+    color: var(--link-hover-color, #005a9e);
+  }
+
+  .series-list {
+    list-style: none;
+    margin: 1rem 0 0 0;
+    padding: 0;
+  }
+
+  .series-list-item {
+    margin: 0.5rem 0;
+  }
+
+  .series-list-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem;
+    background: var(--nav-bg, #ffffff);
+    border: 1px solid var(--nav-border, #e0e0e0);
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .series-list-link:hover {
+    background: var(--nav-hover-bg, #f5f5f5);
+    border-color: var(--accent-color, #007acc);
+  }
+
+  .series-list-link.current {
+    background: var(--current-bg, rgba(0, 122, 204, 0.1));
+    border-color: var(--accent-color, #007acc);
+    font-weight: 500;
+  }
+
+  .series-list-part {
+    font-size: 0.85rem;
+    color: var(--text-muted, #666666);
+    min-width: 60px;
+    flex-shrink: 0;
+  }
+
+  .series-list-title {
+    color: var(--text-color, #333333);
+    line-height: 1.3;
+  }
+
+  /* Dark theme support */
+  :global([data-theme="dark"]) .series-navigation {
+    --series-bg: #2d2d2d;
+    --series-border: #404040;
+    --text-color: #e0e0e0;
+    --text-muted: #a0a0a0;
+    --nav-bg: #1a1a1a;
+    --nav-border: #404040;
+    --nav-hover-bg: #333333;
+    --accent-color: #4da6ff;
+    --link-hover-color: #66b3ff;
+    --current-bg: rgba(77, 166, 255, 0.15);
+  }
+
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .series-navigation {
+      padding: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .series-nav-links {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .series-nav-next {
+      text-align: left;
+    }
+
+    .nav-direction {
+      font-size: 0.8rem;
+    }
+
+    .nav-title {
+      font-size: 0.9rem;
+    }
+
+    .series-list-link {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    .series-list-part {
+      min-width: auto;
+    }
+  }
+
+  /* Focus styles for accessibility */
+  .series-nav-link:focus,
+  .series-list-link:focus,
+  .series-toggle:focus {
+    outline: 2px solid var(--focus-color, #007acc);
+    outline-offset: 2px;
+  }
+
+  :global([data-theme="dark"]) .series-nav-link:focus,
+  :global([data-theme="dark"]) .series-list-link:focus,
+  :global([data-theme="dark"]) .series-toggle:focus {
+    --focus-color: #4da6ff;
+  }
+</style>

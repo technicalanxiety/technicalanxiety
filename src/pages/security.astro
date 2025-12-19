@@ -1,0 +1,415 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+
+const title = 'Security Policy';
+const description = 'Security policy and vulnerability reporting for Technical Anxiety website.';
+---
+
+<BaseLayout title={title} description={description}>
+  <Header />
+  
+  <main class="main">
+    <div class="container">
+      <div class="row">
+        <div class="col col-12">
+          <Breadcrumbs currentPage="Security Policy" />
+          
+          <article class="page-content">
+            <header class="page-header">
+              <h1 class="page-title">Security Policy</h1>
+              <p class="page-description">Security policy and vulnerability reporting procedures for Technical Anxiety.</p>
+            </header>
+
+            <div class="security-content">
+              <section class="security-section">
+                <h2>Supported Versions</h2>
+                <p>This Astro blog is actively maintained. Security updates are applied regularly.</p>
+                
+                <div class="version-table">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Component</th>
+                        <th>Version</th>
+                        <th>Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Astro</td>
+                        <td>4.x</td>
+                        <td><span class="status-supported">✅ Supported</span></td>
+                      </tr>
+                      <tr>
+                        <td>Node.js</td>
+                        <td>18.x+</td>
+                        <td><span class="status-supported">✅ Supported</span></td>
+                      </tr>
+                      <tr>
+                        <td>TypeScript</td>
+                        <td>5.x</td>
+                        <td><span class="status-supported">✅ Supported</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <section class="security-section">
+                <h2>Reporting a Vulnerability</h2>
+                <p>If you discover a security vulnerability in this blog, please report it by:</p>
+                
+                <div class="reporting-steps">
+                  <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                      <strong>Do not</strong> open a public issue
+                    </div>
+                  </div>
+                  <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                      Contact via Twitter/X DM: <a href="https://twitter.com/anxiouslytech" target="_blank" rel="noopener">@anxiouslytech</a>
+                    </div>
+                  </div>
+                  <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                      Or via LinkedIn: <a href="https://linkedin.com/in/rinehart76" target="_blank" rel="noopener">Jason Rinehart</a>
+                    </div>
+                  </div>
+                </div>
+
+                <h3>Please Include</h3>
+                <ul>
+                  <li>Description of the vulnerability</li>
+                  <li>Steps to reproduce</li>
+                  <li>Potential impact</li>
+                  <li>Suggested fix (if any)</li>
+                </ul>
+              </section>
+
+              <section class="security-section">
+                <h2>Security Measures</h2>
+                <p>This blog implements the following security practices:</p>
+                
+                <ul>
+                  <li>Regular dependency updates via automated tools</li>
+                  <li>Pinned package versions for reproducible builds</li>
+                  <li>Security-focused packages kept up to date</li>
+                  <li>Static site generation (no server-side vulnerabilities)</li>
+                  <li>HTTPS enforced via hosting platform</li>
+                  <li>No user authentication or sensitive data collection</li>
+                  <li>Content Security Policy (CSP) headers</li>
+                  <li>Subresource Integrity (SRI) for external resources</li>
+                </ul>
+              </section>
+
+              <section class="security-section">
+                <h2>Privacy & Data Protection</h2>
+                <p>We take privacy seriously and implement these measures:</p>
+                
+                <ul>
+                  <li>Minimal analytics data collection</li>
+                  <li>No personal data storage on our servers</li>
+                  <li>Third-party services comply with privacy regulations</li>
+                  <li>Cookie consent and opt-out mechanisms</li>
+                  <li>Regular privacy policy updates</li>
+                </ul>
+                
+                <p>For detailed privacy information, see our <a href="/privacy/">Privacy Policy</a>.</p>
+              </section>
+
+              <section class="security-section">
+                <h2>Dependency Updates</h2>
+                <p>Dependencies are reviewed and updated:</p>
+                
+                <ul>
+                  <li><strong>Weekly</strong> for critical security patches</li>
+                  <li><strong>Monthly</strong> for security patches</li>
+                  <li><strong>Quarterly</strong> for minor version updates</li>
+                  <li><strong>As needed</strong> for critical security issues</li>
+                </ul>
+              </section>
+
+              <section class="security-section">
+                <h2>Incident Response</h2>
+                <p>In the event of a security incident:</p>
+                
+                <div class="incident-timeline">
+                  <div class="timeline-item">
+                    <div class="timeline-marker">24h</div>
+                    <div class="timeline-content">
+                      <strong>Initial Response</strong>
+                      <p>Acknowledge receipt and begin investigation</p>
+                    </div>
+                  </div>
+                  <div class="timeline-item">
+                    <div class="timeline-marker">72h</div>
+                    <div class="timeline-content">
+                      <strong>Assessment</strong>
+                      <p>Complete impact assessment and develop fix</p>
+                    </div>
+                  </div>
+                  <div class="timeline-item">
+                    <div class="timeline-marker">7d</div>
+                    <div class="timeline-content">
+                      <strong>Resolution</strong>
+                      <p>Deploy fix and notify affected parties</p>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <div class="security-footer">
+                <p><strong>Last Updated:</strong> December 19, 2025</p>
+                <p>This security policy is reviewed and updated regularly to reflect current best practices.</p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <Footer />
+</BaseLayout>
+
+<style>
+  .page-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .page-header {
+    text-align: center;
+    margin-bottom: var(--space-2xl);
+    padding-bottom: var(--space-xl);
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .page-title {
+    font-family: 'Orbitron', 'Rajdhani', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--text-heading);
+    margin-bottom: var(--space-md);
+  }
+
+  .page-description {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .security-content {
+    line-height: 1.7;
+  }
+
+  .security-section {
+    margin-bottom: var(--space-2xl);
+    padding-bottom: var(--space-xl);
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .security-section:last-of-type {
+    border-bottom: none;
+  }
+
+  .security-section h2 {
+    font-family: 'Orbitron', 'Rajdhani', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: var(--text-heading);
+    margin-bottom: var(--space-lg);
+  }
+
+  .security-section h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--accent-color);
+    margin: var(--space-lg) 0 var(--space-md) 0;
+  }
+
+  .security-section p {
+    margin-bottom: var(--space-md);
+    color: var(--text-primary);
+  }
+
+  .security-section ul {
+    margin-bottom: var(--space-lg);
+  }
+
+  .security-section li {
+    margin-bottom: var(--space-sm);
+    color: var(--text-primary);
+  }
+
+  .security-section a {
+    color: var(--accent-color);
+    text-decoration: none;
+  }
+
+  .security-section a:hover {
+    color: var(--link-hover);
+    text-decoration: underline;
+  }
+
+  /* Version Table */
+  .version-table {
+    margin: var(--space-lg) 0;
+    overflow-x: auto;
+  }
+
+  .version-table table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+  }
+
+  .version-table th,
+  .version-table td {
+    padding: var(--space-md);
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .version-table th {
+    background: var(--bg-tertiary);
+    font-weight: 600;
+    color: var(--text-heading);
+  }
+
+  .status-supported {
+    color: #4CAF50;
+    font-weight: 500;
+  }
+
+  /* Reporting Steps */
+  .reporting-steps {
+    margin: var(--space-lg) 0;
+  }
+
+  .step {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-md);
+    margin-bottom: var(--space-md);
+    padding: var(--space-md);
+    background: var(--bg-secondary);
+    border-radius: var(--radius-md);
+    border-left: 4px solid var(--accent-color);
+  }
+
+  .step-number {
+    background: var(--accent-color);
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.875rem;
+    flex-shrink: 0;
+  }
+
+  .step-content {
+    flex: 1;
+  }
+
+  /* Incident Timeline */
+  .incident-timeline {
+    margin: var(--space-lg) 0;
+  }
+
+  .timeline-item {
+    display: flex;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+    position: relative;
+  }
+
+  .timeline-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 22px;
+    top: 44px;
+    width: 2px;
+    height: calc(100% + var(--space-lg));
+    background: var(--border-color);
+  }
+
+  .timeline-marker {
+    background: var(--accent-color);
+    color: white;
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: 0.875rem;
+    flex-shrink: 0;
+    text-align: center;
+    min-width: 44px;
+  }
+
+  .timeline-content {
+    flex: 1;
+    padding-top: var(--space-xs);
+  }
+
+  .timeline-content strong {
+    color: var(--text-heading);
+    display: block;
+    margin-bottom: var(--space-xs);
+  }
+
+  .timeline-content p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+  }
+
+  /* Footer */
+  .security-footer {
+    margin-top: var(--space-2xl);
+    padding-top: var(--space-xl);
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+  }
+
+  .security-footer p {
+    color: var(--text-secondary);
+    margin-bottom: var(--space-sm);
+  }
+
+  @media (max-width: 768px) {
+    .page-title {
+      font-size: 2.25rem;
+    }
+
+    .security-section h2 {
+      font-size: 1.5rem;
+    }
+
+    .step {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .timeline-item {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .timeline-item::after {
+      display: none;
+    }
+  }
+</style>

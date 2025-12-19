@@ -1,0 +1,143 @@
+---
+export interface Props {
+  currentPage: string;
+  category?: string;
+}
+
+interface BreadcrumbItem {
+  label: string;
+  href?: string;
+}
+
+const { currentPage, category } = Astro.props;
+
+// Build breadcrumb items
+const breadcrumbs: BreadcrumbItem[] = [
+  { label: 'Home', href: '/' }
+];
+
+// Add category if provided
+if (category) {
+  breadcrumbs.push({
+    label: category,
+    href: `/tags/${category.toLowerCase().replace(/\s+/g, '-')}/`
+  });
+}
+
+// Add current page (no link)
+breadcrumbs.push({
+  label: currentPage,
+  href: undefined
+});
+---
+
+<nav class="breadcrumbs" aria-label="Breadcrumb navigation">
+  <ol class="breadcrumb-list">
+    {breadcrumbs.map((item, index) => (
+      <li class="breadcrumb-item">
+        {item.href ? (
+          <a href={item.href} class="breadcrumb-link">
+            {item.label}
+          </a>
+        ) : (
+          <span class="breadcrumb-current" aria-current="page">
+            {item.label}
+          </span>
+        )}
+        
+        {index < breadcrumbs.length - 1 && (
+          <span class="breadcrumb-separator" aria-hidden="true">
+            /
+          </span>
+        )}
+      </li>
+    ))}
+  </ol>
+</nav>
+
+<style>
+  .breadcrumbs {
+    margin: 1rem 0 2rem 0;
+    font-size: 0.9rem;
+  }
+
+  .breadcrumb-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 0.5rem;
+  }
+
+  .breadcrumb-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .breadcrumb-link {
+    color: var(--link-color, #007acc);
+    text-decoration: none;
+    transition: color 0.2s ease;
+    padding: 0.25rem 0;
+  }
+
+  .breadcrumb-link:hover {
+    color: var(--link-hover-color, #005a9e);
+    text-decoration: underline;
+  }
+
+  .breadcrumb-current {
+    color: var(--text-muted, #666666);
+    font-weight: 500;
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .breadcrumb-separator {
+    color: var(--text-muted, #666666);
+    font-weight: 300;
+    user-select: none;
+  }
+
+  /* Dark theme support */
+  :global([data-theme="dark"]) .breadcrumbs {
+    --link-color: #4da6ff;
+    --link-hover-color: #66b3ff;
+    --text-muted: #a0a0a0;
+  }
+
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .breadcrumbs {
+      margin: 0.5rem 0 1.5rem 0;
+      font-size: 0.85rem;
+    }
+
+    .breadcrumb-current {
+      max-width: 200px;
+    }
+  }
+
+  /* Accessibility improvements */
+  @media (prefers-reduced-motion: reduce) {
+    .breadcrumb-link {
+      transition: none;
+    }
+  }
+
+  /* Focus styles for keyboard navigation */
+  .breadcrumb-link:focus {
+    outline: 2px solid var(--focus-color, #007acc);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  :global([data-theme="dark"]) .breadcrumb-link:focus {
+    --focus-color: #4da6ff;
+  }
+</style>

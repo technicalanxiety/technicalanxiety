@@ -1,0 +1,320 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+
+const title = 'Changelog';
+const description = 'All notable changes to Technical Anxiety website and content.';
+---
+
+<BaseLayout title={title} description={description}>
+  <Header />
+  
+  <main class="main">
+    <div class="container">
+      <div class="row">
+        <div class="col col-12">
+          <Breadcrumbs currentPage="Changelog" />
+          
+          <article class="page-content">
+            <header class="page-header">
+              <h1 class="page-title">Changelog</h1>
+              <p class="page-description">All notable changes to this project will be documented in this file.</p>
+            </header>
+
+            <div class="changelog-content">
+              <section class="changelog-entry">
+                <h2 id="2025-12-19">2025-12-19 - Astro Migration</h2>
+                
+                <h3>Added</h3>
+                <ul>
+                  <li><strong>Complete Astro migration</strong> from Jekyll static site generator</li>
+                  <li><strong>Enhanced 404 page</strong> with animated terminal showing realistic error messages</li>
+                  <li><strong>Improved theme toggle</strong> with cloud/storm cloud icons matching site's Azure focus</li>
+                  <li><strong>Back to top button</strong> for long articles with smooth scroll animation</li>
+                  <li><strong>Modern build system</strong> with Vite, TypeScript, and property-based testing</li>
+                  <li><strong>Content collections</strong> with Zod schema validation for type safety</li>
+                  <li><strong>RSS feed generation</strong> and sitemap automation</li>
+                </ul>
+
+                <h3>Improved</h3>
+                <ul>
+                  <li><strong>Performance</strong> - Static site generation with optimized builds</li>
+                  <li><strong>Developer experience</strong> - Hot module replacement and TypeScript support</li>
+                  <li><strong>SEO</strong> - Automatic meta tag generation and structured data</li>
+                  <li><strong>Accessibility</strong> - Enhanced keyboard navigation and screen reader support</li>
+                  <li><strong>Mobile experience</strong> - Improved responsive design and touch interactions</li>
+                </ul>
+
+                <h3>Technical</h3>
+                <ul>
+                  <li><strong>Framework</strong>: Migrated from Jekyll to Astro 4.x</li>
+                  <li><strong>Styling</strong>: Maintained exact visual parity with Jekyll version</li>
+                  <li><strong>Content</strong>: All blog posts, pages, and assets migrated successfully</li>
+                  <li><strong>Features</strong>: Series navigation, reading time, social sharing preserved</li>
+                  <li><strong>Testing</strong>: Property-based tests ensure content integrity</li>
+                </ul>
+              </section>
+
+              <section class="changelog-entry">
+                <h2 id="2025-12-15">2025-12-15 - Series Navigation & File Formatting Standards</h2>
+                
+                <h3>Added</h3>
+                <ul>
+                  <li><strong>Complete series navigation system</strong> across all blog series</li>
+                  <li>"What's Next" sections for all non-final series parts (5 posts updated)</li>
+                  <li>Cross-references between series parts with proper linking</li>
+                  <li>Automation markers for GitHub Actions workflow integration</li>
+                  <li><strong>File formatting standards and validation</strong></li>
+                  <li>Unix line endings (LF) requirement for all markdown files</li>
+                  <li>UTF-8 encoding standards without BOM</li>
+                  <li>ASCII quote requirements (no smart quotes)</li>
+                </ul>
+
+                <h3>Fixed</h3>
+                <ul>
+                  <li><strong>Series navigation inconsistencies</strong> across all blog series</li>
+                  <li>Decide or Drown series: Added missing Part 2→3 and Part 3→4 navigation</li>
+                  <li>Platform Layer series: Added missing Part 1→2 navigation</li>
+                  <li>Log Analytics series: Added missing Part 1→2 and Part 2→3 navigation</li>
+                  <li><strong>File formatting issues</strong> causing editing difficulties</li>
+                  <li>Converted all markdown files from CRLF to Unix line endings (28 files)</li>
+                </ul>
+              </section>
+
+              <section class="changelog-entry">
+                <h2 id="2025-12-13">2025-12-13 - Professional Resume Page</h2>
+                
+                <h3>Added</h3>
+                <ul>
+                  <li><strong>Complete professional resume page</strong> at <code>/resume/</code></li>
+                  <li>Comprehensive career history from 2006-present</li>
+                  <li>20+ years of cloud architecture and technology leadership experience</li>
+                  <li>Detailed work experience including Rackspace Technology, Avanade, Children's Mercy Hospital</li>
+                  <li>Complete education background (Oklahoma Baptist University)</li>
+                  <li>Extensive certification portfolio (17+ professional certifications)</li>
+                  <li>Key projects and achievements with quantified business impact</li>
+                </ul>
+
+                <h3>Changed</h3>
+                <ul>
+                  <li><strong>Site navigation</strong> updated to include Resume page</li>
+                  <li><strong>Professional contact information</strong> standardized across site</li>
+                  <li>Updated LinkedIn profile URL to correct handle (rinehart76)</li>
+                </ul>
+              </section>
+
+              <section class="changelog-entry">
+                <h2 id="2025-12-11">2025-12-11 - Series Collection Widget & Theme Fixes</h2>
+                
+                <h3>Added</h3>
+                <ul>
+                  <li><strong>Article Series widget</strong> in sidebar for content discovery</li>
+                  <li>Displays multi-part article series with post counts</li>
+                  <li>Shows series with 2+ published posts only</li>
+                  <li>Sorted by most recent post in series</li>
+                </ul>
+
+                <h3>Fixed</h3>
+                <ul>
+                  <li><strong>Light mode text contrast issues</strong> across the site</li>
+                  <li>Hero section titles now properly display light text on dark backgrounds</li>
+                  <li>Subscribe widget text now readable in light mode</li>
+                  <li><strong>RSS button centering</strong> - "Subscribe to RSS Feed" text now perfectly centered</li>
+                </ul>
+              </section>
+
+              <section class="changelog-entry">
+                <h2 id="2025-12-07">2025-12-07 - Kiro Configuration & Image Optimization</h2>
+                
+                <h3>Added</h3>
+                <ul>
+                  <li><strong>New blog post</strong>: "How Kiro Turned an Architect Into a Developer"</li>
+                  <li>Complete Kiro AI assistant configuration guide</li>
+                  <li>Personal story of discovering Kiro at Rackspace Technology</li>
+                  <li><strong>Cross-platform image optimization script</strong></li>
+                  <li>Works on both macOS (sips) and Linux (ImageMagick)</li>
+                  <li>Auto-detects OS and uses appropriate tools</li>
+                </ul>
+
+                <h3>Changed</h3>
+                <ul>
+                  <li><strong>Image optimization</strong>: Optimized 45 images, saved 16MB (70% reduction)</li>
+                  <li>All blog images now standardized to 1200x630px</li>
+                  <li>File sizes reduced from 23MB to 7MB total</li>
+                  <li><strong>Steering rules optimization</strong>: Reduced token consumption by 89%</li>
+                </ul>
+              </section>
+
+              <section class="changelog-entry">
+                <h2 id="2024-11-25">2024-11-25 - Terminal Theme & Automation</h2>
+                
+                <h3>Added</h3>
+                <ul>
+                  <li><strong>Animated terminal component</strong> on hero section with "mental health deployment" theme</li>
+                  <li>Typing animation showing deployment of calm, confidence, and work-life balance</li>
+                  <li>Terminal window with macOS-style controls</li>
+                  <li><strong>Custom "Deploying..." loader</strong> with spinning circle animation</li>
+                  <li><strong>Custom favicon</strong> with terminal prompt ("> TA") branding</li>
+                  <li><strong>Automated scheduled post publishing</strong> via GitHub Actions</li>
+                  <li><strong>RSS feed subscription widget</strong> replacing newsletter signup</li>
+                  <li><strong>Enhanced 404 error page</strong> with terminal theme</li>
+                </ul>
+
+                <h3>Changed</h3>
+                <ul>
+                  <li><strong>Hero section layout</strong> redesigned with 3-column grid</li>
+                  <li>Left: Hero text with title, description, buttons, and stats</li>
+                  <li>Middle: Animated terminal window</li>
+                  <li>Right: Popular topics cards</li>
+                </ul>
+              </section>
+
+              <section class="changelog-entry">
+                <h2 id="2025-11-14">2025-11-14 - Light/Dark Mode Toggle</h2>
+                
+                <h3>Added</h3>
+                <ul>
+                  <li>Light/dark mode toggle button (floating bottom-right)</li>
+                  <li>Complete light theme with optimized colors</li>
+                  <li>CSS custom properties for theme switching</li>
+                  <li>localStorage persistence for user preference</li>
+                  <li>Smooth theme transitions (0.3s ease)</li>
+                  <li>Animated sun/moon icons</li>
+                </ul>
+
+                <h3>Themes</h3>
+                <ul>
+                  <li><strong>Dark theme</strong> (default): Perfect for nighttime reading</li>
+                  <li><strong>Light theme</strong>: Perfect for daytime reading</li>
+                  <li>Both themes meet WCAG AA contrast standards</li>
+                </ul>
+              </section>
+
+              <div class="changelog-footer">
+                <p><strong>Note</strong>: This changelog documents major changes and improvements. For detailed technical changes, see the <a href="https://github.com/technicalanxiety/technicalanxiety.github.io">GitHub repository</a>.</p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <Footer />
+</BaseLayout>
+
+<style>
+  .page-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .page-header {
+    text-align: center;
+    margin-bottom: var(--space-2xl);
+    padding-bottom: var(--space-xl);
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .page-title {
+    font-family: 'Orbitron', 'Rajdhani', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--text-heading);
+    margin-bottom: var(--space-md);
+  }
+
+  .page-description {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .changelog-content {
+    line-height: 1.7;
+  }
+
+  .changelog-entry {
+    margin-bottom: var(--space-2xl);
+    padding-bottom: var(--space-xl);
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .changelog-entry:last-of-type {
+    border-bottom: none;
+  }
+
+  .changelog-entry h2 {
+    font-family: 'Orbitron', 'Rajdhani', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: var(--text-heading);
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-sm);
+    border-bottom: 2px solid var(--accent-color);
+  }
+
+  .changelog-entry h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--accent-color);
+    margin: var(--space-lg) 0 var(--space-md) 0;
+  }
+
+  .changelog-entry ul {
+    margin-bottom: var(--space-lg);
+  }
+
+  .changelog-entry li {
+    margin-bottom: var(--space-sm);
+    color: var(--text-primary);
+  }
+
+  .changelog-entry strong {
+    color: var(--text-heading);
+  }
+
+  .changelog-entry code {
+    background: var(--bg-code);
+    color: var(--accent-color);
+    padding: 0.125em 0.25em;
+    border-radius: var(--radius-sm);
+    font-family: 'Fira Code', 'Courier New', monospace;
+    font-size: 0.9em;
+  }
+
+  .changelog-footer {
+    margin-top: var(--space-2xl);
+    padding-top: var(--space-xl);
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+  }
+
+  .changelog-footer p {
+    color: var(--text-secondary);
+    font-style: italic;
+  }
+
+  .changelog-footer a {
+    color: var(--accent-color);
+    text-decoration: none;
+  }
+
+  .changelog-footer a:hover {
+    color: var(--link-hover);
+    text-decoration: underline;
+  }
+
+  @media (max-width: 768px) {
+    .page-title {
+      font-size: 2.25rem;
+    }
+
+    .changelog-entry h2 {
+      font-size: 1.5rem;
+    }
+  }
+</style>

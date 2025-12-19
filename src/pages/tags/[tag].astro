@@ -1,0 +1,260 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Sidebar from '../../components/Sidebar.astro';
+import { siteConfig } from '../../config';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+  
+  // Get all unique tags
+  const allTags = new Set();
+  posts.forEach(post => {
+    if (post.data.tags) {
+      post.data.tags.forEach(tag => allTags.add(tag));
+    }
+  });
+  
+  // Generate paths for each tag
+  return Array.from(allTags).map(tag => ({
+    params: { tag },
+    props: { 
+      tag,
+      posts: posts
+        .filter(post => post.data.tags && post.data.tags.includes(tag as string))
+        .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+    }
+  }));
+}
+
+const { tag, posts } = Astro.props;
+const postCount = posts.length;
+---
+
+<BaseLayout 
+  title={`Posts tagged "${tag}" | ${siteConfig.title}`}
+  description={`All blog posts tagged with "${tag}" - ${postCount} post${postCount !== 1 ? 's' : ''} found.`}
+>
+  <Header />
+  
+  <main class="main-content">
+    <div class="container">
+      <div class="content-grid">
+        <section class="posts-section">
+          <header class="tag-header">
+            <h1 class="tag-title">Posts tagged "{tag}"</h1>
+            <p class="tag-count">{postCount} post{postCount !== 1 ? 's' : ''} found</p>
+          </header>
+          
+          <div class="posts-list">
+            {posts.map((post) => (
+              <article class="post-preview">
+                <header class="post-header">
+                  <h2 class="post-title">
+                    <a href={`/${post.slug}/`}>{post.data.title}</a>
+                  </h2>
+                  <time class="post-date" datetime={post.data.date.toISOString()}>
+                    {post.data.date.toLocaleDateString('en-US', { 
+                      year: 'numeric', 
+                      month: 'long', 
+                      day: 'numeric' 
+                    })}
+                  </time>
+                </header>
+                
+                {post.data.description && (
+                  <p class="post-description">{post.data.description}</p>
+                )}
+                
+                {post.data.tags && post.data.tags.length > 0 && (
+                  <div class="post-tags">
+                    {post.data.tags.map((postTag) => (
+                      <a 
+                        href={`/tags/${postTag}/`} 
+                        class={`tag ${postTag === tag ? 'tag-current' : ''}`}
+                      >
+                        {postTag}
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </article>
+            ))}
+          </div>
+          
+          <div class="back-to-tags">
+            <a href="/tags/" class="back-link">← View all tags</a>
+          </div>
+        </section>
+        
+        <Sidebar />
+      </div>
+    </div>
+  </main>
+  
+  <Footer />
+</BaseLayout>
+
+<style>
+  .main-content {
+    padding: 2rem 0;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .content-grid {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .posts-section {
+    min-width: 0; /* Prevent grid overflow */
+  }
+
+  .tag-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--color-border, #e2e8f0);
+  }
+
+  .tag-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--color-text-primary, #1a202c);
+  }
+
+  .tag-count {
+    font-size: 1rem;
+    color: var(--color-text-secondary, #4a5568);
+    margin: 0;
+  }
+
+  .posts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .post-preview {
+    background: var(--color-bg-primary, #ffffff);
+    border: 1px solid var(--color-border, #e2e8f0);
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: box-shadow 0.2s ease;
+  }
+
+  .post-preview:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .post-header {
+    margin-bottom: 1rem;
+  }
+
+  .post-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+
+  .post-title a {
+    color: var(--color-text-primary, #1a202c);
+    text-decoration: none;
+  }
+
+  .post-title a:hover {
+    color: var(--color-primary, #2563eb);
+  }
+
+  .post-date {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary, #4a5568);
+    font-weight: 500;
+  }
+
+  .post-description {
+    color: var(--color-text-secondary, #4a5568);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tag {
+    background: var(--color-bg-secondary, #f8fafc);
+    color: var(--color-text-secondary, #4a5568);
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-decoration: none;
+    border: 1px solid var(--color-border, #e2e8f0);
+    transition: all 0.2s ease;
+  }
+
+  .tag:hover {
+    background: var(--color-primary, #2563eb);
+    color: white;
+    border-color: var(--color-primary, #2563eb);
+  }
+
+  .tag-current {
+    background: var(--color-primary, #2563eb);
+    color: white;
+    border-color: var(--color-primary, #2563eb);
+  }
+
+  .back-to-tags {
+    margin-top: 3rem;
+    text-align: center;
+  }
+
+  .back-link {
+    display: inline-block;
+    color: var(--color-primary, #2563eb);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--color-primary, #2563eb);
+    border-radius: 6px;
+    transition: all 0.2s ease;
+  }
+
+  .back-link:hover {
+    background: var(--color-primary, #2563eb);
+    color: white;
+  }
+
+  @media (max-width: 768px) {
+    .content-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .tag-title {
+      font-size: 1.75rem;
+    }
+
+    .post-title {
+      font-size: 1.25rem;
+    }
+
+    .main-content {
+      padding: 1rem 0;
+    }
+  }
+</style>

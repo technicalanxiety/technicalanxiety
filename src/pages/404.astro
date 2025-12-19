@@ -1,0 +1,426 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = 'Page Not Found';
+const description = 'The page you are looking for could not be found.';
+---
+
+<BaseLayout title={title} description={description} noindex={true}>
+  <main class="error-page">
+    <div class="error-container">
+      <h1 class="page-title">Page not found</h1>
+      
+      <div class="error-code">404</div>
+      
+      <div class="terminal">
+        <div class="terminal-header">
+          <div class="terminal-buttons">
+            <span class="terminal-button terminal-close"></span>
+            <span class="terminal-button terminal-minimize"></span>
+            <span class="terminal-button terminal-maximize"></span>
+          </div>
+          <span class="terminal-title">error-handler.sh</span>
+        </div>
+        <div class="terminal-body">
+          <div id="terminal-content"></div>
+          <span class="terminal-cursor">_</span>
+        </div>
+      </div>
+      
+      <h2 class="error-message">This page took an unexpected detour</h2>
+      <p class="error-description">
+        The page you're looking for might have been moved, deleted, or never existed. Let's get you back on track.
+      </p>
+      
+      <div class="error-actions">
+        <a href="/" class="btn btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+            <polyline points="9,22 9,12 15,12 15,22"/>
+          </svg>
+          Back to Home
+        </a>
+        <a href="/archive/" class="btn btn-secondary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/>
+            <path d="M21 21l-4.35-4.35"/>
+          </svg>
+          Start Here
+        </a>
+      </div>
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .error-page {
+    min-height: 100vh;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    padding: 2rem;
+    font-family: 'Rajdhani', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .error-container {
+    max-width: 800px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .page-title {
+    font-family: 'Orbitron', 'Rajdhani', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0 0 2rem 0;
+    color: var(--text-heading);
+    letter-spacing: 0.02em;
+  }
+
+  .error-code {
+    font-family: 'Orbitron', 'Rajdhani', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 8rem;
+    font-weight: 900;
+    color: var(--accent-color);
+    margin: 0 0 2rem 0;
+    line-height: 1;
+    text-shadow: 0 0 30px rgba(33, 150, 243, 0.3);
+    letter-spacing: -0.02em;
+  }
+
+  .terminal {
+    background: #1a1c1f;
+    border-radius: 8px;
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+    margin: 0 auto 4rem auto;
+    max-width: 500px;
+    font-family: 'Fira Code', 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+    text-align: left;
+    border: 1px solid #3a3a3a;
+  }
+
+  .terminal-header {
+    background: #2d2d2d;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid #3a3a3a;
+  }
+
+  .terminal-buttons {
+    display: flex;
+    gap: 8px;
+  }
+
+  .terminal-button {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+
+  .terminal-close {
+    background: #ff5f56;
+  }
+
+  .terminal-minimize {
+    background: #ffbd2e;
+  }
+
+  .terminal-maximize {
+    background: #27ca3f;
+  }
+
+  .terminal-title {
+    font-size: 13px;
+    color: #c4c4c4;
+    font-weight: 500;
+  }
+
+  .terminal-body {
+    padding: 16px;
+    background: #1a1c1f;
+    font-size: 14px;
+    line-height: 1.4;
+    height: 300px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .terminal-cursor {
+    color: #2196F3;
+    animation: blink 1s infinite;
+    font-weight: bold;
+  }
+
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+
+  .terminal-line {
+    margin: 4px 0;
+    line-height: 1.4;
+  }
+
+  .terminal-line.terminal-command {
+    color: #FFFFFF !important;
+  }
+
+  .terminal-line.terminal-info {
+    color: #4A9EFF !important;
+  }
+
+  .terminal-line.terminal-success {
+    color: #5FD700 !important;
+  }
+
+  .terminal-line.terminal-error {
+    color: #FF4444 !important;
+  }
+
+  :global(.terminal-error) {
+    color: #FF4444 !important;
+  }
+
+  .terminal-line.terminal-package {
+    color: #D4D4D4 !important;
+    padding-left: 8px;
+  }
+
+  .terminal-blank {
+    height: 4px;
+  }
+
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+
+  .terminal-line {
+    margin: 0.25rem 0;
+    line-height: 1.5;
+  }
+
+  .prompt {
+    color: #68d391;
+    margin-right: 0.5rem;
+  }
+
+  .error {
+    color: #fc8181;
+  }
+
+  .error-symbol {
+    color: #fc8181;
+    margin-right: 0.5rem;
+  }
+
+  .description {
+    color: #a0aec0;
+  }
+
+  .error-message {
+    font-family: 'Orbitron', 'Rajdhani', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0 0 1rem 0;
+    color: var(--text-heading);
+  }
+
+  .error-description {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin: 0 0 2rem 0;
+    line-height: 1.6;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .error-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 28px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+  }
+
+  .btn-primary {
+    background: var(--accent-color);
+    color: #ffffff;
+    border-color: var(--accent-color);
+  }
+
+  .btn-primary:hover {
+    background: var(--link-hover);
+    border-color: var(--link-hover);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(33, 150, 243, 0.3);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--text-heading);
+    border-color: var(--border-color);
+  }
+
+  .btn-secondary:hover {
+    background: transparent;
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Mobile adjustments */
+  @media (max-width: 768px) {
+    .error-page {
+      padding: 1rem;
+    }
+
+    .page-title {
+      font-size: 1.5rem;
+    }
+
+    .error-code {
+      font-size: 3rem;
+    }
+
+    .terminal {
+      font-size: 0.75rem;
+      padding: 0.75rem;
+    }
+
+    .error-message {
+      font-size: 1.5rem;
+    }
+
+    .error-actions {
+      flex-direction: column;
+    }
+
+    .btn {
+      justify-content: center;
+    }
+  }
+</style>
+
+<script>
+  // 404 Terminal animation sequence
+  const terminalSequence = [
+    { text: '> npm run find-page', type: 'command', delay: 100 },
+    { text: '', type: 'blank', delay: 300 },
+    { text: '🔍 Searching deployment manifest...', type: 'info', delay: 800 },
+    { text: '✗ Error: Page not found', type: 'error', delay: 1200 },
+    { text: '✗ Resource missing from deployment', type: 'error', delay: 1000 },
+    { text: '', type: 'blank', delay: 400 },
+    { text: '📋 Checking available routes...', type: 'info', delay: 1000 },
+    { text: '  ✓ / (homepage)', type: 'package', delay: 600 },
+    { text: '  ✓ /archive (all posts)', type: 'package', delay: 600 },
+    { text: '  ✓ /about (my story)', type: 'package', delay: 600 },
+    { text: '', type: 'blank', delay: 400 },
+    { text: '💡 Suggestion: Try one of the links below', type: 'success', delay: 2000 }
+  ];
+
+  let currentLine = 0;
+  let currentChar = 0;
+  let isTyping = false;
+  let terminalContent;
+  let cursor;
+
+  function initTerminal() {
+    terminalContent = document.getElementById('terminal-content');
+    cursor = document.querySelector('.terminal-cursor');
+    
+    if (!terminalContent) return;
+    
+    setTimeout(startTyping, 500);
+  }
+
+  function startTyping() {
+    if (currentLine >= terminalSequence.length) {
+      setTimeout(resetTerminal, 4000);
+      return;
+    }
+
+    isTyping = true;
+    const line = terminalSequence[currentLine];
+    
+    if (line.type === 'blank') {
+      addLine('', line.type);
+      currentLine++;
+      setTimeout(startTyping, line.delay);
+      return;
+    }
+
+    typeCharacter();
+  }
+
+  function typeCharacter() {
+    const line = terminalSequence[currentLine];
+    
+    if (currentChar < line.text.length) {
+      const currentLineElement = terminalContent.lastElementChild;
+      if (currentLineElement && currentLineElement.classList.contains('typing')) {
+        currentLineElement.textContent = line.text.substring(0, currentChar + 1);
+      } else {
+        const lineElement = document.createElement('div');
+        lineElement.className = `terminal-line terminal-${line.type} typing`;
+        lineElement.textContent = line.text.substring(0, currentChar + 1);
+        terminalContent.appendChild(lineElement);
+      }
+      
+      currentChar++;
+      const typingSpeed = Math.random() * 50 + 30;
+      setTimeout(typeCharacter, typingSpeed);
+    } else {
+      const currentLineElement = terminalContent.lastElementChild;
+      if (currentLineElement) {
+        currentLineElement.classList.remove('typing');
+      }
+      
+      currentChar = 0;
+      currentLine++;
+      isTyping = false;
+      
+      setTimeout(startTyping, line.delay);
+    }
+  }
+
+  function addLine(text, type) {
+    const lineElement = document.createElement('div');
+    lineElement.className = `terminal-line terminal-${type}`;
+    lineElement.textContent = text;
+    terminalContent.appendChild(lineElement);
+  }
+
+  function resetTerminal() {
+    terminalContent.innerHTML = '';
+    currentLine = 0;
+    currentChar = 0;
+    startTyping();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTerminal);
+  } else {
+    initTerminal();
+  }
+</script>

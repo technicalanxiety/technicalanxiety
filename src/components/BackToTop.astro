@@ -1,0 +1,106 @@
+---
+// Back to Top component
+---
+
+<button id="back-to-top" class="back-to-top" aria-label="Back to top" title="Back to top">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="m18 15-6-6-6 6"/>
+  </svg>
+</button>
+
+<style>
+  .back-to-top {
+    position: fixed;
+    bottom: 6rem;
+    right: 2rem;
+    width: 48px;
+    height: 48px;
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    z-index: 1000;
+  }
+
+  .back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .back-to-top:hover {
+    background: var(--accent-color-dark, #005a9e);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  .back-to-top:active {
+    transform: translateY(0);
+  }
+
+  /* Dark theme support */
+  :global([data-theme="dark"]) .back-to-top {
+    background: var(--accent-color, #4da6ff);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  :global([data-theme="dark"]) .back-to-top:hover {
+    background: var(--accent-color-light, #66b3ff);
+  }
+
+  /* Mobile adjustments */
+  @media (max-width: 768px) {
+    .back-to-top {
+      bottom: 5rem;
+      right: 1.5rem;
+      width: 44px;
+      height: 44px;
+    }
+  }
+</style>
+
+<script>
+  function initBackToTop() {
+    const backToTopButton = document.getElementById('back-to-top');
+    if (!backToTopButton) return;
+
+    // Show/hide button based on scroll position
+    function toggleVisibility() {
+      if (window.scrollY > 300) {
+        backToTopButton.classList.add('visible');
+      } else {
+        backToTopButton.classList.remove('visible');
+      }
+    }
+
+    // Smooth scroll to top
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+
+    // Event listeners
+    window.addEventListener('scroll', toggleVisibility);
+    backToTopButton.addEventListener('click', scrollToTop);
+
+    // Initial check
+    toggleVisibility();
+  }
+
+  // Initialize on page load
+  document.addEventListener('DOMContentLoaded', initBackToTop);
+  
+  // Handle navigation (for SPA-like behavior)
+  document.addEventListener('astro:page-load', initBackToTop);
+</script>

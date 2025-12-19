@@ -1,0 +1,413 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ReadingProgress from '../components/ReadingProgress.astro';
+import TableOfContents from '../components/TableOfContents.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import SeriesNavigation from '../components/SeriesNavigation.astro';
+import BackToTop from '../components/BackToTop.astro';
+import { siteConfig } from '../config';
+import type { CollectionEntry } from 'astro:content';
+
+export interface Props {
+  post: CollectionEntry<'posts'>;
+  headings?: Array<{ depth: number; slug: string; text: string }>;
+}
+
+const { post, headings = [] } = Astro.props;
+const { Content } = await post.render();
+
+// Calculate reading time (average 200-250 words per minute)
+function calculateReadingTime(content: string): number {
+  const wordsPerMinute = 225;
+  const wordCount = content.split(/\s+/).length;
+  return Math.ceil(wordCount / wordsPerMinute);
+}
+
+const readingTime = calculateReadingTime(post.body);
+
+// Format date
+const publishDate = new Date(post.data.date).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+
+// Construct page title and description
+const pageTitle = post.data.title;
+const pageDescription = post.data.description || `${post.data.title} - ${siteConfig.description}`;
+const pageImage = post.data.image ? `/img/${post.data.image}` : '/img/social-share-default.png';
+
+// Generate canonical URL
+const canonicalURL = new URL(`/${post.slug}/`, Astro.site).href;
+---
+
+<BaseLayout 
+  title={pageTitle}
+  description={pageDescription}
+  image={pageImage}
+  canonicalURL={canonicalURL}
+>
+  <ReadingProgress />
+  <Header />
+  
+  <main class="post-layout">
+    <div class="container">
+      <div class="row">
+        <div class="col col-12">
+          <Breadcrumbs 
+            currentPage={post.data.title}
+            category={post.data.tags?.[0]}
+          />
+          
+          <article class="post">
+            <div class="post-main">
+              <header class="post-header">
+                <h1 class="post-title">{post.data.title}</h1>
+                
+                <div class="post-meta">
+                  <time datetime={post.data.date.toISOString()} class="post-date">
+                    {publishDate}
+                  </time>
+                  
+                  <span class="post-reading-time">
+                    {readingTime} min read
+                  </span>
+                  
+                  {post.data.author && (
+                    <span class="post-author">
+                      by {post.data.author}
+                    </span>
+                  )}
+                </div>
+                
+                {post.data.tags && post.data.tags.length > 0 && (
+                  <div class="post-tags">
+                    {post.data.tags.map(tag => (
+                      <a href={`/tags/${tag.toLowerCase().replace(/\s+/g, '-')}/`} class="post-tag">
+                        {tag}
+                      </a>
+                    ))}
+                  </div>
+                )}
+                
+                {post.data.image && (
+                  <div class="post-image">
+                    <img 
+                      src={`/img/${post.data.image}`} 
+                      alt={post.data.title}
+                      loading="lazy"
+                    />
+                  </div>
+                )}
+              </header>
+              
+              <div class="post-content">
+                <Content />
+              </div>
+              
+              <SeriesNavigation 
+                currentSeries={post.data.series}
+                currentPart={post.data.series_part}
+              />
+            </div>
+            
+            <aside class="post-sidebar">
+              {headings.length >= 2 && (
+                <TableOfContents headings={headings} />
+              )}
+            </aside>
+          </article>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <BackToTop />
+  <Footer />
+</BaseLayout>
+
+<style>
+  .post-layout {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--space-xl) var(--space-md);
+  }
+
+  .post {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: var(--space-2xl);
+    align-items: start;
+  }
+
+  @media (max-width: 1024px) {
+    .post {
+      grid-template-columns: 1fr;
+      gap: var(--space-xl);
+    }
+  }
+
+  .post-main {
+    min-width: 0; /* Prevent overflow */
+  }
+
+  .post-header {
+    margin-bottom: var(--space-2xl);
+  }
+
+  .post-title {
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin: 0 0 var(--space-lg) 0;
+    color: var(--text-heading);
+  }
+
+  @media (max-width: 768px) {
+    .post-title {
+      font-size: 2.25rem;
+    }
+  }
+
+  .post-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+
+  .post-date,
+  .post-reading-time,
+  .post-author {
+    display: flex;
+    align-items: center;
+  }
+
+  .post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-xl);
+  }
+
+  .post-tag {
+    background: rgba(33, 150, 243, 0.1);
+    color: var(--accent-color);
+    padding: var(--space-xs) var(--space-md);
+    border-radius: 9999px;
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 600;
+    border: 1px solid rgba(33, 150, 243, 0.2);
+    transition: all var(--transition-fast);
+  }
+
+  .post-tag:hover {
+    background: var(--accent-color);
+    color: var(--bg-primary);
+    border-color: var(--accent-color);
+    transform: translateY(-1px);
+  }
+
+  .post-image {
+    margin-bottom: var(--space-2xl);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .post-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .post-sidebar {
+    position: sticky;
+    top: 100px;
+    align-self: start;
+  }
+
+  @media (max-width: 1024px) {
+    .post-sidebar {
+      position: static;
+      order: -1;
+    }
+  }
+
+  .post-content {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: var(--text-primary);
+    max-width: none;
+  }
+
+  /* Enhanced typography */
+  .post-content :global(h2) {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 3rem 0 1.5rem 0;
+    color: var(--text-heading);
+    line-height: 1.2;
+    scroll-margin-top: 100px;
+  }
+
+  .post-content :global(h3) {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 2.5rem 0 1rem 0;
+    color: var(--text-heading);
+    line-height: 1.3;
+    scroll-margin-top: 100px;
+  }
+
+  .post-content :global(h4) {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 2rem 0 0.75rem 0;
+    color: var(--text-heading);
+    scroll-margin-top: 100px;
+  }
+
+  .post-content :global(p) {
+    margin: 1.5rem 0;
+  }
+
+  .post-content :global(ul),
+  .post-content :global(ol) {
+    margin: 1.5rem 0;
+    padding-left: 2rem;
+  }
+
+  .post-content :global(li) {
+    margin: 0.5rem 0;
+  }
+
+  .post-content :global(blockquote) {
+    border-left: 4px solid var(--accent-color);
+    padding: var(--space-lg);
+    margin: 2rem 0;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-md);
+    font-style: italic;
+    color: var(--text-secondary);
+    position: relative;
+  }
+
+  .post-content :global(blockquote::before) {
+    content: '"';
+    font-size: 4rem;
+    color: var(--accent-color);
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    font-family: serif;
+  }
+
+  .post-content :global(code) {
+    background: var(--bg-tertiary);
+    color: var(--accent-color);
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--radius-sm);
+    font-family: 'Fira Code', 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+    font-size: 0.9em;
+    font-weight: 500;
+  }
+
+  .post-content :global(pre) {
+    background: var(--bg-tertiary);
+    padding: var(--space-lg);
+    border-radius: var(--radius-lg);
+    overflow-x: auto;
+    margin: 2rem 0;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow);
+  }
+
+  .post-content :global(pre code) {
+    background: none;
+    color: var(--text-primary);
+    padding: 0;
+  }
+
+  .post-content :global(img) {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius-md);
+    margin: 2rem 0;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .post-content :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+
+  .post-content :global(th),
+  .post-content :global(td) {
+    padding: var(--space-md);
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .post-content :global(th) {
+    background: var(--bg-tertiary);
+    font-weight: 600;
+    color: var(--text-heading);
+  }
+
+  .post-content :global(hr) {
+    border: none;
+    height: 1px;
+    background: var(--border-color);
+    margin: 3rem 0;
+  }
+
+  /* Links */
+  .post-content :global(a) {
+    color: var(--accent-color);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color var(--transition-fast);
+  }
+
+  .post-content :global(a:hover) {
+    border-bottom-color: var(--accent-color);
+  }
+
+  /* Mobile adjustments */
+  @media (max-width: 768px) {
+    .post-layout {
+      padding: var(--space-lg) var(--space-sm);
+    }
+
+    .post-content {
+      font-size: 1rem;
+    }
+
+    .post-content :global(h2) {
+      font-size: 1.75rem;
+      margin: 2rem 0 1rem 0;
+    }
+
+    .post-content :global(h3) {
+      font-size: 1.375rem;
+      margin: 1.5rem 0 0.75rem 0;
+    }
+
+    .post-meta {
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+  }
+</style>

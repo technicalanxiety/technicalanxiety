@@ -1,11 +1,23 @@
-_site
-.sass-cache
-.jekyll-metadata
 *.DS_Store
 *:Zone.Identifier
 
-# Image optimization backups
-img/originals/
+# Astro build output and dependencies
+dist/
+.astro/
+node_modules/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment variables
+.env
+.env.production
+
+# IDE settings
+.idea/
 
 # Global Kiro configuration (outside workspace)
 ~/.kiro/
