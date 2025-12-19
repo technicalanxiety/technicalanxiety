@@ -1,9 +1,11 @@
 ---
-inclusion: fileMatch
-fileMatchPattern: "**/*.{md,html,yml,rb}"
+inclusion: manual
 ---
 
-# Jekyll Technical Guide
+# Jekyll Technical Guide (Legacy - For Reference Only)
+
+> **⚠️ DEPRECATED**: This site is migrating to Astro. For current development, see `astro-technical-guide.md`.
+> This guide is kept for reference during the migration process.
 
 ## Project Structure
 - `_config.yml`: Site configuration (title, URL, plugins, pagination)
