@@ -1,0 +1,48 @@
+{
+  "routes": [
+    {
+      "route": "/rss.xml",
+      "headers": {
+        "Content-Type": "application/rss+xml"
+      }
+    },
+    {
+      "route": "/search.json",
+      "headers": {
+        "Content-Type": "application/json"
+      }
+    },
+    {
+      "route": "/*",
+      "serve": "/404.html",
+      "statusCode": 404
+    }
+  ],
+  "navigationFallback": {
+    "rewrite": "/404.html",
+    "exclude": [
+      "/img/*",
+      "/favicon.ico",
+      "/favicon.svg",
+      "/*.{css,js,json,xml,txt,ico,svg,png,jpg,jpeg,gif,webp,woff,woff2,ttf,eot}"
+    ]
+  },
+  "mimeTypes": {
+    ".json": "application/json",
+    ".xml": "application/xml",
+    ".rss": "application/rss+xml"
+  },
+  "globalHeaders": {
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "DENY",
+    "X-XSS-Protection": "1; mode=block",
+    "Referrer-Policy": "strict-origin-when-cross-origin",
+    "Permissions-Policy": "camera=(), microphone=(), geolocation=()"
+  },
+  "responseOverrides": {
+    "404": {
+      "rewrite": "/404.html",
+      "statusCode": 404
+    }
+  }
+}
