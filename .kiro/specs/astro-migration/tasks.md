@@ -224,8 +224,8 @@ This plan implements the migration from Jekyll to Astro in phases, with testing 
     - Set up DNS if needed
     - _Requirements: 7.2_
 
-- [ ] 14. Execute cutover
-  - [ ] 14.1 Deploy Astro site to production
+- [-] 14. Execute cutover
+  - [-] 14.1 Deploy Astro site to production
     - Merge Astro branch to main
     - Verify deployment completes
     - _Requirements: 7.2_
