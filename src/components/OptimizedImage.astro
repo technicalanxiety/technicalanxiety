@@ -19,9 +19,13 @@ const {
   priority = false 
 } = Astro.props;
 
-// Extract filename without extension for optimized versions
+// Extract filename and extension for optimized versions
 const filename = src.replace('/img/', '').replace(/\.[^/.]+$/, '');
+const originalExtension = src.match(/\.([^/.]+)$/)?.[1] || 'jpg';
 const isOptimized = src.includes('/img/');
+
+// Determine the best fallback format - prefer jpg if available, otherwise use original extension
+const fallbackFormat = originalExtension === 'png' ? 'png' : 'jpg';
 
 // Only preload if explicitly marked as priority AND eager loading
 const shouldPreload = priority && loading === 'eager';
@@ -50,7 +54,7 @@ const shouldPreload = priority && loading === 'eager';
     
     <!-- Fallback img element with JavaScript error handling -->
     <img 
-      src={`/img/optimized/${filename}.jpg`}
+      src={`/img/optimized/${filename}.${fallbackFormat}`}
       alt={alt}
       width={width}
       height={height}

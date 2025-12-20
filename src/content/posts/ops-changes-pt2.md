@@ -1,6 +1,6 @@
 ---
 title: "Operational Change, Part 2"
-date: 2025-11-14 09:00 -0600
+date: 2025-11-14
 description: "AI isnt just a buzzword anymore. Its quietly transforming how we deliver, operate, and support IT services."
 image: ops-changes-2.jpg
 tags: ["Governance", "Operations"]

@@ -1,6 +1,6 @@
 ---
 title: "Platform Resiliency Part 2: The Promise That Can"
-date: 2025-12-15 12:00:00 -0600
+date: 2025-12-15
 description: "How to implement resiliency as a design principle woven into platform architecture, with practical guidance for operations teams and AI integration."
 image: resiliency-part2.jpg
 tags: ["Operations", "Leadership", "Platform"]

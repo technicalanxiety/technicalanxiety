@@ -1,6 +1,6 @@
 ---
 title: "Governance of Agents: Why Agent 365 Changes Everything"
-date: 2025-12-11 08:00 -0600
+date: 2025-12-11
 description: "Microsoft gave agents human identity in Entra ID. Your governance framework just developed a hole you didnt know existed. Heres how to prepare for it."
 image: agent-governance.jpg
 tags: ["Azure", "Governance"]

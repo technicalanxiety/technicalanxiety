@@ -1,6 +1,6 @@
 ---
 title: "Operational Change, Part 1"
-date: 2025-10-31 09:00 -0600
+date: 2025-10-31
 description: "Embracing Modern Service Management isnt just a technical upgrade - its a change you must experience to unlock real business value."
 image: ops-changes-1.jpg
 tags: ["Governance", "Operations"]

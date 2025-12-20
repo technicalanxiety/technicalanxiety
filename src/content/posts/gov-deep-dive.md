@@ -1,6 +1,6 @@
 ---
 title: "Governance Disciplines Deep Dive"
-date: 2025-06-01 00:00:00 -0600
+date: 2025-06-01
 description: "Quick reference guide to the five governance disciplines - cost management, security, identity, consistency, and deployment automation."
 image: gov-deep-dive.jpg
 tags: ["Azure", "Governance", "Log Analytics"]

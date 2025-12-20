@@ -11,6 +11,7 @@
     "test": "vitest --run",
     "test:watch": "vitest",
     "test:ui": "vitest --ui",
+    "test:cross-browser": "node scripts/cross-browser-test.js",
     "backlog": "node scripts/manage-backlog.js",
     "backlog:list": "node scripts/manage-backlog.js list",
     "backlog:check": "node scripts/manage-backlog.js check"
