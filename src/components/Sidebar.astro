@@ -1,7 +1,7 @@
 ---
 import { siteConfig } from '../config';
 import { getCollection } from 'astro:content';
-import OptimizedImage from './OptimizedImage.astro';
+import Avatar from './Avatar.astro';
 
 // Get recent posts for sidebar
 const posts = await getCollection('posts');
@@ -17,14 +17,11 @@ const allTags = [...new Set(posts.flatMap(post => post.data.tags || []))].sort()
   <div class="widget">
     <h3 class="widget-title">About</h3>
     <div class="author-bio">
-      <OptimizedImage 
+      <Avatar 
         src={siteConfig.author.avatar} 
         alt={siteConfig.author.name} 
-        width={80} 
-        height={80}
+        size={80}
         class="author-avatar"
-        loading="eager"
-        priority={true}
       />
       <h4 class="author-name">{siteConfig.author.name}</h4>
       <p class="author-description">{siteConfig.author.bio}</p>

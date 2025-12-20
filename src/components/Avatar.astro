@@ -1,0 +1,66 @@
+---
+export interface Props {
+  src: string;
+  alt: string;
+  size?: number;
+  class?: string;
+}
+
+const { 
+  src, 
+  alt, 
+  size = 80,
+  class: className = '' 
+} = Astro.props;
+
+// For avatar images, we'll use the optimized versions if available
+// but fall back gracefully to the original
+const filename = src.replace('/img/', '').replace(/\.[^/.]+$/, '');
+const hasOptimized = src.includes('/img/');
+---
+
+{hasOptimized ? (
+  <picture class={className}>
+    <!-- Try optimized AVIF first -->
+    <source 
+      srcset={`/img/optimized/${filename}.avif`}
+      type="image/avif"
+    />
+    
+    <!-- Try optimized WebP -->
+    <source 
+      srcset={`/img/optimized/${filename}.webp`}
+      type="image/webp"
+    />
+    
+    <!-- Fallback to optimized JPEG -->
+    <img 
+      src={`/img/optimized/${filename}.jpg`}
+      alt={alt}
+      width={size}
+      height={size}
+      loading="eager"
+      decoding="async"
+      onerror={`this.onerror=null; this.src='${src}';`}
+    />
+  </picture>
+) : (
+  <!-- Direct image fallback -->
+  <img 
+    src={src}
+    alt={alt}
+    width={size}
+    height={size}
+    loading="eager"
+    decoding="async"
+    class={className}
+  />
+)}
+
+<style>
+  picture, img {
+    display: block;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+</style>
