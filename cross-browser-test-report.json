@@ -1,189 +1,165 @@
 {
-  "timestamp": "2025-12-20T03:11:35.603Z",
+  "timestamp": "2025-12-20T03:53:06.947Z",
   "summary": {
     "total": 16,
-    "passed": 0,
-    "failed": 16,
-    "success_rate": "0%"
+    "passed": 4,
+    "failed": 12,
+    "success_rate": "25%"
   },
   "details": [
     {
       "test": "Chrome - desktop - /",
-      "status": "FAIL",
-      "url": "http://localhost:4322//",
-      "error": "page.waitForTimeout is not a function"
+      "status": "PASS",
+      "url": "http://localhost:4321//"
     },
     {
       "test": "Chrome - desktop - /about/",
-      "status": "FAIL",
-      "url": "http://localhost:4322//about/",
-      "error": "page.waitForTimeout is not a function"
+      "status": "PASS",
+      "url": "http://localhost:4321//about/"
     },
     {
       "test": "Chrome - desktop - /search/",
-      "status": "FAIL",
-      "url": "http://localhost:4322//search/",
-      "error": "page.waitForTimeout is not a function"
+      "status": "PASS",
+      "url": "http://localhost:4321//search/"
     },
     {
       "test": "Chrome - desktop - /tags/",
-      "status": "FAIL",
-      "url": "http://localhost:4322//tags/",
-      "error": "page.waitForTimeout is not a function"
+      "status": "PASS",
+      "url": "http://localhost:4321//tags/"
     },
     {
       "test": "Chrome - tablet - /",
       "status": "FAIL",
-      "url": "http://localhost:4322//",
+      "url": "http://localhost:4321//",
       "error": "HTTP 304: Not Modified"
     },
     {
       "test": "Chrome - tablet - /about/",
       "status": "FAIL",
-      "url": "http://localhost:4322//about/",
+      "url": "http://localhost:4321//about/",
       "error": "HTTP 304: Not Modified"
     },
     {
       "test": "Chrome - tablet - /search/",
       "status": "FAIL",
-      "url": "http://localhost:4322//search/",
+      "url": "http://localhost:4321//search/",
       "error": "HTTP 304: Not Modified"
     },
     {
       "test": "Chrome - tablet - /tags/",
       "status": "FAIL",
-      "url": "http://localhost:4322//tags/",
+      "url": "http://localhost:4321//tags/",
       "error": "HTTP 304: Not Modified"
     },
     {
       "test": "Chrome - mobile - /",
       "status": "FAIL",
-      "url": "http://localhost:4322//",
+      "url": "http://localhost:4321//",
       "error": "HTTP 304: Not Modified"
     },
     {
       "test": "Chrome - mobile - /about/",
       "status": "FAIL",
-      "url": "http://localhost:4322//about/",
+      "url": "http://localhost:4321//about/",
       "error": "HTTP 304: Not Modified"
     },
     {
       "test": "Chrome - mobile - /search/",
       "status": "FAIL",
-      "url": "http://localhost:4322//search/",
+      "url": "http://localhost:4321//search/",
       "error": "HTTP 304: Not Modified"
     },
     {
       "test": "Chrome - mobile - /tags/",
       "status": "FAIL",
-      "url": "http://localhost:4322//tags/",
+      "url": "http://localhost:4321//tags/",
       "error": "HTTP 304: Not Modified"
     },
     {
       "test": "Chrome - iphone - /",
       "status": "FAIL",
-      "url": "http://localhost:4322//",
+      "url": "http://localhost:4321//",
       "error": "HTTP 304: Not Modified"
     },
     {
       "test": "Chrome - iphone - /about/",
       "status": "FAIL",
-      "url": "http://localhost:4322//about/",
+      "url": "http://localhost:4321//about/",
       "error": "HTTP 304: Not Modified"
     },
     {
       "test": "Chrome - iphone - /search/",
       "status": "FAIL",
-      "url": "http://localhost:4322//search/",
+      "url": "http://localhost:4321//search/",
       "error": "HTTP 304: Not Modified"
     },
     {
       "test": "Chrome - iphone - /tags/",
       "status": "FAIL",
-      "url": "http://localhost:4322//tags/",
+      "url": "http://localhost:4321//tags/",
       "error": "HTTP 304: Not Modified"
     }
   ],
   "errors": [
     {
-      "test": "Chrome - desktop - /",
-      "error": "page.waitForTimeout is not a function",
-      "stack": "TypeError: page.waitForTimeout is not a function\n    at CrossBrowserTester.runPageTests (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:195:16)\n    at async CrossBrowserTester.testPage (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:164:7)\n    at async CrossBrowserTester.testViewport (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:139:9)\n    at async CrossBrowserTester.testBrowser (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:120:9)\n    at async CrossBrowserTester.run (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:314:9)"
-    },
-    {
-      "test": "Chrome - desktop - /about/",
-      "error": "page.waitForTimeout is not a function",
-      "stack": "TypeError: page.waitForTimeout is not a function\n    at CrossBrowserTester.runPageTests (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:195:16)\n    at async CrossBrowserTester.testPage (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:164:7)\n    at async CrossBrowserTester.testViewport (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:139:9)\n    at async CrossBrowserTester.testBrowser (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:120:9)\n    at async CrossBrowserTester.run (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:314:9)"
-    },
-    {
-      "test": "Chrome - desktop - /search/",
-      "error": "page.waitForTimeout is not a function",
-      "stack": "TypeError: page.waitForTimeout is not a function\n    at CrossBrowserTester.runPageTests (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:195:16)\n    at async CrossBrowserTester.testPage (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:164:7)\n    at async CrossBrowserTester.testViewport (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:139:9)\n    at async CrossBrowserTester.testBrowser (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:120:9)\n    at async CrossBrowserTester.run (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:314:9)"
-    },
-    {
-      "test": "Chrome - desktop - /tags/",
-      "error": "page.waitForTimeout is not a function",
-      "stack": "TypeError: page.waitForTimeout is not a function\n    at CrossBrowserTester.runPageTests (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:195:16)\n    at async CrossBrowserTester.testPage (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:164:7)\n    at async CrossBrowserTester.testViewport (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:139:9)\n    at async CrossBrowserTester.testBrowser (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:120:9)\n    at async CrossBrowserTester.run (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:314:9)"
-    },
-    {
       "test": "Chrome - tablet - /",
       "error": "HTTP 304: Not Modified",
-      "stack": "Error: HTTP 304: Not Modified\n    at CrossBrowserTester.testPage (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:160:15)\n    at async CrossBrowserTester.testViewport (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:139:9)\n    at async CrossBrowserTester.testBrowser (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:120:9)\n    at async CrossBrowserTester.run (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:314:9)"
+      "stack": "Error: HTTP 304: Not Modified\n    at CrossBrowserTester.testPage (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:160:15)\n    at async CrossBrowserTester.testViewport (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:139:9)\n    at async CrossBrowserTester.testBrowser (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:120:9)\n    at async CrossBrowserTester.run (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:315:9)"
     },
     {
       "test": "Chrome - tablet - /about/",
       "error": "HTTP 304: Not Modified",
-      "stack": "Error: HTTP 304: Not Modified\n    at CrossBrowserTester.testPage (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:160:15)\n    at async CrossBrowserTester.testViewport (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:139:9)\n    at async CrossBrowserTester.testBrowser (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:120:9)\n    at async CrossBrowserTester.run (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:314:9)"
+      "stack": "Error: HTTP 304: Not Modified\n    at CrossBrowserTester.testPage (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:160:15)\n    at async CrossBrowserTester.testViewport (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:139:9)\n    at async CrossBrowserTester.testBrowser (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:120:9)\n    at async CrossBrowserTester.run (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:315:9)"
     },
     {
       "test": "Chrome - tablet - /search/",
       "error": "HTTP 304: Not Modified",
-      "stack": "Error: HTTP 304: Not Modified\n    at CrossBrowserTester.testPage (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:160:15)\n    at async CrossBrowserTester.testViewport (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:139:9)\n    at async CrossBrowserTester.testBrowser (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:120:9)\n    at async CrossBrowserTester.run (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:314:9)"
+      "stack": "Error: HTTP 304: Not Modified\n    at CrossBrowserTester.testPage (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:160:15)\n    at async CrossBrowserTester.testViewport (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:139:9)\n    at async CrossBrowserTester.testBrowser (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:120:9)\n    at async CrossBrowserTester.run (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:315:9)"
     },
     {
       "test": "Chrome - tablet - /tags/",
       "error": "HTTP 304: Not Modified",
-      "stack": "Error: HTTP 304: Not Modified\n    at CrossBrowserTester.testPage (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:160:15)\n    at async CrossBrowserTester.testViewport (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:139:9)\n    at async CrossBrowserTester.testBrowser (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:120:9)\n    at async CrossBrowserTester.run (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:314:9)"
+      "stack": "Error: HTTP 304: Not Modified\n    at CrossBrowserTester.testPage (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:160:15)\n    at async CrossBrowserTester.testViewport (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:139:9)\n    at async CrossBrowserTester.testBrowser (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:120:9)\n    at async CrossBrowserTester.run (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:315:9)"
     },
     {
       "test": "Chrome - mobile - /",
       "error": "HTTP 304: Not Modified",
-      "stack": "Error: HTTP 304: Not Modified\n    at CrossBrowserTester.testPage (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:160:15)\n    at async CrossBrowserTester.testViewport (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:139:9)\n    at async CrossBrowserTester.testBrowser (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:120:9)\n    at async CrossBrowserTester.run (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:314:9)"
+      "stack": "Error: HTTP 304: Not Modified\n    at CrossBrowserTester.testPage (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:160:15)\n    at async CrossBrowserTester.testViewport (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:139:9)\n    at async CrossBrowserTester.testBrowser (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:120:9)\n    at async CrossBrowserTester.run (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:315:9)"
     },
     {
       "test": "Chrome - mobile - /about/",
       "error": "HTTP 304: Not Modified",
-      "stack": "Error: HTTP 304: Not Modified\n    at CrossBrowserTester.testPage (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:160:15)\n    at async CrossBrowserTester.testViewport (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:139:9)\n    at async CrossBrowserTester.testBrowser (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:120:9)\n    at async CrossBrowserTester.run (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:314:9)"
+      "stack": "Error: HTTP 304: Not Modified\n    at CrossBrowserTester.testPage (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:160:15)\n    at async CrossBrowserTester.testViewport (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:139:9)\n    at async CrossBrowserTester.testBrowser (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:120:9)\n    at async CrossBrowserTester.run (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:315:9)"
     },
     {
       "test": "Chrome - mobile - /search/",
       "error": "HTTP 304: Not Modified",
-      "stack": "Error: HTTP 304: Not Modified\n    at CrossBrowserTester.testPage (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:160:15)\n    at async CrossBrowserTester.testViewport (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:139:9)\n    at async CrossBrowserTester.testBrowser (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:120:9)\n    at async CrossBrowserTester.run (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:314:9)"
+      "stack": "Error: HTTP 304: Not Modified\n    at CrossBrowserTester.testPage (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:160:15)\n    at async CrossBrowserTester.testViewport (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:139:9)\n    at async CrossBrowserTester.testBrowser (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:120:9)\n    at async CrossBrowserTester.run (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:315:9)"
     },
     {
       "test": "Chrome - mobile - /tags/",
       "error": "HTTP 304: Not Modified",
-      "stack": "Error: HTTP 304: Not Modified\n    at CrossBrowserTester.testPage (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:160:15)\n    at async CrossBrowserTester.testViewport (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:139:9)\n    at async CrossBrowserTester.testBrowser (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:120:9)\n    at async CrossBrowserTester.run (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:314:9)"
+      "stack": "Error: HTTP 304: Not Modified\n    at CrossBrowserTester.testPage (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:160:15)\n    at async CrossBrowserTester.testViewport (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:139:9)\n    at async CrossBrowserTester.testBrowser (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:120:9)\n    at async CrossBrowserTester.run (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:315:9)"
     },
     {
       "test": "Chrome - iphone - /",
       "error": "HTTP 304: Not Modified",
-      "stack": "Error: HTTP 304: Not Modified\n    at CrossBrowserTester.testPage (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:160:15)\n    at async CrossBrowserTester.testViewport (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:139:9)\n    at async CrossBrowserTester.testBrowser (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:120:9)\n    at async CrossBrowserTester.run (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:314:9)"
+      "stack": "Error: HTTP 304: Not Modified\n    at CrossBrowserTester.testPage (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:160:15)\n    at async CrossBrowserTester.testViewport (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:139:9)\n    at async CrossBrowserTester.testBrowser (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:120:9)\n    at async CrossBrowserTester.run (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:315:9)"
     },
     {
       "test": "Chrome - iphone - /about/",
       "error": "HTTP 304: Not Modified",
-      "stack": "Error: HTTP 304: Not Modified\n    at CrossBrowserTester.testPage (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:160:15)\n    at async CrossBrowserTester.testViewport (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:139:9)\n    at async CrossBrowserTester.testBrowser (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:120:9)\n    at async CrossBrowserTester.run (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:314:9)"
+      "stack": "Error: HTTP 304: Not Modified\n    at CrossBrowserTester.testPage (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:160:15)\n    at async CrossBrowserTester.testViewport (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:139:9)\n    at async CrossBrowserTester.testBrowser (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:120:9)\n    at async CrossBrowserTester.run (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:315:9)"
     },
     {
       "test": "Chrome - iphone - /search/",
       "error": "HTTP 304: Not Modified",
-      "stack": "Error: HTTP 304: Not Modified\n    at CrossBrowserTester.testPage (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:160:15)\n    at async CrossBrowserTester.testViewport (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:139:9)\n    at async CrossBrowserTester.testBrowser (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:120:9)\n    at async CrossBrowserTester.run (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:314:9)"
+      "stack": "Error: HTTP 304: Not Modified\n    at CrossBrowserTester.testPage (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:160:15)\n    at async CrossBrowserTester.testViewport (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:139:9)\n    at async CrossBrowserTester.testBrowser (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:120:9)\n    at async CrossBrowserTester.run (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:315:9)"
     },
     {
       "test": "Chrome - iphone - /tags/",
       "error": "HTTP 304: Not Modified",
-      "stack": "Error: HTTP 304: Not Modified\n    at CrossBrowserTester.testPage (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:160:15)\n    at async CrossBrowserTester.testViewport (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:139:9)\n    at async CrossBrowserTester.testBrowser (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:120:9)\n    at async CrossBrowserTester.run (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:314:9)"
+      "stack": "Error: HTTP 304: Not Modified\n    at CrossBrowserTester.testPage (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:160:15)\n    at async CrossBrowserTester.testViewport (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:139:9)\n    at async CrossBrowserTester.testBrowser (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:120:9)\n    at async CrossBrowserTester.run (file:///Users/jason.rinehart/Projects/technicalanxiety.github.io/scripts/cross-browser-test.js:315:9)"
     }
   ]
 }

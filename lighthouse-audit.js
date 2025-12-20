@@ -5,7 +5,7 @@ import puppeteer from 'puppeteer';
 import fs from 'fs';
 import path from 'path';
 
-const BASE_URL = 'http://localhost:4323';
+const BASE_URL = 'http://localhost:4322';
 const OUTPUT_DIR = 'lighthouse-reports';
 
 // Ensure output directory exists

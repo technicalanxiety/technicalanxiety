@@ -1,54 +1,34 @@
 # Cross-Browser Test Report
 
-Generated: 2025-12-20T03:11:35.603Z
+Generated: 2025-12-20T03:53:06.947Z
 
 ## Summary
 - **Total Tests**: 16
-- **Passed**: 0
-- **Failed**: 16
-- **Success Rate**: 0%
+- **Passed**: 4
+- **Failed**: 12
+- **Success Rate**: 25%
 
 ## Test Results
 
-- ❌ Chrome - desktop - / - http://localhost:4322//
-- ❌ Chrome - desktop - /about/ - http://localhost:4322//about/
-- ❌ Chrome - desktop - /search/ - http://localhost:4322//search/
-- ❌ Chrome - desktop - /tags/ - http://localhost:4322//tags/
-- ❌ Chrome - tablet - / - http://localhost:4322//
-- ❌ Chrome - tablet - /about/ - http://localhost:4322//about/
-- ❌ Chrome - tablet - /search/ - http://localhost:4322//search/
-- ❌ Chrome - tablet - /tags/ - http://localhost:4322//tags/
-- ❌ Chrome - mobile - / - http://localhost:4322//
-- ❌ Chrome - mobile - /about/ - http://localhost:4322//about/
-- ❌ Chrome - mobile - /search/ - http://localhost:4322//search/
-- ❌ Chrome - mobile - /tags/ - http://localhost:4322//tags/
-- ❌ Chrome - iphone - / - http://localhost:4322//
-- ❌ Chrome - iphone - /about/ - http://localhost:4322//about/
-- ❌ Chrome - iphone - /search/ - http://localhost:4322//search/
-- ❌ Chrome - iphone - /tags/ - http://localhost:4322//tags/
+- ✅ Chrome - desktop - / - http://localhost:4321//
+- ✅ Chrome - desktop - /about/ - http://localhost:4321//about/
+- ✅ Chrome - desktop - /search/ - http://localhost:4321//search/
+- ✅ Chrome - desktop - /tags/ - http://localhost:4321//tags/
+- ❌ Chrome - tablet - / - http://localhost:4321//
+- ❌ Chrome - tablet - /about/ - http://localhost:4321//about/
+- ❌ Chrome - tablet - /search/ - http://localhost:4321//search/
+- ❌ Chrome - tablet - /tags/ - http://localhost:4321//tags/
+- ❌ Chrome - mobile - / - http://localhost:4321//
+- ❌ Chrome - mobile - /about/ - http://localhost:4321//about/
+- ❌ Chrome - mobile - /search/ - http://localhost:4321//search/
+- ❌ Chrome - mobile - /tags/ - http://localhost:4321//tags/
+- ❌ Chrome - iphone - / - http://localhost:4321//
+- ❌ Chrome - iphone - /about/ - http://localhost:4321//about/
+- ❌ Chrome - iphone - /search/ - http://localhost:4321//search/
+- ❌ Chrome - iphone - /tags/ - http://localhost:4321//tags/
 
 
 ## Errors
-
-### Chrome - desktop - /
-```
-page.waitForTimeout is not a function
-```
-
-### Chrome - desktop - /about/
-```
-page.waitForTimeout is not a function
-```
-
-### Chrome - desktop - /search/
-```
-page.waitForTimeout is not a function
-```
-
-### Chrome - desktop - /tags/
-```
-page.waitForTimeout is not a function
-```
 
 ### Chrome - tablet - /
 ```
