@@ -164,7 +164,7 @@ This plan implements the migration from Jekyll to Astro in phases, with testing 
     - **Property 11: Meta Tag Completeness**
     - Verify all pages have required meta tags
     - **Validates: Requirements 4.1, 4.2**
-  - [ ] 8.5 Write property test for URL preservation
+  - [x] 8.5 Write property test for URL preservation
     - **Property 12: URL Structure Preservation**
     - Verify Astro URLs match Jekyll URLs
     - **Validates: Requirements 4.3**
