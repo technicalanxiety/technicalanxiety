@@ -24,7 +24,7 @@ This piece is about Monday morning. Not reorganization. Not new headcount. Not t
 
 If you read Parts 1 and 2 and thought "this makes sense but I don't know where to start," this is where to start.
 
-### Draw the Line
+## Draw the Line
 
 The first move is the hardest because it requires saying something out loud that organizations avoid.
 
@@ -42,7 +42,7 @@ This separation stops the cycle of duct tape fixes that never become real soluti
 
 The practical move: in your next incident review, require two distinct outputs. The mitigation that operations performed. The platform change that prevents recurrence. If there's no platform change, challenge the assumption that one isn't needed.
 
-### Give the Loop Teeth
+## Give the Loop Teeth
 
 The separation only works if the feedback loop has consequences.
 
@@ -76,7 +76,7 @@ If no platform change comes out of a postmortem, the postmortem failed.
 
 One more thing about postmortems: they require presence. Open, present, and connected. If you're on your laptop answering emails or checking your phone, you're not providing value. The feedback loop requires attention. Half-present participants produce half-useful insights.
 
-### Enforce Something
+## Enforce Something
 
 Resiliency as a "design principle" means nothing if teams can ignore it.
 
@@ -105,7 +105,7 @@ Another example: code commenting and documentation. Commits wouldn't get approve
 
 Start with one standard. Prove it works. Add another. This compounds over time into a platform that's resilient by default rather than resilient by hope.
 
-### Make Pain Visible
+## Make Pain Visible
 
 Platform teams can't fix what they can't see.
 
@@ -145,7 +145,7 @@ Toil reduction becomes measurable. Operations sees their feedback producing chan
 
 And when operations realizes this, something shifts. They develop ownership in the platform. Their voice matters. The platform exists for them to support customers. They're not just consuming a service. They're shaping it.
 
-### Own the Tools
+## Own the Tools
 
 Operational tooling is a platform decision.
 
@@ -161,7 +161,7 @@ The platform decides what tools exist in the environment. Operations consumes th
 
 This isn't about control for its own sake. It's about coherence. Tools that integrate with your standards. Tools that fit your governance model. Tools that become platform capability rather than team-specific workarounds.
 
-### What This Doesn't Require
+## What This Doesn't Require
 
 I want to be clear about what I'm not asking for.
 
@@ -173,7 +173,7 @@ Platform Resiliency accumulates power over time. Each incident that produces a p
 
 The model compounds. But only if you start.
 
-### The Monday Checklist
+## The Monday Checklist
 
 If you do five things:
 

@@ -22,7 +22,7 @@ This piece makes that concrete. What does it mean to weave resiliency into the p
 
 The answer starts with how we think about resiliency itself.
 
-### Resiliency as Design Principle
+## Resiliency as Design Principle
 
 In my Platform Layer series, I defined platform architecture as vision and enablement. The platform architect sees what's possible and creates the conditions for teams to build toward it.
 
@@ -42,7 +42,7 @@ Consider what resiliency means applied across the disciplines.
 
 Resiliency isn't a separate concern. It's a lens applied to every platform decision.
 
-### Who Owns What
+## Who Owns What
 
 The question that killed SRE adoption: who owns production?
 
@@ -60,7 +60,7 @@ Neither group can do the other's job well. Asking operations to architect platfo
 
 The model works when the feedback loop closes. Operations documents what failed. Platform teams analyze root cause. Improvements flow back into standards, automation, and platform capabilities. The next incident either doesn't happen or gets resolved faster.
 
-### The Feedback Loop Has to Have Teeth
+## The Feedback Loop Has to Have Teeth
 
 Here's where I need to be direct. This model requires the same organizational commitment that SRE required. The difference is where that commitment lives and who enforces it.
 
@@ -78,7 +78,7 @@ I wrote extensively about these preconditions in the Decide or Drown series. Ser
 
 The honest answer is: Platform Resiliency works where organizations are willing to do the hard work. It doesn't magically solve dysfunction.
 
-### Blameless Postmortems as Platform Input
+## Blameless Postmortems as Platform Input
 
 The feedback loop requires a specific mechanism: blameless postmortems that produce platform-actionable insights.
 
@@ -92,7 +92,7 @@ This translation function is critical. It's also where modern service management
 
 Without mature service management, you have incidents and postmortems but no improvement. With it, every incident makes the platform stronger.
 
-### Where AI Fits
+## Where AI Fits
 
 AI-powered SRE tools have attracted significant investment. Vendors promise to eliminate the talent bottleneck that killed traditional SRE adoption.
 
@@ -112,7 +112,7 @@ When AI tools are adopted strategically as platform extensions, they integrate w
 
 The platform decides. Operations consumes the capability.
 
-### This Will Evolve
+## This Will Evolve
 
 One more thing about AI: the capabilities are advancing rapidly. What AI tools can do today will look primitive in five years.
 
@@ -124,7 +124,7 @@ This is true beyond AI. The entire landscape of cloud infrastructure, observabil
 
 Platform Resiliency is a framework for thinking about resilience. The specific implementations will change as technology changes. That's expected, not a problem.
 
-### Make It Your Own
+## Make It Your Own
 
 If you've read this far and your instinct is to implement Platform Resiliency exactly as described, pause.
 
@@ -142,7 +142,7 @@ If you're in an organization where platform architecture doesn't have authority,
 
 If you're holding an "SRE" title and feeling disconnected from the original philosophy, know that your frustration is valid. The model wasn't designed for your conditions. Platform Resiliency offers a different frame, one that doesn't depend on organizational authority you were never given. You can advocate for resiliency as a design principle even when you can't enforce it as a team function.
 
-### The Path Forward
+## The Path Forward
 
 The SRE experiment outside Google taught us something valuable. Reliability engineering matters. Toil reduction matters. Feedback loops matter. But the organizational implementation has to fit the organizational reality.
 
