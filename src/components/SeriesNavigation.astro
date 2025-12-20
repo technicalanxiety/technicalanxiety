@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content';
+import { getAllPosts } from '../utils/posts';
 
 export interface Props {
   currentSeries?: string;
@@ -19,7 +19,7 @@ let nextPost: any = null;
 
 if (currentSeries && currentPart) {
   // Get all posts in the same series
-  const allPosts = await getCollection('posts');
+  const allPosts = await getAllPosts();
   seriesPosts = allPosts
     .filter(post => post.data.series === currentSeries && !post.data.draft)
     .sort((a, b) => (a.data.series_part || 0) - (b.data.series_part || 0));
