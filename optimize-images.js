@@ -16,7 +16,7 @@ if (!fs.existsSync(OUTPUT_DIR)) {
   fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 }
 
-// Critical images that need immediate optimization
+// Critical images that need responsive sizes
 const criticalImages = [
   'me.jpg',
   'about.jpg', 
@@ -48,6 +48,23 @@ const optimizationSettings = {
   }
 };
 
+function isAlreadyOptimized(filename) {
+  const baseName = path.parse(filename).name;
+  const webpPath = path.join(OUTPUT_DIR, `${baseName}.webp`);
+  const avifPath = path.join(OUTPUT_DIR, `${baseName}.avif`);
+  
+  // Check if optimized versions exist
+  if (!fs.existsSync(webpPath) || !fs.existsSync(avifPath)) {
+    return false;
+  }
+  
+  // Check if source is newer than optimized versions
+  const sourceStat = fs.statSync(path.join(INPUT_DIR, filename));
+  const webpStat = fs.statSync(webpPath);
+  
+  return sourceStat.mtime <= webpStat.mtime;
+}
+
 async function optimizeImage(inputPath, filename) {
   const baseName = path.parse(filename).name;
   const ext = path.parse(filename).ext.toLowerCase();
@@ -57,8 +74,9 @@ async function optimizeImage(inputPath, filename) {
   try {
     const image = sharp(inputPath);
     const metadata = await image.metadata();
+    const inputStats = fs.statSync(inputPath);
     
-    console.log(`   Original: ${metadata.width}x${metadata.height}, ${Math.round(metadata.size / 1024)}KB`);
+    console.log(`   Original: ${metadata.width}x${metadata.height}, ${Math.round(inputStats.size / 1024)}KB`);
     
     // Generate WebP version (best compression, wide support)
     const webpPath = path.join(OUTPUT_DIR, `${baseName}.webp`);
@@ -67,7 +85,7 @@ async function optimizeImage(inputPath, filename) {
       .toFile(webpPath);
     
     const webpStats = fs.statSync(webpPath);
-    console.log(`   WebP: ${Math.round(webpStats.size / 1024)}KB (${Math.round((1 - webpStats.size / metadata.size) * 100)}% smaller)`);
+    console.log(`   WebP: ${Math.round(webpStats.size / 1024)}KB (${Math.round((1 - webpStats.size / inputStats.size) * 100)}% smaller)`);
     
     // Generate AVIF version (best compression, newer browsers)
     const avifPath = path.join(OUTPUT_DIR, `${baseName}.avif`);
@@ -76,7 +94,7 @@ async function optimizeImage(inputPath, filename) {
       .toFile(avifPath);
     
     const avifStats = fs.statSync(avifPath);
-    console.log(`   AVIF: ${Math.round(avifStats.size / 1024)}KB (${Math.round((1 - avifStats.size / metadata.size) * 100)}% smaller)`);
+    console.log(`   AVIF: ${Math.round(avifStats.size / 1024)}KB (${Math.round((1 - avifStats.size / inputStats.size) * 100)}% smaller)`);
     
     // Generate optimized original format as fallback
     let optimizedPath;
@@ -94,7 +112,7 @@ async function optimizeImage(inputPath, filename) {
     
     if (optimizedPath) {
       const optimizedStats = fs.statSync(optimizedPath);
-      console.log(`   Optimized ${ext}: ${Math.round(optimizedStats.size / 1024)}KB (${Math.round((1 - optimizedStats.size / metadata.size) * 100)}% smaller)`);
+      console.log(`   Optimized ${ext}: ${Math.round(optimizedStats.size / 1024)}KB (${Math.round((1 - optimizedStats.size / inputStats.size) * 100)}% smaller)`);
     }
     
     // Generate responsive sizes for critical images
@@ -149,27 +167,38 @@ async function optimizeAllImages() {
     fs.statSync(path.join(INPUT_DIR, file)).isFile()
   );
   
-  console.log(`Found ${imageFiles.length} images to optimize\n`);
+  // Filter to only new/modified images
+  const newImages = imageFiles.filter(file => !isAlreadyOptimized(file));
+  const skippedCount = imageFiles.length - newImages.length;
   
-  // Optimize critical images first
-  const criticalFiles = imageFiles.filter(file => criticalImages.includes(file));
-  const otherFiles = imageFiles.filter(file => !criticalImages.includes(file));
+  console.log(`Found ${imageFiles.length} images total`);
+  console.log(`Skipping ${skippedCount} already optimized images`);
+  console.log(`Processing ${newImages.length} new/modified images\n`);
   
-  console.log('📌 Optimizing critical images first...\n');
-  for (const file of criticalFiles) {
-    await optimizeImage(path.join(INPUT_DIR, file), file);
+  if (newImages.length === 0) {
+    console.log('✅ All images are already optimized!');
+    return;
   }
   
-  console.log('📷 Optimizing remaining images...\n');
-  for (const file of otherFiles.slice(0, 10)) { // Limit to first 10 for now
-    await optimizeImage(path.join(INPUT_DIR, file), file);
+  // Optimize critical images first
+  const criticalFiles = newImages.filter(file => criticalImages.includes(file));
+  const otherFiles = newImages.filter(file => !criticalImages.includes(file));
+  
+  if (criticalFiles.length > 0) {
+    console.log('📌 Optimizing critical images first...\n');
+    for (const file of criticalFiles) {
+      await optimizeImage(path.join(INPUT_DIR, file), file);
+    }
+  }
+  
+  if (otherFiles.length > 0) {
+    console.log('📷 Optimizing remaining images...\n');
+    for (const file of otherFiles) {
+      await optimizeImage(path.join(INPUT_DIR, file), file);
+    }
   }
   
   console.log('✅ Image optimization complete!');
-  console.log('\n📋 Next steps:');
-  console.log('1. Update image references to use optimized versions');
-  console.log('2. Implement responsive images with <picture> elements');
-  console.log('3. Add width/height attributes to prevent layout shifts');
 }
 
 // Check if Sharp is installed

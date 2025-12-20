@@ -1,9 +1,9 @@
 ---
 title: "From Jekyll to Kiro: How AI Transformed My Publishing Workflow"
 date: 2025-12-23
+image: publish-transformation.jpg
 tags: [AI, Development, Productivity]
 description: "Five years ago I was manually running Jekyll in WSL. Now I have an AI-assisted, fully automated publishing platform. Here's the journey."
-image: ""
 ---
 
 Five years ago, I wrote my first blog post. It was three sentences:
@@ -215,4 +215,4 @@ The future is weird. I'm here for it.
 
 *If you're curious about the technical details - the workflows, the scripts, the configuration - I'll be sharing them in my public repo [cloudthings](https://github.com/jrinehart76/cloudthings). Sometimes the best documentation is showing your work.*
 
-**Photo by [NAME](URL) on [Unsplash](URL)**
+**Photo by [Suzanne D. Williams](https://unsplash.com/@scw1217) on [Unsplash](https://unsplash.com/photos/three-pupas-VMKBFR6r_jg)**
