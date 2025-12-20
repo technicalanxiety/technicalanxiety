@@ -14,7 +14,11 @@
     "test:cross-browser": "node scripts/cross-browser-test.js",
     "backlog": "node scripts/manage-backlog.js",
     "backlog:list": "node scripts/manage-backlog.js list",
-    "backlog:check": "node scripts/manage-backlog.js check"
+    "backlog:check": "node scripts/manage-backlog.js check",
+    "deploy:preview": "npm run build && npm run preview",
+    "deploy:check": "npm run check && npm run test && npm run build",
+    "verify:production": "node scripts/verify-deployment.js production",
+    "verify:staging": "node scripts/verify-deployment.js staging"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.6",

@@ -214,12 +214,12 @@ This plan implements the migration from Jekyll to Astro in phases, with testing 
   - Visual comparison approved
   - Ask user for cutover approval
 
-- [ ] 13. Cutover preparation
-  - [ ] 13.1 Prepare rollback branch
+- [x] 13. Cutover preparation
+  - [x] 13.1 Prepare rollback branch
     - Tag current Jekyll site as `pre-astro-migration`
     - Document rollback procedure
     - _Requirements: 7.1_
-  - [ ] 13.2 Configure production deployment
+  - [x] 13.2 Configure production deployment
     - Update GitHub Pages or hosting configuration
     - Set up DNS if needed
     - _Requirements: 7.2_
