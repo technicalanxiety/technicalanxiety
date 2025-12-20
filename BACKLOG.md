@@ -9,7 +9,7 @@ Successfully migrated from Jekyll to Astro with significant performance improvem
 
 ### 🔄 **Migration Cleanup & Workflow** (High Priority)
 - [ ] **GitHub Actions Update** - Update auto-publishing workflow for Astro
-  - Migrate from Jekyll `_posts/backlog` to Astro `src/content/posts/backlog`
+  - Migrate from Jekyll `_posts/backlog` to Astro `src/content/backlog`
   - Update build process to use `npm run build` instead of Jekyll
   - Test scheduled post publishing workflow
 - [ ] **Content Backlog Migration** - Move any scheduled posts to new structure

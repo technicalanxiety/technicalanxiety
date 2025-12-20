@@ -20,7 +20,7 @@ const hasOptimized = src.includes('/img/');
 ---
 
 {hasOptimized ? (
-  <picture class={className}>
+  <picture class={`avatar-picture ${className}`} style={`width: ${size}px; height: ${size}px;`}>
     <!-- Try optimized AVIF first -->
     <source 
       srcset={`/img/optimized/${filename}.avif`}
@@ -42,6 +42,7 @@ const hasOptimized = src.includes('/img/');
       loading="eager"
       decoding="async"
       onerror={`this.onerror=null; this.src='${src}';`}
+      style="width: 100%; height: 100%; object-fit: cover; object-position: center 15%; border-radius: 50%;"
     />
   </picture>
 ) : (
@@ -53,14 +54,23 @@ const hasOptimized = src.includes('/img/');
     height={size}
     loading="eager"
     decoding="async"
-    class={className}
+    class={`avatar-img ${className}`}
+    style={`width: ${size}px; height: ${size}px; object-fit: cover; object-position: center 15%; border-radius: 50%;`}
   />
 )}
 
 <style>
-  picture, img {
+  .avatar-picture, .avatar-img {
     display: block;
     border-radius: 50%;
-    object-fit: cover;
+    overflow: hidden;
+  }
+  
+  .avatar-picture img, .avatar-img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center 15% !important;
+    border-radius: 50% !important;
   }
 </style>

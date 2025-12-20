@@ -17,7 +17,7 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const BACKLOG_DIR = path.join(__dirname, '..', 'src', 'content', 'posts', 'backlog');
+const BACKLOG_DIR = path.join(__dirname, '..', 'src', 'content', 'backlog');
 const POSTS_DIR = path.join(__dirname, '..', 'src', 'content', 'posts');
 
 // Ensure directories exist
@@ -117,7 +117,7 @@ Your content here...
   fs.writeFileSync(filepath, template);
   console.log(`✅ Created backlog post: ${filename}`);
   console.log(`📅 Scheduled for: ${dateStr}`);
-  console.log(`📝 Edit: src/content/posts/backlog/${filename}`);
+  console.log(`📝 Edit: src/content/backlog/${filename}`);
 }
 
 function publishPost(filename) {
