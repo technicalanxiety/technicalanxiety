@@ -1,8 +1,8 @@
 import type { APIRoute } from 'astro';
-import { getCollection } from 'astro:content';
+import { getPublishedPosts } from '../utils/posts';
 
 export const GET: APIRoute = async () => {
-  const posts = await getCollection('posts');
+  const posts = await getPublishedPosts();
   
   // Create search index with post data
   const searchIndex = posts
