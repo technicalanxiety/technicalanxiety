@@ -1,6 +1,6 @@
 ---
 inclusion: fileMatch
-fileMatchPattern: "_posts/**/*.md"
+fileMatchPattern: "src/content/**/*.md"
 ---
 
 # Blog Content Standards
@@ -13,9 +13,37 @@ fileMatchPattern: "_posts/**/*.md"
 
 ## Post Requirements
 
-**Front Matter** (see `.github/SNIPPETS.md` for templates):
-- layout, title, date, image, tags, description (150-160 chars)
-- Optional: series, series_part
+## Post Requirements
+
+**Front Matter** (Astro format):
+```yaml
+---
+title: "Your Post Title"
+date: 2024-12-25
+tags: [Azure, Leadership]
+description: "SEO description 150-160 characters"
+image: "image-filename.jpg"
+series: "Series Name"        # Optional
+series_order: 1              # Optional (backlog posts)
+# OR series_part: 1          # Optional (published posts)
+author: "Jason Rinehart"     # Optional (defaults to this)
+draft: false                 # Optional (defaults to false)
+---
+```
+
+**Required Fields**:
+- `title`: Clear, descriptive title with target keywords
+- `date`: YYYY-MM-DD format (future dates for scheduling)
+- `tags`: Array format `[Tag1, Tag2]` - use existing tags when possible
+- `description`: 150-160 characters for SEO and social sharing
+
+**Optional Fields**:
+- `image`: Filename only (stored in `public/img/`)
+- `series`: For multi-part content (exact name match across parts)
+- `series_order`: Part number for backlog posts
+- `series_part`: Part number for published posts
+- `author`: Defaults to "Jason Rinehart"
+- `draft`: Set to `true` to exclude from build
 
 **Structure**:
 - Flexible format - let content dictate structure
@@ -28,10 +56,13 @@ fileMatchPattern: "_posts/**/*.md"
 - Real-world examples, not toy problems
 
 **Images**:
-- Source: Unsplash
-- Size: 1200x630px (featured), <200KB
+- Source: Unsplash or original photography
+- Size: 1200x630px (featured), optimized for web
 - Always credit: `**Photo by [Name](url) on [Unsplash](url)**`
-- Location: /img/ directory
+- Location: `public/img/` directory (originals)
+- Optimization: Run `node optimize-images.js` after adding new images
+- Reference: Use filename only in frontmatter (no path or quotes)
+- Formats: Automatic WebP/AVIF generation for performance
 
 **File Formatting**:
 - **Encoding**: UTF-8 (no BOM)
@@ -42,59 +73,92 @@ fileMatchPattern: "_posts/**/*.md"
 
 ## Workflow
 
-**Drafts**: `_posts/backlog/` → **Published**: `_posts/`
-**Naming**: `YYYY-MM-DD-post-slug.md`
-**Cadence**: Bi-weekly target, weekly stretch goal
+**Directory Structure**:
+- **Scheduled Posts**: `src/content/backlog/` (future dates)
+- **Published Posts**: `src/content/posts/` (current/past dates)
 
-**Pre-Publish Checklist** (see `.github/QUICK_REFERENCE.md`):
-- Front matter complete
-- Image optimized with attribution
-- Code blocks have language tags
-- Links tested, reading time <10 min
-- SEO description 150-160 chars
-- **File formatting**: Unix line endings (LF), UTF-8 encoding
-- **Series posts**: "What's Next" section included (non-final parts)
-- **Series posts**: HTML comment with next part filename included
-- **Series posts**: Navigation links to other parts included
-- **Series posts**: Previous parts updated to link forward (if applicable)
+**File Naming**: 
+- Astro format: `post-slug.md` (no date prefix)
+- Slug becomes URL: `post-slug.md` → `/post-slug/`
+
+**Publishing Process**:
+1. Create in backlog: `npm run backlog add "Post Title"`
+2. Edit file in `src/content/backlog/`
+3. Set future date for scheduling
+4. Automatic publishing daily at 9 AM UTC
+5. Manual publishing: `npm run backlog publish filename.md`
+
+**Development Workflow**:
+- Local preview: `npm run dev` (http://localhost:4321/)
+- Build test: `npm run build`
+- Image optimization: `node optimize-images.js`
+
+**Pre-Publish Checklist**:
+- [ ] **Frontmatter**: All required fields present and valid YAML
+- [ ] **Date Format**: YYYY-MM-DD format
+- [ ] **Tags**: Use existing tags, array format `[Tag1, Tag2]`
+- [ ] **Description**: 150-160 characters, compelling and descriptive
+- [ ] **Image**: Optimized and properly referenced (filename only, no quotes)
+- [ ] **Content**: Headers, code blocks with language tags, internal links with trailing slashes
+- [ ] **Series**: Consistent naming and navigation (if applicable)
+- [ ] **Local Test**: `npm run dev` and `npm run build` both work
+- [ ] **Links**: All internal links use trailing slashes (`/post-slug/`)
+- [ ] **Performance**: Images optimized, content scannable
+- [ ] **SEO**: Title includes keywords, description is compelling
 
 ## Tags
-**Existing**: Anxiety, Leadership, Azure, Governance, Operations, Log Analytics
-**Guidelines**: Use existing tags, create sparingly, PascalCase, max 3-4 per post
+**Existing**: Anxiety, Leadership, Azure, Governance, Operations, Log Analytics, Infrastructure, Architecture, Platform, AI, Development, Productivity, Post, Jekyll
+**Guidelines**: 
+- Use existing tags when possible
+- Create new tags sparingly
+- PascalCase format
+- Maximum 3-4 tags per post
+- Array format in frontmatter: `tags: [Azure, Leadership]`
 
 ## Series Posts
-- Consistent series name across parts
-- Number sequentially (1, 2, 3...)
-- Each part stands alone but references others
-- See `.github/SNIPPETS.md` for front matter template
 
-**Series Navigation Requirements**:
-- **Every series part** must include navigation to other parts at the end
-- Place navigation section before the photo attribution
-- Format: `*This is Part X of the "Series Name" series. [Part Y: Title](/url) covers topic.*`
-- **Part 1**: Link to Part 2 (if published)
-- **Middle parts**: Link to previous and next parts
-- **Final part**: Reference previous parts and conclude series
-- **When publishing new parts**: Update previous parts to link forward
+**Frontmatter Requirements**:
+- **Consistent series name** across all parts (exact match)
+- **Backlog posts**: Use `series_order: 1` for part numbering
+- **Published posts**: Use `series_part: 1` for part numbering
+- **Sequential numbering**: 1, 2, 3... (not Part 1, Part 2)
 
-**"What's Next" Section Requirements**:
-- **Required for all non-final series parts**
-- Place after main content, before series navigation
-- Include teaser for next part's content
-- Format: `## What's Next?` followed by preview text
-- **Template**: `**Coming Next:** Part X: Title (Publishing Date)` + content preview
-- **HTML Comments**: Add `<!-- NEXT_PART: YYYY-MM-DD-post-slug.md -->` before and `<!-- END_NEXT_PART -->` after the "What's Next" section for linking reference
+**Content Structure**:
+- Each part should stand alone but reference others
+- Include series context in introduction
+- End with navigation to other parts
+- Use "What's Next" sections for upcoming parts
 
-**GitHub Actions Auto-Linking**:
-- The daily publish workflow automatically processes these HTML comments
-- When a new series part publishes, the workflow scans all existing posts for matching `<!-- NEXT_PART: filename -->` comments
-- The entire "What's Next" section gets replaced with a clean link: `**Next in Series:** [Title →](/slug/)`
-- This creates seamless forward linking without manual updates
-- The automation runs daily at 9 AM UTC and processes posts with dates <= today
+**Navigation Requirements**:
+- **Every series part** must include navigation at the end
+- Place before photo attribution
+- Format: `*This is Part X of the "Series Name" series. [Part Y: Title](/part-y/) covers topic.*`
+- **Internal links**: Always use trailing slashes (`/post-slug/`)
+
+**Automated Linking System**:
+The GitHub Actions workflow automatically handles series progression:
+
+1. **Add placeholder** in current post for next part:
+```markdown
+<!-- NEXT_PART: next-post-filename.md -->
+## What's Next?
+
+**Coming Next:** Part 3: Title (Publishing Date)
+
+Brief preview of what the next part will cover.
+<!-- END_NEXT_PART -->
+```
+
+2. **When next part publishes**, the workflow automatically:
+   - Scans all posts for matching `<!-- NEXT_PART: filename -->` comments
+   - Replaces the entire section with: `**Next in Series:** [Title →](/slug/)`
+   - Creates seamless forward linking without manual updates
+
+3. **Workflow runs daily** at 9 AM UTC and processes posts with dates <= today
 
 **Complete Series Template**:
 ```markdown
-<!-- NEXT_PART: 2025-MM-DD-series-name-pt3.md -->
+<!-- NEXT_PART: series-name-pt3.md -->
 ## What's Next?
 
 **Coming Next:** Part 3: Title (Publishing Date)
@@ -104,36 +168,104 @@ Brief preview of what the next part will cover.
 
 ---
 
-*This is Part 2 of the "Series Name" series. [Part 1: Title](/part-1-url) covered topic. [Part 3: Title](/part-3-url) explores next topic.*
+*This is Part 2 of the "Series Name" series. [Part 1: Title](/part-1/) covered topic. [Part 3: Title](/part-3/) explores next topic.*
 
 **Photo by [Name](url) on [Unsplash](url)**
 ```
 
-## File Formatting Troubleshooting
+## Astro-Specific Requirements
 
-**Problem**: String replacements fail during editing
-**Cause**: Mixed line endings (CRLF vs LF) or Unicode characters
-**Solution**: 
+**Content Collections**:
+- Published posts: `src/content/posts/` collection
+- Scheduled posts: `src/content/backlog/` collection
+- Separate collections prevent duplicate ID warnings
+
+**URL Structure**:
+- Filename becomes slug: `my-post.md` → `/my-post/`
+- No date prefixes in filenames (Astro uses frontmatter date)
+- Internal links must have trailing slashes
+
+**Build Process**:
+- Static site generation with Astro
+- Automatic image optimization (WebP/AVIF)
+- Performance optimized (90+ Lighthouse scores)
+- Fast builds and hot reloading in development
+
+**Publishing Timezone**:
+- All dates processed in Central Time (America/Chicago)
+- Consistent publishing behavior regardless of server timezone
+- Posts publish when date <= current Central Time date
+
+## File Formatting & Troubleshooting
+
+**Astro Requirements**:
+- **Encoding**: UTF-8 (no BOM)
+- **Line endings**: Unix (LF) preferred
+- **Frontmatter**: Valid YAML syntax
+- **Content**: Markdown with Astro compatibility
+
+**Common Issues**:
+1. **Invalid frontmatter**: Check YAML syntax, proper indentation
+2. **Image not loading**: Verify filename in `public/img/`, no quotes in frontmatter
+3. **Build failures**: Check required fields (title, date, tags, description)
+4. **Links broken**: Use trailing slashes for internal links
+
+**Validation Commands**:
 ```bash
-# Check file format
-file _posts/filename.md
+# Test local build
+npm run build
 
-# Fix CRLF line endings
-tr -d '\r' < _posts/filename.md > temp.md && mv temp.md _posts/filename.md
+# Check backlog status
+npm run backlog:list
+npm run backlog:check
 
-# Check for smart quotes (shows hex)
-grep -P "[\u2018\u2019\u201C\u201D]" _posts/filename.md
+# Optimize images
+node optimize-images.js
 
-# Fix all markdown files at once
-find _posts -name "*.md" -exec sh -c 'tr -d "\r" < "$1" > "$1.tmp" && mv "$1.tmp" "$1"' _ {} \;
+# Start development server
+npm run dev
 ```
 
-**Prevention**: 
-- Configure editor to use Unix line endings
-- Use ASCII quotes in markdown
-- Validate files before committing
+**Debugging Process**:
+1. Check frontmatter syntax and required fields
+2. Verify image paths and optimization
+3. Test build locally before publishing
+4. Review GitHub Actions logs for deployment issues
 
-## Reference
-- Templates: `.github/SNIPPETS.md`
-- Quick reference: `.github/QUICK_REFERENCE.md`
-- Technical guide: `.kiro/steering/jekyll-technical-guide.md`
+## Reference & Resources
+
+**Documentation**:
+- **Publishing Workflow**: `docs/PUBLISHING_WORKFLOW.md` - Complete publishing guide
+- **GitHub Actions Setup**: `GITHUB_ACTIONS_SETUP.md` - Workflow configuration
+- **Project Backlog**: `BACKLOG.md` - Current priorities and completed items
+
+**Management Commands**:
+```bash
+# Backlog management
+npm run backlog:list              # List all scheduled posts
+npm run backlog:check             # Check posts ready to publish  
+npm run backlog add "Title"       # Create new scheduled post
+npm run backlog publish file.md   # Manually publish specific post
+
+# Development
+npm run dev                       # Local development server
+npm run build                     # Test production build
+npm run preview                   # Preview production build
+
+# Utilities
+node optimize-images.js           # Optimize images
+node scripts/manage-backlog.js    # Direct script access
+```
+
+**File Locations**:
+- **Published**: `src/content/posts/`
+- **Scheduled**: `src/content/backlog/`
+- **Images**: `public/img/` (originals), `public/img/optimized/` (processed)
+- **Config**: `src/config.ts`, `astro.config.mjs`
+- **Workflows**: `.github/workflows/`
+
+**Performance Standards**:
+- Lighthouse scores: 90+ across all categories
+- Image optimization: WebP/AVIF with fallbacks
+- Fast builds: Astro static site generation
+- SEO optimized: Proper meta tags and structure
