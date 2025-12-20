@@ -47,8 +47,6 @@ jobs:
           api_location: ""
           output_location: "" # Leave empty since we're pointing app_location to the built files
           skip_app_build: true
-          # Deploy to staging slot if not master branch
-          deployment_environment: ${{ github.ref == 'refs/heads/master' && 'Production' || 'Staging' }}
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
