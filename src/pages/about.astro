@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import OptimizedImage from '../components/OptimizedImage.astro';
 ---
 
 <BaseLayout title="About - Technical Anxiety" description="Learn about Jason Rinehart, cloud architect and technical leader sharing experiences with Azure, leadership, and mental health in tech.">
@@ -14,7 +15,14 @@ import Footer from '../components/Footer.astro';
           <article class="about-page">
             <!-- Hero Image -->
             <div class="hero-image">
-              <img src="/img/about.jpg" alt="About Technical Anxiety" />
+              <OptimizedImage 
+                src="/img/about.jpg" 
+                alt="About Technical Anxiety" 
+                width={1200} 
+                height={630}
+                loading="eager"
+                priority={true}
+              />
             </div>
             
             <header class="about-header">
@@ -73,8 +81,20 @@ import Footer from '../components/Footer.astro';
               <section class="about-section">
                 <h3>Especially proud of this recognition</h3>
                 <div class="awards">
-                  <img src="/img/JasonRinehart_TI.png" alt="Jason Rinehart TI Award" class="award-image" />
-                  <img src="/img/TI_award.png" alt="TI Award" class="award-image" />
+                  <OptimizedImage 
+                    src="/img/JasonRinehart_TI.png" 
+                    alt="Jason Rinehart TI Award" 
+                    width={1200} 
+                    height={630}
+                    class="award-image"
+                  />
+                  <OptimizedImage 
+                    src="/img/TI_award.png" 
+                    alt="TI Award" 
+                    width={1200} 
+                    height={630}
+                    class="award-image"
+                  />
                 </div>
               </section>
             </div>

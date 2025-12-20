@@ -1,0 +1,118 @@
+---
+export interface Props {
+  src: string;
+  alt: string;
+  width?: number;
+  height?: number;
+  class?: string;
+  loading?: 'lazy' | 'eager';
+  priority?: boolean;
+}
+
+const { 
+  src, 
+  alt, 
+  width, 
+  height, 
+  class: className = '', 
+  loading = 'lazy',
+  priority = false 
+} = Astro.props;
+
+// Extract filename without extension for optimized versions
+const filename = src.replace('/img/', '').replace(/\.[^/.]+$/, '');
+const isOptimized = src.includes('/img/');
+
+// Generate srcset for responsive images if optimized versions exist
+const generateSrcSet = (format: string) => {
+  if (!isOptimized) return '';
+  
+  const sizes = [
+    { width: 400, suffix: '-400w' },
+    { width: 800, suffix: '-800w' },
+    { width: 1200, suffix: '-1200w' }
+  ];
+  
+  const srcsetEntries = sizes.map(size => 
+    `/img/optimized/${filename}${size.suffix}.${format} ${size.width}w`
+  );
+  
+  // Add full size version
+  srcsetEntries.push(`/img/optimized/${filename}.${format} 1200w`);
+  
+  return srcsetEntries.join(', ');
+};
+
+const avifSrcSet = generateSrcSet('avif');
+const webpSrcSet = generateSrcSet('webp');
+const jpegSrcSet = generateSrcSet('jpg');
+
+// Determine if we should preload this image
+const shouldPreload = priority || loading === 'eager';
+---
+
+{shouldPreload && isOptimized && (
+  <>
+    <link rel="preload" as="image" href={`/img/optimized/${filename}.avif`} type="image/avif" />
+    <link rel="preload" as="image" href={`/img/optimized/${filename}.webp`} type="image/webp" />
+  </>
+)}
+
+{isOptimized ? (
+  <picture class={className}>
+    <!-- AVIF format (best compression, newest browsers) -->
+    <source 
+      srcset={avifSrcSet}
+      sizes="(max-width: 400px) 400px, (max-width: 800px) 800px, 1200px"
+      type="image/avif"
+    />
+    
+    <!-- WebP format (good compression, wide support) -->
+    <source 
+      srcset={webpSrcSet}
+      sizes="(max-width: 400px) 400px, (max-width: 800px) 800px, 1200px"
+      type="image/webp"
+    />
+    
+    <!-- JPEG fallback (universal support) -->
+    <source 
+      srcset={jpegSrcSet}
+      sizes="(max-width: 400px) 400px, (max-width: 800px) 800px, 1200px"
+      type="image/jpeg"
+    />
+    
+    <!-- Fallback img element -->
+    <img 
+      src={`/img/optimized/${filename}.jpg`}
+      alt={alt}
+      width={width}
+      height={height}
+      loading={loading}
+      decoding="async"
+      style="width: 100%; height: auto;"
+    />
+  </picture>
+) : (
+  <!-- Non-optimized image fallback -->
+  <img 
+    src={src}
+    alt={alt}
+    width={width}
+    height={height}
+    loading={loading}
+    decoding="async"
+    class={className}
+    style="width: 100%; height: auto;"
+  />
+)}
+
+<style>
+  picture {
+    display: block;
+  }
+  
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+</style>
