@@ -7,8 +7,7 @@ on:
       - astro-migration  # Deploy astro-migration as staging environment
   pull_request:
     types: [opened, synchronize, reopened, closed]
-    branches:
-      - master
+    # Allow PRs from any branch to trigger preview deployments
 
 jobs:
   build_and_deploy_job:
