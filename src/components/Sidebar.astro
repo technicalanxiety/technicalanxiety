@@ -1,14 +1,14 @@
 ---
 import { siteConfig } from '../config';
-import { getPublishedPosts } from '../utils/posts';
+import { getPublishedPosts, getSeriesCollection } from '../utils/posts';
 import Avatar from './Avatar.astro';
 
-// Get recent posts for sidebar
-const posts = await getPublishedPosts();
-const sortedPosts = posts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
-const recentPosts = sortedPosts.slice(0, 5);
+// Get series collection for sidebar
+const seriesCollection = await getSeriesCollection();
+const recentSeries = seriesCollection.slice(0, 5);
 
 // Get all unique tags
+const posts = await getPublishedPosts();
 const allTags = [...new Set(posts.flatMap(post => post.data.tags || []))].sort();
 ---
 
@@ -48,25 +48,23 @@ const allTags = [...new Set(posts.flatMap(post => post.data.tags || []))].sort()
     </div>
   </div>
 
-  <!-- Recent Posts Widget -->
+  <!-- Series Collection Widget -->
   <div class="widget">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="recent-posts-list">
-      {recentPosts.map((post) => (
-        <article class="recent-post">
-          <div class="recent-image" style={`background-image: url(/img/${post.data.image || 'article-header.jpg'})`}></div>
-          <div class="recent-content">
-            <h4 class="recent-title">
-              <a href={`/${post.slug}/`}>{post.data.title}</a>
-            </h4>
-            <div class="recent-date">
-              {post.data.date.toLocaleDateString('en-US', { 
-                year: 'numeric', 
-                month: 'short', 
-                day: 'numeric' 
-              })}
+    <h3 class="widget-title">Series Collection</h3>
+    <div class="series-collection-list">
+      {recentSeries.map((series) => (
+        <article class="series-card">
+          <a href={`/${series.firstPost.slug}/`} class="series-link">
+            <div class="series-main">
+              <div class="series-content">
+                <h4 class="series-title">{series.name}</h4>
+                <span class="series-badge">{series.posts.length} PART{series.posts.length !== 1 ? 'S' : ''}</span>
+              </div>
+              <div class="series-meta">
+                <span class="series-arrow">Start Here</span>
+              </div>
             </div>
-          </div>
+          </a>
         </article>
       ))}
     </div>
@@ -235,6 +233,172 @@ const allTags = [...new Set(posts.flatMap(post => post.data.tags || []))].sort()
   .recent-date {
     font-size: 0.75rem;
     color: var(--text-secondary);
+  }
+
+  /* Series Collection Styles */
+  .series-collection-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .series-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+  }
+
+  .series-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 32px 0 rgba(33, 150, 243, 0.25);
+  }
+
+  /* Light mode styling for series cards */
+  [data-theme="light"] .series-card {
+    background: var(--bg-secondary);
+  }
+
+  .series-link {
+    display: block;
+    padding: var(--space-sm) var(--space-lg);
+    text-decoration: none;
+    color: inherit;
+    height: 100%;
+  }
+
+  .series-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-md);
+  }
+
+  .series-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .series-title {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.1;
+    color: var(--text-primary);
+    margin: 0 0 2px 0;
+  }
+
+  .series-badge {
+    background: transparent;
+    color: var(--accent-color);
+    border: 1.5px solid var(--accent-color);
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 1px 4px;
+    border-radius: 6px;
+    white-space: nowrap;
+    display: inline-block;
+    transition: all 0.2s ease;
+    line-height: 1;
+  }
+
+  .series-card:hover .series-badge {
+    background: var(--accent-color);
+    color: white;
+  }
+
+  /* Different badge colors based on series length - outline approach */
+  .series-card:nth-child(1) .series-badge {
+    color: var(--accent-color);
+    border-color: var(--accent-color);
+  }
+
+  .series-card:nth-child(1):hover .series-badge {
+    background: var(--accent-color);
+    color: white;
+  }
+
+  .series-card:nth-child(2) .series-badge {
+    color: #5a67d8;
+    border-color: #5a67d8;
+  }
+
+  .series-card:nth-child(2):hover .series-badge {
+    background: #5a67d8;
+    color: white;
+  }
+
+  .series-card:nth-child(3) .series-badge {
+    color: #4299e1;
+    border-color: #4299e1;
+  }
+
+  .series-card:nth-child(3):hover .series-badge {
+    background: #4299e1;
+    color: white;
+  }
+
+  .series-card:nth-child(4) .series-badge {
+    color: #38b2ac;
+    border-color: #38b2ac;
+  }
+
+  .series-card:nth-child(4):hover .series-badge {
+    background: #38b2ac;
+    color: white;
+  }
+
+  .series-card:nth-child(5) .series-badge {
+    color: #805ad5;
+    border-color: #805ad5;
+  }
+
+  .series-card:nth-child(5):hover .series-badge {
+    background: #805ad5;
+    color: white;
+  }
+
+  .series-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    flex-shrink: 0;
+  }
+
+  .series-date {
+    font-weight: 500;
+  }
+
+  .series-arrow {
+    font-size: 1rem;
+    color: var(--accent-color);
+    transition: transform 0.2s ease;
+  }
+
+  .series-card:hover .series-arrow {
+    transform: translateX(4px);
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .series-link {
+      padding: var(--space-sm) var(--space-md);
+    }
+    
+    .series-main {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-sm);
+    }
+    
+    .series-meta {
+      align-self: stretch;
+      justify-content: space-between;
+    }
   }
 
   .tags-cloud {
