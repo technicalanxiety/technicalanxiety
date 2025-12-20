@@ -94,12 +94,21 @@ function extractIssues(lhr) {
   // Check for failing audits
   Object.entries(lhr.audits).forEach(([key, audit]) => {
     if (audit.score !== null && audit.score < 0.9 && audit.scoreDisplayMode !== 'informative') {
+      let details = [];
+      
+      // Safely extract details
+      if (audit.details && audit.details.items && Array.isArray(audit.details.items)) {
+        details = audit.details.items.slice(0, 3);
+      } else if (audit.details && audit.details.debugData) {
+        details = [audit.details.debugData];
+      }
+      
       issues.push({
         id: key,
         title: audit.title,
         score: audit.score,
         description: audit.description,
-        details: audit.details?.items?.slice(0, 3) // Limit to first 3 items
+        details: details
       });
     }
   });

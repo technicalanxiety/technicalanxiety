@@ -1,0 +1,25 @@
+# Backlog Directory
+
+This directory contains scheduled posts that will be automatically published by GitHub Actions.
+
+## How it works:
+1. Place markdown files with future dates in this directory
+2. GitHub Actions runs daily at 9 AM UTC
+3. Posts with dates <= today are moved to the main posts directory
+4. Site rebuilds automatically with new content
+
+## File naming:
+Use the same naming convention as regular posts:
+- `post-title.md` (no date prefix needed in Astro)
+- Date is specified in frontmatter: `date: 2024-12-25`
+
+## Frontmatter format:
+```yaml
+---
+title: "Your Post Title"
+date: 2024-12-25
+tags: [Tag1, Tag2]
+description: "SEO description"
+image: "image-filename.jpg"
+---
+```

@@ -1,6 +1,6 @@
 # Lighthouse Audit Report
 
-**Generated:** 2025-12-20T00:00:13.500Z
+**Generated:** 2025-12-20T00:19:45.044Z
 
 ## Summary
 
@@ -8,9 +8,9 @@
 |------|-------------|---------------|----------------|-----|--------|
 | homepage | 100 | 90 | 96 | 92 | ✅ Pass |
 | blog-post | 100 | 96 | 100 | 100 | ✅ Pass |
-| tag-page | 98 | 96 | 96 | 100 | ✅ Pass |
+| tag-page | 100 | 96 | 96 | 100 | ✅ Pass |
 | archive | 100 | 96 | 100 | 100 | ✅ Pass |
-| about | 90 | 98 | 96 | 100 | ✅ Pass |
+| about | 100 | 98 | 96 | 100 | ✅ Pass |
 | search | 99 | 95 | 100 | 100 | ✅ Pass |
 
 ## Overall Status: ✅ All audits passing (90+ scores)
@@ -27,7 +27,7 @@ Errors logged to the console indicate unresolved problems. They can come from ne
 
 **Details:**
 
-#### Time to Interactive (Score: 56)
+#### Time to Interactive (Score: 61)
 
 Time to Interactive is the amount of time it takes for the page to become fully interactive. [Learn more about the Time to Interactive metric](https://developer.chrome.com/docs/lighthouse/performance/interactive/).
 
@@ -36,9 +36,9 @@ Time to Interactive is the amount of time it takes for the page to become fully 
 Low-contrast text is difficult or impossible for many users to read. [Learn how to provide sufficient color contrast](https://dequeuniversity.com/rules/axe/4.11/color-contrast).
 
 **Details:**
-- <a href="/what-architects-actually-do-pt1/" class="button button-primary" data-astro-cid-j7pv25f6="">
+- <a href="/backlog/beyond-azure-monitor-pt3/" class="button button-primary" data-astro-cid-j7pv25f6="">
 - <a href="/tags/Azure/" class="tag" data-astro-cid-j7pv25f6="">
-- <a href="/tags/Infrastructure/" class="tag" data-astro-cid-j7pv25f6="">
+- <a href="/tags/Operations/" class="tag" data-astro-cid-j7pv25f6="">
 
 #### Heading elements are not in a sequentially-descending order (Score: 0)
 
@@ -52,9 +52,9 @@ Properly ordered headings that do not skip levels convey the semantic structure 
 Link text (and alternate text for images, when used as links) that is discernible, unique, and focusable improves the navigation experience for screen reader users. [Learn how to make links accessible](https://dequeuniversity.com/rules/axe/4.11/link-name).
 
 **Details:**
-- <a href="/bicep-terraform-vhs/" class="image-link" data-astro-cid-j7pv25f6="">
-- <a href="/agent-governance-deployment/" class="image-link" data-astro-cid-j7pv25f6="">
-- <a href="/poetry-of-code-part1/" class="image-link" data-astro-cid-j7pv25f6="">
+- <a href="/backlog/beyond-azure-monitor-pt2/" class="image-link" data-astro-cid-j7pv25f6="">
+- <a href="/backlog/beyond-azure-monitor-pt1/" class="image-link" data-astro-cid-j7pv25f6="">
+- <a href="/backlog/what-architects-actually-do-pt3/" class="image-link" data-astro-cid-j7pv25f6="">
 
 #### Reduce unused JavaScript (Score: 50)
 
@@ -68,15 +68,6 @@ Reduce unused JavaScript and defer loading scripts until they are required to de
 Descriptive link text helps search engines understand your content. [Learn how to make links more accessible](https://developer.chrome.com/docs/lighthouse/seo/link-text/).
 
 **Details:**
-
-#### Improve image delivery (Score: 50)
-
-Reducing the download time of images can improve the perceived load time of the page and LCP. [Learn more about optimizing image size](https://developer.chrome.com/docs/performance/insights/image-delivery)
-
-**Details:**
-- http://localhost:4321/img/platform-layer-3.jpg
-- http://localhost:4321/img/bicep-terraform-vhs.jpg
-- http://localhost:4321/img/resiliency-part2.jpg
 
 #### Network dependency tree (Score: 0)
 
@@ -134,6 +125,13 @@ Reduce unused JavaScript and defer loading scripts until they are required to de
 **Details:**
 - https://www.googletagmanager.com/gtag/js?id=G-2HB2W9WDMR
 
+#### Use efficient cache lifetimes (Score: 50)
+
+A long cache lifetime can speed up repeat visits to your page. [Learn more about caching](https://developer.chrome.com/docs/performance/insights/cache).
+
+**Details:**
+- https://www.googletagmanager.com/a?v=3&t=l&pid=1696272821&rv=5ca1&tag_exp=103116026~103200004~104527906~104528500~104684208~104684211~105391253~115583767~115673441~115938466~115938468~116184927~116184929~116251938~116251940&u=AAAAAAAAAAAAACCA&ut=Ag&h=Ag&gtm=45je5ca1v9177936458za200zd9177936458&cl=3.4.0&ccid=177936458&cid=G-2HB2W9WDMR&l=L29.S3.Y0.B10.E11.I9.TC11.HTC0~gtm.init_consent.S1.V0.E10~gtm.init.S0.V0.TS5ogtgasend.TI10.TE0.TS5ogtreferralexclusion.TI12.TE0.TS5ogtsessiontimeout.TI13.TE0.TS5ogt1pdatav2.TI14.TE0.TS5ccdgaregscope.TI18.TE0.TS5ccdconversionmarking.TI17.TE0.TS5ccdautoredact.TI16.TE0.TS5ccdgalast.TI15.TE0.TS5ccdgafirst.TI20.TE7.TS5setproductsettings.TI19.TE7~gtm.js.S0.TS5gct.TI7.TE0~gtm.dom.S0.V0.E0~gtm.load.S0.V0.E0~GA405~SS372.20000000298023
+
 #### Improve image delivery (Score: 50)
 
 Reducing the download time of images can improve the perceived load time of the page and LCP. [Learn more about optimizing image size](https://developer.chrome.com/docs/performance/insights/image-delivery)
@@ -165,14 +163,18 @@ Errors logged to the console indicate unresolved problems. They can come from ne
 
 **Details:**
 
+#### Time to Interactive (Score: 86)
+
+Time to Interactive is the amount of time it takes for the page to become fully interactive. [Learn more about the Time to Interactive metric](https://developer.chrome.com/docs/lighthouse/performance/interactive/).
+
 #### Background and foreground colors do not have a sufficient contrast ratio. (Score: 0)
 
 Low-contrast text is difficult or impossible for many users to read. [Learn how to provide sufficient color contrast](https://dequeuniversity.com/rules/axe/4.11/color-contrast).
 
 **Details:**
 - <a href="/tags/Azure/" class="tag tag-current" data-astro-cid-tge3q7ae="">
-- <a href="/tags/Infrastructure/" class="tag " data-astro-cid-tge3q7ae="">
 - <a href="/tags/Operations/" class="tag " data-astro-cid-tge3q7ae="">
+- <a href="/tags/Automation/" class="tag " data-astro-cid-tge3q7ae="">
 
 #### Reduce unused JavaScript (Score: 50)
 
@@ -180,14 +182,6 @@ Reduce unused JavaScript and defer loading scripts until they are required to de
 
 **Details:**
 - https://www.googletagmanager.com/gtag/js?id=G-2HB2W9WDMR
-
-#### Improve image delivery (Score: 50)
-
-Reducing the download time of images can improve the perceived load time of the page and LCP. [Learn more about optimizing image size](https://developer.chrome.com/docs/performance/insights/image-delivery)
-
-**Details:**
-- http://localhost:4321/img/platform-layer-3.jpg
-- http://localhost:4321/img/bicep-terraform-vhs.jpg
 
 #### Network dependency tree (Score: 0)
 
@@ -239,14 +233,6 @@ Requests are blocking the page's initial render, which may delay LCP. [Deferring
 
 **URL:** http://localhost:4321/about/
 
-#### First Contentful Paint (Score: 87)
-
-First Contentful Paint marks the time at which the first text or image is painted. [Learn more about the First Contentful Paint metric](https://developer.chrome.com/docs/lighthouse/performance/first-contentful-paint/).
-
-#### Largest Contentful Paint (Score: 64)
-
-Largest Contentful Paint marks the time at which the largest text or image is painted. [Learn more about the Largest Contentful Paint metric](https://developer.chrome.com/docs/lighthouse/performance/lighthouse-largest-contentful-paint/)
-
 #### Browser errors were logged to the console (Score: 0)
 
 Errors logged to the console indicate unresolved problems. They can come from network request failures and other browser concerns. [Learn more about this errors in console diagnostic audit](https://developer.chrome.com/docs/lighthouse/best-practices/errors-in-console/)
@@ -260,7 +246,7 @@ Properly ordered headings that do not skip levels convey the semantic structure 
 **Details:**
 - <h3 data-astro-cid-kh7btl4r="">
 
-#### Reduce unused JavaScript (Score: 0)
+#### Reduce unused JavaScript (Score: 50)
 
 Reduce unused JavaScript and defer loading scripts until they are required to decrease bytes consumed by network activity. [Learn how to reduce unused JavaScript](https://developer.chrome.com/docs/lighthouse/performance/unused-javascript/).
 
@@ -273,7 +259,7 @@ Reduce unused JavaScript and defer loading scripts until they are required to de
 
 **Details:**
 
-#### Render blocking requests (Score: 50)
+#### Render blocking requests (Score: 0)
 
 Requests are blocking the page's initial render, which may delay LCP. [Deferring or inlining](https://developer.chrome.com/docs/performance/insights/render-blocking) can move these network requests out of the critical path.
 

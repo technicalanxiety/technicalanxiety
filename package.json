@@ -10,7 +10,10 @@
     "check": "astro check",
     "test": "vitest --run",
     "test:watch": "vitest",
-    "test:ui": "vitest --ui"
+    "test:ui": "vitest --ui",
+    "backlog": "node scripts/manage-backlog.js",
+    "backlog:list": "node scripts/manage-backlog.js list",
+    "backlog:check": "node scripts/manage-backlog.js check"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.6",
