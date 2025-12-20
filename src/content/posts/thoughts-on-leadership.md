@@ -2,7 +2,7 @@
 title: "Leadership, Drum Major Style"
 date: 2024-02-16 11:30 -0600
 description: "Leadership lessons from Drum Major Camp that shaped my career - forgiving, giving, and the four pillars that make great leaders."
-image: "marching-band.jpg"
+image: marching-band.jpg
 tags: ["Leadership"]
 ---
 

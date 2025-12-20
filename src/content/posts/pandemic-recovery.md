@@ -2,7 +2,7 @@
 title: "Pandemic Recovery"
 date: 2021-06-09 12:15 -0600
 description: "Personal reflections on managing Generalized Anxiety Disorder through the pandemic - diet, exercise, sleep, and the tools that helped me recover."
-image: "pandemic.jpg"
+image: pandemic.jpg
 tags: ["Anxiety"]
 ---
 

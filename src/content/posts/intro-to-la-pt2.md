@@ -2,7 +2,7 @@
 title: "Intro to Log Analytics - Part 2"
 date: 2020-02-10 21:52 -0600
 description: "Advanced KQL techniques - learn to join tables, use project statements, and convert legacy Perf queries to the new InsightsMetrics format."
-image: "more-la.jpg"
+image: more-la.jpg
 tags: ["Log Analytics", "Azure"]
 series: "Intro to Log Analytics"
 series_part: 2

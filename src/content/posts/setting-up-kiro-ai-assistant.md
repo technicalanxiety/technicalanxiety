@@ -2,7 +2,7 @@
 title: "How Kiro Turned an Architect Into a Developer"
 date: 2025-12-07 01:00 -0600
 description: "Im not a software developer. But with Kiro AI assistant properly configured, I can take a vision and make it reality. Heres how I set it up."
-image: "kiro-brain.jpg"
+image: kiro-brain.jpg
 tags: ["AI", "Development", "Productivity"]
 ---
 
