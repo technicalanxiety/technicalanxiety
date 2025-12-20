@@ -40,7 +40,7 @@ jobs:
           from datetime import datetime, timezone
           from pathlib import Path
           
-          backlog_dir = Path('src/content/posts/backlog')
+          backlog_dir = Path('src/content/backlog')
           posts_dir = Path('src/content/posts')
           today = datetime.now(timezone.utc).date()
           published_posts = []
@@ -117,7 +117,7 @@ jobs:
       - name: Commit and push changes
         run: |
           if [[ -n $(git status --porcelain) ]]; then
-            git add src/content/posts/
+            git add src/content/posts/ src/content/backlog/
             git commit -m "Auto-publish scheduled posts [skip ci]"
             git push
             echo "✓ Changes committed and pushed"

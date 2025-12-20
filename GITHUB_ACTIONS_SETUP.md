@@ -13,13 +13,13 @@ The GitHub Actions workflows have been updated for the Astro migration with auto
 **Trigger**: Automatic (cron) or Manual (workflow_dispatch)
 
 **What it does**:
-1. Checks `src/content/posts/backlog/` for posts ready to publish
+1. Checks `src/content/backlog/` for posts ready to publish
 2. Moves posts with dates <= today to `src/content/posts/`
 3. Updates series navigation links automatically
 4. Commits and pushes changes (triggers deployment)
 
 **Key Changes from Jekyll**:
-- ✅ Updated paths: `_posts/backlog` → `src/content/posts/backlog`
+- ✅ Updated paths: `_posts/backlog` → `src/content/backlog`
 - ✅ Added Node.js setup for Astro
 - ✅ Added build step after publishing
 - ✅ Updated slug extraction for Astro (no date prefix)
@@ -70,7 +70,7 @@ npm run backlog publish post-slug.md
 ### Directory Structure
 ```
 src/content/posts/           # Published posts (live on site)
-src/content/posts/backlog/   # Scheduled posts (future dates)
+src/content/backlog/         # Scheduled posts (future dates)
   └── .gitkeep              # Keeps directory in git
 ```
 
@@ -117,7 +117,7 @@ graph LR
 npm run backlog add "My Post"
 
 # 2. Edit the post
-# Edit: src/content/posts/backlog/my-post.md
+# Edit: src/content/backlog/my-post.md
 
 # 3. Set future date in frontmatter
 date: 2024-12-25
@@ -215,7 +215,7 @@ The following secrets must be configured in GitHub repository settings:
 
 ### Post Not Publishing
 - Check date format: `YYYY-MM-DD`
-- Verify file is in `src/content/posts/backlog/`
+- Verify file is in `src/content/backlog/`
 - Check GitHub Actions logs
 
 ### Build Failures
