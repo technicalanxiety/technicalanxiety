@@ -2,7 +2,7 @@
 title: "Governance in Azure?"
 date: 2024-02-14 11:30 -0600
 description: "What is Azure Governance and why is it critical? Learn how to steer your cloud environment with management groups, policies, and proper foundations."
-image: "az-guardrails.jpg"
+image: az-guardrails.jpg
 tags: ["Governance", "Azure"]
 ---
 

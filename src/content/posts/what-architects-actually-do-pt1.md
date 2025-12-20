@@ -2,7 +2,7 @@
 title: "What Architects Actually Do - Part 1"
 date: 2025-12-19 00:00:00 -0600
 description: "The real job of architects isnt technical depth - its translation between business and technology."
-image: "architects-pt1.jpg"
+image: architects-pt1.jpg
 tags: ["Leadership", "Architecture"]
 series: "What Architects Actually Do"
 series_part: 1

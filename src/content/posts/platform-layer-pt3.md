@@ -2,7 +2,7 @@
 title: "The Platform Layer - Part 3"
 date: 2025-12-16 00:00:00 -0600
 description: "How to operationalize platform architecture in your organization - practical guidance for building the function."
-image: "platform-layer-3.jpg"
+image: platform-layer-3.jpg
 tags: ["Leadership", "Architecture"]
 series: "The Platform Layer"
 series_part: 3

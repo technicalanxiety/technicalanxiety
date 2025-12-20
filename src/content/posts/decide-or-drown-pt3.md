@@ -1,7 +1,7 @@
 ---
 title: "Decide or Drown - Part 3"
 date: 2025-12-08 00:00:00 -0600
-image: "drown-pt3.jpg"
+image: drown-pt3.jpg
 tags: ["Leadership"]
 series: "Decide or Drown"
 series_part: 3
