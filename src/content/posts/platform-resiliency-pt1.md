@@ -1,6 +1,6 @@
 ---
 title: "Platform Resiliency Part 1: The Promise That Couldnt Travel"
-date: 2025-12-15 09:00:00 -0600
+date: 2025-12-15
 description: "Why SRE adoption failed outside Google and what we learned from attempting to transplant a complete system rather than adapting principles to organizational reality."
 image: resiliency-part1.jpg
 tags: ["Operations", "Leadership", "Platform"]

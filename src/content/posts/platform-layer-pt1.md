@@ -1,6 +1,6 @@
 ---
 title: "The Platform Layer - Part 1"
-date: 2025-12-10 00:00:00 -0600
+date: 2025-12-10
 description: "Defining platform architecture - the role nobody understands but every organization needs."
 image: platform-layer-1.jpg
 tags: ["Leadership", "Architecture"]

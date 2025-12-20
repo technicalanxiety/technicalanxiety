@@ -1,6 +1,6 @@
 ---
 title: "Using Log Analytics to ... view logs"
-date: 2024-02-18 09:00 -0600
+date: 2024-02-18
 description: "Using Log Analytics as an actual log aggregation tool - building human-readable tables to view VM status with KQL functions."
 image: la-view-logs.jpg
 tags: ["Log Analytics", "Azure"]

@@ -1,6 +1,6 @@
 ---
 title: "From Fear to Freedom"
-date: 2025-11-24 09:00 -0600
+date: 2025-11-24
 description: "For years, I worked scared. Heres how psychological safety transformed my career from fear-driven to freedom-focused."
 image: no-fear.jpg
 tags: ["Anxiety", "Leadership"]

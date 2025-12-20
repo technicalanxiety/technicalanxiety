@@ -1,6 +1,6 @@
 ---
 title: "Decide or Drown - Part 4"
-date: 2025-12-09 00:00:00 -0600
+date: 2025-12-09
 description: "The preconditions for good decision-making that most organizations lack - and what to do when you cant build them."
 image: drown-pt4.jpg
 tags: ["Leadership", "Anxiety"]

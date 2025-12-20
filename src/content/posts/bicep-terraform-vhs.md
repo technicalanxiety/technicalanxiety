@@ -1,6 +1,6 @@
 ---
 title: "Bicep vs Terraform: The 4K TV Playing VHS Tapes"
-date: 2025-12-18 06:00 -0600
+date: 2025-12-18
 description: "You bought a 4K smart TV to play VHS tapes. Why Azure-only shops keep choosing tools that solve problems they dont have."
 image: bicep-terraform-vhs.jpg
 tags: ["Azure", "Infrastructure", "Operations"]

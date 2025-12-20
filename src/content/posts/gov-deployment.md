@@ -1,6 +1,6 @@
 ---
 title: "Governance Deployment Example"
-date: 2025-06-08 00:00:00 -0600
+date: 2025-06-08
 description: "Step-by-step governance deployment guide with Azure CLI commands, policy examples, and a phased rollout approach."
 image: gov-deploy.jpg
 tags: ["Azure", "Governance"]
