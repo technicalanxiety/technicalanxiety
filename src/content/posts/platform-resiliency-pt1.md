@@ -30,7 +30,7 @@ The good news: the core principles remain sound. Reliability as an engineering p
 
 The challenge is finding an implementation that works outside Google's unique conditions. That's what this series is about.
 
-### What Google Actually Built
+## What Google Actually Built
 
 Before diagnosing the failure, we need to understand what succeeded.
 
@@ -62,7 +62,7 @@ The specifics varied. The struggle didn't. Organizations kept attempting to tran
 
 That's why I can't dismiss anyone who tried SRE and felt like something wasn't working. I was one of them. The difference is what we do next.
 
-### The Cargo Cult
+## The Cargo Cult
 
 The term comes from anthropology. After World War II, some Pacific island communities built replica airstrips and control towers from bamboo, hoping to attract the cargo planes that had brought supplies during the war. They replicated the visible artifacts without understanding the system that made those artifacts meaningful.
 
@@ -82,7 +82,7 @@ Industry surveys tell the story. Ninety-seven percent of SREs report ongoing obs
 
 The cargo cult phenomenon isn't an insult. It's a diagnosis. Organizations adopted what they could see without implementing what they couldn't.
 
-### Why the Four Pillars Collapsed
+## Why the Four Pillars Collapsed
 
 Each of Google's pillars required conditions most organizations don't have.
 
@@ -122,7 +122,7 @@ Most organizations can't compete for that talent. They have existing operations 
 
 The model assumed a talent supply that was never available outside a handful of hyperscalers.
 
-### The Title Became Meaningless
+## The Title Became Meaningless
 
 The predictable result: "SRE" became a job title divorced from its philosophy.
 
@@ -134,7 +134,7 @@ The frustration is valid. These practitioners were promised a model that would g
 
 This isn't their failure. It's an organizational failure repeated across the industry.
 
-### Transplantation, Not Execution
+## Transplantation, Not Execution
 
 Here's the reframe that matters: SRE adoption didn't fail because organizations executed poorly. It failed because they attempted transplantation.
 
@@ -146,7 +146,7 @@ Attempting to implement Google's specific practices without Google's specific co
 
 The SRE book described what Google built. It didn't provide a translation layer for organizations operating in fundamentally different contexts.
 
-### The Path Forward
+## The Path Forward
 
 If you've attempted SRE adoption and felt like something wasn't working, you were right. The model wasn't designed for your conditions. The failure wasn't yours.
 

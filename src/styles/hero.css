@@ -288,22 +288,22 @@
   background: var(--bg-primary);
   border: 1px solid var(--border-color);
   border-radius: 12px;
-  padding: 30px;
+  padding: 24px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-  align-self: stretch;
+  align-self: start;
 }
 
 .hero-topics-title {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
   color: var(--text-heading);
-  margin: 0 0 20px 0;
+  margin: 0 0 16px 0;
 }
 
 .hero-topic-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  gap: 10px;
 }
 
 @media only screen and (max-width: 480px) {
@@ -315,8 +315,8 @@
 .hero-topic-card {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 15px;
+  gap: 10px;
+  padding: 12px;
   background: var(--bg-secondary);
   border: 1px solid var(--border-color);
   border-radius: 8px;
@@ -349,7 +349,7 @@
 }
 
 .hero-topic-icon {
-  font-size: 28px;
+  font-size: 24px;
   line-height: 1;
   transition: transform 0.3s ease;
   flex-shrink: 0;
@@ -361,17 +361,17 @@
 }
 
 .hero-topic-info h4 {
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--text-heading);
-  margin: 0 0 3px 0;
+  margin: 0 0 2px 0;
 }
 
 .hero-topic-info p {
-  font-size: 13px;
+  font-size: 12px;
   color: var(--text-secondary);
   margin: 0;
-  line-height: 1.4;
+  line-height: 1.3;
 }
 
 /* Terminal Styling */
@@ -382,7 +382,7 @@
   overflow: hidden;
   font-family: 'Fira Code', 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
   max-width: 500px;
-  align-self: stretch;
+  align-self: start;
   display: flex;
   flex-direction: column;
 }
@@ -428,7 +428,7 @@
 .terminal-body {
   padding: 16px;
   background: #1a1c1f;
-  flex: 1;
+  height: 305px;
   position: relative;
   overflow: hidden;
   display: flex;
@@ -498,7 +498,7 @@
   
   .terminal-body {
     padding: 12px;
-    height: 280px;
+    height: 305px;
     overflow: hidden;
   }
   
