@@ -199,7 +199,7 @@ This plan implements the migration from Jekyll to Astro in phases, with testing 
     - Check all internal links resolve
     - Verify no broken image references
     - _Requirements: 6.2, 6.3_
-  - [ ] 11.3 Run Lighthouse audits
+  - [x] 11.3 Run Lighthouse audits
     - Verify 90+ scores on all categories
     - Document any issues for resolution
     - _Requirements: 5.1, 5.2, 5.3, 5.4, 5.5_
