@@ -3,11 +3,10 @@ name: Azure Static Web Apps CI/CD
 on:
   push:
     branches:
-      - master
-      - astro-migration  # Deploy astro-migration as staging environment
+      - master  # Deploy master to production
   pull_request:
     types: [opened, synchronize, reopened, closed]
-    # Allow PRs from any branch to trigger preview deployments
+    # PRs to any branch trigger preview deployments
 
 jobs:
   build_and_deploy_job:
