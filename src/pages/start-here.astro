@@ -29,7 +29,6 @@ const featuredPosts = posts.filter(post =>
   <main class="topic-page">
     <div class="container">
       <div class="topic-hero">
-        <div class="topic-icon">🚀</div>
         <h1 class="topic-title">Start Here</h1>
         <h2 class="topic-subtitle">Welcome to Technical Anxiety</h2>
         <p class="topic-description">
@@ -39,41 +38,42 @@ const featuredPosts = posts.filter(post =>
 
       <div class="content-grid">
         <section class="topic-content">
-          <div class="topic-intro">
-            <h3>About This Blog</h3>
-            <p>
-              Technical Anxiety is where I share real-world insights from architecting cloud solutions for 100+ organizations. 
-              It's about the technical patterns that work, the leadership lessons learned the hard way, and the mental health 
-              challenges that come with working in tech.
-            </p>
-            
-            <p>
-              I'm Jason Rinehart, a cloud architect and technical leader with 20+ years of experience. I've worked across 
-              healthcare, energy, and enterprise sectors, building Azure environments that actually scale. But more importantly, 
-              I've learned that technical excellence means nothing if we're not taking care of ourselves and our teams.
-            </p>
+          <!-- Animated Terminal Window -->
+          <div class="terminal-window">
+            <div class="terminal-header">
+              <div class="terminal-buttons">
+                <span class="terminal-button terminal-close"></span>
+                <span class="terminal-button terminal-minimize"></span>
+                <span class="terminal-button terminal-maximize"></span>
+              </div>
+              <div class="terminal-title">mental-health-deploy.sh</div>
+            </div>
+            <div class="terminal-body">
+              <div id="terminal-content"></div>
+              <span class="terminal-cursor">_</span>
+            </div>
           </div>
 
           <div class="getting-started">
             <h3>Getting Started</h3>
             <div class="start-sections">
               <div class="start-section">
-                <h4>🏔️ New to Leadership?</h4>
+                <h4>New to Leadership?</h4>
                 <p>Start with <a href="/basecamp-summit/">From Base Camp to Summit</a> - my framework for technical leadership that actually works.</p>
               </div>
               
               <div class="start-section">
-                <h4>☁️ New to Azure?</h4>
+                <h4>New to Azure?</h4>
                 <p>Check out <a href="/azure-governance/">Azure Governance</a> to understand how to build cloud environments that scale.</p>
               </div>
               
               <div class="start-section">
-                <h4>🧠 Struggling with Anxiety?</h4>
+                <h4>Struggling with Anxiety?</h4>
                 <p>Read <a href="/psychological-safety/">From Fear to Freedom</a> - my personal journey with anxiety and what I've learned.</p>
               </div>
               
               <div class="start-section">
-                <h4>🎯 Making Tech Decisions?</h4>
+                <h4>Making Tech Decisions?</h4>
                 <p>Start with <a href="/decide-or-drown-pt1/">Decide or Drown</a> - the framework for strategic technology decisions.</p>
               </div>
             </div>
@@ -83,7 +83,6 @@ const featuredPosts = posts.filter(post =>
             <h3>What You'll Find Here</h3>
             <div class="topic-cards">
               <a href="/azure/" class="topic-card">
-                <div class="topic-card-icon">☁️</div>
                 <div class="topic-card-content">
                   <h4>Azure</h4>
                   <p>Cloud architecture patterns, governance frameworks, and real-world implementation strategies.</p>
@@ -91,7 +90,6 @@ const featuredPosts = posts.filter(post =>
               </a>
               
               <a href="/governance/" class="topic-card">
-                <div class="topic-card-icon">🔒</div>
                 <div class="topic-card-content">
                   <h4>Governance</h4>
                   <p>Frameworks that enable speed, not slow it down. Security, compliance, and organizational patterns.</p>
@@ -99,7 +97,6 @@ const featuredPosts = posts.filter(post =>
               </a>
               
               <a href="/operations/" class="topic-card">
-                <div class="topic-card-icon">⚙️</div>
                 <div class="topic-card-content">
                   <h4>Operations</h4>
                   <p>Modern service management, operational change, and building resilient systems.</p>
@@ -107,7 +104,6 @@ const featuredPosts = posts.filter(post =>
               </a>
               
               <a href="/leadership/" class="topic-card">
-                <div class="topic-card-icon">👥</div>
                 <div class="topic-card-content">
                   <h4>Leadership</h4>
                   <p>Technical leadership, decision-making frameworks, and mental health in tech.</p>
@@ -115,7 +111,6 @@ const featuredPosts = posts.filter(post =>
               </a>
               
               <a href="/log-analytics/" class="topic-card">
-                <div class="topic-card-icon">📊</div>
                 <div class="topic-card-content">
                   <h4>Log Analytics</h4>
                   <p>KQL queries, monitoring strategies, and making sense of your data.</p>
@@ -328,9 +323,7 @@ const featuredPosts = posts.filter(post =>
   }
 
   .topic-card {
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
+    display: block;
     padding: 1.5rem;
     background: var(--bg-secondary);
     border: 1px solid var(--border-color);
@@ -468,6 +461,99 @@ const featuredPosts = posts.filter(post =>
     border-color: var(--accent-color);
   }
 
+  /* Terminal Window Styles */
+  .terminal-window {
+    background: #1e1e1e;
+    border-radius: var(--radius-lg);
+    border: 1px solid #333;
+    box-shadow: var(--shadow-lg);
+    margin-bottom: 3rem;
+    overflow: hidden;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    width: 100%;
+    max-width: none;
+  }
+
+  .terminal-header {
+    background: #2d2d2d;
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #333;
+  }
+
+  .terminal-buttons {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .terminal-button {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+
+  .terminal-close {
+    background: #ff5f57;
+  }
+
+  .terminal-minimize {
+    background: #ffbd2e;
+  }
+
+  .terminal-maximize {
+    background: #28ca42;
+  }
+
+  .terminal-title {
+    color: #ccc;
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+
+  .terminal-body {
+    padding: 1.5rem;
+    min-height: 305px;
+    background: #1e1e1e;
+    color: #fff;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    position: relative;
+  }
+
+  .terminal-line {
+    margin-bottom: 0.25rem;
+  }
+
+  .terminal-command {
+    color: #4fc3f7;
+  }
+
+  .terminal-success {
+    color: #81c784;
+  }
+
+  .terminal-info {
+    color: #ffb74d;
+  }
+
+  .terminal-package {
+    color: #e0e0e0;
+    padding-left: 1rem;
+  }
+
+  .terminal-cursor {
+    color: #4fc3f7;
+    animation: blink 1s infinite;
+    font-weight: bold;
+  }
+
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+
   @media (max-width: 768px) {
     .topic-title {
       font-size: 2.5rem;
@@ -490,3 +576,135 @@ const featuredPosts = posts.filter(post =>
     }
   }
 </style>
+
+<script>
+  // Terminal animation sequence - each line with its type and delay
+  const terminalSequence = [
+    { text: '> npm run deploy-calm', type: 'command', delay: 100 },
+    { text: '', type: 'blank', delay: 300 },
+    { text: '⚙️  Initializing mental health deployment...', type: 'info', delay: 800 },
+    { text: '✓ Removing imposter syndrome', type: 'success', delay: 1200 },
+    { text: '✓ Installing confidence@latest', type: 'success', delay: 1000 },
+    { text: '✓ Configuring work-life balance', type: 'success', delay: 1000 },
+    { text: '✓ Applying burnout prevention policies', type: 'success', delay: 1200 },
+    { text: '', type: 'blank', delay: 400 },
+    { text: '📦 Building sustainable practices...', type: 'info', delay: 1000 },
+    { text: '  + clarity@2.0.0', type: 'package', delay: 600 },
+    { text: '  + perspective@1.5.3', type: 'package', delay: 600 },
+    { text: '  + resilience@3.2.1', type: 'package', delay: 600 },
+    { text: '', type: 'blank', delay: 400 },
+    { text: '✓ Deployment successful. Time to relax.', type: 'success', delay: 2000 }
+  ];
+
+  let currentLine = 0;
+  let currentChar = 0;
+  let isTyping = false;
+  let terminalContent;
+  let cursor;
+
+  /**
+   * Initialize the terminal animation
+   * Sets up DOM references and starts the typing sequence
+   */
+  function initTerminal() {
+    terminalContent = document.getElementById('terminal-content');
+    cursor = document.querySelector('.terminal-cursor');
+    
+    if (!terminalContent) return;
+    
+    // Start the animation after a brief delay
+    setTimeout(startTyping, 500);
+  }
+
+  /**
+   * Start typing the current line character by character
+   */
+  function startTyping() {
+    if (currentLine >= terminalSequence.length) {
+      // Animation complete - restart after delay
+      setTimeout(resetTerminal, 3000);
+      return;
+    }
+
+    isTyping = true;
+    const line = terminalSequence[currentLine];
+    
+    // Handle blank lines immediately
+    if (line.type === 'blank') {
+      addLine('', line.type);
+      currentLine++;
+      setTimeout(startTyping, line.delay);
+      return;
+    }
+
+    // Type out the line character by character
+    typeCharacter();
+  }
+
+  /**
+   * Type a single character and schedule the next one
+   */
+  function typeCharacter() {
+    const line = terminalSequence[currentLine];
+    
+    if (currentChar < line.text.length) {
+      // Add character to current line
+      const currentLineElement = terminalContent.lastElementChild;
+      if (currentLineElement && currentLineElement.classList.contains('typing')) {
+        currentLineElement.textContent = line.text.substring(0, currentChar + 1);
+      } else {
+        // Create new line element
+        const lineElement = document.createElement('div');
+        lineElement.className = `terminal-line terminal-${line.type} typing`;
+        lineElement.textContent = line.text.substring(0, currentChar + 1);
+        terminalContent.appendChild(lineElement);
+      }
+      
+      currentChar++;
+      
+      // Random typing speed for more natural feel (30-80ms per character)
+      const typingSpeed = Math.random() * 50 + 30;
+      setTimeout(typeCharacter, typingSpeed);
+    } else {
+      // Line complete
+      const currentLineElement = terminalContent.lastElementChild;
+      if (currentLineElement) {
+        currentLineElement.classList.remove('typing');
+      }
+      
+      currentChar = 0;
+      currentLine++;
+      isTyping = false;
+      
+      // Delay before next line
+      setTimeout(startTyping, line.delay);
+    }
+  }
+
+  /**
+   * Add a complete line to the terminal (for blank lines)
+   */
+  function addLine(text, type) {
+    const lineElement = document.createElement('div');
+    lineElement.className = `terminal-line terminal-${type}`;
+    lineElement.textContent = text;
+    terminalContent.appendChild(lineElement);
+  }
+
+  /**
+   * Reset the terminal and restart the animation
+   */
+  function resetTerminal() {
+    terminalContent.innerHTML = '';
+    currentLine = 0;
+    currentChar = 0;
+    startTyping();
+  }
+
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTerminal);
+  } else {
+    initTerminal();
+  }
+</script>
