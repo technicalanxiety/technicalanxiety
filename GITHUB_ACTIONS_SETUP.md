@@ -175,7 +175,7 @@ npm run dev
 
 The following secrets must be configured in GitHub repository settings:
 
-- `GITHUB_TOKEN` - Automatically provided by GitHub
+- `PAT_TOKEN` - GitHub Personal Access Token with `repo` and `workflow` permissions (for triggering deployments)
 - `AZURE_STATIC_WEB_APPS_API_TOKEN_*` - Azure deployment token
 
 ## 📚 Documentation
