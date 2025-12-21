@@ -15,11 +15,11 @@ import Footer from '../components/Footer.astro';
             <header class="resume-header">
               <h1 class="resume-name">Jason Issac Rinehart</h1>
               <p class="resume-title">Senior Product Architect & Technology Leader</p>
-              <div class="resume-contact">
-                <a href="mailto:jason.rinehart@technicalanxiety.com">📧 jason.rinehart@technicalanxiety.com</a>
-                <a href="https://technicalanxiety.com">🌐 technicalanxiety.com</a>
-                <a href="https://linkedin.com/in/rinehart76">💼 LinkedIn</a>
-                <span>📍 Claremore, OK</span>
+              <div class="contact-info">
+                <p><strong>Email:</strong> <a href="mailto:jason.rinehart@technicalanxiety.com">jason.rinehart@technicalanxiety.com</a></p>
+                <p><strong>Website:</strong> <a href="https://technicalanxiety.com">https://technicalanxiety.com</a></p>
+                <p><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/rinehart76">linkedin.com/in/rinehart76</a></p>
+                <p><strong>Location:</strong> Claremore, OK</p>
               </div>
             </header>
 
@@ -27,6 +27,16 @@ import Footer from '../components/Footer.astro';
               <h2>Professional Summary</h2>
               <p>
                 Senior Product Architect and Technology Leader with 20+ years of experience driving innovation, cloud transformation, and infrastructure strategy for global organizations. Recognized for technical excellence, cross-functional leadership, and delivering scalable solutions that improve business outcomes. Award-winning contributor with a passion for mentoring, presenting complex concepts, and building high-performing teams.
+              </p>
+            </section>
+
+            <section class="resume-section">
+              <h2>Professional Philosophy</h2>
+              <blockquote class="philosophy-quote">
+                "Absorb what is useful, discard what is not, add what is uniquely your own" – Bruce Lee
+              </blockquote>
+              <p>
+                As a technology leader, I believe in innovation through disruption, technical excellence with business impact, mentorship and coaching, cross-functional collaboration, and presenting complex concepts simply.
               </p>
             </section>
 
@@ -323,26 +333,6 @@ import Footer from '../components/Footer.astro';
               </div>
             </section>
 
-            <section class="resume-section">
-              <h2>Professional Philosophy</h2>
-              <blockquote class="philosophy-quote">
-                "Absorb what is useful, discard what is not, add what is uniquely your own" – Bruce Lee
-              </blockquote>
-              <p>
-                As a technology leader, I believe in innovation through disruption, technical excellence with business impact, mentorship and coaching, cross-functional collaboration, and presenting complex concepts simply.
-              </p>
-            </section>
-
-            <section class="resume-section">
-              <h2>Contact Information</h2>
-              <div class="contact-info">
-                <p><strong>Email:</strong> <a href="mailto:jason.rinehart@technicalanxiety.com">jason.rinehart@technicalanxiety.com</a></p>
-                <p><strong>Website:</strong> <a href="https://technicalanxiety.com">https://technicalanxiety.com</a></p>
-                <p><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/rinehart76">linkedin.com/in/rinehart76</a></p>
-                <p><strong>Location:</strong> Claremore, OK</p>
-              </div>
-            </section>
-
             <footer class="resume-footer">
               <p><em>Additional project details and portfolio available upon request.</em></p>
               <p><em>Professional references available upon request.</em></p>
@@ -610,6 +600,7 @@ import Footer from '../components/Footer.astro';
     padding: var(--space-sm);
     background: var(--bg-secondary);
     border-radius: var(--radius-md);
+    text-align: left;
   }
 
   .contact-info a {

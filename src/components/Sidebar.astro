@@ -13,41 +13,6 @@ const allTags = [...new Set(posts.flatMap(post => post.data.tags || []))].sort()
 ---
 
 <aside class="sidebar">
-  <!-- Author Bio Widget -->
-  <div class="widget">
-    <h3 class="widget-title">About</h3>
-    <div class="author-bio">
-      <Avatar 
-        src={siteConfig.author.avatar} 
-        alt={siteConfig.author.name} 
-        size={80}
-        class="author-avatar"
-      />
-      <h4 class="author-name">{siteConfig.author.name}</h4>
-      <p class="author-description">{siteConfig.author.bio}</p>
-      <div class="social-links">
-        <a href={`https://twitter.com/${siteConfig.author.twitter}`} target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Follow on Twitter">
-          <ion-icon name="logo-twitter"></ion-icon>
-        </a>
-        <a href={`https://linkedin.com/in/${siteConfig.author.linkedin}`} target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Connect on LinkedIn">
-          <ion-icon name="logo-linkedin"></ion-icon>
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Stay Connected Widget -->
-  <div class="widget">
-    <h3 class="widget-title">Stay Connected</h3>
-    <p class="widget-description">Subscribe to get the latest posts delivered right to your feed.</p>
-    <div class="connect-links">
-      <a href="/rss.xml" class="connect-link" target="_blank" rel="noopener noreferrer" aria-label="Subscribe to RSS Feed">
-        <ion-icon name="radio-outline"></ion-icon>
-        <span>RSS Feed</span>
-      </a>
-    </div>
-  </div>
-
   <!-- Series Collection Widget -->
   <div class="widget">
     <h3 class="widget-title">Series Collection</h3>
@@ -80,6 +45,17 @@ const allTags = [...new Set(posts.flatMap(post => post.data.tags || []))].sort()
     </div>
   </div>
 
+  <!-- Stay Connected Widget -->
+  <div class="widget">
+    <h3 class="widget-title">Stay Connected</h3>
+    <p class="widget-description">Subscribe to get the latest posts delivered right to your feed.</p>
+    <div class="connect-links">
+      <a href="/rss.xml" class="connect-link" target="_blank" rel="noopener noreferrer" aria-label="Subscribe to RSS Feed">
+        <ion-icon name="radio-outline"></ion-icon>
+        <span>RSS Feed</span>
+      </a>
+    </div>
+  </div>
 
 </aside>
 
