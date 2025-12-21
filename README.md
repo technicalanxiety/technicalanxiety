@@ -6,13 +6,13 @@ A technical blog covering Azure, Log Analytics, leadership, and navigating anxie
 
 ## Migration Status
 
-✅ **Migration Complete** - Successfully migrated from Jekyll to Astro on [DATE]
+✅ **Migration Complete** - Successfully migrated from Jekyll to Astro in December 2024
 
 This site was migrated from Jekyll to Astro to improve:
-- Build performance and developer experience
+- Build performance and developer experience  
 - Modern web standards and accessibility
-- SEO and Core Web Vitals scores
-- Content management workflow
+- SEO and Core Web Vitals scores (90+ Lighthouse scores)
+- Automated content management workflow
 
 ## 🚀 Project Structure
 
@@ -27,7 +27,8 @@ This site was migrated from Jekyll to Astro to improve:
 │   │   ├── Sidebar.astro   # Author bio and recent posts
 │   │   └── ...             # Other UI components
 │   ├── content/            # Content collections
-│   │   ├── posts/          # Blog posts (Markdown)
+│   │   ├── posts/          # Published blog posts (live on site)
+│   │   ├── backlog/        # Scheduled posts (future dates)
 │   │   └── config.ts       # Content schema definitions
 │   ├── layouts/            # Page layouts
 │   │   ├── BaseLayout.astro # Base HTML structure
@@ -56,38 +57,86 @@ All commands are run from the root of the project, from a terminal:
 | `npm run preview`         | Preview your build locally, before deploying     |
 | `npm run test`            | Run test suite (unit and property-based tests)   |
 | `npm run test:watch`      | Run tests in watch mode                          |
+| **Content Management**    |                                                  |
+| `npm run backlog:list`    | List all scheduled posts                         |
+| `npm run backlog:check`   | Check posts ready to publish                     |
+| `npm run backlog add "Title"` | Create new scheduled post                    |
+| `npm run backlog publish file.md` | Manually publish specific post          |
+| **Utilities**             |                                                  |
+| `node optimize-images.js` | Optimize images for web performance              |
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
 
 ## 📝 Content Management
 
+### Automated Publishing Workflow
+
+The site uses an automated publishing system with scheduled posts:
+
+**Directories**:
+- `src/content/posts/` - Published posts (live on site)
+- `src/content/backlog/` - Scheduled posts (future dates)
+
+**Publishing Commands**:
+```bash
+# List all scheduled posts
+npm run backlog:list
+
+# Check which posts are ready to publish
+npm run backlog:check
+
+# Create a new scheduled post
+npm run backlog add "Post Title"
+
+# Manually publish a specific post
+npm run backlog publish post-filename.md
+```
+
 ### Adding New Blog Posts
 
+**Option 1: Scheduled Publishing (Recommended)**
+```bash
+# Create a new scheduled post
+npm run backlog add "Your Post Title"
+
+# Edit the generated file in src/content/backlog/
+# Set a future date in frontmatter
+# The post will auto-publish when the date arrives
+```
+
+**Option 2: Direct Publishing**
 1. Create a new `.md` file in `src/content/posts/`
-2. Use the following frontmatter template:
+2. Use the frontmatter template below
+3. Commit and push to deploy immediately
+
+### Frontmatter Template
 
 ```yaml
 ---
 title: "Your Post Title"
-date: 2024-01-01
-tags: ["azure", "leadership", "anxiety"]
-series: "Optional Series Name"
-series_order: 1
-image: "/img/your-image.jpg"
-description: "Brief description for SEO and social sharing"
+date: 2025-01-01
+tags: [Azure, Leadership, Anxiety]
+description: "Brief description for SEO (150-160 characters)"
+image: "your-image.jpg"           # Optional - filename only, stored in public/img/
+series: "Optional Series Name"    # Optional
+series_order: 1                   # Optional - for backlog posts
+series_part: 1                    # Optional - for published posts
 ---
 ```
 
-3. Write your content in Markdown
-4. Run `npm run dev` to preview locally
-5. Commit and push to deploy
+### Automated Publishing
+
+- **Schedule**: Daily at 9 AM UTC
+- **Process**: Posts with dates ≤ today automatically move from backlog to published
+- **Deployment**: Publishing triggers automatic site rebuild and deployment
+- **Series Links**: Automatically updates navigation between series parts
 
 ### Content Guidelines
 
-- **Images**: Place in `public/img/` directory
-- **Tags**: Use consistent, lowercase tags
-- **Series**: Group related posts with `series` and `series_order`
-- **SEO**: Always include `description` for better search results
+- **Images**: Place originals in `public/img/`, run `node optimize-images.js` to generate optimized versions
+- **Tags**: Use PascalCase format: `[Azure, Leadership, Anxiety]`
+- **Internal Links**: Always use trailing slashes: `/post-slug/`
+- **Series**: Use consistent series names across all parts
 
 ## 🔧 Development
 
@@ -133,23 +182,31 @@ git push origin main
 
 ## 🚀 Deployment
 
-The site is automatically deployed via GitHub Actions when changes are pushed to the `main` branch.
+The site is automatically deployed via GitHub Actions with two workflows:
+
+### Automated Publishing
+- **Schedule**: Daily at 9 AM UTC
+- **Trigger**: Automatic (cron) or manual via GitHub Actions
+- **Process**: Moves scheduled posts to published, updates series links, triggers deployment
+
+### Azure Static Web Apps Deployment
+- **Trigger**: Push to `master` branch (including from auto-publish)
+- **Build**: Astro static site generation
+- **Deploy**: Azure Static Web Apps with global CDN
 
 ### Deployment Targets
 
-- **Production**: [technicalanxiety.com](https://technicalanxiety.com)
+- **Production**: [technicalanxiety.com](https://technicalanxiety.com) (master branch)
 - **Preview**: Automatic preview deployments for pull requests
 
-### Monitoring
-
-After deployment, monitor the site health:
+### Manual Deployment
 
 ```bash
-# Run health check
-./scripts/post-cutover-health-check.sh
+# Build and deploy (automatic via GitHub Actions)
+git push origin master
 
-# Monitor metrics
-node scripts/monitoring-dashboard.js report
+# Or manually trigger auto-publish workflow
+# Go to GitHub Actions → "Publish Scheduled Posts" → "Run workflow"
 ```
 
 ## 🎨 Customization
@@ -196,34 +253,52 @@ npm run build
 
 **Content Not Showing**
 - Check frontmatter syntax in blog posts
-- Verify file is in `src/content/posts/`
+- Verify file is in correct directory (`src/content/posts/` for published, `src/content/backlog/` for scheduled)
 - Ensure date format is correct (YYYY-MM-DD)
+- For scheduled posts, check if date is in the future
 
 **Images Not Loading**
 - Verify images are in `public/img/`
-- Check image paths in frontmatter and content
+- Use filename only in frontmatter (no path, no quotes): `image: filename.jpg`
+- Run `node optimize-images.js` after adding new images
 - Ensure image files are committed to git
+
+**Auto-publish Not Working**
+- Check GitHub Actions logs for "Publish Scheduled Posts" workflow
+- Verify posts in backlog have dates ≤ today
+- Check that PAT_TOKEN secret is configured in repository settings
 
 ### Getting Help
 
-- **Documentation**: [Astro Docs](https://docs.astro.build)
+- **Documentation**: 
+  - [Astro Docs](https://docs.astro.build)
+  - [Publishing Workflow](docs/PUBLISHING_WORKFLOW.md)
+  - [GitHub Actions Setup](GITHUB_ACTIONS_SETUP.md)
 - **Issues**: Create an issue in this repository
 - **Contact**: [Contact form on the website](https://technicalanxiety.com/about/)
 
 ## 📚 Migration History
 
-### Jekyll to Astro Migration (2024)
+### Jekyll to Astro Migration (December 2024)
 
-**Completed**: [DATE]
+**Completed**: December 2024
 
 **Key Improvements**:
-- ⚡ 40% faster build times
+- ⚡ 40% faster build times with Astro static site generation
 - 🎯 Improved Lighthouse scores (90+ across all metrics)
-- 🔧 Better developer experience with TypeScript
-- 📱 Enhanced mobile performance
-- 🔍 Improved SEO and accessibility
+- 🔧 Better developer experience with TypeScript and modern tooling
+- 📱 Enhanced mobile performance and Core Web Vitals
+- 🔍 Improved SEO and accessibility compliance
+- 🤖 Automated publishing workflow with scheduled posts
+- 🔗 Automatic series navigation and link management
 
-**Archived Files**: See `jekyll-archive/` directory for original Jekyll implementation
+**New Features**:
+- Automated daily publishing at 9 AM UTC
+- Scheduled post management with backlog system
+- Automatic image optimization (WebP/AVIF generation)
+- Series post navigation with automatic linking
+- Enhanced search functionality
+- Improved comment system integration
 
 ### Migration Verification
 
