@@ -160,13 +160,7 @@ Build confidence. Ship systems. Measure outcomes. Refine based on evidence.
 That's how every platform you've ever operated earned its place in production. AI is no different.
 
 ---
-<!-- NEXT_PART: confidence-engineering-pt2.md -->
-## What's Next?
-
-**Coming Next:** Part 2: The Practice (December 23, 2025)
-
-Part 1 established why trust is the wrong frame for AI adoption. Part 2 gets practical: a framework for building confidence in AI-enabled systems through observable criteria, instrumentation, and staged authority expansion. I'll share what I've learned applying these principles and where the gaps still exist.
-<!-- END_NEXT_PART -->
+**Next in Series:** [Confidence Engineering, Part 2: The Practice →](/confidence-engineering-pt2/)
 
 ---
 *This is Part 1 of the "Confidence Engineering" series. Part 2: The Practice covers what this looks like in practice. This piece also extends the thinking in [Platform Resiliency](/platform-resiliency-pt1/) and [The Poetry of Code](/poetry-of-code-part1/). If you're still wrestling with AI adoption resistance, start with The Poetry of Code Part 1, which covers the mindset shift from skepticism to collaboration.*
