@@ -36,6 +36,7 @@ const imageURL = new URL(image, Astro.site).href;
     <title>{pageTitle}</title>
     <meta name="title" content={pageTitle} />
     <meta name="description" content={description} />
+    <meta name="author" content={siteConfig.author.name} />
     <link rel="canonical" href={canonicalURL} />
     
     {noindex && <meta name="robots" content="noindex, nofollow" />}
@@ -50,6 +51,11 @@ const imageURL = new URL(image, Astro.site).href;
     <meta property="og:image:height" content="630" />
     <meta property="og:site_name" content={siteConfig.title} />
     <meta property="og:locale" content="en_US" />
+    
+    <!-- LinkedIn specific -->
+    <meta property="article:author" content={siteConfig.author.name} />
+    <meta property="profile:first_name" content="Jason" />
+    <meta property="profile:last_name" content="Rinehart" />
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
