@@ -46,7 +46,10 @@ const imageURL = new URL(image, Astro.site).href;
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={imageURL} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:site_name" content={siteConfig.title} />
+    <meta property="og:locale" content="en_US" />
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
@@ -54,11 +57,19 @@ const imageURL = new URL(image, Astro.site).href;
     <meta property="twitter:title" content={pageTitle} />
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={imageURL} />
+    <meta property="twitter:image:width" content="1200" />
+    <meta property="twitter:image:height" content="630" />
     <meta property="twitter:creator" content={`@${siteConfig.author.twitter}`} />
+    <meta property="twitter:site" content={`@${siteConfig.author.twitter}`} />
     
-    <!-- Favicon -->
+    <!-- Favicon and App Icons -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#2196f3" />
     
     <!-- Fonts and Styles - Optimized for Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
