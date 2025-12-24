@@ -10,10 +10,10 @@ export const siteConfig = {
     linkedin: 'rinehart76',
   },
   giscus: {
-    repo: 'technicalanxiety/technicalanxiety.github.io',
-    repoId: 'MDEwOlJlcG9zaXRvcnkyMzIzNDc1NDk=',
+    repo: 'technicalanxiety/technicalanxiety',
+    repoId: 'R_kgDONZGJJw',
     category: 'Comments',
-    categoryId: 'DIC_kwDODdlXnc4Cx09X',
+    categoryId: 'DIC_kwDONZGJJ84CkwJF',
   },
   googleAnalytics: 'G-2HB2W9WDMR',
   postsPerPage: 7,
