@@ -7,6 +7,7 @@ import TableOfContents from '../components/TableOfContents.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import SeriesNavigation from '../components/SeriesNavigation.astro';
 import BackToTop from '../components/BackToTop.astro';
+import GiscusComments from '../components/GiscusComments.astro';
 import { siteConfig } from '../config';
 import type { CollectionEntry } from 'astro:content';
 
@@ -111,6 +112,8 @@ const canonicalURL = new URL(`/${post.slug}/`, Astro.site).href;
                 currentSeries={post.data.series}
                 currentPart={post.data.series_part}
               />
+              
+              <GiscusComments />
             </div>
             
             <aside class="post-sidebar">
