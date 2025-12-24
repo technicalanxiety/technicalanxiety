@@ -171,13 +171,7 @@ This framework is a starting point. Adapt it to your context. Challenge what doe
 
 That's confidence engineering applied to confidence engineering itself. Observe. Question. Iterate. Challenge. Verify. Then do it all over again.
 
-<!-- NEXT_PART: confidence-engineering-pt3.md -->
-## What's Next?
-
-**Coming Next:** Part 3: The Collision You Can See Coming (December 24, 2025)
-
-Part 2 gave you the engineering framework. Part 3 addresses what happens when you try to implement it: the organizational walls you'll hit, the accountability vacuum that kills adoption, and why confidence engineering without decision rights is just SRE all over again. I'll share the patterns I've watched kill every other operational paradigm and what you can do before you hit them.
-<!-- END_NEXT_PART -->
+**Next in Series:** [Confidence Engineering Part 3: Adoption Déjà Vu →](/confidence-engineering-pt3/)
 
 ---
 *This is Part 2 of the "Confidence Engineering" series. [Part 1: Why the Trust Discourse Is Sabotaging Itself](/confidence-engineering-pt1/) covers why the trust discourse is sabotaging AI adoption. This work also builds on [Platform Resiliency](/platform-resiliency-pt1/) and [How Kiro Turned an Architect into a Developer](/kiro-architect-to-developer/).*
