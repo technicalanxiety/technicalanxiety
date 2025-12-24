@@ -11,9 +11,9 @@ export const siteConfig = {
   },
   giscus: {
     repo: 'technicalanxiety/technicalanxiety',
-    repoId: 'R_kgDONZGJJw',
+    repoId: 'MDEwOlJlcG9zaXRvcnkyMzIzNDc1NDk=',
     category: 'Comments',
-    categoryId: 'DIC_kwDONZGJJ84CkwJF',
+    categoryId: 'DIC_kwDODdlXnc4Cx09S',
   },
   googleAnalytics: 'G-2HB2W9WDMR',
   postsPerPage: 7,
