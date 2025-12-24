@@ -25,10 +25,32 @@
       }
     },
     {
+      "route": "/*.png",
+      "headers": {
+        "Content-Type": "image/png",
+        "Cache-Control": "public, max-age=31536000, immutable"
+      }
+    },
+    {
+      "route": "/*.jpg",
+      "headers": {
+        "Content-Type": "image/jpeg",
+        "Cache-Control": "public, max-age=31536000, immutable"
+      }
+    },
+    {
+      "route": "/*.jpeg",
+      "headers": {
+        "Content-Type": "image/jpeg",
+        "Cache-Control": "public, max-age=31536000, immutable"
+      }
+    },
+    {
       "route": "/img/social-share-default.png",
       "headers": {
+        "Content-Type": "image/png",
         "Cache-Control": "public, max-age=86400",
-        "Content-Type": "image/png"
+        "Access-Control-Allow-Origin": "*"
       }
     }
   ],
@@ -44,7 +66,14 @@
   "mimeTypes": {
     ".json": "application/json",
     ".xml": "application/xml",
-    ".rss": "application/rss+xml"
+    ".rss": "application/rss+xml",
+    ".png": "image/png",
+    ".jpg": "image/jpeg",
+    ".jpeg": "image/jpeg",
+    ".gif": "image/gif",
+    ".webp": "image/webp",
+    ".svg": "image/svg+xml",
+    ".ico": "image/x-icon"
   },
   "globalHeaders": {
     "X-Content-Type-Options": "nosniff",
