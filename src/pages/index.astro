@@ -13,7 +13,11 @@ const sortedPosts = posts.sort((a, b) => b.data.date.valueOf() - a.data.date.val
 const recentPosts = sortedPosts.slice(0, siteConfig.postsPerPage);
 ---
 
-<BaseLayout title="Technical Anxiety | Experience Blog" description="A technical blog covering Azure, Log Analytics, leadership, and navigating anxiety in tech.">
+<BaseLayout 
+  title="Technical Anxiety | Experience Blog" 
+  description="A technical blog covering Azure, Log Analytics, leadership, and navigating anxiety in tech. Cloud architecture insights, leadership lessons, and mental health in tech."
+  image="/img/social-share-default.png"
+>
   <Header />
   
   <Hero />
