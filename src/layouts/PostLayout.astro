@@ -49,6 +49,7 @@ const canonicalURL = new URL(`/${post.slug}/`, Astro.site).href;
   description={pageDescription}
   image={pageImage}
   canonicalURL={canonicalURL}
+  type="article"
 >
   <ReadingProgress />
   <Header />
