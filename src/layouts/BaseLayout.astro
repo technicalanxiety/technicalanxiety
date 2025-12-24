@@ -25,7 +25,9 @@ const {
 } = Astro.props;
 
 const pageTitle = title === siteConfig.title ? title : `${title} | ${siteConfig.title}`;
-const imageURL = new URL(image, Astro.site).href;
+// Use the current request URL's origin for preview environments, fallback to configured site
+const siteOrigin = Astro.url.origin || Astro.site?.origin || 'https://technicalanxiety.com';
+const imageURL = new URL(image, siteOrigin).href;
 ---
 
 <!DOCTYPE html>
