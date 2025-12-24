@@ -314,3 +314,12 @@ All migration requirements were validated through:
 - **Astro Documentation**: [docs.astro.build](https://docs.astro.build)
 - **Technical Anxiety Blog**: [technicalanxiety.com](https://technicalanxiety.com)
 - **Author**: [Jason Rinehart on LinkedIn](https://linkedin.com/in/rinehart76)
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+- **Code & Framework**: MIT License
+- **Blog Content**: Creative Commons Attribution 4.0 International (CC BY 4.0)
+
+Feel free to use this Astro blog setup for your own projects!
