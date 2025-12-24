@@ -6,26 +6,36 @@ export interface Props {
 }
 
 const { theme = 'auto' } = Astro.props;
+
+// Check if Giscus is properly configured
+const isConfigured = siteConfig.giscus?.repo && siteConfig.giscus?.repoId && siteConfig.giscus?.categoryId;
 ---
 
 <div id="giscus-container" class="giscus-container">
-  <script 
-    is:inline
-    src="https://giscus.app/client.js"
-    data-repo={siteConfig.giscus.repo}
-    data-repo-id={siteConfig.giscus.repoId}
-    data-category={siteConfig.giscus.category}
-    data-category-id={siteConfig.giscus.categoryId}
-    data-mapping="pathname"
-    data-strict="0"
-    data-reactions-enabled="1"
-    data-emit-metadata="0"
-    data-input-position="bottom"
-    data-theme={theme}
-    data-lang="en"
-    crossorigin="anonymous"
-    async>
-  </script>
+  {isConfigured ? (
+    <script 
+      is:inline
+      src="https://giscus.app/client.js"
+      data-repo={siteConfig.giscus.repo}
+      data-repo-id={siteConfig.giscus.repoId}
+      data-category={siteConfig.giscus.category}
+      data-category-id={siteConfig.giscus.categoryId}
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="bottom"
+      data-theme={theme}
+      data-lang="en"
+      crossorigin="anonymous"
+      async>
+    </script>
+  ) : (
+    <div class="giscus-placeholder">
+      <p>Comments are temporarily unavailable. Please check back later.</p>
+      <p><small>If you're the site owner, please configure Giscus in your site settings.</small></p>
+    </div>
+  )}
 </div>
 
 <script>
@@ -64,5 +74,22 @@ const { theme = 'auto' } = Astro.props;
   /* Dark theme styles */
   [data-theme="dark"] .giscus-container {
     border-top-color: var(--border-color-dark, #30363d);
+  }
+
+  .giscus-placeholder {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-secondary);
+    background: var(--bg-secondary);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+  }
+
+  .giscus-placeholder p {
+    margin: 0.5rem 0;
+  }
+
+  .giscus-placeholder small {
+    opacity: 0.7;
   }
 </style>
