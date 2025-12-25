@@ -331,6 +331,29 @@ import Footer from '../components/Footer.astro';
                   Author of <a href="https://technicalanxiety.com">Technical Anxiety</a> - technical leadership and cloud architecture blog with 24+ published articles on Azure, governance, and technical leadership. Focus on real-world implementation patterns and lessons learned.
                 </p>
               </div>
+              
+              <div class="writing-section">
+                <h3>Rackspace Technology Publications</h3>
+                <p>Contributing author for Rackspace Technology's thought leadership content, focusing on modern IT service management, cloud migration strategies, and enterprise governance frameworks:</p>
+                <ul class="publications-list">
+                  <li>
+                    <strong><a href="https://www.rackspace.com/blog/modern-it-service-management-transforming-managed-services-part-1" target="_blank">Modern IT Service Management is Transforming Managed Services - Part 1</a></strong><br>
+                    <em>Explores the evolution from traditional ITSM to modern service management, providing practical frameworks for IT teams to become strategic business partners through cloud-native capabilities and automated operations.</em>
+                  </li>
+                  <li>
+                    <strong><a href="https://www.rackspace.com/blog/cyber-resiliency-evolves-private-data-centers-public-cloud" target="_blank">How Cyber Resiliency Evolves from Private Data Centers to Public Cloud</a></strong><br>
+                    <em>Comprehensive analysis of how cyber resiliency strategies must adapt when transitioning from private data centers to public cloud, covering shared responsibility models and recovery speed optimization.</em>
+                  </li>
+                  <li>
+                    <strong><a href="https://www.rackspace.com/blog/move-azure-without-rebuilding-your-vmware-environment" target="_blank">Move to Azure Without Rebuilding Your VMware Environment</a></strong><br>
+                    <em>Strategic guide for organizations looking to migrate VMware workloads to Azure VMware Solution (AVS), focusing on preserving existing investments while gaining cloud scalability and innovation capabilities.</em>
+                  </li>
+                  <li>
+                    <strong><a href="https://www.rackspace.com/blog/summiting-cloud-effective-governance-azure" target="_blank">Summiting the Cloud: How Effective Governance Paves the Way to Success</a></strong><br>
+                    <em>Framework for implementing effective cloud governance using Azure Cloud Adoption Framework principles, covering cost management, security baselines, and deployment acceleration strategies.</em>
+                  </li>
+                </ul>
+              </div>
             </section>
 
             <footer class="resume-footer">
@@ -570,6 +593,39 @@ import Footer from '../components/Footer.astro';
     font-weight: 600;
     color: var(--text-heading);
     margin-bottom: var(--space-md);
+  }
+
+  .publications-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .publications-list li {
+    padding: var(--space-md);
+    margin-bottom: var(--space-md);
+    background: var(--bg-secondary);
+    border-radius: var(--radius-md);
+    border-left: 3px solid var(--accent-color);
+  }
+
+  .publications-list strong {
+    display: block;
+    margin-bottom: var(--space-xs);
+  }
+
+  .publications-list a {
+    color: var(--accent-color);
+    text-decoration: none;
+  }
+
+  .publications-list a:hover {
+    text-decoration: underline;
+  }
+
+  .publications-list em {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.5;
   }
 
   .philosophy-quote {
