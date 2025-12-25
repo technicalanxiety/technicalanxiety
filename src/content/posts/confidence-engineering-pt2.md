@@ -176,4 +176,4 @@ That's confidence engineering applied to confidence engineering itself. Observe.
 ---
 *This is Part 2 of the "Confidence Engineering" series. [Part 1: Why the Trust Discourse Is Sabotaging Itself](/confidence-engineering-pt1/) covers why the trust discourse is sabotaging AI adoption. This work also builds on [Platform Resiliency](/platform-resiliency-pt1/) and [How Kiro Turned an Architect into a Developer](/kiro-architect-to-developer/).*
 
-**Photo by [ThisisEngineering RAEng](https://unsplash.com/@thisisengineering) on [Unsplash](https://unsplash.com/photos/DbLlKd8u2Rw)**
+**Photo by [ThisisEngineering](https://unsplash.com/@thisisengineering) on [Unsplash](https://unsplash.com/photos/DbLlKd8u2Rw)**
