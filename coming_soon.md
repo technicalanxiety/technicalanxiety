@@ -1,6 +1,6 @@
 # Coming Soon - Technical Azure Content Pipeline
 
-*Generated: December 16, 2025*
+*Generated: December 25, 2025*
 
 This document tracks planned technical Azure topics that build on your leadership and governance expertise while branching into more hands-on technical content.
 
@@ -94,20 +94,23 @@ This document tracks planned technical Azure topics that build on your leadershi
   - *Status: Editorial complete, images optimized, ready for publication*
   - *Target: January 8, 2026*
 
-- [ ] **KQL for Infrastructure Teams**
-  - *Focus: Practical Kusto queries for Azure operations*
-  - *Estimated: 1,700 words, standalone*
-  - *Target: Q2 2026*
+- [x] **KQL for Infrastructure Teams: Beyond Basic Queries**
+  - *Focus: Practical Kusto queries for Azure operations, infrastructure-specific patterns*
+  - *Completed: 2,400 words, standalone*
+  - *Status: Draft complete, ready for publication*
+  - *Target: January 12, 2026*
 
-- [ ] **Azure Workbooks: Custom Dashboards That Don't Suck**
-  - *Focus: Building useful operational dashboards*
-  - *Estimated: 1,500 words, standalone*
-  - *Target: Q2 2026*
+- [x] **Azure Workbooks: Custom Dashboards That Don't Suck**
+  - *Focus: Building useful operational dashboards that drive decisions*
+  - *Completed: 2,200 words, standalone*
+  - *Status: Draft complete, ready for publication*
+  - *Target: January 19, 2026*
 
-- [ ] **Chaos Engineering on Azure: Starting Small**
+- [x] **Chaos Engineering on Azure: Starting Small**
   - *Focus: Practical resilience testing without breaking production*
-  - *Estimated: 1,800 words, standalone*
-  - *Target: Q3 2026*
+  - *Completed: 2,100 words, standalone*
+  - *Status: Draft complete, ready for publication*
+  - *Target: January 26, 2026*
 
 ---
 
@@ -272,6 +275,14 @@ This document tracks planned technical Azure topics that build on your leadershi
 - *Status: Draft complete, image optimized, ready for publication*
 - *Target: January 11, 2026*
 
+**Operations & Monitoring Follow-up Series (January 2026)**
+- KQL for Infrastructure Teams: Beyond Basic Queries - 2,400 words
+- Azure Workbooks: Custom Dashboards That Don't Suck - 2,200 words
+- Chaos Engineering on Azure: Starting Small - 2,100 words
+- *Total: 6,700 words across 3 standalone posts*
+- *Status: All drafts complete, ready for publication*
+- *Publishing: January 12, 19, 26, 2026*
+
 ### In Progress
 *No active drafts - Bicep vs Terraform completed December 2025*
 
@@ -280,7 +291,7 @@ This document tracks planned technical Azure topics that build on your leadershi
 2. **Azure OpenAI Service: From Proof of Concept to Production** - Builds on AI theme (Q1 2026)
 3. **Landing Zone Evolution: Beyond the CAF Blueprint** - Advanced patterns for mature environments (Q1 2026)
 4. **Zero Trust Architecture on Azure: Implementation Reality** - Moving beyond buzzwords (Q1 2026)
-5. **KQL for Infrastructure Teams** - Practical Kusto queries for operations (Q2 2026)
+5. **Azure Container Apps vs AKS: The Decision Framework** - Practical container platform guidance (Q2 2026)
 
 ---
 
@@ -311,8 +322,8 @@ This document tracks planned technical Azure topics that build on your leadershi
 ## Notes
 
 - **Estimated Total**: 38 posts, ~70,000 words
-- **Completed**: 4 posts, 12,500 words (Beyond Azure Monitor series + Bicep vs Terraform)
-- **Remaining**: 34 posts, ~57,500 words
+- **Completed**: 7 posts, 19,200 words (Beyond Azure Monitor series + Bicep vs Terraform + Operations follow-up series)
+- **Remaining**: 31 posts, ~50,800 words
 - **Timeline**: 18-24 months at bi-weekly cadence
 - **Mix**: 58% standalone (22 posts), 42% series (16 posts across 8 series)
 - **Focus**: Practical implementation over theoretical concepts
@@ -321,7 +332,9 @@ This document tracks planned technical Azure topics that build on your leadershi
 **Recent Achievements:**
 - Completed first major technical series (Beyond Azure Monitor)
 - Completed high-demand Bicep vs Terraform post with direct, no-BS approach
-- Established KQL writing standards and editorial processes
+- Completed operations follow-up series: KQL, Workbooks, and Chaos Engineering
+- Established consistent publishing pipeline with 7 posts ready for January 2026
+- Enhanced content depth with practical, hands-on technical guidance
 - Optimized content pipeline for consistent quality and publishing standards
 
 *Update this document as topics are completed, priorities shift, or new ideas emerge.*
