@@ -155,11 +155,7 @@ That's the architect's real value. And it only comes from practicing translation
 ---
 ## What's Next?
 
-<!-- NEXT_PART: what-architects-actually-do-pt3.md -->
-**Coming Next:** Part 3: Earning Technical Credibility (Publishing December 25, 2025)
-
-In the final part, we'll address the foundation that makes translation possible - how to build trust with practitioners who know more than you, and leadership who needs to trust your judgment.
-<!-- END_NEXT_PART -->
+**Next in Series:** [What Architects Actually Do - Part 3 →](/what-architects-actually-do-pt3/)
 
 ---
 *This is Part 2 of the "What Architects Actually Do" series. [Part 1: The Translation Layer](/what-architects-actually-do-pt1/) covered the core skill. Part 3: Earning Technical Credibility covers the foundation that makes translation possible.*
