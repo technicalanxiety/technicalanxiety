@@ -1,88 +1,109 @@
 ---
-title: "Operational Change, Part 2"
+title: "Operational Change - Part 2: The Operations Waterline"
 date: 2025-11-14
-description: "AI isnt just a buzzword anymore. Its quietly transforming how we deliver, operate, and support IT services."
+description: "Large language models changed AIOps from expensive vendor theater to genuine operational intelligence that can absorb the toil."
 image: ops-changes-2.jpg
-tags: ["Governance", "Operations"]
+tags: [Governance, Operations]
 series: "Operational Change"
 series_part: 2
 ---
 
-# The AI Revolution in Service Management: Intelligent Operations and Continuous Innovation
+# The Operations Waterline
 
-Here’s the reality: AI isn’t just a buzzword anymore. It’s quietly transforming how we deliver, operate, and support IT services. If you’re wondering whether these changes are hype or reality, I’m here to tell you they’re already reshaping the landscape. In this article, I’ll walk you through how AI and intelligent operations are making service management smarter, faster, and more resilient.
+Early AIOps was expensive vendor theater.
 
----
+I watched it fail to deliver on promises that a properly instrumented Azure Monitor platform and someone who understood KQL could already achieve. The tooling was different. The outcome was the same. Except one cost six figures and the other cost knowledge.
 
-## How AI and Intelligent Operations Are Changing Service Management
-
-### Smarter Service Delivery
-Imagine being able to predict what your business needs before they even ask. AI-powered demand forecasting is making that possible. By analyzing historical data and real-time signals, machine learning models help you optimize capacity and cut costs. No more relying on gut feelings, outdated spreadsheets or antiquated alerting.
-
-AI also helps you understand your business on a deeper level. By analyzing feedback and usage patterns, you can personalize services and anticipate needs. Suddenly, you’re not just reacting; you’re leading the conversation.
-
-> **Thought Starter:**  
-> Try using AI analytics to spot trends in your service usage. What patterns do you see? How could you adjust your offerings to deliver even more value?
+This isn't that story. Something changed.
 
 ---
 
-### Operations That Run Themselves
-Incident management doesn’t have to be a bottleneck. AI-driven bots and automation scripts resolve common incidents instantly, freeing your team to tackle the complex challenges. Downtime drops, and your users get back to work faster.
+## Expensive Lessons
 
-AI is also changing problem management. By crunching telemetry and historical data, it can spot patterns, predict failures, and recommend fixes - sometimes before anyone even notices a problem.
+Around the same time "cloud management platform" became a category, AIOps emerged with the same energy. Vendors promised intelligent operations. Automated correlation. Predictive alerting. Root cause analysis without human intervention.
 
-> **Thought Starter:**  
-> Consider deploying AI-powered monitoring tools. They’ll not only alert you to issues but can also suggest or execute fixes automatically.
+What they delivered was pattern matching dressed up in marketing language.
 
----
+At 10th Magnitude, I evaluated these platforms against what we'd built ourselves. The delta wasn't worth the price. If you understood your telemetry and could write KQL, you could achieve what the vendors were selling. The "AI" was statistical correlation. Useful, but not transformative.
 
-### Management and Support That Never Sleep
-AI is always on. It watches for anomalies, correlates events across your environment, and triggers automated remediation. That means fewer false alarms, faster recovery and no more operational ticket fatigue.
+Most organizations bought anyway because the promise was compelling and the alternative required expertise they didn't have. They paid for capability they could have built, or worse, paid for capability that never materialized because the underlying observability wasn't there to feed it.
 
-Your service catalog can be smarter too. AI recommends services based on user behavior and business goals, making your catalog more dynamic and relevant. And when it comes to security and compliance, AI is your tireless watchdog, monitoring threats, automating compliance checks, and enforcing policies in real time.
-
-> **Thought Starter:**  
-> Integrate AI-driven security tools that adapt to new threats and automate compliance reporting. How much manual effort could you save?
+AIOps failed for the same reason it was sold: organizations wanted to skip the hard work of observability and jump straight to intelligence. You can't automate operations you don't understand. You can't correlate signals you're not collecting.
 
 ---
 
-### Humans and AI: Better Together
-AI isn’t here to replace your team; it’s here to empower them. Cross-functional teams can focus on strategy and innovation while AI handles the routine. Knowledge management gets a boost too, with AI curating and delivering context-aware information right when you need it.
+## What Changed
 
-> **Thought Starter:**  
-> Encourage your teams to tap into AI-powered knowledge bases and collaboration tools. How much faster could you solve problems and spark new ideas?
+Large language models changed the equation.
 
----
+The statistical correlation of early AIOps could find patterns in data. LLMs can reason about patterns. They can ingest runbooks and actually execute against them. They can read incident history and synthesize root cause hypotheses that would take a human analyst hours to construct. They can capture tribal knowledge in a form that survives team transitions.
 
-## The Future: Intelligent Operations and Continuous Innovation
-So, what’s next? The future of service management is intelligent, predictive, and proactive. Here’s what you can expect as AI and intelligent operations become the norm:
+This isn't vendor marketing. I'm evaluating these capabilities now against real operational requirements. The gap between promise and delivery has narrowed dramatically.
 
-- Predictive planning and incident management will help you anticipate needs and issues before they happen. Outages will be prevented, not just resolved.
-- Continuous analysis of performance and feedback will drive real-time enhancements. Your services will evolve on the fly.
-- Hyper-personalization will deliver tailored experiences to every user and team, powered by AI insights.
-- Seamless collaboration will break down silos, letting IT, business, and support teams work together effortlessly.
-- With AI handling the routine, your people can focus on strategic projects and creative solutions.
-
-> **Thought Leadership Challenge:**  
-> Are you ready to let AI handle the heavy lifting so your teams can focus on what really matters? What would you do with the time and resources freed up by intelligent automation?
+The technology caught up.
 
 ---
 
-## Wrapping Up: Your Next Steps
-AI and intelligent operations aren’t just the future; they’re already here. By embracing these technologies, you can deliver services that are faster, smarter, and more business centric.
+## The Operations Waterline
 
-**Ideas to Explore:**
-- Pilot an AI-powered incident management tool and track how resolution times improve.
-- Use machine learning to analyze service usage and predict future needs.
-- Automate compliance and security monitoring to stay ahead of threats.
-- Foster a culture of continuous learning with AI-driven knowledge management.
+When Microsoft took over everything below the infrastructure waterline, the job changed. You stopped managing hardware, hypervisors, and fabric. You started managing platforms, data, and applications. The responsibility shifted up the stack.
 
-**Final Thought:**  
-The organizations that thrive will be those that combine human ingenuity with the power of intelligent automation. The future of service management is proactive, predictive, and always improving - and it’s yours to shape.
+AIOps is positioned to do the same thing to operations.
 
+Below the waterline: alert triage, incident correlation, root cause analysis, runbook execution, pattern detection across telemetry streams. The human toil that consumes operational capacity without creating differentiated value.
+
+Above the waterline: judgment calls, architectural decisions, customer communication, novel problem solving. The work that requires context, creativity, and accountability.
+
+The organizations that figure out this shift will operate with smaller teams at higher effectiveness. Not because they eliminated people, but because they eliminated the toil that buried people.
 
 ---
 
-*This is Part 2 of the "Operational Change" series. [Part 1: Embracing Modern Service Management](/ops-changes-pt1/) covered the foundation for delivering managed services that are agile and resilient.*
+## Where Toil Lives
+
+Three areas consume the most operational capacity without creating proportional value:
+
+**Alert fatigue.** I described in Part 1 what happened when we scaled observability at 10th Magnitude. Telemetry exploded. Incidents exploded. Operations drowned in noise before we tuned the feedback loop. Every organization scaling cloud adoption hits this wall. The answer has always been human judgment applied to threshold tuning, correlation rules, and suppression logic. AIOps can now absorb that work, learning what matters and what doesn't faster than humans can document it.
+
+**Incident triage and correlation.** When an incident fires, someone has to determine severity, identify related alerts, route to the right team, and establish whether this is novel or recurring. That someone carries context in their head. When they leave, the context leaves with them. AIOps can maintain that context persistently, correlating current incidents against historical patterns without depending on institutional memory.
+
+**Root cause analysis.** The most expensive operational activity. Senior engineers pulled from project work to trace symptoms back to sources. Hours spent querying logs, building timelines, testing hypotheses. LLMs can now perform initial RCA passes that would have taken humans half a day. Not perfect, but good enough to accelerate time to resolution and free senior engineers for the problems that actually require them.
+
+---
+
+## The Prerequisite
+
+None of this works if you skipped Part 1.
+
+AIOps consumes telemetry. If you're only observing 10% of your environment because you're still monitoring VMs in a platform-native world, you're feeding AIOps 10% of the signal it needs. The intelligence ceiling is set by the observability floor.
+
+The organizations that will capture value from AIOps are the ones that already made the translation. They observe the right layer. They collect the right telemetry. They understand what "healthy" looks like for their applications and users, not just their servers.
+
+The organizations still stuck in monitoring will buy AIOps platforms and wonder why the promises don't materialize. Same pattern as last time. Different technology, same gap.
+
+---
+
+## Where This Is Heading
+
+Organizations have yet to fully realize what's actually coming. Myself included. I can only speak about my current evaluations and what I see the trajectory becoming: predictive intelligent operations.
+
+The true north star of intelligent operations is predictive action. Not predictive alerting, which tells you something might fail. Predictive action, which prevents the failure before it occurs.
+
+This has never existed before. Every generation of operations tooling has been reactive at its core. Something happens, you respond. The best you could do was respond faster, correlate better, automate the response. But you were always responding.
+
+Predictive action changes the model entirely. Systems that observe patterns, anticipate degradation, and take corrective action before an incident exists. Not "alert earlier" but "fix before the alert."
+
+That's the operations waterline. Everything below it happens without human intervention. Not because humans automated their runbooks, but because the system learned what healthy looks like and maintains it autonomously.
+
+The teams that prepare by building genuine observability and understanding their own operational patterns will transition smoothly. The teams that don't will find themselves paying for AIOps platforms that can't help them because they never did the prerequisite work.
+
+Part 1 asked whether you're observing your environment or just monitoring a slice of it.
+
+Part 2 asks whether you're ready for operations to change as fundamentally as infrastructure did.
+
+The answer to the second question depends entirely on the answer to the first.
+
+And the best part: intelligent operations doesn't care if it's public or private cloud. The translation is the same.
+
+*This is Part 2 of the "Operational Change" series. [Part 1: The Translation Problem](/ops-changes-pt1/) explored the shift from monitoring infrastructure to observing user experience and application performance.*
 
 **Photo by [Growtika](https://unsplash.com/@growtika) on [Unsplash](https://unsplash.com/photos/an-abstract-image-of-a-sphere-with-dots-and-lines-nGoCBxiaRO0)**

@@ -1,146 +1,96 @@
 ---
-title: "Operational Change, Part 1"
+title: "Operational Change - Part 1: The Translation Problem"
 date: 2025-10-31
-description: "Embracing Modern Service Management isnt just a technical upgrade - its a change you must experience to unlock real business value."
+description: "The shift from monitoring servers to observing user experience isn't obvious until a cloud-native customer exposes your blind spots."
 image: ops-changes-1.jpg
-tags: ["Governance", "Operations"]
+tags: [Governance, Operations]
 series: "Operational Change"
 series_part: 1
 ---
 
-## Operational Change, Cloud Version
+# The Translation Problem
 
-I’ve spent over 20 years in the trenches building, scaling, and reinventing managed services for organizations of all sizes. What I’ve learned is simple: embracing Modern Service Management (MSM) isn’t just a technical upgrade - it’s a change you must experience if you want to unlock real business value.
+You're monitoring your cloud infrastructure. Your dashboards are green. Alerts are under control. Customers aren't complaining.
 
-Let’s dig into what MSM means and why it matters.
+And you're blind to 90% of what's actually happening.
 
----
-
-## Why Shift to Modernized Service Management?
-
-Remember when IT was the gatekeeper, controlling every server and process? Those days are gone. Today, business units can spin up cloud services with a credit card. IT’s role is evolving rapidly.
-
-Traditional IT Service Management (ITSM) frameworks - built for on-premises, manual environments - can’t keep up with the speed and flexibility that modern organizations demand.
-
-**MSM flips the script:**  
-Instead of just keeping the lights on, IT becomes a strategic partner, driving agility, innovation, and outcomes that matter to the business.
-
-> **Thought Starter:**  
-> Ask yourself if your IT team is adding real value or just maintaining the status quo. Where could automation free up your people to focus on what really matters?
+I know because I built the monitoring platform that way. It worked until it didn't.
 
 ---
 
-## What’s Different About MSM Design Principles?
+## Where I Started
 
-- **Customer Value First:**  
-  Every activity should create business value. If it doesn’t, why are you still doing it? At Rackspace Technology, we put automation, self-service, and rapid deployment front and center. We call it the Fanatical Experience®.
+I came up through private cloud. Managed services for on-premises infrastructure, then private cloud deployments. In that world, monitoring meant watching endpoints. Hardware failures. System-level alerts. CPU, memory, disk. Is the server healthy? Is the service responding?
 
-- **Design for Resilience:**  
-  Failure happens. MSM says to plan for it, recover fast, and keep moving. It’s about building systems that bounce back, not just systems that never break.
+It worked because we controlled the stack. Every layer was ours to instrument, ours to watch, ours to fix. The operational model matched the infrastructure model. Simple.
 
-- **Zero-Touch Automation:**  
-  The less manual intervention, the better. Automation isn’t just a buzzword; it’s the engine of speed, quality, and predictability.
+When I started building the managed services practice at 10th Magnitude, I brought those habits with me. We built our observability platform on Azure-native tooling, but the mental model was still private cloud. Watch the VMs. Watch the databases. Watch the things we knew how to watch.
 
----
+For our early customers, it worked fine. Smaller organizations, IaaS-heavy deployments, traditional architectures. They understood what we were monitoring because they thought about infrastructure the same way we did. We delivered value. They were satisfied.
 
-## Turning MSM Principles Into Action - The Modern Way
-
-Here’s how I’ve seen MSM principles come to life in real organizations - and how you can do the same.
-
-### Business Relationship Management
-
-- **Old Approach:** IT builds custom solutions in a vacuum, hoping they’ll fit a business need.
-- **Modern Approach:** IT and business work as partners, co-creating services that move the needle. At Rackspace, we formed cross-functional teams with clients and saw successful public cloud adoption jump within the first year.
-
-### Capacity Management
-
-- **Old Approach:** Guesswork and manual provisioning often led to wasted resources.
-- **Modern Approach:** Use cloud-native tools to scale up or down in real time. Automated monitoring keeps costs in check and resources optimized.
-
-  > **Questions to Ask:**  
-  > Review your cloud use monthly. Are you paying for capacity you don’t need? Are you unsure where to even begin?
-
-### Availability and Continuity
-
-- **Old Approach:** Redundancy and manual recovery plans were the norm.
-- **Modern Approach:** Built-in resiliency and automated failover are now standard. In my experience, automating deployments cut manual workload by 40% and boosted uptime.
-
-  > **Quick Win:**  
-  > Automate your failover testing. Document recovery steps as code, not just in a binder.
-
-### Information Security and Compliance
-
-- **Old Approach:** Security was all about networks and manual audits.
-- **Modern Approach:** Focus has shifted to identity and data, with proactive, automated controls. Cloud-native compliance tools make audits less painful and more effective.
-
-  > **Quick Win:**  
-  > Automate compliance checks. Shift your security focus to identity management.
-
-### Financial Management
-
-- **Old Approach:** Huge centralized budgets and little transparency.
-- **Modern Approach:** Move to usage-based, opex-focused models. Cloud platforms give you real-time financial data - use it.
-
-  > **Quick Win:**  
-  > Empower product owners to manage their own budgets. Use cloud cost management tools to track and optimize spending.
-
-### Service Level and Lifecycle Management
-
-- **Old Approach:** Custom SLAs and slow product-focused iterations.
-- **Modern Approach:** Standardized SLAs, focus on user experience (XLAs), and agile, continuously optimized services.
-
-  > **Quick Win:**  
-  > Define experience-level agreements that measure what users care about. Iterate quickly. Improve often. Find what works. Discard what does not.
+Here's what I didn't understand then: we were both speaking the same outdated language. The blind spots were shared, so nobody noticed them. You can't miss what you don't know to look for.
 
 ---
 
-## Service Operations Reimagined
+## What Broke
 
-MSM isn’t just about delivery - it’s about how you operate day-to-day.
+Our first platform-native customer changed everything.
 
-- **Self-Service and Automation:**  
-  Ditch the manual ticketing. Give users self-service portals and automate the workflows behind them.
+They weren't running VMs with applications on top. They were running data pipelines, event-driven workflows, serverless functions, managed services. The infrastructure we knew how to monitor was a fraction of their actual environment.
 
-- **Automated Configuration and Change Management:**  
-  Use automated discovery and service mapping. Build continuous delivery pipelines with built-in controls.
+We had to scale, fast. Scale upon what we'd built and learn to speak observability instead of monitoring. Azure Event Logs, Redis Cache, Logic Apps, Functions, Service Bus, Event Grid. The list kept growing. We built new KQL queries. Scaled the platform to auto-configure diagnostics and monitoring agents across services we'd never instrumented before.
 
-- **Unified Cloud Management:**  
-  Manage everything from a single platform. Break down silos and eliminate manual tasks.
+And then we drowned.
 
-**Ideas to Spark Change:**
-- Launch a self-service portal for common IT requests.
-- Use infrastructure as code for configuration management.
-- Build CI/CD pipelines for every release.
+The expansion worked too well. We went from watching a narrow slice of infrastructure to ingesting telemetry from everywhere. Incidents exploded. Operations couldn't keep up with the noise. We'd solved the visibility problem and created an operational overload problem.
+
+So we tuned. Operations fed back to the platform what actually mattered. We adjusted thresholds, filtered noise, built correlation logic. The platform improved. Operations stabilized. Then the next customer pushed us further, and around we went again.
+
+This was the feedback loop I wrote about in the Platform Resiliency series. But I didn't have that language then. I just knew we were constantly adjusting, constantly learning what to watch and what to ignore.
 
 ---
 
-## Management and Support Capabilities
+## The Shift
 
-- **Dynamic Service Catalogs:**  
-  Offer pre-approved, business-aligned services that users can provision on demand.
+What changed wasn't the tooling. It was the question.
 
-- **Real-Time Monitoring and Remediation:**  
-  Monitor at the service level and automate fixes for common issues.
+Private cloud monitoring asks: Is this server healthy?
 
-- **Process Automation:**  
-  Automate end-to-end across IT functions to accelerate delivery and reduce errors.
+Public cloud observability asks: Is the user happy and the application performing?
 
-**Ideas to Implement:**
-- Curate a service catalog with standardized offerings.
-- Integrate monitoring tools that trigger automated fixes.
-- Assign champions to drive automation across the organization.
+When Microsoft took over everything below the infrastructure waterline, the job changed. You're no longer responsible for hardware failures, hypervisor health, or fabric management. Microsoft owns that. Your responsibility moved up the stack to the platform layer, the data layer, the application layer.
+
+But most teams didn't move with it. They kept watching VMs because that's what they knew. They kept asking the old question because nobody taught them the new one.
+
+The orgs that stayed stuck weren't failing. Their customers weren't complaining. The shared vocabulary of "traditional" masked the gap. Everyone was satisfied with visibility into 10% of the environment because everyone expected visibility into 10% of the environment.
+
+Until a customer showed up who expected more.
 
 ---
 
-## Wrapping Up: Laying the Groundwork for Intelligent Operations
+## The Framework Underneath
 
-MSM is the foundation for delivering managed services that are agile, resilient, and truly aligned with your business goals. By embracing MSM principles and leveraging cloud-native capabilities, you can break free from legacy constraints and open the door to true innovation and growth.
+Microsoft's Modern Service Management framework helped me make sense of the translation. It maps traditional IT service management practices to their cloud equivalents. Not a new methodology, just a lens for understanding what changes when you move to public cloud.
 
-> **Questions to Ponder:**  
-> - Where could automation make the biggest impact in your organization?  
-> - How can IT and business collaborate more closely?  
-> - What metrics reflect the value your services deliver?  
-> - Are you making the most of cloud-native tools for security, compliance, and cost management?
+The framework didn't do the work. We did. But it gave us a vocabulary for explaining why monitoring Redis Cache mattered, why Event Logs weren't optional, why the operational model had to evolve alongside the infrastructure model.
+
+If you're looking for a starting point, it's there. But the framework is scaffolding, not the building. At 10th Magnitude, we called it "the house of managed services."
+
+---
+
+## The Warning
+
+Here's what I want leadership to understand:
+
+Your team isn't failing. Your customers aren't complaining. Your dashboards are green.
+
+And you might still be blind.
+
+The gap between monitoring and observability isn't obvious when everyone shares the same expectations. You deliver value because everyone understands value the same way you do. Traditional serving traditional.
+
+The wake-up call comes when someone shows up who speaks modern. A cloud-native workload. A web application that runs in App Service instead of VMs. An architecture where the things you watch are the smallest fraction of the things that matter.
+
+You won't know the gap exists until you're standing in it.
 
 ---
 
@@ -149,13 +99,13 @@ MSM is the foundation for delivering managed services that are agile, resilient,
 <!-- NEXT_PART: 2025-11-14-ops-changes-pt2.md -->
 **Coming Next:** Part 2: The AI Revolution in Service Management (Published November 14, 2025)
 
-In the next part, we’ll dive into how AI and intelligent operations are taking service management to the next level. Discover how to make your operations predictive, proactive, and always improving.
+In the next part, we’ll explore what changes when you've made the translation. Operations built on real observability. The expensive lessons of early AIOps, and why intelligent operations might finally be ready to deliver. And what it means when the operations waterline moves the same way the infrastructure waterline did.
 
 <!-- END_NEXT_PART -->
 
 ---
 
-*This is Part 1 of the "Operational Change" series. [Part 2: The AI Revolution in Service Management](/ops-changes-pt2/) dives into how AI and intelligent operations are taking service management to the next level.*
+*This is Part 1 of the "Operational Change" series. [Part 2: The Operations Waterline](/ops-changes-pt2/) explores what changes when you've made the translation. Operations built on real observability. The expensive lessons of early AIOps, and why intelligent operations might finally be ready to deliver. And what it means when the operations waterline moves the same way the infrastructure waterline did.*
 
 **Photo by [Alex Kotliarskyi](https://unsplash.com/@frantic) on [Unsplash](https://unsplash.com/photos/people-doing-office-works-QBpZGqEMsKg)**
       
