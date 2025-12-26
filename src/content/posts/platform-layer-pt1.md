@@ -1,5 +1,5 @@
 ---
-title: "The Platform Layer - Part 1"
+title: "The Platform Layer - Part 1: What It Is"
 date: 2025-12-10
 description: "Defining platform architecture - the role nobody understands but every organization needs."
 image: platform-layer-1.jpg
@@ -145,7 +145,5 @@ In the next part, we'll explore the consequences of strong and weak platforms, a
 <!-- END_NEXT_PART -->
 
 ---
-
-*This is Part 1 of "The Platform Layer" series. [Part 2: Why the Platform Layer Matters](/platform-layer-pt2/) explores the consequences of strong and weak platforms, and how platform decisions compound over time.*
 
 **Photo by [Aaron](https://unsplash.com/@ar0n) on [Unsplash](https://unsplash.com/photos/brown-sand-castle-during-daytime-TNKn6hUwCLY)**

@@ -105,7 +105,5 @@ In the next part, we’ll explore what changes when you've made the translation.
 
 ---
 
-*This is Part 1 of the "Operational Change" series. [Part 2: The Operations Waterline](/ops-changes-pt2/) explores what changes when you've made the translation. Operations built on real observability. The expensive lessons of early AIOps, and why intelligent operations might finally be ready to deliver. And what it means when the operations waterline moves the same way the infrastructure waterline did.*
-
 **Photo by [Alex Kotliarskyi](https://unsplash.com/@frantic) on [Unsplash](https://unsplash.com/photos/people-doing-office-works-QBpZGqEMsKg)**
       

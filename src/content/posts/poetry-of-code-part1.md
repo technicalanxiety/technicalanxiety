@@ -1,5 +1,5 @@
 ---
-title: "The Poetry of Code: Part 1 - Building Your Digital Self"
+title: "The Poetry of Code - Part 1: Building Your Digital Self"
 date: 2025-12-17
 description: "Why AI tools are extensions of you, not replacements. A practitioners guide to AI adoption for the uncertain and skeptical."
 image: ai-collaboration.jpg
@@ -119,9 +119,5 @@ Part 1 established AI tools as extensions of self rather than replacements. Part
 <!-- END_NEXT_PART -->
 
 ---
-
-*This is Part 1 of "The Poetry of Code" series. Part 2: Addressing the Fear takes on the real objections - quality, supportability, and what happens when the craft you've spent years mastering becomes something anyone with vision can do.*
-
-*For a practical walkthrough of setting up AI-assisted development, see my post on [configuring Kiro](/setting-up-kiro-ai-assistant/).*
 
 **Photo by [Thought Catalog](https://unsplash.com/@thoughtcatalog) on [Unsplash](https://unsplash.com/photos/black-and-white-printer-paper-TeWWEoIpbmQ)**

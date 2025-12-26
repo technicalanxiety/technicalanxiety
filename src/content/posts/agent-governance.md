@@ -110,4 +110,6 @@ If you skipped governance fundamentals, agent adoption is going to expose that g
 
 The Five Disciplines still hold. They just need to account for a world where identity isn't only human anymore.
 
+---
+
 **Photo by [Scott Graham](https://unsplash.com/@homajob) on [Unsplash](https://unsplash.com/photos/5fNmWej4tAA)**

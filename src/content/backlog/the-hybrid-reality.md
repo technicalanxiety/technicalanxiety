@@ -92,4 +92,6 @@ Your infrastructure is already hybrid. The only question is whether your operati
 
 *For the tactical depth on translating operational practices across environments, see the [Operational Change series](/ops-changes-pt1/).*
 
+---
+
 **Photo by [Markus Spiske](https://unsplash.com/@markusspiske) on [Unsplash](https://unsplash.com/photos/a-close-up-of-a-car-UhxkK9tTHKs)**

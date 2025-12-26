@@ -1,10 +1,10 @@
 ---
-title:  "What Architects Actually Do - Part 2"
+title:  "What Architects Actually Do - Part 2: The Framework"
 date: 2025-12-22
 image:  architects-pt2.jpg
 tags:   [Leadership, Architecture]
 series: "What Architects Actually Do"
-series_order: 2
+series_part: 2
 description: "Real scenarios and frameworks for translating between business needs and technical reality."
 ---
 Part 1 was philosophy. This is the playbook.
@@ -153,12 +153,16 @@ After two years, you're the person everyone calls when there's a gap between bus
 That's the architect's real value. And it only comes from practicing translation deliberately, in every interaction, until it becomes automatic.
 
 ---
+
 ## What's Next?
 
-**Next in Series:** [What Architects Actually Do - Part 3 →](/what-architects-actually-do-pt3/)
+<!-- NEXT_PART: what-architects-actually-do-pt3.md -->
+**Coming Next:** Part 3: Earning Technical Credibility (Published December 23, 2025)
+
+How to maintain credibility with practitioners who know more than you in their domains. The foundation that makes translation possible.
+<!-- END_NEXT_PART -->
 
 ---
-*This is Part 2 of the "What Architects Actually Do" series. [Part 1: The Translation Layer](/what-architects-actually-do-pt1/) covered the core skill. Part 3: Earning Technical Credibility covers the foundation that makes translation possible.*
 
 **Photo by [Brett Jordan](https://unsplash.com/@brett_jordan) on [Unsplash](https://unsplash.com/photos/brown-wooden-cross-on-white-surface-Fp4ERdkR5jU)**
 

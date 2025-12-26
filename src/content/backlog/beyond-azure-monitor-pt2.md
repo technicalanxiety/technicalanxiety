@@ -10,8 +10,6 @@ description: "Master advanced KQL techniques for correlation analysis, anomaly d
 # Beyond Azure Monitor - Part 2: Advanced KQL Patterns
 ## Correlation, Anomaly Detection, and Predictive Monitoring
 
-*This is Part 2 of the "Beyond Azure Monitor" series. [Part 1](/beyond-azure-monitor-pt1/) covered context-aware monitoring and dynamic baselines. Part 3 covers automation and alerting strategies.*
-
 ---
 ## PURPOSE
 
@@ -375,6 +373,5 @@ We'll take these advanced patterns and show you how to operationalize them at sc
 <!-- END_NEXT_PART -->
 
 ---
-*This is Part 2 of the "Beyond Azure Monitor" series. [Part 1: The Reality of Enterprise Monitoring](/beyond-azure-monitor-pt1/) covers context-aware monitoring and dynamic baselines. [Part 3: Production-Ready Monitoring](/beyond-azure-monitor-pt3/) covers automation and alerting strategies.*
 
 **Photo by [Luke Chesser](https://unsplash.com/@lukechesser) on [Unsplash](https://unsplash.com/photos/JKUTrJ4vK00)**

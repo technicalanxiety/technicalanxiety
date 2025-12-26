@@ -1,5 +1,5 @@
 ---
-title: "The Platform Layer - Part 2"
+title: "The Platform Layer - Part 2: Why It Matters"
 date: 2025-12-13
 description: "The consequences of strong and weak platforms - why platform decisions compound over time."
 image: platform-layer-2.jpg
@@ -157,7 +157,5 @@ In the final part, we'll cover how to operationalize platform architecture in yo
 <!-- END_NEXT_PART -->
 
 ---
-
-*This is Part 2 of "The Platform Layer" series. [Part 1: What is Platform Architecture](/platform-layer-pt1/) defined the role and discipline. Part 3: Building the Platform Function covers how to operationalize platform architecture in your organization.*
 
 **Photo by [Wojciech Rzepka](https://unsplash.com/@wrzepka) on [Unsplash](https://unsplash.com/photos/ancient-wooden-house-with-a-unique-design-s6l26WiU-Yk)**

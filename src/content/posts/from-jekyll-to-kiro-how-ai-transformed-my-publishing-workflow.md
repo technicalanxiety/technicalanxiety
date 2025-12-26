@@ -215,4 +215,6 @@ The future is weird. I'm here for it.
 
 *If you're curious about the technical details - the workflows, the scripts, the configuration - I'll be sharing them in my public repo [cloudthings](https://github.com/jrinehart76/cloudthings). Sometimes the best documentation is showing your work.*
 
+---
+
 **Photo by [Suzanne D. Williams](https://unsplash.com/@scw1217) on [Unsplash](https://unsplash.com/photos/three-pupas-VMKBFR6r_jg)**

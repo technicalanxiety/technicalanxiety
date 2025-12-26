@@ -1,6 +1,7 @@
 ---
-title: "Decide or Drown - Part 1"
+title: "Decide or Drown - Part 1: The Illusion of Choice"
 date: 2025-12-01
+description: "Your engineers are drowning in decisions that don't matter. Technology choices should be made upstream, not by every team independently."
 image: drown-pt1.jpg
 tags: ["Leadership"]
 series: "Decide or Drown"
@@ -9,6 +10,8 @@ series_part: 1
 
 # Decide or Drown: Part 1 - The Illusion of Choice
 ## Why Your Teams Don't Need More Options
+
+---
 
 Your engineers are drowning in decisions that don't matter.
 
@@ -103,4 +106,5 @@ In the next part, we'll explore practical frameworks for making these upstream d
 <!-- END_NEXT_PART -->
 
 ---
+
 **Photo by [Victoriano Izquierdo](https://unsplash.com/@victoriano) on [Unsplash](https://unsplash.com/photos/man-on-front-of-vending-machines-at-nighttime-JG35CpZLfVs)**

@@ -344,4 +344,6 @@ Before migrating workloads, verify:
 
 *"You can't summit Everest by skipping base camps. You can't build enterprise cloud infrastructure by skipping governance. The physics of both are non-negotiable."*
 
+---
+
 **Photo by [Martin W. Kirst](https://unsplash.com/@nitram509) on [Unsplash](https://unsplash.com/photos/two-sets-of-brown-code-happy-marquee-lights-Ap3fFS0iOiE)**

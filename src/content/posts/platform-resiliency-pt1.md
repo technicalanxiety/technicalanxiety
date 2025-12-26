@@ -1,15 +1,11 @@
 ---
-title: "Platform Resiliency Part 1: The Promise That Couldnt Travel"
+title: "Platform Resiliency - Part 1: The Promise That Couldnt Travel"
 date: 2025-12-15
 description: "Why SRE adoption failed outside Google and what we learned from attempting to transplant a complete system rather than adapting principles to organizational reality."
 image: resiliency-part1.jpg
 tags: ["Operations", "Leadership", "Platform"]
 series: "Platform Resiliency"
 series_part: 1
----
-
-*This is Part 1 of the "Platform Resiliency" series. Part 2 covers the reframe and path forward.*
-
 ---
 
 > "Absorb what is useful, discard what is not, add what is uniquely your own." — Bruce Lee
@@ -160,6 +156,8 @@ The goal isn't to give you another system to implement wholesale. It's to give y
 
 Part 2 makes that concrete.
 
+---
+
 ## What's Next?
 
 <!-- NEXT_PART: 2025-12-15-platform-resiliency-pt2.md -->
@@ -169,9 +167,5 @@ In Part 2, I'll lay out what Platform Resiliency looks like in practice. How ope
 <!-- END_NEXT_PART -->
 
 ---
-
-*This is Part 1 of the "Platform Resiliency" series. [Part 2: The Promise That Can](/platform-resiliency-pt2/) covers the reframe and operational model. [Part 3: Promises Made, Promises Kept](/platform-resiliency-pt3/) provides practical implementation steps.*
-
-*If you want background on the organizational preconditions that enable this work, start with [Decide or Drown Part 4: Why Organizations Won't Do It](/decide-or-drown-pt4/). If you want context on platform architecture as a discipline, see [The Platform Layer Part 1: What is Platform Architecture](/platform-layer-pt1/).*
 
 **Photo by [Mohammad Honarmand](https://unsplash.com/@ihonarrmand) on [Unsplash](https://unsplash.com/photos/a-plant-growing-out-of-the-ground-on-the-side-of-the-road-54mN6aN_488)**

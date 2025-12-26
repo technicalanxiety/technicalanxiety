@@ -1,6 +1,7 @@
 ---
-title: "Decide or Drown - Part 2"
+title: "Decide or Drown - Part 2: Technical Gluttony"
 date: 2025-12-03
+description: "The technical debt collector is calling. What happens when organizations avoid making strategic technology decisions upstream."
 image: drown-pt2.jpg
 tags: ["Leadership"]
 series: "Decide or Drown"
@@ -9,8 +10,6 @@ series_part: 2
 
 # Decide or Drown: Part 2 - Technical Gluttony
 ## The Reckoning Has Arrived
-
-*This is Part 2 of the "Decide or Drown" series. If you haven't read [Part 1: The Illusion of Choice](/decide-or-drown-pt1/), start there - it covers the framework for making strategic technology decisions upstream so your teams don't have to. This piece is about what happens when that framework doesn't exist.*
 
 ---
 
@@ -112,7 +111,4 @@ In the next part, we move from diagnosis to action - a repeatable framework for 
 
 ---
 
-*This is Part 2 of the "Decide or Drown" series. [Part 1: The Illusion of Choice](/decide-or-drown-pt1/) covered why technology decisions need to be made upstream. [Part 3: A Framework for Technology Decisions That Actually Stick](/decide-or-drown-pt3/) explores how to actually make those decisions well.*
-
----
 **Photo by [Europeana](https://unsplash.com/@europeana) on [Unsplash](https://unsplash.com/photos/Z4JS44xPGYw)**

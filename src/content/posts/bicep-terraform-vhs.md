@@ -180,4 +180,6 @@ Decide.
 
 *I've had this conversation with architects at healthcare systems, energy companies, financial institutions, and startups. The details vary. The answer doesn't. If you want to argue about this, the comments are open. But I've seen the aftermath across hundreds of environments. Your counterarguments aren't new to me. Your state file incidents will be new to you.*
 
+---
+
 **Photo by [Bruno Guerrero](https://unsplash.com/@pray4bokeh) on [Unsplash](https://unsplash.com/photos/a-group-of-boxes-with-text-on-them-hSHhJojpo4A)**

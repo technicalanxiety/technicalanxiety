@@ -99,8 +99,10 @@ For now, if you're in the storm, know that survival is enough. Stay in the fight
 
 ---
 
-*This post is the first in a series. [Debugging Myself](/debugging-myself/) was written five years later, from the other side. If you want to know how the story ends, start there.*
+*[Debugging Myself](/debugging-myself/) was written five years later, from the other side. If you want to know how the story ends, start there.*
 
 *If you're struggling, please reach out to a professional. This is my story, not medical advice. But know that survival is possible, and so is victory.*
+
+---
 
 *Photo by [Erik Mclean](https://unsplash.com/@introspectivedsgn) on [Unsplash](https://unsplash.com/photos/tQ5QE587veU)*

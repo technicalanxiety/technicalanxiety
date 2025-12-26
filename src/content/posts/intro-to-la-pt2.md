@@ -139,6 +139,4 @@ In the final part of this series, we'll show how to use Log Analytics as an actu
 
 ---
 
-*This is Part 2 of the "Intro to Log Analytics" series. [Part 1: Getting Started with KQL](/intro-to-la-pt1/) covered the basics of writing queries. [Part 3: Using Log Analytics to View Logs](/la-view-logs/) shows how to build human-readable tables for VM status monitoring.*
-
 **Photo by [Jackman Chiu](https://unsplash.com/@jackmanchiu) on [Unsplash](https://unsplash.com/photos/36Vbwo1OiZU)**

@@ -1,10 +1,10 @@
 ---
-title:  "What Architects Actually Do - Part 3"
+title:  "What Architects Actually Do - Part 3: Credibility"
 date: 2025-12-25
 image:  architects-pt3.jpg
 tags:   [Leadership, Architecture]
 series: "What Architects Actually Do"
-series_order: 3
+series_part: 3
 description: "How to maintain credibility with practitioners who know more than you in their domains."
 ---
 Here's the uncomfortable truth about being an architect: you will never be the smartest technical person in the room.
@@ -159,20 +159,6 @@ The architects who have the most influence aren't the ones with the most technic
 
 That's the job. Not being the expert. Being the person experts trust to make sense of what they know.
 
-## The Series Complete
-
-This is where "What Architects Actually Do" lands.
-
-Part 1 was the core skill: translation between business and technology.
-
-Part 2 was the practice: scenarios, frameworks, vocabulary for doing translation well.
-
-Part 3 is the foundation: credibility that makes translation possible.
-
-Without credibility, nobody listens to your translations. Without translation skill, your credibility doesn't produce value. Without practice, neither one develops.
-
-The three work together. Miss any one of them and you'll plateau.
-
 If you're early in your architecture career, start building these now. Don't wait until you have the title. The skills compound over time, and the earlier you start, the more you'll have when you need them.
 
 If you're already in the role and struggling, diagnose which piece is missing. Is it credibility with practitioners? Go rebuild trust through better questions and consistent follow-through. Is it credibility with leadership? Focus on calibration and business framing. Is it translation skill? Practice in every conversation until it becomes automatic.
@@ -182,9 +168,6 @@ The path is long. There are no shortcuts. But architects who master these fundam
 That's what architects actually do.
 
 ---
-*This is Part 3 of the "What Architects Actually Do" series. [Part 1: The Translation Layer](/what-architects-actually-do-pt1/) covered the core skill. [Part 2: Translation in Practice](/what-architects-actually-do-pt2/) provided real scenarios and frameworks.*
 
 **Photo by [Alex Shute](https://unsplash.com/@faithgiant) on [Unsplash](https://unsplash.com/photos/a-wooden-block-that-says-trust-surrounded-by-blue-flowers-bGOemOApXo4)**
-
-*This concludes the "What Architects Actually Do" series. If you found it valuable, the ["Decide or Drown" series](/decide-or-drown-pt1/) covers the leadership side of technology decision-making - written for the IT leaders these architects work with.*
 

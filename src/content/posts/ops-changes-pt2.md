@@ -104,6 +104,6 @@ The answer to the second question depends entirely on the answer to the first.
 
 And the best part: intelligent operations doesn't care if it's public or private cloud. The translation is the same.
 
-*This is Part 2 of the "Operational Change" series. [Part 1: The Translation Problem](/ops-changes-pt1/) explored the shift from monitoring infrastructure to observing user experience and application performance.*
+---
 
 **Photo by [Growtika](https://unsplash.com/@growtika) on [Unsplash](https://unsplash.com/photos/an-abstract-image-of-a-sphere-with-dots-and-lines-nGoCBxiaRO0)**

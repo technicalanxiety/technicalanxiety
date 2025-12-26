@@ -1,5 +1,5 @@
 ---
-title: "The Poetry of Code: Part 2 - Addressing the Fear"
+title: "The Poetry of Code - Part 2: Addressing the Fear"
 date: 2025-12-20
 image: code-craftsmanship.jpg
 tags: [Leadership, Anxiety, AI]
@@ -135,6 +135,7 @@ You might find, like I did, that the skepticism fades quickly once you experienc
 The poetry of code isn't in the syntax. It's in the vision. And these tools let you express that vision faster than ever before.
 
 ---
-*This concludes "The Poetry of Code" series. For a practical walkthrough of setting up AI-assisted development, see my post on [configuring Kiro](/setting-up-kiro-ai-assistant/).*
+
+*For a practical walkthrough of setting up AI-assisted development, see my post on [configuring Kiro](/setting-up-kiro-ai-assistant/).*
 
 **Photo by [Nicolas Hoizey](https://unsplash.com/@nhoizey) on [Unsplash](https://unsplash.com/photos/blacksmith-holding-mallet-in-garage-2MuZ23gkFKo)**

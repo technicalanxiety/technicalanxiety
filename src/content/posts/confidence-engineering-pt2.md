@@ -1,11 +1,11 @@
 ---
-title: "Confidence Engineering, Part 2: The Practice"
+title: "Confidence Engineering - Part 2: The Practice"
 date: 2025-12-23
 image: confidence-engineering-pt2.jpg
 tags: [Leadership, Operations, Azure]
 description: "A framework for building confidence in AI-enabled systems through observable criteria, instrumentation, and staged authority expansion. Theory meets practice."
 series: "Confidence Engineering"
-series_order: 2
+series_part: 2
 ---
 A framework for building confidence in AI-enabled systems through observable criteria, instrumentation, and staged authority expansion.
 
@@ -171,9 +171,16 @@ This framework is a starting point. Adapt it to your context. Challenge what doe
 
 That's confidence engineering applied to confidence engineering itself. Observe. Question. Iterate. Challenge. Verify. Then do it all over again.
 
-**Next in Series:** [Confidence Engineering Part 3: Adoption Déjà Vu →](/confidence-engineering-pt3/)
+---
+
+## What's Next?
+
+<!-- NEXT_PART: confidence-engineering-pt3.md -->
+**Coming Next:** Part 3: Adoption Déjà Vu (Published December 24, 2025)
+
+You'll build the instrumentation. Leadership will nod at the dashboard. Then nothing will happen. The same organizational failure that killed SRE adoption.
+<!-- END_NEXT_PART -->
 
 ---
-*This is Part 2 of the "Confidence Engineering" series. [Part 1: Why the Trust Discourse Is Sabotaging Itself](/confidence-engineering-pt1/) covers why the trust discourse is sabotaging AI adoption. This work also builds on [Platform Resiliency](/platform-resiliency-pt1/) and [How Kiro Turned an Architect into a Developer](/kiro-architect-to-developer/).*
 
 **Photo by [ThisisEngineering](https://unsplash.com/@thisisengineering) on [Unsplash](https://unsplash.com/photos/DbLlKd8u2Rw)**

@@ -86,4 +86,6 @@ What would your team build if mistakes were not fatal?
 
 Here is the truth. Safety is not soft. It is the hardest skill you will ever learn.
 
+---
+
 **Photo by [Etienne Girardet](https://unsplash.com/@etiennegirardet) on [Unsplash](https://unsplash.com/photos/text-NJ7_RKmfsXw)**

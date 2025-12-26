@@ -103,4 +103,6 @@ Could you have just as easily installed Ruby on Windows? Sure. However, this is 
 
 <br>
 
+---
+
 **Photo by [Luca Bravo](https://unsplash.com/@lucabravo) on [Unsplash](https://unsplash.com/photos/XJXWbfSo2f0)**

@@ -70,4 +70,6 @@ Happy Governing!
 
 <br>
 
+---
+
 **Photo by [Hogarth de la Plante](https://unsplash.com/@hogarthd) on [Unsplash](https://unsplash.com/photos/cement-highway-leading-to-mountain-ranges-7-pLwj1ZF58)**

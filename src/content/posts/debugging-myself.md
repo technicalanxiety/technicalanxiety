@@ -148,10 +148,12 @@ The anxiety was always technical. A system with inputs, triggers, outputs. I tre
 
 I won. You can too.
 
-**Photo by [Jason Hogan](https://unsplash.com/@jasonhogan) on [Unsplash](https://unsplash.com/photos/man-opening-his-arms-wide-open-on-snow-covered-cliff-with-view-of-mountains-during-daytime-YyFwUKzv5FM)**
-
 ---
 
 *This post is the second in a series. The first, [Pandemic Recovery](/pandemic-recovery/), was written in 2020 from inside the storm. This one is written from victory.*
 
 *If you're struggling, please reach out to a professional. This is my story, not medical advice. But know that understanding is possible, and so is winning.*
+
+---
+
+**Photo by [Jason Hogan](https://unsplash.com/@jasonhogan) on [Unsplash](https://unsplash.com/photos/man-opening-his-arms-wide-open-on-snow-covered-cliff-with-view-of-mountains-during-daytime-YyFwUKzv5FM)**

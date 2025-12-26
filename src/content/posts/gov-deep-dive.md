@@ -221,4 +221,6 @@ az consumption usage list \
 
 *Source: [From Base Camp to Summit - Why Your Cloud Migration Will Fail Without Proper Governance](https://www.technicalanxiety.com/basecamp-summit/)*
 
+---
+
 **Photo by [Chase Baker](https://unsplash.com/@sandbarproductions) on [Unsplash](https://unsplash.com/photos/man-in-black-wetsuit-swimming-in-blue-water-RTtUA2iBwRw)**

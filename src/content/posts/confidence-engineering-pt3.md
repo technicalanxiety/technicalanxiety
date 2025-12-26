@@ -1,11 +1,11 @@
 ---
-title: "Confidence Engineering Part 3: Adoption Déjà Vu"
+title: "Confidence Engineering - Part 3: Adoption Déjà Vu"
 date: 2025-12-24
 image: confidence-engineering-pt3.jpg
 tags: [Leadership, Governance, Operations]
 description: "You'll build the instrumentation. Leadership will nod at the dashboard. Then nothing will happen. The same organizational failure that killed SRE adoption."
 series: "Confidence Engineering"
-series_order: 3
+series_part: 3
 ---
 # Confidence Without Authority Is Just a Dashboard
 
@@ -134,6 +134,5 @@ Some organizations will fail at AI governance the same way they failed at everyt
 I can't tell you which one you're in. But I can tell you the collision is coming. What you do before you hit it determines whether it's a course correction or the Titanic.
 
 ---
-*This is Part 3 of the "Confidence Engineering" series. [Part 1: The Wrong Question](/confidence-engineering/) explored why "do you trust AI" misses the point. [Part 2: Building Evidence](/confidence-engineering-pt2/) covered the technical framework for staged authority and instrumentation.*
 
 **Photo by [the blowup](https://unsplash.com/@theblowup) on [Unsplash](https://unsplash.com/photos/text-UN4PadDppAU)**

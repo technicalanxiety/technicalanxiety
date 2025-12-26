@@ -1,6 +1,7 @@
 ---
-title: "Decide or Drown - Part 3"
+title: "Decide or Drown - Part 3: The Four Pillars"
 date: 2025-12-08
+description: "A repeatable framework for evaluating technology decisions that accounts for your people, customers, business, and measurement criteria."
 image: drown-pt3.jpg
 tags: ["Leadership"]
 series: "Decide or Drown"
@@ -9,8 +10,6 @@ series_part: 3
 
 # Decide or Drown: Part 3 - The Four Pillars
 ## A Framework for Technology Decisions That Actually Stick
-
-*This is Part 3 of the "Decide or Drown" series. [Part 1: The Illusion of Choice](/decide-or-drown-pt1/) covered why technology decisions need to be made upstream. [Part 2: Technical Gluttony](/decide-or-drown-pt2/) explored what happens when they're not. This piece is about how to actually make those decisions well.*
 
 ---
 
@@ -128,6 +127,8 @@ The rest is execution. Pick a domain. Apply the framework. Make the call. Measur
 
 Your organization is waiting for someone to clear the path. Now you have the tools. Go decide.
 
+---
+
 ## What's Next?
 
 <!-- NEXT_PART: 2025-12-09-decide-or-drown-pt4.md -->
@@ -138,7 +139,4 @@ The framework is clear. The method is proven. So why don't organizations impleme
 
 ---
 
-*This is Part 3 of the "Decide or Drown" series. [Part 1: The Illusion of Choice](/decide-or-drown-pt1/) covered why technology decisions need to be made upstream. [Part 2: Technical Gluttony](/decide-or-drown-pt2/) explored what happens when they're not. [Part 4: Why Organizations Won't Do It](/decide-or-drown-pt4/) covers the organizational preconditions that enable this work.*
-
----
 **Photo by [JF Martin](https://unsplash.com/@numericcitizen) on [Unsplash](https://unsplash.com/photos/brown-wooden-house-interior-LQkZnlL_1ZQ)**

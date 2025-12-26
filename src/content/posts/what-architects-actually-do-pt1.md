@@ -1,5 +1,5 @@
 ---
-title: "What Architects Actually Do - Part 1"
+title: "What Architects Actually Do - Part 1: Translation"
 date: 2025-12-19
 description: "The real job of architects isnt technical depth - its translation between business and technology."
 image: architects-pt1.jpg
@@ -133,8 +133,6 @@ In the next part, we'll get concrete with real scenarios and frameworks for brid
 <!-- END_NEXT_PART -->
 
 ---
-
-*This is Part 1 of the "What Architects Actually Do" series. Part 2: Translation in Practice covers real scenarios and frameworks for bridging business and technology.*
 
 **Photo by [Ling App](https://unsplash.com/@lingapp) on [Unsplash](https://unsplash.com/photos/a-wooden-block-that-says-translation-on-it-p5VW_ZUon7o)**
 

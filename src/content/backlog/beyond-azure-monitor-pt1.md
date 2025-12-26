@@ -10,8 +10,6 @@ description: "Azure Monitor is just the starting point. Real enterprise monitori
 # Beyond Azure Monitor - Part 1: The Reality of Enterprise Monitoring
 ## When Defaults Aren't Enough
 
-*This is Part 1 of the "Beyond Azure Monitor" series. Part 2 covers correlation analysis and anomaly detection. Part 3 covers automation and alerting strategies.*
-
 ---
 ## PURPOSE
 
@@ -205,6 +203,5 @@ We'll dive deep into advanced KQL techniques for correlation analysis, anomaly d
 <!-- END_NEXT_PART -->
 
 ---
-*This is Part 1 of the "Beyond Azure Monitor" series. [Part 2: Advanced KQL Patterns](/beyond-azure-monitor-pt2/) covers correlation analysis and anomaly detection. [Part 3: Production-Ready Monitoring](/beyond-azure-monitor-pt3/) covers automation and alerting strategies.*
 
 **Photo by [Stephen Dawson](https://unsplash.com/@srd844) on [Unsplash](https://unsplash.com/photos/qwtCeJ5cLYs)**

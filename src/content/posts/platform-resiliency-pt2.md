@@ -1,15 +1,11 @@
 ---
-title: "Platform Resiliency Part 2: The Promise That Can"
+title: "Platform Resiliency - Part 2: The Promise That Can"
 date: 2025-12-15
 description: "How to implement resiliency as a design principle woven into platform architecture, with practical guidance for operations teams and AI integration."
 image: resiliency-part2.jpg
 tags: ["Operations", "Leadership", "Platform"]
 series: "Platform Resiliency"
 series_part: 2
----
-
-*This is Part 2 of the "Platform Resiliency" series. [Part 1: The Promise That Couldn't Travel](/platform-resiliency-pt1/) covered why SRE failed to transfer outside Google.*
-
 ---
 
 > "Be like water making its way through cracks. Do not be assertive, but adjust to the object, and you shall find a way around or through it. If nothing within you stays rigid, outward things will disclose themselves. Empty your mind, be formless. Shapeless, like water. If you put water into a cup, it becomes the cup. You put water into a bottle and it becomes the bottle. You put it in a teapot, it becomes the teapot. Now, water can flow or it can crash. Be water, my friend." — Bruce Lee
@@ -156,6 +152,8 @@ When conditions allow, it flows. When obstacles appear, it finds the way around 
 
 Be water, my friend. That's always been how good engineering works.
 
+---
+
 ## What's Next?
 
 <!-- NEXT_PART: 2025-12-15-platform-resiliency-pt3.md -->
@@ -165,9 +163,5 @@ Parts 1 and 2 gave you the model. Part 3 is about Monday morning - the practical
 <!-- END_NEXT_PART -->
 
 ---
-
-*This is Part 2 of the "Platform Resiliency" series. [Part 1: The Promise That Couldn't Travel](/platform-resiliency-pt1/) covered why SRE failed outside Google. [Part 3: Promises Made, Promises Kept](/platform-resiliency-pt3/) provides practical implementation steps.*
-
-*For background on platform architecture as a discipline, see [The Platform Layer Part 1: What is Platform Architecture](/platform-layer-pt1/). For the organizational preconditions that enable this work, see [Decide or Drown Part 4: Why Organizations Won't Do It](/decide-or-drown-pt4/). For psychological safety and blameless culture, see [From Fear to Freedom](/psychological-safety/).*
 
 **Photo by [Mohammad Honarmand](https://unsplash.com/@ihonarrmand) on [Unsplash](https://unsplash.com/photos/a-group-of-potted-plants-on-a-window-sill-aY5Ydr1gPG0)**

@@ -1,15 +1,11 @@
 ---
-title: "Platform Resiliency Part 3: Promises Made, Promises Kept"
+title: "Platform Resiliency - Part 3: Promises Made, Promises Kept"
 date: 2025-12-15
 description: "Practical steps to implement Platform Resiliency on Monday morning - from drawing clear boundaries to enforcing standards through the platform."
 image: resiliency-part3.jpg
 tags: ["Operations", "Leadership", "Platform"]
 series: "Platform Resiliency"
 series_part: 3
----
-
-*This is Part 3 of the "Platform Resiliency" series. [Part 1: The Promise That Couldn't Travel](/platform-resiliency-pt1/) covered why SRE failed outside Google. [Part 2: The Promise That Can](/platform-resiliency-pt2/) introduced resiliency as a platform design principle.*
-
 ---
 
 > "Knowing is not enough, we must apply. Willing is not enough, we must do." — Bruce Lee

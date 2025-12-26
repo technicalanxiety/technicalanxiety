@@ -10,8 +10,6 @@ description: "Transform advanced KQL patterns into production monitoring systems
 # Beyond Azure Monitor - Part 3: Production-Ready Monitoring
 ## Automation, Alerting Strategies, and Integration
 
-*This is Part 3 of the "Beyond Azure Monitor" series. [Part 1](/beyond-azure-monitor-pt1/) covered context-aware monitoring and dynamic baselines. [Part 2](/beyond-azure-monitor-pt2/) covered correlation analysis and anomaly detection.*
-
 ---
 ## PURPOSE
 
@@ -734,6 +732,5 @@ Queries that run manually are useful. Queries that deploy automatically, suppres
 The patterns in this series encode operational knowledge into systems that run without constant human attention. Start with one pattern that addresses your biggest pain point. Expand from there.
 
 ---
-*This concludes the "Beyond Azure Monitor" series. [Part 1: The Reality of Enterprise Monitoring](/beyond-azure-monitor-pt1/) covers context-aware monitoring and dynamic baselines. [Part 2: Advanced KQL Patterns](/beyond-azure-monitor-pt2/) covers correlation analysis and anomaly detection.*
 
 **Photo by [Carlos Muza](https://unsplash.com/@kmuza) on [Unsplash](https://unsplash.com/photos/hpjSkU2UYSU)**

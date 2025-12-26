@@ -950,4 +950,6 @@ Start building your automation now. Test thoroughly. Adapt as the APIs evolve. M
 - [Agent 365 Documentation](https://learn.microsoft.com/microsoft-365-copilot/extensibility/agents)
 - [Conditional Access for Agents](https://learn.microsoft.com/entra/identity/conditional-access/)
 
+---
+
 **Photo by [Kevin Ku](https://unsplash.com/@ikukevk) on [Unsplash](https://unsplash.com/photos/w7ZyuGYNpRQ)**

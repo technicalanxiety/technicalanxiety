@@ -1,11 +1,11 @@
 ---
-title: "Confidence Engineering, Part 1: Why the Trust Discourse Is Sabotaging Itself"
+title: "Confidence Engineering - Part 1: Why the Trust Discourse Is Sabotaging Itself"
 date: 2025-12-21
 image: confidence-engineering-pt1.jpg
 tags: [Leadership, Operations, Anxiety]
 description: "Stop asking if you can trust AI. Start building confidence in systems you understand. The trust discourse is sabotaging adoption with the wrong frame."
 series: "Confidence Engineering"
-series_order: 1
+series_part: 1
 ---
 Stop asking if you can trust AI. Start building confidence in systems you understand.
 
@@ -160,9 +160,15 @@ Build confidence. Ship systems. Measure outcomes. Refine based on evidence.
 That's how every platform you've ever operated earned its place in production. AI is no different.
 
 ---
-**Next in Series:** [Confidence Engineering, Part 2: The Practice →](/confidence-engineering-pt2/)
+
+## What's Next?
+
+<!-- NEXT_PART: confidence-engineering-pt2.md -->
+**Coming Next:** Part 2: The Practice (Published December 23, 2025)
+
+A framework for building confidence in AI-enabled systems through observable criteria, instrumentation, and staged authority expansion. Theory meets practice.
+<!-- END_NEXT_PART -->
 
 ---
-*This is Part 1 of the "Confidence Engineering" series. Part 2: The Practice covers what this looks like in practice. This piece also extends the thinking in [Platform Resiliency](/platform-resiliency-pt1/) and [The Poetry of Code](/poetry-of-code-part1/). If you're still wrestling with AI adoption resistance, start with The Poetry of Code Part 1, which covers the mindset shift from skepticism to collaboration.*
 
 **Photo by [Possessed Photography](https://unsplash.com/@possessedphotography) on [Unsplash](https://unsplash.com/photos/jIBMSMs4_kA)**

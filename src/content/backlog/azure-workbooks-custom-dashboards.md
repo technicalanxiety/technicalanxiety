@@ -598,4 +598,6 @@ Build dashboards that solve problems, not ones that create them.
 
 *Ready to level up your monitoring game? Check out [KQL for Infrastructure Teams](/kql-for-infrastructure-teams/) to master the queries that power these dashboards.*
 
+---
+
 **Photo by [Luke Chesser](https://unsplash.com/@lukechesser) on [Unsplash](https://unsplash.com/photos/JKUTrJ4vK00)**
