@@ -1,5 +1,5 @@
 ---
-title: "Beyond Azure Monitor - The Reality of Enterprise Monitoring"
+title: "Beyond Azure Monitor - Part 1: The Reality of Enterprise Monitoring"
 date: 2026-01-02
 image: beyond-azure-monitor-pt1.jpg
 tags: [Azure, Operations, Monitoring]
@@ -11,38 +11,44 @@ description: "Azure Monitor is just the starting point. Real enterprise monitori
 ## When Defaults Aren't Enough
 
 ---
+
 ## PURPOSE
 
 In Platform Resiliency, I argued that the feedback loop between operations and platform teams is what turns incidents into improvements. That loop requires signal. Observability is how it sees.
 
-This series is about building monitoring that produces signal instead of noise. The patterns here come from years of tuning observability across managed services environments. They're what I built when the alternative was waking up operations teams for problems that weren't problems.
+This series is about building monitoring that produces signal instead of noise. The patterns here come from years of tuning observability across managed services environments, where alert fatigue wasn't theoretical. It was the thing that made customers leave. These queries are what I built when the alternative was waking up operations teams for problems that weren't problems and watching them stop trusting alerts entirely.
 
 Part 1 covers why default Azure Monitor isn't enough and introduces context-aware monitoring patterns. Part 2 goes deeper on correlation and anomaly detection. Part 3 operationalizes everything through automation and alerting strategies.
 
-**Fair Warning:** The KQL examples are production-tested but not plug-and-play. Adapt them to your environment.
+**Fair Warning:** The KQL examples are production-tested but not plug-and-play. Your environment has its own shape. Adapt accordingly. If you're new to KQL and need to build fundamentals first, start with my [Intro to Log Analytics](/intro-to-la-pt1/) series from 2020. This series assumes you're comfortable with the basics and ready to go deeper.
 
 ---
+
 ## WALKTHROUGH
 
 ### What Azure Monitor Actually Gives You
 
-Azure Monitor is everywhere in Microsoft documentation. It's the answer to every monitoring question, the solution to every observability problem. But if you're only using the built-in dashboards and basic alerts, you're missing most of what's possible. You're also probably getting woken up by alerts that don't matter and missing the ones that do.
+Azure Monitor is Microsoft's answer to every monitoring question. Check the docs for any observability problem and there it is, waiting for you like a golden retriever with a tennis ball.
 
-**The good:**
+The problem isn't Azure Monitor. The problem is that most teams stop at the defaults and wonder why their alerting feels broken. I've inherited monitoring configurations from hundreds of organizations. The pattern is always the same: out-of-the-box dashboards, static thresholds, and an operations team that stopped trusting alerts six months ago because they cry wolf constantly.
+
+**What Azure Monitor gives you:**
 - Metrics collection from Azure resources
 - Log aggregation through Log Analytics
 - Basic alerting rules
 - Pre-built dashboards for common scenarios
 - Integration with other Azure services
 
-**The reality:**
-- Generic dashboards that don't match your business context
-- Alerts that fire on symptoms, not root causes
-- No correlation between different data sources
-- Limited customization without deep KQL knowledge
-- Expensive at scale without proper data management
+**What it doesn't give you:**
+- Dashboards that match your business context
+- Alerts that understand the difference between symptoms and root causes
+- Correlation between different data sources
+- Intelligence without deep KQL investment
+- Cost efficiency at scale without deliberate data management
 
-Here's what most people end up with:
+If you're getting worn out by events that aren't problems while actual incidents slip through unnoticed, this is why.
+
+Here's what I find in almost every environment I touch:
 
 ```kusto
 // Basic VM CPU alert - fires on every spike
@@ -55,26 +61,37 @@ Perf
 | summarize avg(CounterValue) by Computer
 ```
 
-This alert will wake you up every time someone runs a backup or a scheduled task. It tells you nothing about whether this actually impacts users or if it's part of normal operations.
+I call this the "2 AM backup alert." It fires when the nightly backup job spikes CPU for ninety seconds. You investigate, find nothing wrong, go back to bed. Tomorrow it happens again. Within a month, your operations team treats every CPU alert as noise. Within three months, they miss the one that actually matters.
+
+This query doesn't monitor your systems. It monitors whether a number crossed a line. Those aren't the same thing.
+
+---
 
 ### The Enterprise Reality
 
-Real monitoring in enterprise environments requires solving problems Azure Monitor doesn't acknowledge out of the box.
+The gap between Azure Monitor's capabilities and what enterprises actually need isn't a bug. It's a design choice. Microsoft built a platform. You have to build the intelligence.
 
-**Business Context.** Your alerts need to understand business hours, maintenance windows, and service dependencies. A database server at 90% CPU during a planned data migration isn't the same as 90% CPU during peak business hours.
+Here's what I learned building managed services monitoring across hundreds of organizations: the problems that matter most are the ones Azure Monitor assumes you'll figure out yourself.
 
-**Correlation.** When something breaks, you need to see the entire chain of events across multiple systems. Azure Monitor shows you individual metrics. Connecting the dots requires custom work.
+**Business Context.** Your alerts need to understand business hours, maintenance windows, and service dependencies. A database server at 90% CPU during a planned data migration isn't the same as 90% CPU during peak business hours. I've watched operations teams burn hours investigating "incidents" that were scheduled jobs running exactly as designed. That's not an alerting success. That's organizational knowledge failing to reach the systems that need it.
 
-**Noise Reduction.** The biggest problem isn't missing alerts. It's too many meaningless ones. You need intelligent filtering that understands your environment's normal behavior patterns.
+**Correlation.** When something breaks, you need to see the entire chain of events across multiple systems. Azure Monitor shows you individual metrics. Connecting the dots requires custom work. The number of times I've seen teams troubleshoot for an hour before realizing two "separate" alerts were the same incident viewed from different angles is embarrassing. And I've been on those teams.
 
-**Multi-Tenant Complexity.** If you're managing multiple customers or business units, you need monitoring that respects boundaries while still providing centralized oversight.
+**Noise Reduction.** The biggest problem isn't missing alerts. It's too many meaningless ones. Alert fatigue is real, and it's the silent killer of operational effectiveness. You need intelligent filtering that understands your environment's normal behavior patterns, not static thresholds that assume your Monday looks like your Saturday.
+
+**Multi-Tenant Complexity.** If you're managing multiple tenants or business units, you need monitoring that respects boundaries while still providing centralized oversight. This is where operations lives, and it's where default monitoring falls apart fastest.
 
 The rest of this post introduces patterns that address these gaps.
 
 ---
+
 ### Pattern: Context-Aware Monitoring
 
-The first pattern adds business context to your alerts. Instead of static thresholds that ignore when and where, this approach adjusts based on business hours and planned maintenance.
+The first pattern comes from a simple question I started asking: why are we alerting on things we already know about?
+
+Maintenance windows exist in someone's calendar. Business hours exist in everyone's head. But the alerting system doesn't know any of it. So it fires during planned patching, wakes people up for off-hours spikes that nobody cares about, and trains your team to ignore the system entirely.
+
+This pattern encodes what your team already knows into queries that make decisions automatically. The threshold isn't static. It shifts based on when problems are problems.
 
 ```kusto
 // Context-aware CPU monitoring with business hours and maintenance awareness
@@ -117,19 +134,26 @@ Perf
 
 The `businessHours` datatable defines when you care most about performance. The `maintenanceWindows` datatable excludes planned work. The threshold adjusts dynamically: 70% during business hours when users are impacted, 85% off-hours when you have more tolerance.
 
-The `['Sample Count'] >= 3` filter eliminates momentary spikes. If CPU isn't sustained across multiple samples in a 5-minute window, it's probably not worth waking someone up.
+The `['Sample Count'] >= 3` filter is the difference between actionable alerts and noise. A single sample above threshold means nothing. Three consecutive samples in a five-minute window means something is actually happening. I've watched this one filter cut alert volume by 40% without missing a single real incident.
 
 **Adapt for your environment:**
 
-- Modify the business hours datatable for your actual schedule
-- Pull maintenance windows from a config table or external source instead of hardcoding
+- Modify the business hours datatable for your actual schedule (and remember, global teams mean business hours might be 24/7 for some systems)
+- Pull maintenance windows from a config table or external source instead of hardcoding. Azure Storage with `externaldata()` works well here
 - Adjust thresholds based on your SLAs and operational tolerance
-- Consider adding tier-based thresholds (production vs. dev vs. test)
+- Consider adding tier-based thresholds. Production at 70%, dev at 90%. Not everything deserves the same sensitivity
 
 ---
+
 ### Pattern: Dynamic Baselines
 
-Static thresholds assume your environment never changes. Dynamic baselines learn what's normal and alert on deviation.
+Static thresholds assume your environment never changes. That assumption is wrong the moment you deploy it.
+
+I spent years setting CPU thresholds at 80% because that's what the documentation said. Then I'd watch those thresholds fire constantly on systems that ran hot by design, and never fire on systems where 60% was actually a crisis. The threshold wasn't wrong. The assumption that one number fits every system was wrong.
+
+In public cloud, this gets worse. You're paying for compute whether you use it or not. Systems *should* run hot. That's efficiency, not a problem. The question isn't "is CPU high?" The question is "is user experience degrading?" Static thresholds can't answer that. Dynamic baselines can.
+
+Dynamic baselines learn what's normal and alert on deviation. Your Monday 9am is different from your Saturday 3am. A query that knows that is a query that earns trust.
 
 ```kusto
 // Dynamic baseline calculation for application response times
@@ -172,34 +196,35 @@ historicalBaseline
 
 The query builds a 30-day historical baseline segmented by hour and day of week. Your Monday 9am baseline is different from your Saturday 3am baseline. Current performance gets compared against the matching historical window.
 
-The `['Performance Ratio'] > 2.0` threshold means you only alert when response times are 2x worse than normal for that specific time window. The `['Request Count'] > 10` filter prevents low-traffic periods from generating false positives.
+The `['Performance Ratio'] > 2.0` threshold means you only alert when response times are 2x worse than normal for that specific time window. Not 2x worse than some arbitrary number you picked during implementation. 2x worse than what this system actually does at this time on this day.
+
+The `['Request Count'] > 10` filter prevents low-traffic periods from generating false positives. I learned this one the hard way. A single slow request during a quiet period shouldn't page anyone.
 
 **Adapt for your environment:**
 
-- Adjust `lookbackPeriod` based on how much historical data you have and how stable your patterns are
-- Tune the performance ratio threshold based on your tolerance for degradation
-- Consider different thresholds for different application tiers
-- Add exclusions for known anomaly periods (holidays, major releases)
+- Adjust `lookbackPeriod` based on how much historical data you have and how stable your patterns are. 30 days works for most. Highly seasonal businesses might need 90
+- Tune the performance ratio threshold based on your tolerance for degradation. 2x is aggressive. 3x is more forgiving. Know your SLAs
+- Consider different thresholds for different application tiers. Your payment processing API probably deserves tighter thresholds than your internal admin tool
+- Add exclusions for known anomaly periods. Holidays, major releases, that one week the marketing campaign went viral and broke all your baselines
 
 ---
+
 ## CONCLUSION
 
-Default Azure Monitor gets you started. These patterns get you to monitoring that understands your business.
+Default Azure Monitor gets you started. These patterns get you to monitoring that actually works. If you're looking at AIOps and wondering whether it's ready, I cover that evolution in [Operational Change](/operational-change-pt1/). Spoiler: the technology finally caught up, but it still needs observability that produces signal instead of noise.
 
-Context-aware monitoring stops alerts from firing during planned maintenance and adjusts thresholds based on when problems actually matter. Dynamic baselines learn what's normal so you're not guessing at static thresholds that become obsolete the moment your usage patterns shift.
+The difference matters. I've watched teams drown in alerts they don't trust and miss incidents they should have caught. I've been on those teams. I've owned the platforms that created the noise. And I've seen what happens when you fix it: alert volume drops by half while catch rate goes up. The technology is the same. The intelligence layered on top is what changes.
 
-Both patterns share a common principle: monitoring should encode operational knowledge. The maintenance windows your team knows about, the business hours when customers are active, the historical performance patterns that define "normal" for your environment. That knowledge shouldn't live only in people's heads. It should live in queries that make decisions automatically.
-
-Part 2 builds on this foundation with correlation analysis and anomaly detection. When single-metric monitoring isn't enough to understand what's happening, you need queries that connect events across systems and surface patterns that individual alerts miss.
+Both patterns share a common principle: monitoring should encode operational knowledge. The maintenance windows your team knows about, the business hours when customers are active, the historical performance patterns that define "normal" for your environment. That knowledge shouldn't live only in people's heads where it walks out the door when they do. It should live in queries that make decisions automatically.
 
 ---
+
 <!-- NEXT_PART: beyond-azure-monitor-pt2.md -->
 ## WHAT'S NEXT?
-{: .text-center}
 
-**Coming Next:** Part 2: Advanced KQL Patterns for Real-World Monitoring (January 5, 2026)
+**Coming Next:** Part 2: Advanced KQL Patterns for Real-World Monitoring
 
-We'll dive deep into advanced KQL techniques for correlation analysis, anomaly detection, and building monitoring queries that actually help you solve problems faster. I'll show you how to build queries that connect the dots between different data sources and create actionable insights.
+We'll go deeper into correlation analysis and anomaly detection. I'll show you how to build queries that connect the dots between different data sources, surface patterns that individual alerts miss, and create actionable insights instead of data dumps. This is where monitoring starts to feel like intelligence instead of noise.
 <!-- END_NEXT_PART -->
 
 ---

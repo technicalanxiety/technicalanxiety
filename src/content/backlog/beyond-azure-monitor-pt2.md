@@ -1,5 +1,5 @@
 ---
-title: "Beyond Azure Monitor - Advanced KQL Patterns for Real-World Monitoring"
+title: "Beyond Azure Monitor - Part 2: Advanced KQL Patterns for Real-World Monitoring"
 date: 2026-01-05
 image: beyond-azure-monitor-pt2.jpg
 tags: [Azure, Operations, Log Analytics]
@@ -11,18 +11,26 @@ description: "Master advanced KQL techniques for correlation analysis, anomaly d
 ## Correlation, Anomaly Detection, and Predictive Monitoring
 
 ---
+
 ## PURPOSE
 
-Part 1 introduced context-aware monitoring and dynamic baselines. This part goes deeper: correlation analysis to see across systems, anomaly detection to surface what's genuinely unusual, and predictive patterns to catch problems before they arrive.
+Part 1 introduced context-aware monitoring and dynamic baselines. The patterns that stop you from drowning in noise. This part goes deeper: correlation analysis to see across systems, anomaly detection to surface what's genuinely unusual, and predictive patterns to catch problems before they arrive.
 
-**Fair Warning:** These patterns build on Part 1 concepts. They require solid KQL fundamentals and understanding of your environment's data structure. Adapt, don't copy.
+Part 1 built confidence that your alerts mean something. Part 2 builds confidence that you're seeing the whole picture.
+
+**Fair Warning:** These patterns build on Part 1 concepts. They require solid KQL fundamentals and understanding of your environment's data structure. If you're still building that foundation, start with my [Intro to Log Analytics](/intro-to-la-pt1/) series. This isn't where you learn KQL. This is where you take it into battle.
 
 ---
+
 ## WALKTHROUGH
 
 ### Pattern: Cross-Service Impact Analysis
 
-When a service fails, you need to see the cascade. This pattern correlates failures across dependent services to show impact severity in real time.
+Here's a scenario I've lived through too many times: an alert fires for a failing API endpoint. You investigate. Meanwhile, three other teams are investigating their own alerts, not realizing they're all looking at the same incident from different angles. Thirty minutes later, someone figures out the failures are correlated. By then, the blast radius has expanded and leadership is asking why it took so long.
+
+The problem isn't slow humans. The problem is monitoring that shows you individual metrics instead of connected systems.
+
+This pattern correlates failures across dependent services to show impact severity in real time. When the orders API fails, you immediately see whether inventory, payment, and shipping are failing too.
 
 ```kusto
 // Cross-service impact correlation during incidents
@@ -67,6 +75,8 @@ primaryServiceFailure
 
 The query tracks failures in a primary service endpoint and correlates them with failures in dependent services within the same time windows. The `['Impact Severity']` classification gives you immediate triage guidance based on how many downstream services are affected.
 
+This is the query I wish I'd had during every major incident I've worked. Instead of "is this related?" you get "here's the blast radius, here's the severity, here's what's affected." The fifteen minutes you'd spend manually checking dependent services becomes fifteen seconds of reading a table.
+
 **Adapt for your environment:**
 
 - Replace the endpoint names with your actual service dependencies
@@ -75,9 +85,14 @@ The query tracks failures in a primary service endpoint and correlates them with
 - Build a service dependency map and use it to define the dependent services dynamically
 
 ---
+
 ### Pattern: Infrastructure Correlation Mapping
 
-Single-metric alerts tell you something is wrong. Infrastructure correlation tells you why. This pattern maps performance issues across compute, memory, and storage to identify bottleneck types.
+Single-metric alerts tell you something is wrong. They don't tell you why.
+
+I've watched engineers chase CPU alerts for an hour before realizing the actual problem was disk latency causing queued operations. The CPU wasn't the disease. It was the symptom. But the alert didn't know that, and neither did the engineer until they'd exhausted other possibilities.
+
+This pattern maps performance issues across compute, memory, and storage to identify bottleneck types. When you see "CPU+Disk" in the output, you know to look at storage first, not throw more compute at the problem.
 
 ```kusto
 // Infrastructure correlation during performance degradation
@@ -138,17 +153,24 @@ cpuIssues
 
 Three separate queries capture issues in CPU, memory, and disk. The joins correlate them by server and time window. The `['Bottleneck Type']` classification tells you whether you're dealing with a single-layer problem or a compound issue that requires deeper investigation.
 
+"Multi-Layer" is the one that should make you nervous. That usually means something systemic is happening, not just one resource under pressure.
+
 **Adapt for your environment:**
 
-- Adjust thresholds based on your infrastructure norms (80% CPU might be normal for some workloads)
+- Adjust thresholds based on your infrastructure norms (80% CPU might be normal for some workloads, as we discussed in Part 1)
 - Add network latency as a fourth correlation layer
 - Consider adding application-level correlation to connect infrastructure issues to user impact
 - Use this pattern as a starting point for automated runbook triggers
 
 ---
+
 ### Pattern: Statistical Anomaly Detection
 
-Static thresholds create noise. This pattern uses standard deviation analysis against time-aware baselines to detect genuinely unusual performance.
+This is where we move from "did a number cross a line" to "is this actually unusual."
+
+Static thresholds assume you know what normal looks like. You don't. Normal shifts with traffic patterns, deployment schedules, and business cycles. The threshold you set six months ago is probably wrong today.
+
+Statistical anomaly detection compares current performance against historical baselines using standard deviation. It answers the question: "Given what this system normally does at this time on this day, is what's happening right now genuinely unusual?"
 
 ```kusto
 // Advanced anomaly detection using statistical analysis
@@ -201,7 +223,7 @@ historicalPattern
 
 The query builds a 14-day baseline segmented by hour and day of week, calculates mean and standard deviation for each segment, then compares current performance against those statistical boundaries. The `sensitivityFactor` of 2.5 standard deviations filters out normal variation while catching genuine anomalies.
 
-The `['Anomaly Type']` includes "Unusual Improvement" because sudden performance gains can indicate problems too: caching failures, dropped functionality, or requests failing fast instead of completing.
+Notice that `['Anomaly Type']` includes "Unusual Improvement." I added this after watching a team celebrate faster response times that turned out to be a caching layer failing silently. Requests were fast because they were returning errors instead of data. Sudden performance gains can indicate problems too: caching failures, dropped functionality, or requests failing fast instead of completing.
 
 **Adapt for your environment:**
 
@@ -211,9 +233,14 @@ The `['Anomaly Type']` includes "Unusual Improvement" because sudden performance
 - Add error rate correlation to distinguish performance issues from functional failures
 
 ---
+
 ### Pattern: Volume Anomaly Detection
 
-Traffic volume anomalies can indicate attacks, upstream failures, or marketing events your team forgot to mention. This pattern detects unusual request volumes with business hour awareness.
+Traffic volume anomalies can indicate attacks, upstream failures, or marketing events your team forgot to mention. I've seen all three, sometimes in the same week.
+
+The trickiest part about volume monitoring is that low traffic during business hours often matters more than high traffic. If your orders API goes quiet at 2 PM on a Tuesday, something is wrong upstream. If it goes quiet at 3 AM on a Sunday, that's probably fine.
+
+This pattern detects unusual request volumes with business hour awareness baked in.
 
 ```kusto
 // Request volume anomaly detection with business context
@@ -277,6 +304,8 @@ historicalVolume
 
 The query learns normal traffic patterns over 21 days, segmented by hour and business/off-hours context. Low volume during business hours is flagged because it often indicates upstream problems. Low volume during off-hours is ignored because that's expected.
 
+The "Business Context" column in the output is there for a reason. When you're triaging at 2 AM, knowing whether low volume is expected or alarming saves you from either panicking unnecessarily or missing something real.
+
 **Adapt for your environment:**
 
 - Adjust `learningPeriod` based on your traffic stability
@@ -285,9 +314,14 @@ The query learns normal traffic patterns over 21 days, segmented by hour and bus
 - Correlate volume anomalies with error rates to distinguish load spikes from attack patterns
 
 ---
+
 ### Pattern: Capacity Trend Forecasting
 
-The best alert is one that fires before the problem arrives. This pattern uses trend analysis to predict when resources will hit capacity limits.
+The best alert is one that fires before the problem arrives.
+
+Every capacity incident I've worked started the same way: someone noticed a disk was full or memory was exhausted, and then we scrambled to add capacity while users waited. Reactive firefighting. The data to predict it was always there. We just weren't looking at it.
+
+This pattern uses trend analysis to predict when resources will hit capacity limits. Instead of "disk is full," you get "disk will be full in 6 days at current growth rate." That's the difference between an emergency and a planned maintenance window.
 
 ```kusto
 // Predictive capacity analysis with trend forecasting
@@ -346,6 +380,8 @@ diskCapacity
 
 The query calculates growth trends over 30 days for disk and memory, then projects forward to estimate when each resource will hit 85% utilization. The output gives you a prioritized list of resources that need attention, with projected dates for capacity issues.
 
+The `['Projected Date']` column is what makes this actionable. "6.2 days until 85%" is useful. "January 14th" is what you put in the change request.
+
 **Adapt for your environment:**
 
 - Replace the hardcoded `['Total Memory GB']` with actual values from your CMDB or Azure resource metadata
@@ -354,22 +390,21 @@ The query calculates growth trends over 30 days for disk and memory, then projec
 - Consider adding cost projection for cloud resources approaching scale-up triggers
 
 ---
+
 ## CONCLUSION
 
-Correlation shows you the blast radius. Anomaly detection separates signal from noise. Predictive patterns give you lead time.
+These are my examples. They're the patterns that made sense in the environments I've managed, solving the problems I kept running into. They're not meant to be copied verbatim. They're frameworks. The concept is identical; the implementation will be different.
 
-These patterns share a principle: monitoring should surface insights that humans would miss or take too long to find manually. Cross-service correlation during an incident saves the fifteen minutes you'd spend manually checking dependent services. Statistical anomaly detection eliminates the guesswork of "is this actually unusual?" Capacity forecasting turns reactive firefighting into planned maintenance.
-
-Part 3 takes these patterns and operationalizes them. Queries that run manually are useful. Queries that trigger automation, route to the right team, and integrate with your incident management workflow are powerful. That's where we're headed.
+Correlation shows you the blast radius. Anomaly detection separates signal from noise. Predictive patterns give you lead time. How you express those concepts in KQL depends on your service dependencies, your traffic patterns, your thresholds, your business context. Take the structure. Adapt the details. Build something that fits your environment.
 
 ---
+
 <!-- NEXT_PART: beyond-azure-monitor-pt3.md -->
 ## WHAT'S NEXT?
-{: .text-center}
 
-**Coming Next:** Part 3: Building Production-Ready Monitoring Solutions (January 8, 2026)
+**Coming Next:** Part 3: Building Production-Ready Monitoring Solutions
 
-We'll take these advanced patterns and show you how to operationalize them at scale. Automation strategies, alerting frameworks, and integration patterns that turn intelligent queries into production monitoring systems that actually help your team respond faster and more effectively.
+We'll take these patterns and operationalize them at scale. Automation strategies, alerting frameworks, and integration patterns that turn intelligent queries into production monitoring systems. Queries that run manually are useful. Queries that deploy themselves, route to the right team, and trigger remediation are infrastructure.
 <!-- END_NEXT_PART -->
 
 ---
