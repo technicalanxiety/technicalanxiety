@@ -15,7 +15,7 @@ description: "Master KQL from an infrastructure perspective. Learn to write quer
 
 ---
 
-Every monitoring implementation I've touched in 20 years shares the same problem: teams build dashboards that look complete but aren't, answering questions nobody asked while leaving gaps they won't discover until something breaks and the dashboard can't explain why.
+Every monitoring implementation I've touched shares the same problem: teams build dashboards that look complete but aren't, answering questions nobody asked while leaving gaps they won't discover until something breaks and the dashboard can't explain why.
 
 KQL isn't the problem. The problem is that most infrastructure teams approach monitoring like developers approach logging. Capture everything, aggregate nothing meaningful, then wonder why their "comprehensive" observability platform can't tell them why the application is slow.
 
