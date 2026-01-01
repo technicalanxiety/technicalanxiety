@@ -29,11 +29,11 @@ Reference document for automated validation checks. Scripts and workflows are st
 
 **Broken Link Detection**
 - Internal links, external links (with caching), anchor links
-- Tool: html-proofer gem
-- Command: `bundle exec htmlproofer ./_site --disable-external --allow-hash-href --assume-extension`
+- Tool: Built into Astro build process and link checker script
+- Command: `node scripts/link-checker.js` (after build)
 
 **Image Existence**
-- Verify front matter images exist in `/img/`
+- Verify front matter images exist in `public/img/`
 - Check inline image references
 
 **Syntax Highlighting**

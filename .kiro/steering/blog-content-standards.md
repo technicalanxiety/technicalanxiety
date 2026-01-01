@@ -107,7 +107,7 @@ draft: false                 # Optional (defaults to false)
 - [ ] **SEO**: Title includes keywords, description is compelling
 
 ## Tags
-**Existing**: Anxiety, Leadership, Azure, Governance, Operations, Log Analytics, Infrastructure, Architecture, Platform, AI, Development, Productivity, Post, Jekyll
+**Existing**: Anxiety, Leadership, Azure, Governance, Operations, Log Analytics, Infrastructure, Architecture, Platform, AI, Development, Productivity, Post
 **Guidelines**: 
 - Use existing tags when possible
 - Create new tags sparingly
