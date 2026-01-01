@@ -9,7 +9,7 @@ series_part: 1
 ---
 
 ## PURPOSE
-{: .text-center}
+
 Quick link to get started learing:
 [Azure Log Query Education](https://docs.microsoft.com/en-us/azure/azure-monitor/log-query/query-language)
 
@@ -22,27 +22,27 @@ Let me just get this out there, Azure Monitor Logs (formerly OMS, formerly Log A
 <br>
 
 ## WALKTHROUGH 
-{: .text-center}
+
 *If you're a seasoned KQL veteran, this post probably isn't for you. If you're new and just don't know how or where to get started, this post is for you.* 
 
 There are quite a few ways to get to the log workspace: from Monitor, from the VM blade, from All Resources, etc. I like to add Log Analytics as a favorite on my side bar (I'm in log analytics A LOT) for easy finding. Also, the new Azure Portal homepage has a really cool history Home page now that remembers your most used resource types.
 
 ![Home](/img/azure-home.jpg)
-{: .text-center}
+
 
 <br>
 
 Now that we're in the workspace, it's time to write your first query! Type this in the query box: **InsightsMetrics** and then click the RUN button
 
 ![Query](/img/first-query.jpg)
-{: .text-center}
+
 
 <br>
 
 Congradulations! You've just run your first query. You're also probably not very impressed with the results.
 
 ![Is This Excel?](/img/excel.jpg)
-{: .text-center}
+
 
 <br>
 
@@ -58,7 +58,7 @@ The hardest part of creating queries is understanding the data you're working wi
 The *summarize* option filters the table *by* the chosen column. In this case, we're filtering on *Namespace* to understand all the different metric types we can visualize.
 
 ![Namespace](/img/namespace.jpg)
-{: .text-center}
+
 
 <br>
 
@@ -102,7 +102,7 @@ This still isn't exactly what we want so let's continue. We have narrowed down t
 Now we're getting somewhere, finally. So what's going on here. Let me explain. Believe it or not, you can actually *create* columns on the fly. What we've done here is create a column named 'AverageUtilization' that contains the average values of the 'Val' column data. To ultimately get to the actualy pretty graph, you need to **BIN** the data into buckets of time. The *bin(TimeGenerated, 15m)* does exactly that. It takes the 'AverageUtilization' data and converts it into 15 minute bucket averages. You can see that in the output below:
 
 ![Finally](/img/finally.jpg)
-{: .text-center}
+
 
 <br>
 
@@ -118,12 +118,12 @@ In order to view time related data on a graph, you must *bin* your data into tim
 That's pretty cool right?
 
 ![Pretty Graph](/img/pretty-graph.jpg)
-{: .text-center}
+
 
 <br>
 
 ## CONCLUSION
-{: .text-center}
+
 Now that you've seen how I work my way into a Log query, hopefully this should help get you started writing your own queries. At the top of the post, there is a link to the Microsoft document page. This is also a great start and also how I began learning KQL. Also, here is a sample of what you can do with a log query (this one is on the older Perf table but still neat). Can you see what it's doing? Now, take all these things and go off and experiment and try different things and see what happens. That's the best part!
 
         Perf 

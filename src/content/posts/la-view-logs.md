@@ -9,7 +9,7 @@ series_part: 3
 ---
 
 ## PURPOSE
-{: .text-center}
+
 A little backstory. I was collaborating with a Kubernetes Master collegue of mine ([Peter Grace](https://twitter.com/petergrace), one of the smartest people around) and he was just not enjoying Log Analytics. What ended up happening, he just wasn't happy with how you reviewed logs in the log workspace. I gave him some ideas but it occurs to me that there are those out there that may feel the same. What I'm going to do with this post is go through how to use Log Analytics to view log data. Actually view log data, not just use it for performance monitoring but actually a log aggregation tool.
 
 I'll use a fairly simple example of creating a human-readable table together to quickly show virtual machine status, deallocated, deleted or shutdown. In the KQL, since we're not creating this to be an alert, we'll be using some resource intensive tasks like 'parse_json', text manipulations and tons of 'extend'. Because we'll be creating functions outside our query, you could utilizie the 'materialize()' option but as you'll notice, we are not calculating anything but rather putting tables together so in this case the 'materialize()' function could slow this query down and cause unnecessary resource consumption.
@@ -22,7 +22,7 @@ I get this question often these days, why not just use Copilot to write this for
 
 ---
 ## WALKTHROUGH 
-{: .text-center}
+
 
 I'll begin by putting the entire query here and then we'll disect it.
 
@@ -118,9 +118,6 @@ Now for the fun part. The query itself.
 
 ---
 ## CONCLUSION
-{: .text-center}
-
-
 
 ![The Result](/img/log-results-formatted.png)
 

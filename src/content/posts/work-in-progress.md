@@ -8,6 +8,9 @@ tags: ["Post"]
 
 So I'm still deciding on an overall Jekyll theme and there will be content soon.
 
+**Update 2026-01-01**
+I've completely re-written the site in Astro hosted on an Azure Static WebApp. No more Jekyll/Ruby/Pages. This is where the site will live until it needs to grow again.
+
 **Update 2025-11-25**
 I've made significant progress on my overall page design and layout. I've largely abandoned community themes in favor of something of my own design. I like it, hope you do as well.
 

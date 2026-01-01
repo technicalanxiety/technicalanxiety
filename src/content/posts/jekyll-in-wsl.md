@@ -7,7 +7,6 @@ tags: ["Jekyll"]
 ---
 
 ## PURPOSE
-{: .text-center}
 
 In this post, I'll walk through how I setup my WSL (*Windows Subsystem for Linux*) so I can edit/create Posts for this blog without have to wait around for direct changes to the Github repo and waiting for updates. If you need to make minor changes or if you want to quickly see and change styles, formatting, layout etc. this is a great way to quickly do that. I have collected these steps through several sources and will link them for your reference.
 
@@ -21,7 +20,6 @@ This was also referenced:
 <br>
 
 ## WALKTHROUGH 
-{: .text-center}
 
 Before you start, you'll need to go through the normal update process for your Ubuntu subsystem. This is my subsystem:
 
@@ -60,7 +58,6 @@ First things first, prepare for Jekyll and install a few programs in your subsys
     * This is what it should look like:
 
     ![IPV6 and Ruby Fixed](/img/ipv6-fixed.jpg)
-    {: .text-center}
 
 1. Now install Bundler:
 
@@ -82,17 +79,14 @@ First things first, prepare for Jekyll and install a few programs in your subsys
     * It should look something like this:
 
     ![Jekyll running](/img/jekyll-running.jpg)
-    {: .text-center}
 
 <br>
 
 ## CONCLUSION
-{: .text-center}
 
 If all went well, you should see your site being regenerated each time you save your changes.
 
 ![Jekyll working](/img/jekyll-working.jpg)
-{: .text-center}
 
 Could you have just as easily installed Ruby on Windows? Sure. However, this is way more fun! Also, to easily transfer files between Windows and WSL, from inside WSL simply type the below and the file system opens in a file explorer window. Enjoy!
 

@@ -9,7 +9,7 @@ series_part: 2
 ---
 
 ## PURPOSE
-{: .text-center}
+
 In this post, I'll be taking the query at the end of [Intro to Log Analytics](https://technicalanxiety.com/intro-to-la/), converting it to the new InsightsMetric format and walking through the more complex KQL language.
 
 Here is what we'll be starting with:
@@ -35,7 +35,7 @@ The key items to point out here are *project* and *join*. I'll get into those as
 <br>
 
 ## WALKTHROUGH 
-{: .text-center}
+
 Going back to the first post on this topic we must understand what data is contained in the table. Once we know what we're looking for, we can then structure the query to model a view. If you haven't noticed in the query above, this is a disk query that is filtering data first on Windows computers, calculating average percent free disk space and then joining that data against Windows computers free megabytes of disk space. Why would you do this? While it's really easy to see either of these metric separately, it's also very important to view them together. If you have a disk that has less than 20% free space that may not be a problem if it's on a 4TB volume. On the other hand, with the same situation it may have more of an impact if the volume is only 30GB. It's also important to realize this query ignores the C: drive because that's the OS drive and is probably going to be viewed separately.
 
 I'll first explain how this query works then I'll show what it looks like in the new platform.
@@ -88,7 +88,7 @@ The join feature is awesome all by itself and could probably be a post on it's o
 As before, the first line is identical to the top half of the query. The second line adds the newly created value *PercentFree* to the joined data containing free megabytes. Now, we have a table that shows average % free space against free megabytes. The next line calculates the average free megabytes, just as before on free space. And lastly, a final projection showing the data all together.
 
 ![Old Query](/img/old-query.jpg)
-{: .text-center}
+
 
 <br>
 
@@ -119,7 +119,7 @@ And here is the output
 <br>
 
 ## CONCLUSION
-{: .text-center}
+
 While this was really cool joining the same table on different values to view disk space usage on two separate counter names, just imagine what you could do if you joined CPU and Memory usage? Or CPU and Network usage? The possibilities are many and provide another way to view telemetry in a way that fits your needs. The awesome thing about Log Analytics is you will take these examples and create something entirely your own that is a view totally different from mine. How cool is that?!
 
 >Pro tip:
