@@ -14,8 +14,6 @@ image: "placeholder-ai-doom.jpg"
 
 ---
 
-## PURPOSE
-
 I spend my days evaluating AI tooling for enterprise adoption. I use AI assistants to write, build, and think. In December alone, I published 25 posts with AI assistance, more than most technical blogs produce in a year. AI isn't theoretical to me. It's Tuesday.
 
 And yet, every week I encounter decision makers frozen by headlines. "Two years until AI destroys humanity." "The existential risk we're not prepared for." "Why AI researchers are terrified."
@@ -28,9 +26,7 @@ Let me tell you what I actually see.
 
 ---
 
-## WALKTHROUGH
-
-### We've Been Here Before
+## We've Been Here Before
 
 The year is 1811. Textile workers in Nottingham are smashing weaving frames.
 
@@ -46,7 +42,11 @@ We're in the AI Industrial Revolution now. The pattern is identical. New capabil
 
 History doesn't repeat, but it rhymes. And I've heard this song before.
 
-### The Amplifier, Not the Agent
+*The Luddites weren't wrong about the disruption. They were wrong about the response.*
+
+---
+
+## The Amplifier, Not the Agent
 
 Here's what the doom narrative gets fundamentally wrong: it treats AI as an agent with intent.
 
@@ -66,7 +66,11 @@ AI didn't invent fraud. It didn't invent manipulation. It didn't invent weapons 
 
 The actual problem is us.
 
-### Humanity Doesn't Need to Be Taught
+*The tool isn't the threat. The hand that wields it is.*
+
+---
+
+## Humanity Doesn't Need to Be Taught
 
 You don't have to teach a child to steal. You have to teach them not to.
 
@@ -78,7 +82,13 @@ This is why the sensational headlines land so hard. "AI could destroy humanity" 
 
 But fiction isn't evidence. Pattern matching isn't analysis. And the people most confident about AI doom are often the people with the least direct experience using AI for anything.
 
-### The Forest for the Trees
+What we're witnessing is the anxiety of the technical class confronted with its own imagination.
+
+*AI doesn't create new evils. It scales the ones we already had.*
+
+---
+
+## The Forest for the Trees
 
 There's an inverse relationship I've noticed: the further someone is from daily AI use, the stronger their opinions about AI risk.
 
@@ -92,25 +102,11 @@ The apocalyptic AI of the podcasts bears little resemblance to the AI I use ever
 
 Meanwhile, enterprises that could be adopting AI safely and effectively are paralyzed by secondhand fear. The opportunity cost of inaction doesn't make headlines. The competitor who adopted while you debated doesn't issue press releases about your missed opportunity. The cost of fear is invisible until it's too late to recover.
 
-### The Actual Risks Worth Discussing
+*Distance from the tool correlates with confidence in the doom.*
 
-I'm not claiming AI has no risks. It has real ones that deserve serious attention:
+---
 
-**Bias and fairness.** AI systems trained on human data inherit human biases. This is presented as an AI problem, but it's actually a human problem the AI is reflecting back at us. The solution isn't to make AI match human feelings about what should be true. It's to align AI with actual truth. A chair is a chair regardless of how anyone feels about it. Things happened or they didn't. Perception is reality for the person perceiving, but perception isn't truth. My own anxiety taught me this distinction the hard way. Systems should reflect what is, not what we wish were true or what makes us comfortable. That's a harder problem than "fix the bias," but it's the honest framing.
-
-**Hallucination and reliability.** Current AI systems confidently generate plausible-sounding nonsense. This is real, and in high-stakes domains it matters. But here's the thing: as I write this post using AI, I'm constantly providing oversight and correcting the drafts. I ask myself questions as I go. Would I say that? Do I talk like that? Have I ever used that phrase before? I use my experience to drive the content and make sure the language is accurate, the events are accurate, the experience is accurate. AI has no idea what I've gone through. It only helps me articulate thoughts into digital words on the screen. I'm a human who has learned how to use this new tool to create in a way that is real, because it is. The oversight isn't optional. It's the whole point.
-
-**Job displacement.** Some categories of work will be automated. The transition will be uneven. This is real. But look at what AI has done for me, a non-developer. I took this blog from a terribly maintained Jekyll template on GitHub Pages to an Azure Static Web App built on Astro. I built automated publishing workflows, image optimization pipelines, and infrastructure I never could have created the old way. There's literally no room in my life to learn web development from scratch. The traditional path would have taken years I don't have. AI collapsed that distance. The job displacement concern is valid, but I'm not going to sit by and let it impact me. I'm going to impact it. Embrace the change. It's awesome. You can now do things you never thought possible. Yes, it's uncomfortable for some. Many don't enjoy change like I do. There's nothing better than a fresh firmware update, a new iOS version, the promise of improved capability. My wife would still be on Windows XP if she had it her way. Nothing wrong with that. But we must advance with the technology. Shape it to how we want and need to work, today and into the future.
-
-**Misuse and weaponization.** Bad actors will use AI for bad purposes. Fraud, manipulation, surveillance, and worse. This is where the governance conversation actually matters. Not AI governance in the abstract, but human governance of AI systems. The true root cause is always humans. It's our responsibility to create the guardrails. AI doesn't know how to steal. We teach it. AI doesn't naturally deceive. We train it to. Every inappropriate behavior in an AI system traces back to a human decision, whether through training data, prompt design, or deployment context. We want AI to be human, and then we're surprised when it reflects our worst tendencies back at us. The governance framework I've written about addresses this: confidence through observable behavior, clear boundaries, accountability for outcomes. The enemy isn't the tool. It's the gap between the tool's capability and our willingness to govern its use responsibly.
-
-**Concentration of power.** AI capabilities are expensive to develop, concentrating power in organizations with sufficient resources. This one is tricky because capitalism and free markets. Humans must decide for themselves which tools will flourish and which will be deprecated. It's a double-edged sword and a topic much larger than this article can address. But I'll say this: when OpenAI went closed source, it was the first sign of a black box system we couldn't look into. I suspect this is one of the root causes of the FUD in general. The thing people actually fear isn't AI itself. It's AI controlled by entities they can't see into, can't influence, and can't hold accountable. That fear is valid. While startups build platforms on various LLMs, the concentration of power in the major players is an area that needs stronger governance. Because humans, again. A need for local models will be required. Decentralization must happen if we're to break this concentration. You can see movement in this direction with smaller local models and the open source community developing alternatives. This is an area I'm still exploring myself. I haven't run a local model yet, just starting to learn about options like Ollama. But the direction matters: power distributed is power accountable. Power concentrated is power trusted on faith. And as the Confidence Engineering series argued, faith isn't an engineering strategy.
-
-Every item on this list is an engineering or policy problem. Solvable through human effort, iteration, and good judgment. None of them require prophecies about humanity's end. None of them benefit from paralyzing fear.
-
-The doom narrative doesn't help us address these real concerns. It drowns them in existential noise that makes measured conversation impossible.
-
-### The Two-Year Timeline
+## The Two-Year Timeline
 
 "Two years until AI destroys humanity."
 
@@ -132,7 +128,33 @@ Technology predictions fail in both directions, overstating what's imminent and 
 
 Could AI systems eventually pose risks we can't currently anticipate? Sure. Could those risks manifest faster than we expect? Possibly. Does anyone actually know this will happen in two years? No. They're guessing, and they're guessing based on vibes and science fiction, not rigorous analysis of technical capabilities.
 
-### The Choice in Front of You
+*Prophecy without mechanism is just anxiety with a deadline.*
+
+---
+
+## The Actual Risks Worth Discussing
+
+I'm not claiming AI has no risks. It has real ones that deserve serious attention:
+
+**Bias and fairness.** AI systems trained on human data inherit human biases. This is presented as an AI problem, but it's actually a human problem the AI is reflecting back at us. The solution isn't to make AI match human feelings about what should be true. It's to align AI with actual truth. Truth alignment over comfort alignment. A chair is a chair regardless of how anyone feels about it. Things happened or they didn't. Perception is reality for the person perceiving, but perception isn't truth. My own anxiety taught me this distinction the hard way. Systems should reflect what is, not what we wish were true or what makes us comfortable. That's a harder problem than "fix the bias," but it's the honest framing.
+
+**Hallucination and reliability.** Current AI systems confidently generate plausible-sounding nonsense. This is real, and in high-stakes domains it matters. But here's the thing: as I write this post using AI, I'm constantly providing oversight and correcting the drafts. I ask myself questions as I go. Would I say that? Do I talk like that? Have I ever used that phrase before? I use my experience to drive the content and make sure the language is accurate, the events are accurate, the experience is accurate. AI has no idea what I've gone through. It only helps me articulate thoughts into digital words on the screen. I'm a human who has learned how to use this new tool to create in a way that is real, because it is. The oversight isn't optional. It's the whole point.
+
+**Job displacement.** Some categories of work will be automated. The transition will be uneven. This is real. But look at what AI has done for me, a non-developer. I took this blog from a terribly maintained Jekyll template on GitHub Pages to an Azure Static Web App built on Astro. I built automated publishing workflows, image optimization pipelines, and infrastructure I never could have created the old way. There's literally no room in my life to learn web development from scratch. The traditional path would have taken years I don't have. AI collapsed that distance. The job displacement concern is valid, but I'm not going to sit by and let it impact me. I'm going to impact it. Embrace the change. It's awesome. You can now do things you never thought possible. Yes, it's uncomfortable for some. Many don't enjoy change like I do. There's nothing better than a fresh firmware update, a new iOS version, the promise of improved capability. My wife would still be on Windows XP if she had it her way. Nothing wrong with that. But we must advance with the technology. Shape it to how we want and need to work, today and into the future.
+
+**Misuse and weaponization.** Bad actors will use AI for bad purposes. Fraud, manipulation, surveillance, and worse. This is where the governance conversation actually matters. Not AI governance in the abstract, but human governance of AI systems. The true root cause is always humans. It's our responsibility to create the guardrails. AI doesn't know how to steal. We teach it. AI doesn't naturally deceive. We train it to. Every inappropriate behavior in an AI system traces back to a human decision, whether through training data, prompt design, or deployment context. We want AI to be human, and then we're surprised when it reflects our worst tendencies back at us. We learned to build for adversarial resilience in cybersecurity. AI deserves the same engineering maturity. The governance framework I've written about addresses this: confidence through observable behavior, clear boundaries, accountability for outcomes. The enemy isn't the tool. It's the gap between the tool's capability and our willingness to govern its use responsibly.
+
+**Concentration of power.** AI capabilities are expensive to develop, concentrating power in organizations with sufficient resources. This one is tricky because capitalism and free markets. Humans must decide for themselves which tools will flourish and which will be deprecated. It's a double-edged sword and a topic much larger than this article can address. But I'll say this: when OpenAI went closed source, it was the first sign of a black box system we couldn't look into. I suspect this is one of the root causes of the FUD in general. The thing people actually fear isn't AI itself. It's AI controlled by entities they can't see into, can't influence, and can't hold accountable. That fear is valid. While startups build platforms on various LLMs, the concentration of power in the major players is an area that needs stronger governance. Because humans, again. A need for local models will be required. Decentralization must happen if we're to break this concentration. You can see movement in this direction with smaller local models and the open source community developing alternatives. This is an area I'm still exploring myself. I haven't run a local model yet, just starting to learn about options like Ollama. But the direction matters: power distributed is power accountable. Power concentrated is power trusted on faith. And as the Confidence Engineering series argued, faith isn't an engineering strategy.
+
+Every item on this list is an engineering or policy problem. Solvable through human effort, iteration, and good judgment. None of them require prophecies about humanity's end. None of them benefit from paralyzing fear.
+
+The doom narrative doesn't help us address these real concerns. It drowns them in existential noise that makes measured conversation impossible.
+
+*Real risks have engineering solutions. Imagined ones just have fear.*
+
+---
+
+## The Choice in Front of You
 
 Here's what I know from direct experience:
 
@@ -146,8 +168,6 @@ The Luddites had a choice too. History remembers what they chose and how it work
 
 ---
 
-## CONCLUSION
-
 The end of humanity, if it comes, won't be caused by AI.
 
 It will be caused by humans. The same way it was always going to be. Through war, environmental destruction, pandemic, or some other manifestation of our collective inability to cooperate at scale. AI might be a tool in that destruction, the same way nuclear weapons or biological agents could be. But the tool isn't the cause. The wielder is.
@@ -155,6 +175,8 @@ It will be caused by humans. The same way it was always going to be. Through war
 AI is an amplifier. It amplifies human capability in whatever direction humans point it. The doom narrative treats the amplifier as the threat while ignoring what it reveals about us: we don't trust ourselves with power.
 
 That's an honest fear. But it's a fear about humanity, not about AI.
+
+AI anxiety isn't a technology problem. It's a governance symptom. When leaders lack confidence frameworks, narratives fill the void. Doom is what absence of understanding sounds like.
 
 The Industrial Revolution didn't end humanity. It transformed it. Painfully, unevenly, with real costs to real people, and ultimately with benefits that the Luddites couldn't have imagined. We're in another such transformation now.
 
