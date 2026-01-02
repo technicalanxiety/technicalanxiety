@@ -209,8 +209,9 @@ rm -rf "$TEMP_BACKUP_DIR"
 echo -e "\n${YELLOW}Cleaning up old backups:${NC}"
 BACKUP_COUNT=$(ls -1 "$BACKUP_BASE_DIR"/kiro-backup-*.tar.gz 2>/dev/null | wc -l)
 if [ "$BACKUP_COUNT" -gt "$MAX_BACKUPS" ]; then
-    # List backups sorted by modification time, oldest first, skip the newest MAX_BACKUPS
-    ls -1t "$BACKUP_BASE_DIR"/kiro-backup-*.tar.gz | tail -n +$((MAX_BACKUPS + 1)) | while read -r old_backup; do
+    # List backups sorted by filename (timestamp), remove oldest to keep only MAX_BACKUPS
+    BACKUPS_TO_REMOVE=$((BACKUP_COUNT - MAX_BACKUPS))
+    ls -1 "$BACKUP_BASE_DIR"/kiro-backup-*.tar.gz | sort | head -n $BACKUPS_TO_REMOVE | while read -r old_backup; do
         echo -e "${YELLOW}  Removing old backup: $(basename "$old_backup")${NC}"
         rm -f "$old_backup"
     done

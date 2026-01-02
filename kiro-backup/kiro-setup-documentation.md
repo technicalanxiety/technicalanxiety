@@ -1,10 +1,10 @@
 # Kiro Setup Documentation
 
 **Generated:** December 7, 2025  
-**Updated:** December 14, 2025  
+**Updated:** January 2, 2026  
 **Systems:** Windows 11 Pro (WSL2) + macOS (Apple Silicon)  
-**User:** <jason.rinehart@live.com>  
-**Workspace:** ~/technicalanxiety.github.io
+**User:** <jason.rinehart@technicalanxiety.com>  
+**Workspace:** ~/technicalanxiety
 
 ---
 
@@ -33,7 +33,19 @@
 
 **Location:** `~/.kiro/settings/`
 
-Currently empty - no user-level MCP configurations found.
+#### MCP Servers (`~/.kiro/settings/mcp.json`)
+
+1. **Fetch Server**
+   - Command: `uvx mcp-server-fetch`
+   - Status: Enabled
+   - Auto-approved: None (manual approval required)
+
+#### User Profile (`~/.kiro/settings/user-profile.md`)
+
+- **Role:** Cloud Architect
+- **Experience:** Intermediate Programming, Advanced Azure, Advanced IaC, Intermediate AI/ML
+- **Languages:** Python, JavaScript, PowerShell, Bicep
+- **Focus:** Architecture and infrastructure over application development
 
 ### Workspace-Level Settings
 
@@ -43,7 +55,12 @@ Currently empty - no user-level MCP configurations found.
 
 **Platform-Specific Configurations:**
 
-1. **Filesystem Server**
+1. **Fetch Server**
+   - Command: `uvx mcp-server-fetch`
+   - Status: Enabled
+   - Auto-approved: None (manual approval required)
+
+2. **Filesystem Server**
    - Command: `npx -y @modelcontextprotocol/server-filesystem`
    - Auto-approved: `read_file`, `read_multiple_files`, `list_directory`, `search_files`
    - Status: Enabled
@@ -58,7 +75,7 @@ Currently empty - no user-level MCP configurations found.
    "args": ["/Users/jason.rinehart", "/Users/jason.rinehart/.kiro"]
    ```
 
-2. **Microsoft Learn**
+3. **Microsoft Learn**
    - URL: `https://learn.microsoft.com/api/mcp`
    - Auto-approved: `search_documentation`, `get_article`
    - Status: Enabled
@@ -90,7 +107,7 @@ Currently empty - no user-level MCP configurations found.
 
 ### 4. Validate Post on Save (`validate-post-on-save.json`)
 
-- **Trigger:** On file save in `_posts/**/*.md`
+- **Trigger:** On file save in `src/content/**/*.md`
 - **Action:** Validates front matter, images, attribution, reading time
 - **Status:** Enabled
 
@@ -106,26 +123,28 @@ Currently empty - no user-level MCP configurations found.
 
 **Location:** `.kiro/steering/`
 
-1. **automated-checks.md** - Automated validation rules
-2. **azure-standards.md** - Azure naming conventions, tagging, best practices
-3. **blog-content-standards.md** - Blog post guidelines and standards
-4. **error-handling-logging.md** - Error handling and logging practices
-5. **git-workflow.md** - Git workflow and commit standards
-6. **jekyll-technical-guide.md** - Jekyll-specific technical guidance
-7. **security-practices.md** - Security best practices and checklists
-8. **testing-strategy.md** - Testing approaches and standards
+1. **astro-technical-guide.md** - Astro-specific technical guidance and workflows
+2. **automated-checks.md** - Automated validation rules
+3. **azure-standards.md** - Azure naming conventions, tagging, best practices
+4. **blog-content-standards.md** - Blog post guidelines and standards
+5. **error-handling-logging.md** - Error handling and logging practices
+6. **git-workflow.md** - Git workflow and commit standards
+7. **kql-writing-standards.md** - KQL query writing standards
+8. **security-practices.md** - Security best practices and checklists
+9. **testing-strategy.md** - Testing approaches and standards
 
 ---
 
 ## Project Type
 
-**Jekyll Static Site** (Blog/Portfolio)
+**Astro Static Site** (Blog/Portfolio)
 
-- Ruby-based static site generator
-- Minimal resource requirements
-- Images stored in `/img/` directory
-- Posts in `_posts/` directory
-- Custom layouts, includes, and Sass styling
+- Node.js-based static site generator
+- Modern web framework with TypeScript support
+- Images stored in `public/img/` directory
+- Posts in `src/content/posts/` directory (published) and `src/content/backlog/` (drafts)
+- Component-based architecture with layouts and includes
+- Sass styling and modern build pipeline
 
 ---
 
@@ -145,8 +164,8 @@ Currently empty - no user-level MCP configurations found.
 #### Git Configuration
 Ensure consistent git config across both systems:
 ```bash
-git config --global user.name "Jason Rinehart"
-git config --global user.email "jason.rinehart@live.com"
+git config --global user.name "technicalanxiety"
+git config --global user.email "jason.rinehart@technicalanxiety.com"
 ```
 
 #### MCP Server Compatibility
@@ -175,7 +194,7 @@ git config --global user.email "jason.rinehart@live.com"
    - Reconnect MCP servers if needed from Kiro MCP panel
 
 4. **Test environment:**
-   - Verify Jekyll serves correctly: `bundle exec jekyll serve`
+   - Verify Astro serves correctly: `npm run dev`
    - Check image optimization tools
    - Confirm hooks are working
 
@@ -187,13 +206,13 @@ git config --global user.email "jason.rinehart@live.com"
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 # Install dependencies
-brew install node ruby git
-gem install bundler jekyll
+brew install node git
+npm install -g npm@latest
 
 # Clone and setup
-git clone git@github.com-personal:technicalanxiety/technicalanxiety.github.io.git
-cd technicalanxiety.github.io
-bundle install
+git clone git@github.com:technicalanxiety/technicalanxiety.git
+cd technicalanxiety
+npm install
 
 # Update MCP configuration for macOS paths
 # Edit .kiro/settings/mcp.json to use /Users/jason.rinehart paths
@@ -205,15 +224,14 @@ bundle install
 curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
 sudo apt-get install -y nodejs
 
-# Install Ruby and Jekyll
+# Install Git
 sudo apt update
-sudo apt install ruby-full build-essential zlib1g-dev
-gem install bundler jekyll
+sudo apt install git
 
 # Clone and setup
-git clone git@github.com-personal:technicalanxiety/technicalanxiety.github.io.git
-cd technicalanxiety.github.io
-bundle install
+git clone git@github.com:technicalanxiety/technicalanxiety.git
+cd technicalanxiety
+npm install
 
 # MCP configuration uses C:\Users\jason paths
 ```
@@ -278,26 +296,25 @@ bundle install
 
 ### Required Software (Both Platforms)
 
-- **Node.js** - For npx and filesystem MCP server
+- **Node.js** - For Astro build system and MCP servers
 - **Git** - Version control
-- **Ruby** - For Jekyll (project-specific)
-- **Bundler** - Ruby dependency management (project-specific)
+- **npm** - Node.js package management
 
 ### Platform-Specific Installation
 
 **Windows (WSL2):**
 - Node.js via NodeSource repository
-- Ruby via apt package manager
 - Git via apt package manager
+- npm included with Node.js
 
 **macOS:**
 - Node.js via Homebrew
-- Ruby via Homebrew (or system Ruby)
 - Git via Homebrew or Xcode Command Line Tools
+- npm included with Node.js
 
 ### Optional Software
 
-- **Python/uv** - For Python-based MCP servers (if added)
+- **Python/uv** - For Python-based MCP servers (uvx command)
 - **Docker** - For containerized development (if needed)
 
 ---
@@ -329,8 +346,8 @@ bundle install
 
 ## Contact & Support
 
-- **Owner:** <jason.rinehart@live.com>
-- **Blog:** <https://technicalanxiety.github.io>
+- **Owner:** <jason.rinehart@technicalanxiety.com>
+- **Blog:** <https://technicalanxiety.com>
 - **Systems:** 
   - **Personal:** ANXIETY-DESKTOP (Windows 11 Pro)
   - **Work:** MacBook Pro M4 (macOS)
@@ -343,3 +360,7 @@ bundle install
 - **2025-12-07:** RAM upgraded to 32GB (Windows workstation)
 - **2025-12-14:** Updated for dual-platform usage (Windows + macOS)
 - **2025-12-14:** Added platform switching workflow and setup instructions
+- **2025-12-19:** Migrated from Jekyll to Astro static site generator
+- **2026-01-02:** Updated documentation for current Astro configuration
+- **2026-01-02:** Added user profile configuration and updated MCP servers
+- **2026-01-02:** Updated contact information and repository URLs
