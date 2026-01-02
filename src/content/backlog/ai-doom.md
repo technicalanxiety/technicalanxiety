@@ -3,7 +3,7 @@ title: "The End of Humanity Won't Be Caused by AI"
 date: 2026-01-08
 tags: [AI, Leadership, Anxiety]
 description: "Why AI doom narratives distract from real risks and real opportunities. A practitioner's perspective on fear, progress, and human nature."
-image: "placeholder-ai-doom.jpg"
+image: "ai-doom.jpg"
 ---
 
 # The End of Humanity Won't Be Caused by AI
