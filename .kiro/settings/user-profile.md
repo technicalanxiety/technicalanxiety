@@ -5,6 +5,7 @@
 - **Experience Level:** Intermediate Programming, Advanced Azure, Advanced IaC, Intermediate AI/ML
 - **Primary Languages:** Python, JavaScript, PowerShell, Bicep
 - **Non-Developer Focus:** Architecture and infrastructure over application development
+- **Author:** https://www.technicalanxiety.com blog
 
 ## Learning & Work Style Preferences
 - **Guidance Style:** Mix of detailed instructions for complex topics, high-level for familiar areas
