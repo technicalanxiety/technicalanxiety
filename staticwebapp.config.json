@@ -57,6 +57,7 @@
   "navigationFallback": {
     "rewrite": "/404.html",
     "exclude": [
+      "/_astro/*",
       "/img/*",
       "/favicon.ico",
       "/favicon.svg",
@@ -81,11 +82,5 @@
     "X-XSS-Protection": "1; mode=block",
     "Referrer-Policy": "strict-origin-when-cross-origin",
     "Permissions-Policy": "camera=(), microphone=(), geolocation=()"
-  },
-  "responseOverrides": {
-    "404": {
-      "rewrite": "/404.html",
-      "statusCode": 404
-    }
   }
 }
