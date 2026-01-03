@@ -55,7 +55,8 @@
     }
   ],
   "navigationFallback": {
-    "rewrite": "/404.html"
+    "rewrite": "/404.html",
+    "exclude": ["/api/*", "*.{css,js,png,jpg,jpeg,gif,ico,svg}"]
   },
   "mimeTypes": {
     ".json": "application/json",
