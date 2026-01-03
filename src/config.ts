@@ -1,7 +1,7 @@
 export const siteConfig = {
   title: 'Technical Anxiety | Experience Blog',
   description: 'A technical blog covering Azure, Log Analytics, leadership, and navigating anxiety in tech.',
-  url: 'https://technicalanxiety.com',
+  url: 'https://www.technicalanxiety.com',
   author: {
     name: 'Jason Rinehart',
     avatar: '/img/me.jpg',

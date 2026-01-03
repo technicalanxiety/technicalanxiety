@@ -5,7 +5,7 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   output: 'static', // Configure for static site generation (SSG)
-  site: 'https://technicalanxiety.com', // Configure site URL
+  site: 'https://www.technicalanxiety.com', // Configure site URL
   trailingSlash: 'ignore', // Let Azure Static Web Apps handle trailing slashes for better 404 compatibility
   integrations: [
     sitemap(), // Generate sitemap.xml
