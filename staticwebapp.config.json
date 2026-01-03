@@ -55,14 +55,7 @@
     }
   ],
   "navigationFallback": {
-    "rewrite": "/404.html",
-    "exclude": [
-      "/_astro/*",
-      "/img/*",
-      "/favicon.ico",
-      "/favicon.svg",
-      "/*.{css,js,json,xml,txt,ico,svg,png,jpg,jpeg,gif,webp,woff,woff2,ttf,eot}"
-    ]
+    "rewrite": "/404.html"
   },
   "mimeTypes": {
     ".json": "application/json",
