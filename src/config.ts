@@ -1,6 +1,6 @@
 export const siteConfig = {
   title: 'Technical Anxiety | Technology Blog',
-  description: 'A technology blog exploring the true cost of technology - when it breaks, when it breaks us, and what keeps me standing.',
+  description: 'What breaks in production, and what breaks in us. Cloud architecture and leadership 20 years in the making.',
   url: 'https://www.technicalanxiety.com',
   author: {
     name: 'Jason Rinehart',
