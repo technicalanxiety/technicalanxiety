@@ -32,6 +32,7 @@ jobs:
       - name: Build Astro site
         run: |
           npm run build --verbose
+          cp staticwebapp.config.json dist/
           ls -la dist/
           
       - name: Build And Deploy
