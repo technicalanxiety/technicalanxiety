@@ -1,6 +1,6 @@
 ---
 title: "Beyond Azure Monitor - Part 3: Building Production-Ready Monitoring Solutions"
-date: 2026-01-08
+date: 2026-01-07
 image: beyond-azure-monitor-pt3.jpg
 tags: [Azure, Operations, Automation]
 series: "Beyond Azure Monitor"
