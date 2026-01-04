@@ -70,13 +70,13 @@ This document tracks planned technical Azure topics that build on leadership and
 - [x] Azure Workbooks: Custom Dashboards That Don't Suck - 2,200 words | Jan 19
 - [x] Chaos Engineering on Azure: Starting Small - 2,100 words | Jan 26
 
-### New Content (February 2026)
-- [ ] **Monitoring Foundation: The Reference Implementation** | Target: Jan 2026
+### New Content (January 2026)
+- [ ] **Monitoring Foundation: The Reference Implementation** | Target: Jan 10, 2026
   - *Focus: Companion to Beyond Azure Monitor series - deployable Bicep/KQL code*
   - *Repo: cloudthings/monitoring-foundation*
   - *Status: Draft complete*
 
-- [ ] **The End of Humanity Won't Be Caused by AI** | Target: Jan 2026
+- [ ] **The End of Humanity Won't Be Caused by AI** | Target: Jan 6, 2026
   - *Focus: Companion to Confidence Engineering - why doom is the wrong frame for AI risk*
   - *Framing: Industrial Revolution parallel, AI as amplifier, humans are the variable*
   - *Status: Draft complete*
