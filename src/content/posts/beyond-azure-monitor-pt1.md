@@ -219,13 +219,7 @@ Both patterns share a common principle: monitoring should encode operational kno
 
 ---
 
-<!-- NEXT_PART: beyond-azure-monitor-pt2.md -->
-## WHAT'S NEXT?
-
-**Coming Next:** Part 2: Advanced KQL Patterns for Real-World Monitoring
-
-We'll go deeper into correlation analysis and anomaly detection. I'll show you how to build queries that connect the dots between different data sources, surface patterns that individual alerts miss, and create actionable insights instead of data dumps. This is where monitoring starts to feel like intelligence instead of noise.
-<!-- END_NEXT_PART -->
+**Next in Series:** [Beyond Azure Monitor - Part 2: Advanced KQL Patterns for Real-World Monitoring →](/beyond-azure-monitor-pt2/)
 
 ---
 
