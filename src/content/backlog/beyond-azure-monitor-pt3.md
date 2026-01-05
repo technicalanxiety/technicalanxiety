@@ -92,7 +92,7 @@ resource cpuAlert 'Microsoft.Insights/scheduledQueryRules@2023-03-15-preview' = 
             | where ObjectName has 'processor'
                 and CounterName has 'processor time'
                 and InstanceName has 'total'
-            | extend ['Day of Week'] = dayofweek(TimeGenerated)
+            | extend ['Day of Week'] = toint(dayofweek(TimeGenerated) / 1d)
             | extend ['Current Hour'] = hourofday(TimeGenerated)
             | join kind=leftouter businessHours on ['Day of Week']
             | extend ['Is Business Hours'] = (['Current Hour'] >= ['Start Hour'] and ['Current Hour'] <= ['End Hour'])
@@ -238,7 +238,7 @@ Perf
 | where ObjectName has 'processor'
     and CounterName has 'processor time'
     and InstanceName has 'total'
-| extend ['Day of Week'] = dayofweek(TimeGenerated)
+| extend ['Day of Week'] = toint(dayofweek(TimeGenerated) / 1d)
 | extend ['Current Hour'] = hourofday(TimeGenerated)
 | join kind=leftouter businessHours on ['Day of Week']
 | extend ['Is Business Hours'] = (['Current Hour'] >= ['Start Hour'] and ['Current Hour'] <= ['End Hour'])

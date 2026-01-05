@@ -259,7 +259,7 @@ let businessHours = datatable(['Day of Week']:int, ['Start Hour']:int, ['End Hou
 let historicalVolume = AppRequests
 | where TimeGenerated between (ago(learningPeriod) .. ago(monitoringWindow))
 | extend ['Hour of Day'] = hourofday(TimeGenerated)
-| extend ['Day of Week'] = dayofweek(TimeGenerated)
+| extend ['Day of Week'] = toint(dayofweek(TimeGenerated) / 1d)
 | join kind=leftouter businessHours on ['Day of Week']
 | extend ['Is Business Hours'] = (['Hour of Day'] >= ['Start Hour'] and ['Hour of Day'] <= ['End Hour'])
 | summarize
@@ -271,7 +271,7 @@ let historicalVolume = AppRequests
 let currentVolume = AppRequests
 | where TimeGenerated > ago(monitoringWindow)
 | extend ['Hour of Day'] = hourofday(TimeGenerated)
-| extend ['Day of Week'] = dayofweek(TimeGenerated)
+| extend ['Day of Week'] = toint(dayofweek(TimeGenerated) / 1d)
 | join kind=leftouter businessHours on ['Day of Week']
 | extend ['Is Business Hours'] = (['Hour of Day'] >= ['Start Hour'] and ['Hour of Day'] <= ['End Hour'])
 | summarize
