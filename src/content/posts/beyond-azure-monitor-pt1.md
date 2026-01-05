@@ -12,6 +12,42 @@ description: "Azure Monitor is just the starting point. Real enterprise monitori
 
 ---
 
+## PREREQUISITES
+
+The queries in this series require specific data sources configured in your Log Analytics workspace. Before diving in, verify you have the following:
+
+**Perf Table** - VM and server performance counters
+
+An important message about the Perf table here [InsightsMetrics](https://learn.microsoft.com/en-us/azure/azure-monitor/reference/tables/insightsmetrics). I've used the Perf table, but you may consider writing these for the InsightsMetrics table instead.
+
+Required for CPU, memory, and disk monitoring queries. Enable via Azure Monitor Agent (AMA) with a Data Collection Rule (DCR) that includes:
+- `\Processor(_Total)\% Processor Time`
+- `\Memory(*)\Available MBytes`
+- `\LogicalDisk(*)\% Free Space`
+- `\PhysicalDisk(*)\Avg. Disk sec/Read`
+- `\PhysicalDisk(*)\Avg. Disk sec/Write`
+
+**AppRequests Table** - Application performance data
+
+Required for application response time and anomaly detection queries. Enable by creating a workspace-based Application Insights resource connected to your Log Analytics workspace, then instrument your applications with the App Insights SDK or auto-instrumentation.
+
+**Quick Validation:**
+
+```kusto
+// Verify Perf data is flowing
+Perf | take 10
+
+// Verify AppRequests data is flowing
+AppRequests | take 10
+
+// See available performance counters in your environment
+Perf | distinct ObjectName, CounterName | order by ObjectName
+```
+
+If either query returns no results, the corresponding data source isn't configured. The queries will run but return empty results, which is worse than an error because it looks like nothing is wrong.
+
+---
+
 ## PURPOSE
 
 In Platform Resiliency, I argued that the feedback loop between operations and platform teams is what turns incidents into improvements. That loop requires signal. Observability is how it sees.
