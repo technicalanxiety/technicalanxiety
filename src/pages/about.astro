@@ -34,6 +34,18 @@ import OptimizedImage from '../components/OptimizedImage.astro';
                 Absorb what is useful, discard what is not, add what is uniquely your own. - Bruce Lee
               </blockquote>
 
+              <div class="audio-player">
+                <p class="audio-label">Prefer to listen? Here's the audio version:</p>
+                <iframe 
+                  src="https://creators.spotify.com/pod/profile/technicalanxiety/embed/episodes/About-Me-e3d7ae9/a-acd7hh7" 
+                  height="160" 
+                  width="100%" 
+                  frameborder="0" 
+                  scrolling="no"
+                  loading="lazy">
+                </iframe>
+              </div>
+
               <hr />
 
               <section class="about-section">
@@ -204,6 +216,18 @@ import OptimizedImage from '../components/OptimizedImage.astro';
     margin: var(--space-xl) 0;
     background: var(--bg-secondary);
     border-radius: var(--radius-md);
+  }
+
+  .audio-player {
+    margin: var(--space-xl) 0;
+    text-align: center;
+  }
+
+  .audio-label {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-sm);
+  }
   }
 
   .about-section {
