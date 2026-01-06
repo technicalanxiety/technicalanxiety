@@ -64,6 +64,14 @@ draft: false                 # Optional (defaults to false)
 - Reference: Use filename only in frontmatter (no path or quotes)
 - Formats: Automatic WebP/AVIF generation for performance
 
+**Spotify Embedded Players**:
+- **Placement**: Immediately after the main title (H1), before the first subtitle
+- **Width**: Use `width="100%"` to match article content width
+- **Height**: Standard `height="102px"` for episode embeds
+- **Format**: `<iframe src="https://creators.spotify.com/pod/profile/technicalanxiety/embed/episodes/[episode-id]/[embed-id]" height="102px" width="100%" frameborder="0" scrolling="no"></iframe>`
+- **Purpose**: Link related podcast episodes to blog posts for cross-platform content
+- **Testing**: Always preview locally with `npm run dev` to verify sizing and appearance
+
 **File Formatting**:
 - **Encoding**: UTF-8 (no BOM)
 - **Line endings**: Unix (LF) - never Windows (CRLF)

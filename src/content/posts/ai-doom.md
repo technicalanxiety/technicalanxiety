@@ -8,6 +8,8 @@ image: "ai-doom.jpg"
 
 # The End of Humanity Won't Be Caused by AI
 
+<iframe src="https://creators.spotify.com/pod/profile/technicalanxiety/embed/episodes/The-End-of-Humanity-Isnt-AI-e3d8qdh/a-acd9c4a" height="102px" width="100%" frameborder="0" scrolling="no"></iframe>
+
 ## It Never Was Going to Be
 
 *Companion to the [Confidence Engineering](/confidence-engineering-pt1/) series. That series addressed why "trust" is the wrong frame for AI adoption. This piece addresses why "doom" is the wrong frame for AI risk.*
