@@ -21,3 +21,8 @@ pnpm-debug.log*
 
 # Global Kiro configuration (outside workspace)
 ~/.kiro/
+
+# SQLite databases (MCP servers, local development)
+*.db
+*.sqlite
+*.sqlite3
