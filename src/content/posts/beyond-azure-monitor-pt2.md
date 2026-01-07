@@ -399,13 +399,7 @@ Correlation shows you the blast radius. Anomaly detection separates signal from 
 
 ---
 
-<!-- NEXT_PART: beyond-azure-monitor-pt3.md -->
-## WHAT'S NEXT?
-
-**Coming Next:** Part 3: Building Production-Ready Monitoring Solutions
-
-We'll take these patterns and operationalize them at scale. Automation strategies, alerting frameworks, and integration patterns that turn intelligent queries into production monitoring systems. Queries that run manually are useful. Queries that deploy themselves, route to the right team, and trigger remediation are infrastructure.
-<!-- END_NEXT_PART -->
+**Next in Series:** [Beyond Azure Monitor - Part 3: Building Production-Ready Monitoring Solutions →](/beyond-azure-monitor-pt3/)
 
 ---
 
