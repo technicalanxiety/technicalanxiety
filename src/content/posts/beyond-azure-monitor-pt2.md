@@ -263,9 +263,9 @@ let historicalVolume = AppRequests
 | join kind=leftouter businessHours on ['Day of Week']
 | extend ['Is Business Hours'] = (['Hour of Day'] >= ['Start Hour'] and ['Hour of Day'] <= ['End Hour'])
 | summarize
-    ['Historical Mean'] = avg(itemCount),
-    ['Historical StdDev'] = stdev(itemCount),
-    ['Historical Max'] = max(itemCount)
+    ['Historical Mean'] = avg(ItemCount),
+    ['Historical StdDev'] = stdev(ItemCount),
+    ['Historical Max'] = max(ItemCount)
     by Name, ['Hour of Day'], ['Is Business Hours']
 | where ['Historical Mean'] > 0;  // Filter out inactive endpoints
 let currentVolume = AppRequests
@@ -275,7 +275,7 @@ let currentVolume = AppRequests
 | join kind=leftouter businessHours on ['Day of Week']
 | extend ['Is Business Hours'] = (['Hour of Day'] >= ['Start Hour'] and ['Hour of Day'] <= ['End Hour'])
 | summarize
-    ['Current Volume'] = sum(itemCount),
+    ['Current Volume'] = sum(ItemCount),
     ['Current Rate'] = count()
     by Name, ['Hour of Day'], ['Is Business Hours'];
 historicalVolume
@@ -287,7 +287,7 @@ historicalVolume
     ['Current Volume'] < ['Expected Range Low'] and ['Is Business Hours'], 'Low Volume Anomaly',
     'Normal Volume')
 | extend ['Deviation Factor'] = iff(['Historical StdDev'] > 0,
-    abs(['Current Volume'] - ['Historical Mean']) / ['Historical StdDev'], 0)
+    abs(['Current Volume'] - ['Historical Mean']) / ['Historical StdDev'], 0.0)
 | where ['Anomaly Classification'] != 'Normal Volume'
     and ['Deviation Factor'] > 2.0  // Significant deviation only
 | project
@@ -324,56 +324,87 @@ Every capacity incident I've worked started the same way: someone noticed a disk
 This pattern uses trend analysis to predict when resources will hit capacity limits. Instead of "disk is full," you get "disk will be full in 6 days at current growth rate." That's the difference between an emergency and a planned maintenance window.
 
 ```kusto
-// Predictive capacity analysis with trend forecasting
-// Purpose: Predict when resources will reach capacity limits based on growth trends
-// Returns: Resources approaching capacity with estimated time to exhaustion
-let forecastWindow = 7d;  // Look ahead 7 days
-let trendPeriod = 30d;    // Base trend on 30 days
-let capacityThreshold = 85.0;  // Alert when trending toward 85%
+// Predictive capacity analysis with linear regression forecasting
+// Purpose: Predict when resources will reach capacity limits using statistical trend analysis
+// Returns: Resources approaching capacity with estimated time to exhaustion and confidence scoring
+let forecastWindow = 7d;
+let trendPeriod = 30d;
+let capacityThreshold = 85.0;
+let minRSquared = 0.3;  // Minimum confidence threshold for trend reliability
+let minDataPoints = 10; // Require sufficient data for meaningful regression
+// Disk capacity with linear regression
 let diskCapacity = Perf
 | where TimeGenerated > ago(trendPeriod)
-| where ObjectName has 'logicaldisk'
-    and CounterName has '% free space'
-    and InstanceName !has '_total'
-| extend ['Used Percentage'] = 100 - CounterValue
-| summarize
-    ['Current Usage'] = avg(['Used Percentage']),
-    ['Usage Trend'] = (max(['Used Percentage']) - min(['Used Percentage'])) / datetime_diff('day', max(TimeGenerated), min(TimeGenerated))
+| where ObjectName has 'LogicalDisk'
+    and CounterName has '% Free Space'
+    and InstanceName !in ('_Total', 'HarddiskVolume1')
+| extend UsedPct = 100.0 - CounterValue
+| summarize UsedPct = avg(UsedPct) by Computer, InstanceName, bin(TimeGenerated, 1h)
+| order by Computer, InstanceName, TimeGenerated asc
+| summarize 
+    TimeSeries = make_list(UsedPct),
+    TimeStamps = make_list(TimeGenerated),
+    DataPoints = count()
     by Computer, InstanceName
-| where ['Usage Trend'] > 0;  // Only growing usage
+| where DataPoints >= minDataPoints
+| extend (RSquared, Slope, Variance, RVariance, LineFit, Intercept) = series_fit_line(TimeSeries)
+| extend CurrentUsage = Intercept + (Slope * (DataPoints - 1))
+| where RSquared >= minRSquared  // Only trust trends with reasonable fit
+| where Slope > 0.0              // Only growing usage
+| extend HoursToThreshold = (capacityThreshold - CurrentUsage) / Slope
+| extend DaysToThreshold = HoursToThreshold / 24.0
+| where DaysToThreshold > 0.0 and DaysToThreshold <= toscalar(forecastWindow / 1d)
+| project 
+    Resource = strcat(Computer, ':', InstanceName),
+    ResourceType = 'Disk',
+    CurrentUsagePct = round(CurrentUsage, 1),
+    HourlyGrowthPct = round(Slope, 4),
+    DailyGrowthPct = round(Slope * 24.0, 2),
+    DaysUntilThreshold = round(DaysToThreshold, 1),
+    ProjectedDate = format_datetime(now() + (DaysToThreshold * 1d), 'yyyy-MM-dd'),
+    TrendConfidence = case(
+        RSquared >= 0.7, 'High',
+        RSquared >= 0.5, 'Medium',
+        'Low'),
+    RSquared = round(RSquared, 3);
+// Memory capacity with linear regression
 let memoryCapacity = Perf
 | where TimeGenerated > ago(trendPeriod)
-| where ObjectName has 'memory'
-    and CounterName has 'available mbytes'
-| extend ['Total Memory GB'] = 16.0  // Adjust based on your environment
-| extend ['Used Percentage'] = ((['Total Memory GB'] * 1024) - CounterValue) / (['Total Memory GB'] * 1024) * 100
-| summarize
-    ['Current Usage'] = avg(['Used Percentage']),
-    ['Usage Trend'] = (max(['Used Percentage']) - min(['Used Percentage'])) / datetime_diff('day', max(TimeGenerated), min(TimeGenerated))
+| where ObjectName has 'Memory'
+    and CounterName == '% Committed Bytes In Use'
+| extend UsedPct = CounterValue
+| summarize UsedPct = avg(UsedPct) by Computer, bin(TimeGenerated, 1h)
+| order by Computer, TimeGenerated asc
+| summarize 
+    TimeSeries = make_list(UsedPct),
+    TimeStamps = make_list(TimeGenerated),
+    DataPoints = count()
     by Computer
-| where ['Usage Trend'] > 0;
+| where DataPoints >= minDataPoints
+| extend (RSquared, Slope, Variance, RVariance, LineFit, Intercept) = series_fit_line(TimeSeries)
+| extend CurrentUsage = Intercept + (Slope * (DataPoints - 1))
+| where RSquared >= minRSquared
+| where Slope > 0.0
+| extend HoursToThreshold = (capacityThreshold - CurrentUsage) / Slope
+| extend DaysToThreshold = HoursToThreshold / 24.0
+| where DaysToThreshold > 0.0 and DaysToThreshold <= toscalar(forecastWindow / 1d)
+| project 
+    Resource = Computer,
+    ResourceType = 'Memory',
+    CurrentUsagePct = round(CurrentUsage, 1),
+    HourlyGrowthPct = round(Slope, 4),
+    DailyGrowthPct = round(Slope * 24.0, 2),
+    DaysUntilThreshold = round(DaysToThreshold, 1),
+    ProjectedDate = format_datetime(now() + (DaysToThreshold * 1d), 'yyyy-MM-dd'),
+    TrendConfidence = case(
+        RSquared >= 0.7, 'High',
+        RSquared >= 0.5, 'Medium',
+        'Low'),
+    RSquared = round(RSquared, 3);
+// Combine results
 diskCapacity
-| extend ['Resource Type'] = 'Disk'
-| extend ['Resource Name'] = strcat(Computer, ':', InstanceName)
-| extend ['Days to Threshold'] = iff(['Usage Trend'] > 0,
-    (capacityThreshold - ['Current Usage']) / ['Usage Trend'], 999)
-| union (
-    memoryCapacity
-    | extend ['Resource Type'] = 'Memory'
-    | extend ['Resource Name'] = Computer
-    | extend ['Days to Threshold'] = iff(['Usage Trend'] > 0,
-        (capacityThreshold - ['Current Usage']) / ['Usage Trend'], 999)
-)
-| where ['Days to Threshold'] <= forecastWindow
-    and ['Days to Threshold'] > 0
-| project
-    ['Resource'] = ['Resource Name'],
-    ['Type'] = ['Resource Type'],
-    ['Current Usage %'] = round(['Current Usage'], 1),
-    ['Daily Growth %'] = round(['Usage Trend'], 2),
-    ['Days Until 85%'] = round(['Days to Threshold'], 1),
-    ['Projected Date'] = format_datetime(now() + (['Days to Threshold'] * 1d), 'yyyy-MM-dd')
-| order by ['Days Until 85%'] asc
+| union memoryCapacity
+| order by DaysUntilThreshold asc, TrendConfidence desc
 ```
 
 **What this does:**
