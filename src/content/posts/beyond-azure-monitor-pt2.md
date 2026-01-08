@@ -409,16 +409,20 @@ diskCapacity
 
 **What this does:**
 
-The query calculates growth trends over 30 days for disk and memory, then projects forward to estimate when each resource will hit 85% utilization. The output gives you a prioritized list of resources that need attention, with projected dates for capacity issues.
+The query uses linear regression analysis on 30 days of historical data to calculate growth trends for disk and memory usage. It applies statistical confidence scoring (R-squared values) to filter out unreliable trends and only forecasts resources with consistent growth patterns. The output prioritizes resources by time-to-threshold, showing which systems need attention first with projected dates for capacity issues.
+
+The `['Trend Confidence']` classification tells you how reliable each prediction is. "High" confidence (R² ≥ 0.7) means the growth pattern is consistent and the forecast is trustworthy. "Low" confidence suggests the resource usage is too variable for reliable prediction.
 
 The `['Projected Date']` column is what makes this actionable. "6.2 days until 85%" is useful. "January 14th" is what you put in the change request.
 
 **Adapt for your environment:**
 
-- Replace the hardcoded `['Total Memory GB']` with actual values from your CMDB or Azure resource metadata
-- Add CPU trend analysis for compute-bound workloads
-- Adjust `capacityThreshold` based on your operational comfort level
-- Consider adding cost projection for cloud resources approaching scale-up triggers
+- Adjust `minRSquared` threshold based on your tolerance for prediction accuracy (higher = more conservative forecasts)
+- Modify `capacityThreshold` from 85% to match your operational comfort level
+- Add CPU utilization trend analysis for compute-bound workloads
+- Tune `minDataPoints` based on your data collection frequency and reliability requirements
+- Consider adding network bandwidth and IOPS trend analysis for I/O intensive workloads
+- Integrate with Azure Resource Graph for automatic capacity limit discovery in cloud environments
 
 ---
 
