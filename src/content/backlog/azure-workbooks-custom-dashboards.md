@@ -1,6 +1,5 @@
 ---
 title: "Azure Workbooks: Custom Dashboards That Don't Suck"
-slug: azure-workbooks-custom-dashboards
 date: 2026-01-19
 image: azure-workbooks.jpg
 tags: [Azure, Workbooks, Operations, Dashboards]

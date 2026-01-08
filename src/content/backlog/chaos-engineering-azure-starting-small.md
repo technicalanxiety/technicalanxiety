@@ -1,6 +1,5 @@
 ---
 title: "Chaos Engineering on Azure: Controlled Vandalism"
-slug: chaos-engineering-azure-starting-small
 date: 2026-01-26
 image: chaos-engineering.jpg
 tags: [Azure, Operations, Chaos Engineering, Resilience]

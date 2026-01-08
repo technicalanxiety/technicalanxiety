@@ -4,7 +4,7 @@ date: 2026-01-07
 image: beyond-azure-monitor-pt3.jpg
 tags: [Azure, Operations, Automation]
 series: "Beyond Azure Monitor"
-series_order: 3
+series_part: 3
 description: "Transform advanced KQL patterns into production monitoring systems with automation, intelligent alerting, and integration strategies that scale across enterprise environments."
 ---
 # Beyond Azure Monitor - Part 3: Production-Ready Monitoring

@@ -1,6 +1,5 @@
 ---
 title: "KQL for Infrastructure Teams - Beyond Basic Queries"
-slug: kql-for-infrastructure-teams
 date: 2026-01-12
 image: kql-infrastructure.jpg
 tags: [Azure, KQL, Operations, Infrastructure]
