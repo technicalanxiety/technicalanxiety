@@ -255,7 +255,9 @@ Both patterns share a common principle: monitoring should encode operational kno
 
 ---
 
+<!-- NEXT_PART: beyond-azure-monitor-pt2.md -->
 **Next in Series:** [Beyond Azure Monitor - Part 2: Advanced KQL Patterns for Real-World Monitoring →](/beyond-azure-monitor-pt2/)
+<!-- END_NEXT_PART -->
 
 ---
 

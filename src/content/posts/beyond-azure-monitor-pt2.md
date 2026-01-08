@@ -434,7 +434,9 @@ Correlation shows you the blast radius. Anomaly detection separates signal from 
 
 ---
 
+<!-- NEXT_PART: beyond-azure-monitor-pt3.md -->
 **Next in Series:** [Beyond Azure Monitor - Part 3: Building Production-Ready Monitoring Solutions →](/beyond-azure-monitor-pt3/)
+<!-- END_NEXT_PART -->
 
 ---
 
