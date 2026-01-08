@@ -434,8 +434,12 @@ Correlation shows you the blast radius. Anomaly detection separates signal from 
 
 ---
 
+## What's Next?
+
 <!-- NEXT_PART: beyond-azure-monitor-pt3.md -->
-**Next in Series:** [Beyond Azure Monitor - Part 3: Building Production-Ready Monitoring Solutions →](/beyond-azure-monitor-pt3/)
+**Coming Next:** Part 3 - Building Production-Ready Monitoring Solutions (Published January 7th, 2026)
+
+Transform advanced KQL patterns into production monitoring systems with automation, intelligent alerting, and integration strategies that scale across enterprise environments.
 <!-- END_NEXT_PART -->
 
 ---
