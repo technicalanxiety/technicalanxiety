@@ -8,6 +8,8 @@ image: "ai-writing.jpg"
 
 # Thinking Through the Machine
 
+<iframe src="https://creators.spotify.com/pod/profile/technicalanxiety/embed/episodes/Thinking-Through-The-Machine-e3dhjfl/a-acdkhkn" height="102px" width="100%" frameborder="0" scrolling="no"></iframe>
+
 ## AI as a Writing Partner, Not a Ghostwriter
 
 I'm writing this article with Claude right now. Not "using Claude to write it for me" - that distinction matters, and it's the entire point of what follows.
