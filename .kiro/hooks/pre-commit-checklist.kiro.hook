@@ -1,0 +1,13 @@
+{
+  "enabled": true,
+  "name": "Pre-Commit Checklist",
+  "description": "Displays a comprehensive pre-commit checklist to ensure content quality, image optimization, link validation, and security before publishing",
+  "version": "1",
+  "when": {
+    "type": "userTriggered"
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Pre-commit checklist:\n- Front matter complete?\n- Images optimized?\n- Links tested?\n- No secrets in code?\n- Images exist?\n- For series, does it contain What's Next html for automated workflow?"
+  }
+}

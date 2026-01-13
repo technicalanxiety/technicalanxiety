@@ -3,7 +3,7 @@
   "description": "Validates blog post front matter, images, attribution, and reading time when saving posts",
   "trigger": {
     "type": "onFileSave",
-    "filePattern": "_posts/**/*.md"
+    "filePattern": "src/content/{posts,backlog}/*.md"
   },
   "action": {
     "type": "sendMessage",

@@ -1,0 +1,17 @@
+{
+  "enabled": true,
+  "name": "Validate Post on Save",
+  "description": "Automatically validates blog posts in the _posts directory when saved, checking for front matter completeness, image attribution, reading time, and SEO description length",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "src/content/posts/*.md",
+      "src/content/backlog/*.md"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Check this post for: front matter completeness, image attribution, reading time, SEO description length"
+  }
+}
