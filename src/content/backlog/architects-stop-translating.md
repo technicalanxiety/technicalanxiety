@@ -1,6 +1,6 @@
 ---
 title: "Why Architects Stop Translating"
-date: 2026-02-04
+date: 2026-01-16
 tags: [Leadership, Architecture, Azure, Governance]
 description: "The system doesn't just fail architects. It teaches them to fail. Here's how institutional capture turns truth-tellers into artifact producers."
 image: "architects-stop-translating.jpg"

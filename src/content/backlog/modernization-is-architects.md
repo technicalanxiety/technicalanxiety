@@ -1,6 +1,6 @@
 ---
 title: "Migrations Fail When Architects Don't Translate"
-date: 2026-02-02
+date: 2026-01-14
 tags: [Leadership, Architecture, Azure, Governance]
 description: "The architect is the accountable party for migration success or failure. Not because leadership doesn't matter, but because translation is our job."
 image: "modernization-leadership.jpg"
