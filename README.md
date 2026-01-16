@@ -2,11 +2,11 @@
 
 A technical blog covering Azure, Log Analytics, leadership, and navigating anxiety in tech. Built with Astro for optimal performance and developer experience.
 
-🌐 **Live Site**: [technicalanxiety.com](https://technicalanxiety.com)
+🌐 **Live Site**: [www.technicalanxiety.com](https://www.technicalanxiety.com)
 
 ## Migration Status
 
-✅ **Migration Complete** - Successfully migrated from Jekyll to Astro in December 2024
+✅ **Migration Complete** - Successfully migrated from Jekyll to Astro in December 2025
 
 This site was migrated from Jekyll to Astro to improve:
 - Build performance and developer experience  
@@ -196,7 +196,7 @@ The site is automatically deployed via GitHub Actions with two workflows:
 
 ### Deployment Targets
 
-- **Production**: [technicalanxiety.com](https://technicalanxiety.com) (master branch)
+- **Production**: [www.technicalanxiety.com](https://www.technicalanxiety.com) (master branch)
 - **Preview**: Automatic preview deployments for pull requests
 
 ### Manual Deployment
@@ -275,7 +275,7 @@ npm run build
   - [Publishing Workflow](docs/PUBLISHING_WORKFLOW.md)
   - [GitHub Actions Setup](GITHUB_ACTIONS_SETUP.md)
 - **Issues**: Create an issue in this repository
-- **Contact**: [Contact form on the website](https://technicalanxiety.com/about/)
+- **Contact**: [Contact form on the website](https://www.technicalanxiety.com/about/)
 
 ## 📚 Migration History
 
@@ -312,7 +312,7 @@ All migration requirements were validated through:
 ## 👀 Want to learn more?
 
 - **Astro Documentation**: [docs.astro.build](https://docs.astro.build)
-- **Technical Anxiety Blog**: [technicalanxiety.com](https://technicalanxiety.com)
+- **Technical Anxiety Blog**: [www.technicalanxiety.com](https://www.technicalanxiety.com)
 - **Author**: [Jason Rinehart on LinkedIn](https://linkedin.com/in/rinehart76)
 
 ## 📄 License
