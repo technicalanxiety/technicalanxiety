@@ -11,6 +11,16 @@ import { siteConfig } from '../config';
 const posts = await getPublishedPosts();
 const sortedPosts = posts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 const recentPosts = sortedPosts.slice(0, siteConfig.postsPerPage);
+
+// Prepare all posts data for client-side pagination
+const allPostsData = sortedPosts.map(post => ({
+  slug: post.slug,
+  title: post.data.title,
+  description: post.data.description,
+  date: post.data.date.toISOString(),
+  image: post.data.image || 'article-header.jpg',
+  tags: post.data.tags || []
+}));
 ---
 
 <BaseLayout 
@@ -101,14 +111,18 @@ const recentPosts = sortedPosts.slice(0, siteConfig.postsPerPage);
           </div>
           
           {sortedPosts.length > siteConfig.postsPerPage && (
-            <div class="explore-more">
+            <div class="explore-more" id="explore-section">
               <div class="explore-content">
                 <h3 class="explore-title">Ready to Dive Deeper?</h3>
                 <p class="explore-description">
                   Explore the complete archive of cloud architecture insights, leadership lessons, and mental health in tech.
                 </p>
                 <div class="explore-actions">
-                  <a href="/archive/" class="button button-primary">
+                  <button id="load-more-btn" class="button button-primary" data-offset={siteConfig.postsPerPage}>
+                    <ion-icon name="arrow-down-circle-outline"></ion-icon>
+                    Load More Articles
+                  </button>
+                  <a href="/archive/" class="button button-secondary">
                     <ion-icon name="library-outline"></ion-icon>
                     Browse All Articles
                   </a>
@@ -116,6 +130,10 @@ const recentPosts = sortedPosts.slice(0, siteConfig.postsPerPage);
                     <ion-icon name="pricetags-outline"></ion-icon>
                     Explore by Topic
                   </a>
+                </div>
+                <div id="loading-indicator" class="loading-indicator" style="display: none;">
+                  <ion-icon name="hourglass-outline"></ion-icon>
+                  Loading more articles...
                 </div>
               </div>
             </div>
@@ -347,6 +365,26 @@ const recentPosts = sortedPosts.slice(0, siteConfig.postsPerPage);
     font-size: 1.25rem;
   }
 
+  .loading-indicator {
+    margin-top: var(--space-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    color: var(--text-secondary);
+    font-size: 1rem;
+  }
+
+  .loading-indicator ion-icon {
+    font-size: 1.5rem;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
   .view-more {
     text-align: center;
     margin-top: var(--space-xl);
@@ -364,5 +402,100 @@ const recentPosts = sortedPosts.slice(0, siteConfig.postsPerPage);
     .featured-content {
       padding: var(--space-lg);
     }
+
+    .explore-actions {
+      flex-direction: column;
+    }
+
+    .explore-actions .button {
+      width: 100%;
+    }
   }
 </style>
+
+<script define:vars={{ allPostsData, postsPerPage: siteConfig.postsPerPage }}>
+  document.addEventListener('DOMContentLoaded', () => {
+    const loadMoreBtn = document.getElementById('load-more-btn');
+    const articlesGrid = document.querySelector('.articles-grid');
+    const loadingIndicator = document.getElementById('loading-indicator');
+    const exploreSection = document.getElementById('explore-section');
+
+    if (!loadMoreBtn || !articlesGrid) return;
+
+    let currentOffset = postsPerPage;
+
+    loadMoreBtn.addEventListener('click', () => {
+      console.log('Loading more posts with offset:', currentOffset);
+      
+      // Show loading state
+      loadMoreBtn.disabled = true;
+      if (loadingIndicator) loadingIndicator.style.display = 'flex';
+
+      // Simulate async for smooth UX
+      setTimeout(() => {
+        const postsToLoad = allPostsData.slice(currentOffset, currentOffset + 12);
+        console.log('Loaded posts:', postsToLoad.length);
+
+        // Add new articles to grid
+        postsToLoad.forEach((post) => {
+          const article = document.createElement('article');
+          article.className = 'article';
+          
+          const dateObj = new Date(post.date);
+          const formattedDate = dateObj.toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric'
+          });
+
+          article.innerHTML = `
+            <div class="article-image" style="background-image: url(/img/${post.image})">
+              <a href="/${post.slug}/" class="image-link"></a>
+            </div>
+            <div class="article-content">
+              <div class="article-header">
+                <div class="article-date">
+                  <time datetime="${post.date}">${formattedDate}</time>
+                </div>
+                ${post.tags.length > 0 ? `
+                  <div class="article-tags">
+                    ${post.tags.map((tag) => `<a href="/tags/${tag}/" class="tag">${tag}</a>`).join('')}
+                  </div>
+                ` : ''}
+              </div>
+              <h3 class="article-title">
+                <a href="/${post.slug}/">${post.title}</a>
+              </h3>
+              <p class="article-excerpt">
+                ${post.description || 'Read more about this article...'}
+              </p>
+            </div>
+          `;
+
+          articlesGrid.appendChild(article);
+        });
+
+        // Update offset for next load
+        currentOffset += postsToLoad.length;
+        console.log('New offset:', currentOffset);
+
+        // Hide button if no more posts
+        const hasMore = currentOffset < allPostsData.length;
+        if (!hasMore) {
+          loadMoreBtn.style.display = 'none';
+          
+          // Update section message
+          if (exploreSection) {
+            const title = exploreSection.querySelector('.explore-title');
+            const description = exploreSection.querySelector('.explore-description');
+            if (title) title.textContent = "You've Seen It All!";
+            if (description) description.textContent = "Browse the archive or explore by topic to find exactly what you're looking for.";
+          }
+        }
+
+        loadMoreBtn.disabled = false;
+        if (loadingIndicator) loadingIndicator.style.display = 'none';
+      }, 300);
+    });
+  });
+</script>

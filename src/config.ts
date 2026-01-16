@@ -16,5 +16,6 @@ export const siteConfig = {
     categoryId: 'DIC_kwDODdlXnc4Cx09S',
   },
   googleAnalytics: 'G-2HB2W9WDMR',
-  postsPerPage: 7,
+  postsPerPage: 12,
+  postsPerLoadMore: 12,
 };
