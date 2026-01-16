@@ -25,6 +25,41 @@ const description = 'All notable changes to Technical Anxiety website and conten
 
             <div class="changelog-content">
               <section class="changelog-entry">
+                <h2 id="2025-01-15">2025-01-15 - Homepage Load More & Archive Thumbnails</h2>
+                
+                <h3>Added</h3>
+                <ul>
+                  <li><strong>Load More functionality</strong> on homepage for better content discovery</li>
+                  <li>Increased initial post display from 7 to 12 articles (1 featured + 11 grid)</li>
+                  <li>"Load More Articles" button with smooth horizontal progress bar animation</li>
+                  <li>Client-side pagination compatible with static site generation</li>
+                  <li>All post data embedded in page for instant loading without API calls</li>
+                  <li><strong>Archive page thumbnails</strong> for visual content browsing</li>
+                  <li>60x60px article thumbnails between date and title</li>
+                  <li>Hover effects and lazy loading for performance</li>
+                  <li>Responsive sizing (50x50px on mobile)</li>
+                </ul>
+
+                <h3>Changed</h3>
+                <ul>
+                  <li><strong>"Ready to Dive Deeper?" section</strong> now includes three action buttons</li>
+                  <li>Load More Articles (new - stays on homepage)</li>
+                  <li>Browse All Articles (existing - goes to archive)</li>
+                  <li>Explore by Topic (existing - goes to tags)</li>
+                  <li><strong>Loading indicator</strong> upgraded from spinning hourglass to modern progress bar</li>
+                  <li>Horizontal bar with gradient animation for better visual feedback</li>
+                </ul>
+
+                <h3>Technical</h3>
+                <ul>
+                  <li><strong>Static-first approach</strong>: No server-side API needed</li>
+                  <li>All posts embedded in initial page load (~48 posts, minimal overhead)</li>
+                  <li>JavaScript handles pagination client-side for instant response</li>
+                  <li>Graceful degradation: "Browse All Articles" works without JavaScript</li>
+                </ul>
+              </section>
+
+              <section class="changelog-entry">
                 <h2 id="2024-12-20">2024-12-20 - Hero Redesign & Site Streamlining</h2>
                 
                 <h3>Changed</h3>
