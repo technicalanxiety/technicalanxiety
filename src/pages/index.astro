@@ -132,8 +132,10 @@ const allPostsData = sortedPosts.map(post => ({
                   </a>
                 </div>
                 <div id="loading-indicator" class="loading-indicator" style="display: none;">
-                  <ion-icon name="hourglass-outline"></ion-icon>
-                  Loading more articles...
+                  <div class="loading-bar">
+                    <div class="loading-bar-fill"></div>
+                  </div>
+                  <span class="loading-text">Loading more articles...</span>
                 </div>
               </div>
             </div>
@@ -368,21 +370,45 @@ const allPostsData = sortedPosts.map(post => ({
   .loading-indicator {
     margin-top: var(--space-lg);
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
     gap: var(--space-sm);
     color: var(--text-secondary);
-    font-size: 1rem;
   }
 
-  .loading-indicator ion-icon {
-    font-size: 1.5rem;
-    animation: spin 1s linear infinite;
+  .loading-bar {
+    width: 200px;
+    height: 4px;
+    background: var(--border-color);
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
   }
 
-  @keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+  .loading-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent-color), var(--link-hover));
+    border-radius: 2px;
+    animation: fillBar 1s ease-in-out infinite;
+  }
+
+  @keyframes fillBar {
+    0% {
+      width: 0%;
+      margin-left: 0%;
+    }
+    50% {
+      width: 50%;
+      margin-left: 25%;
+    }
+    100% {
+      width: 0%;
+      margin-left: 100%;
+    }
+  }
+
+  .loading-text {
+    font-size: 0.875rem;
   }
 
   .view-more {
