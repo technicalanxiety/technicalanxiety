@@ -114,23 +114,33 @@ Monitoring: Log Analytics/KQL, CloudHealth, Performance Optimization, Incident R
 
 Answer recruiter questions about Jason's background, experience, skills, achievements, and career. Be professional, concise, and highlight relevant accomplishments. If asked about specific technologies or experiences, reference his actual work history. If you don't know something specific, say so honestly.`;
 
-    // Build conversation context
-    const conversationContext = conversationHistory
-      .slice(-4) // Last 4 messages only
-      .map(msg => `${msg.role}: ${msg.content}`)
-      .join('\n');
+    // Build messages array for chat completion API
+    const messages = [
+      {
+        role: 'system',
+        content: systemPrompt
+      }
+    ];
 
-    const fullPrompt = `${systemPrompt}
+    // Add conversation history
+    conversationHistory.slice(-4).forEach(msg => {
+      messages.push({
+        role: msg.role === 'user' ? 'user' : 'assistant',
+        content: msg.content
+      });
+    });
 
-${conversationContext ? `Previous conversation:\n${conversationContext}\n` : ''}
-User: ${message}
-Assistant:`;
+    // Add current message
+    messages.push({
+      role: 'user',
+      content: message
+    });
 
-    context.log('Calling HF API...');
+    context.log('Calling HF Chat Completions API...');
 
-    // Call Hugging Face Serverless Inference API (new router endpoint)
+    // Call Hugging Face Chat Completions API (OpenAI-compatible)
     const response = await fetch(
-      'https://router.huggingface.co/v1/models/mistralai/Mistral-7B-Instruct-v0.2',
+      'https://api-inference.huggingface.co/models/mistralai/Mistral-7B-Instruct-v0.2/v1/chat/completions',
       {
         method: 'POST',
         headers: {
@@ -138,13 +148,11 @@ Assistant:`;
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          inputs: fullPrompt,
-          parameters: {
-            max_new_tokens: 500,
-            temperature: 0.7,
-            top_p: 0.95,
-            return_full_text: false
-          }
+          model: 'mistralai/Mistral-7B-Instruct-v0.2',
+          messages: messages,
+          max_tokens: 500,
+          temperature: 0.7,
+          top_p: 0.95
         })
       }
     );
@@ -180,8 +188,8 @@ Assistant:`;
 
     const result = await response.json();
     
-    // HF returns array of results
-    const generatedText = result[0]?.generated_text || result.generated_text || '';
+    // Extract response from chat completion format
+    const generatedText = result.choices?.[0]?.message?.content || '';
 
     context.res = {
       status: 200,
