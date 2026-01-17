@@ -14,6 +14,10 @@ description: "Skip the Netflix-scale chaos. Learn to start chaos engineering in 
 
 ---
 
+**KQL Warning**: The queries in this article are patterns and examples. You'll need to adapt them to your environment, table schemas, and operational needs. Some are production-tested, others are illustrative. Focus on the chaos engineering patterns and monitoring approaches, not copying queries verbatim.
+
+---
+
 There's a button you're not supposed to push. Every infrastructure engineer knows the feeling. The temptation to see what happens if you just... stop that service. Kill that process. Pull that cable. Most of us learned early to suppress that impulse. Production is sacred. Don't touch what's working.
 
 Early in my career, before cloud, I started on helpdesk. Every so often our organization would run disaster recovery drills: cutting power to the datacenter to test batteries, generator switchover, cooling units. But every so often, we had to test the big red button. The one on the wall behind the plastic shield. The one that taunted you every time you walked past it, knowing that pushing it at the wrong time would be a resume-generating event.
@@ -65,40 +69,41 @@ The barrier isn't technical. It's cultural. Teams don't start chaos engineering 
 Before you break anything, prove you can detect problems. Run this query and make sure you understand what normal looks like:
 
 ```kql
-// Baseline system health query
+// Baseline system health query - establish normal before running experiments
+// TimeGenerated filter first for query efficiency
 let timeRange = 1h;
 let healthMetrics = 
-    Heartbeat
-    | where TimeGenerated > ago(timeRange)
-    | summarize 
-        SystemsOnline = dcount(Computer),
-        LastHeartbeat = max(TimeGenerated)
-    | extend HealthStatus = iff(LastHeartbeat > ago(5m), "Healthy", "Degraded");
+   Heartbeat
+   |  where TimeGenerated > ago(timeRange)
+   |  summarize 
+         SystemsOnline = dcount(Computer),
+         LastHeartbeat = max(TimeGenerated)
+   |  extend HealthStatus = iff(LastHeartbeat > ago(5m), 'Healthy', 'Degraded');
 let errorRate = 
-    Event
-    | where TimeGenerated > ago(timeRange)
-    | where EventLevelName == "Error"
-    | summarize ErrorCount = count();
+   Event
+   |  where TimeGenerated > ago(timeRange)
+   |  where EventLevelName has 'error'
+   |  summarize ErrorCount = count();
 let performanceBaseline = 
-    Perf
-    | where TimeGenerated > ago(timeRange)
-    | where CounterName in ("% Processor Time", "Available MBytes")
-    | summarize 
-        AvgCPU = avgif(CounterValue, CounterName == "% Processor Time"),
-        AvgMemoryMB = avgif(CounterValue, CounterName == "Available MBytes")
-    | extend MemoryGB = AvgMemoryMB / 1024;
+   Perf
+   |  where TimeGenerated > ago(timeRange)
+   |  where CounterName has 'processor time' or CounterName has 'available mbytes'
+   |  summarize 
+         AvgCPU = avgif(CounterValue, CounterName has 'processor time'),
+         AvgMemoryMB = avgif(CounterValue, CounterName has 'available mbytes')
+   |  extend MemoryGB = AvgMemoryMB / 1024;
 healthMetrics
-| extend 
-    ErrorRate = toscalar(errorRate | project ErrorCount),
-    AvgCPU = toscalar(performanceBaseline | project AvgCPU),
-    AvgMemoryGB = toscalar(performanceBaseline | project MemoryGB)
-| project 
-    Timestamp = now(),
-    SystemsOnline,
-    ErrorRate,
-    AvgCPU = round(AvgCPU, 1),
-    AvgMemoryGB = round(AvgMemoryGB, 1),
-    OverallHealth = HealthStatus
+|  extend 
+      ErrorRate = toscalar(errorRate | project ErrorCount),
+      AvgCPU = toscalar(performanceBaseline | project AvgCPU),
+      AvgMemoryGB = toscalar(performanceBaseline | project MemoryGB)
+|  project 
+      Timestamp = now(),
+      SystemsOnline,
+      ErrorRate,
+      AvgCPU = round(AvgCPU, 1),
+      AvgMemoryGB = round(AvgMemoryGB, 1),
+      OverallHealth = HealthStatus
 ```
 
 Run this for a week. Understand the variance. Know what your error rate looks like on a normal Tuesday versus month-end processing. If you can't establish a baseline, you can't measure the impact of an experiment.
@@ -242,46 +247,48 @@ The results section is where learning happens. If your hypothesis was wrong, tha
 You need real-time visibility while experiments run. This query shows application and infrastructure health during an experiment window:
 
 ```kql
+// Real-time monitoring during chaos experiments
+// Compare baseline, experiment, and recovery phases
 let experimentStart = datetime('2026-01-26T10:00:00Z');
 let experimentEnd = datetime('2026-01-26T10:15:00Z');
 let appHealth = 
-    requests
-    | where timestamp between (experimentStart .. experimentEnd)
-    | summarize 
-        RequestCount = count(),
-        SuccessRate = countif(success == true) * 100.0 / count(),
-        AvgDuration = avg(duration),
-        P95Duration = percentile(duration, 95)
-        by bin(timestamp, 1m)
-    | extend ExperimentPhase = case(
-        timestamp < experimentStart, "Baseline",
-        timestamp <= experimentEnd, "Experiment", 
-        "Recovery"
-    );
+   requests
+   |  where timestamp between (experimentStart .. experimentEnd)
+   |  summarize 
+         RequestCount = count(),
+         SuccessRate = countif(success == true) * 100.0 / count(),
+         AvgDuration = avg(duration),
+         P95Duration = percentile(duration, 95)
+         by bin(timestamp, 1m)
+   |  extend ExperimentPhase = case(
+         timestamp < experimentStart, 'Baseline',
+         timestamp <= experimentEnd, 'Experiment', 
+         'Recovery'
+      );
 let infraHealth = 
-    Perf
-    | where TimeGenerated between ((experimentStart - 15m) .. (experimentEnd + 15m))
-    | where CounterName in ("% Processor Time", "Available MBytes")
-    | summarize 
-        AvgCPU = avgif(CounterValue, CounterName == "% Processor Time"),
-        AvgMemoryMB = avgif(CounterValue, CounterName == "Available MBytes")
-        by Computer, bin(TimeGenerated, 1m)
-    | extend ExperimentPhase = case(
-        TimeGenerated < experimentStart, "Baseline",
-        TimeGenerated <= experimentEnd, "Experiment",
-        "Recovery"
-    );
+   Perf
+   |  where TimeGenerated between ((experimentStart - 15m) .. (experimentEnd + 15m))
+   |  where CounterName has 'processor time' or CounterName has 'available mbytes'
+   |  summarize 
+         AvgCPU = avgif(CounterValue, CounterName has 'processor time'),
+         AvgMemoryMB = avgif(CounterValue, CounterName has 'available mbytes')
+         by Computer, bin(TimeGenerated, 1m)
+   |  extend ExperimentPhase = case(
+         TimeGenerated < experimentStart, 'Baseline',
+         TimeGenerated <= experimentEnd, 'Experiment',
+         'Recovery'
+      );
 appHealth
-| join kind=fullouter infraHealth on $left.timestamp == $right.TimeGenerated
-| project 
-    Time = coalesce(timestamp, TimeGenerated),
-    ExperimentPhase = coalesce(ExperimentPhase, ExperimentPhase1),
-    RequestCount,
-    SuccessRate,
-    AvgDuration,
-    AvgCPU,
-    AvgMemoryGB = AvgMemoryMB / 1024
-| order by Time asc
+|  join kind=fullouter infraHealth on $left.timestamp == $right.TimeGenerated
+|  project 
+      Time = coalesce(timestamp, TimeGenerated),
+      ExperimentPhase = coalesce(ExperimentPhase, ExperimentPhase1),
+      RequestCount,
+      SuccessRate,
+      AvgDuration,
+      AvgCPU,
+      AvgMemoryGB = AvgMemoryMB / 1024
+|  order by Time asc
 ```
 
 The 15-minute buffer around the experiment window matters. You want to see what normal looked like before, what changed during, and how long recovery took after. Those transitions often reveal more than the experiment itself.

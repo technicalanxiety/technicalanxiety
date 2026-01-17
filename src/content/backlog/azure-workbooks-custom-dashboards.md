@@ -14,6 +14,10 @@ description: "Stop building useless dashboards. Learn to create Azure Workbooks 
 
 ---
 
+**KQL Warning**: The queries in this article are patterns and examples. You'll need to adapt them to your environment, table schemas, and operational needs. Some are production-tested, others are illustrative. Focus on the dashboard design patterns, not copying queries verbatim.
+
+---
+
 You've seen them. Dashboards with 47 charts, rainbow color schemes, and metrics that nobody understands. They look impressive in demos but useless in production.
 
 Azure Workbooks can be different. When built right, they become the operational command center your team actually relies on. But most people build them wrong.
@@ -153,50 +157,51 @@ Show only what needs immediate action:
 
 ```kql
 // Critical alerts requiring immediate attention
+// TimeGenerated filter first, then narrow to critical event types
 let criticalEvents = 
-    Event
-    | where TimeGenerated > ago({TimeRange})
-    | where EventLevelName == "Error"
-    | where EventID in (1001, 1074, 6008, 41)  // System critical events
-    | summarize 
-        Count = count(),
-        LastOccurrence = max(TimeGenerated),
-        AffectedSystems = dcount(Computer),
-        Sample = any(RenderedDescription)
-        by EventID
-    | extend Priority = case(
-        EventID == 6008, "P1 - System Crash",
-        EventID == 1074, "P1 - Unexpected Shutdown", 
-        EventID == 41, "P2 - Power Loss",
-        "P3 - System Error"
-    );
+   Event
+   |  where TimeGenerated > ago({TimeRange})
+   |  where EventLevelName has 'error'
+   |  where EventID in (1001, 1074, 6008, 41)  // System critical events
+   |  summarize 
+         Count = count(),
+         LastOccurrence = max(TimeGenerated),
+         AffectedSystems = dcount(Computer),
+         Sample = any(RenderedDescription)
+         by EventID
+   |  extend Priority = case(
+         EventID == 6008, 'P1 - System Crash',
+         EventID == 1074, 'P1 - Unexpected Shutdown', 
+         EventID == 41, 'P2 - Power Loss',
+         'P3 - System Error'
+      );
 let resourceAlerts = 
-    Perf
-    | where TimeGenerated > ago({TimeRange})
-    | where CounterName in ("% Processor Time", "Available MBytes")
-    | extend Threshold = case(
-        CounterName == "% Processor Time", 90.0,
-        CounterName == "Available MBytes", 512.0,
-        0.0
-    )
-    | where (CounterName == "% Processor Time" and CounterValue > Threshold) or
-            (CounterName == "Available MBytes" and CounterValue < Threshold)
-    | summarize 
-        Count = count(),
-        LastOccurrence = max(TimeGenerated),
-        AffectedSystems = dcount(Computer),
-        WorstValue = case(
-            CounterName == "% Processor Time", max(CounterValue),
+   Perf
+   |  where TimeGenerated > ago({TimeRange})
+   |  where CounterName has 'processor time' or CounterName has 'available mbytes'
+   |  extend Threshold = case(
+         CounterName has 'processor time', 90.0,
+         CounterName has 'available mbytes', 512.0,
+         0.0
+      )
+   |  where (CounterName has 'processor time' and CounterValue > Threshold) or
+           (CounterName has 'available mbytes' and CounterValue < Threshold)
+   |  summarize 
+         Count = count(),
+         LastOccurrence = max(TimeGenerated),
+         AffectedSystems = dcount(Computer),
+         WorstValue = case(
+            CounterName has 'processor time', max(CounterValue),
             min(CounterValue)
-        )
-        by CounterName
-    | extend Priority = case(
-        CounterName == "Available MBytes", "P1 - Memory Critical",
-        "P2 - CPU Critical"
-    );
+         )
+         by CounterName
+   |  extend Priority = case(
+         CounterName has 'available mbytes', 'P1 - Memory Critical',
+         'P2 - CPU Critical'
+      );
 union criticalEvents, resourceAlerts
-| project Priority, Count, AffectedSystems, LastOccurrence, Details = coalesce(Sample, strcat(CounterName, ": ", WorstValue))
-| order by Priority, Count desc
+|  project Priority, Count, AffectedSystems, LastOccurrence, Details = coalesce(Sample, strcat(CounterName, ': ', WorstValue))
+|  order by Priority, Count desc
 ```
 
 ## Advanced Workbook Patterns
@@ -276,23 +281,25 @@ Show different content based on context:
 Show trends that matter:
 
 ```kql
-// Resource utilization trends
+// Resource utilization trends with normalized values for comparison
+// TimeGenerated filter first, then narrow to selected systems
 Perf
-| where TimeGenerated > ago({TimeRange})
-| where CounterName in ("% Processor Time", "Available MBytes", "Disk Transfers/sec")
-| where Computer == "{SelectedComputer}" or "{SelectedComputer}" == "All"
-| extend NormalizedValue = case(
-    CounterName == "% Processor Time", CounterValue,
-    CounterName == "Available MBytes", CounterValue / 1024,  // Convert to GB
-    CounterName == "Disk Transfers/sec", CounterValue / 100  // Scale for visibility
-)
-| summarize avg(NormalizedValue) by CounterName, bin(TimeGenerated, {TimeRange:grain})
-| render timechart 
-    with (
-        title="Resource Utilization Trends",
-        xtitle="Time",
-        ytitle="Utilization %"
-    )
+|  where TimeGenerated > ago({TimeRange})
+|  where CounterName has 'processor time' or CounterName has 'available mbytes' or CounterName has 'disk transfers'
+|  where Computer == '{SelectedComputer}' or '{SelectedComputer}' == 'all'
+|  extend NormalizedValue = case(
+      CounterName has 'processor time', CounterValue,
+      CounterName has 'available mbytes', CounterValue / 1024,  // Convert to GB
+      CounterName has 'disk transfers', CounterValue / 100,  // Scale for visibility
+      CounterValue
+   )
+|  summarize avg(NormalizedValue) by CounterName, bin(TimeGenerated, {TimeRange:grain})
+|  render timechart 
+      with (
+         title='Resource Utilization Trends',
+         xtitle='Time',
+         ytitle='Utilization %'
+      )
 ```
 
 ## Dashboard Anti-Patterns to Avoid
@@ -302,22 +309,22 @@ Perf
 ```kql
 // Don't do this - too many colors, no meaning
 Event
-| summarize count() by EventLevelName
-| render piechart 
-    with (
-        title="All Events by Level"  // Useless - includes informational
-    )
+|  summarize count() by EventLevelName
+|  render piechart 
+      with (
+         title='All Events by Level'  // Useless - includes informational
+      )
 
 // Do this - focus on actionable information
 Event
-| where EventLevelName in ("Error", "Warning")
-| where TimeGenerated > ago({TimeRange})
-| summarize count() by EventLevelName, bin(TimeGenerated, 1h)
-| render columnchart 
-    with (
-        title="Error and Warning Trends",
-        series=EventLevelName
-    )
+|  where TimeGenerated > ago({TimeRange})  // Time filter first
+|  where EventLevelName has 'error' or EventLevelName has 'warning'
+|  summarize count() by EventLevelName, bin(TimeGenerated, 1h)
+|  render columnchart 
+      with (
+         title='Error and Warning Trends',
+         series=EventLevelName
+      )
 ```
 
 ### 2. The "Vanity Metric" Trap
@@ -325,26 +332,26 @@ Event
 ```kql
 // Don't do this - impressive but meaningless
 Perf
-| summarize 
-    TotalDataPoints = count(),
-    AverageValue = avg(CounterValue),
-    MaxValue = max(CounterValue)
-    by CounterName
+|  summarize 
+      TotalDataPoints = count(),
+      AverageValue = avg(CounterValue),
+      MaxValue = max(CounterValue)
+      by CounterName
 
-// Do this - actionable insights
+// Do this - actionable insights with baseline comparison
 Perf
-| where CounterName == "% Processor Time"
-| where TimeGenerated > ago({TimeRange})
-| summarize 
-    CurrentAvg = avgif(CounterValue, TimeGenerated > ago(15m)),
-    BaselineAvg = avgif(CounterValue, TimeGenerated < ago(1h)),
-    SystemsOverThreshold = dcountif(Computer, CounterValue > 80)
-    by bin(TimeGenerated, 15m)
-| extend PerformanceTrend = case(
-    CurrentAvg > BaselineAvg * 1.2, "Degrading",
-    CurrentAvg < BaselineAvg * 0.8, "Improving", 
-    "Stable"
-)
+|  where TimeGenerated > ago({TimeRange})  // Time filter first
+|  where CounterName has 'processor time'
+|  summarize 
+      CurrentAvg = avgif(CounterValue, TimeGenerated > ago(15m)),
+      BaselineAvg = avgif(CounterValue, TimeGenerated < ago(1h)),
+      SystemsOverThreshold = dcountif(Computer, CounterValue > 80)
+      by bin(TimeGenerated, 15m)
+|  extend PerformanceTrend = case(
+      CurrentAvg > BaselineAvg * 1.2, 'Degrading',
+      CurrentAvg < BaselineAvg * 0.8, 'Improving', 
+      'Stable'
+   )
 ```
 
 ### 3. The "Information Overload" Problem
@@ -429,18 +436,17 @@ Create reusable components:
 
 ```kql
 // Efficient queries for large datasets
+// Pre-filter early, aggregate appropriately, limit data points
 let selectedServers = dynamic([{Servers}]);
-let timeRange = {TimeRange};
-// Pre-filter and aggregate
 Perf
-| where Computer in (selectedServers) or "All" in (selectedServers)
-| where TimeGenerated > ago(timeRange)
-| where CounterName in ("% Processor Time", "Available MBytes")
-| summarize avg(CounterValue) by Computer, CounterName, bin(TimeGenerated, timeRange/50)  // Limit data points
-| extend MetricType = case(
-    CounterName == "% Processor Time", "CPU",
-    "Memory"
-)
+|  where TimeGenerated > ago({TimeRange})  // Time filter first
+|  where Computer in (selectedServers) or 'all' in (selectedServers)
+|  where CounterName has 'processor time' or CounterName has 'available mbytes'
+|  summarize avg(CounterValue) by Computer, CounterName, bin(TimeGenerated, {TimeRange}/50)  // Limit data points
+|  extend MetricType = case(
+      CounterName has 'processor time', 'CPU',
+      'Memory'
+   )
 ```
 
 ### Responsive Design
@@ -526,53 +532,55 @@ Before publishing any dashboard, verify:
 ### Incident Response Dashboard
 
 ```kql
-// Real-time incident tracking
+// Real-time incident tracking with severity classification
+// TimeGenerated filter first for performance
 let incidentTimeframe = 4h;
 Event
-| where TimeGenerated > ago(incidentTimeframe)
-| where EventLevelName == "Error"
-| summarize 
-    ErrorCount = count(),
-    FirstError = min(TimeGenerated),
-    LastError = max(TimeGenerated),
-    AffectedSystems = dcount(Computer),
-    ErrorSample = any(RenderedDescription)
-    by EventID
-| extend 
-    Duration = LastError - FirstError,
-    ErrorRate = ErrorCount / (incidentTimeframe / 1h),
-    Severity = case(
-        ErrorCount > 100 and AffectedSystems > 10, "P1",
-        ErrorCount > 50 and AffectedSystems > 5, "P2", 
-        ErrorCount > 10, "P3",
-        "P4"
-    )
-| where Severity in ("P1", "P2")  // Focus on high-severity issues
-| order by Severity, ErrorCount desc
+|  where TimeGenerated > ago(incidentTimeframe)
+|  where EventLevelName has 'error'
+|  summarize 
+      ErrorCount = count(),
+      FirstError = min(TimeGenerated),
+      LastError = max(TimeGenerated),
+      AffectedSystems = dcount(Computer),
+      ErrorSample = any(RenderedDescription)
+      by EventID
+|  extend 
+      Duration = LastError - FirstError,
+      ErrorRate = ErrorCount / (incidentTimeframe / 1h),
+      Severity = case(
+         ErrorCount > 100 and AffectedSystems > 10, 'P1',
+         ErrorCount > 50 and AffectedSystems > 5, 'P2', 
+         ErrorCount > 10, 'P3',
+         'P4'
+      )
+|  where Severity in ('P1', 'P2')  // Focus on high-severity issues
+|  order by Severity, ErrorCount desc
 ```
 
 ### Capacity Planning Dashboard
 
 ```kql
-// Growth trend analysis
+// Growth trend analysis with predictive capacity alerts
+// TimeGenerated filter first, then calculate trends
 let lookback = 30d;
-let forecast_days = 90;
+let forecastDays = 90;
 Perf
-| where TimeGenerated > ago(lookback)
-| where CounterName in ("% Processor Time", "Available MBytes", "% Free Space")
-| summarize 
-    CurrentValue = avg(CounterValue),
-    TrendSlope = (last(CounterValue) - first(CounterValue)) / (lookback / 1d)
-    by Computer, CounterName, bin(TimeGenerated, 1d)
-| extend 
-    ForecastValue = CurrentValue + (TrendSlope * forecast_days),
-    CapacityAlert = case(
-        CounterName == "% Processor Time" and ForecastValue > 80, "CPU capacity concern",
-        CounterName == "Available MBytes" and ForecastValue < 1024, "Memory capacity concern",
-        CounterName == "% Free Space" and ForecastValue < 10, "Disk capacity concern",
-        "OK"
-    )
-| where CapacityAlert != "OK"
+|  where TimeGenerated > ago(lookback)
+|  where CounterName has 'processor time' or CounterName has 'available mbytes' or CounterName has 'free space'
+|  summarize 
+      CurrentValue = avg(CounterValue),
+      TrendSlope = (last(CounterValue) - first(CounterValue)) / (lookback / 1d)
+      by Computer, CounterName, bin(TimeGenerated, 1d)
+|  extend 
+      ForecastValue = CurrentValue + (TrendSlope * forecastDays),
+      CapacityAlert = case(
+         CounterName has 'processor time' and ForecastValue > 80, 'CPU capacity concern',
+         CounterName has 'available mbytes' and ForecastValue < 1024, 'Memory capacity concern',
+         CounterName has 'free space' and ForecastValue < 10, 'Disk capacity concern',
+         'OK'
+      )
+|  where CapacityAlert != 'OK'
 ```
 
 ## Making Dashboards Stick
