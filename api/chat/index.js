@@ -1,4 +1,4 @@
-// Azure Static Web App API function for Hugging Face chat
+// Azure Static Web App API function for Groq chat
 // POC: Client-side rate limiting, no storage
 
 module.exports = async function (context, req) {
@@ -41,18 +41,18 @@ module.exports = async function (context, req) {
       return;
     }
 
-    // Get HF token from environment
-    const HF_TOKEN = process.env.HF_TOKEN;
-    if (!HF_TOKEN) {
-      context.log.error('HF_TOKEN not configured');
+    // Get Groq API key from environment
+    const GROQ_API_KEY = process.env.GROQ_API_KEY;
+    if (!GROQ_API_KEY) {
+      context.log.error('GROQ_API_KEY not configured');
       context.res = {
         status: 500,
-        body: { error: 'Service configuration error - HF_TOKEN missing' }
+        body: { error: 'Service configuration error - GROQ_API_KEY missing' }
       };
       return;
     }
 
-    context.log('HF_TOKEN found, length:', HF_TOKEN.length);
+    context.log('GROQ_API_KEY found, length:', GROQ_API_KEY.length);
 
     // Build system prompt with Jason's context
     const systemPrompt = `You are an AI assistant helping recruiters learn about Jason Rinehart, a Senior Product Architect and Technology Leader.
@@ -136,19 +136,19 @@ Answer recruiter questions about Jason's background, experience, skills, achieve
       content: message
     });
 
-    context.log('Calling HF Chat Completions API...');
+    context.log('Calling Groq Chat Completions API...');
 
-    // Call Hugging Face Chat Completions API (new router endpoint)
+    // Call Groq API (OpenAI-compatible endpoint)
     const response = await fetch(
-      'https://router.huggingface.co/v1/chat/completions',
+      'https://api.groq.com/openai/v1/chat/completions',
       {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${HF_TOKEN}`,
+          'Authorization': `Bearer ${GROQ_API_KEY}`,
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          model: 'mistralai/Mistral-7B-Instruct-v0.2',
+          model: 'llama-3.3-70b-versatile',
           messages: messages,
           max_tokens: 500,
           temperature: 0.7,
@@ -157,11 +157,11 @@ Answer recruiter questions about Jason's background, experience, skills, achieve
       }
     );
 
-    context.log('HF API response status:', response.status);
+    context.log('Groq API response status:', response.status);
 
     if (!response.ok) {
       const errorText = await response.text();
-      context.log.error('HF API error:', response.status, errorText);
+      context.log.error('Groq API error:', response.status, errorText);
       
       if (response.status === 429) {
         context.res = {
@@ -171,17 +171,9 @@ Answer recruiter questions about Jason's background, experience, skills, achieve
         return;
       }
 
-      if (response.status === 503) {
-        context.res = {
-          status: 503,
-          body: { error: 'Model is loading. Please wait 20 seconds and try again.' }
-        };
-        return;
-      }
-
       context.res = {
         status: 500,
-        body: { error: `HF API error: ${response.status} - ${errorText.substring(0, 100)}` }
+        body: { error: `Groq API error: ${response.status} - ${errorText.substring(0, 100)}` }
       };
       return;
     }
@@ -198,7 +190,7 @@ Answer recruiter questions about Jason's background, experience, skills, achieve
       },
       body: {
         response: generatedText.trim(),
-        model: 'mistralai/Mistral-7B-Instruct-v0.2'
+        model: 'llama-3.3-70b-versatile'
       }
     };
 

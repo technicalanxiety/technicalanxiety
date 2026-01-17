@@ -2,53 +2,54 @@
 
 ## Overview
 
-POC implementation of an AI chat widget for recruiters to ask questions about Jason's background, skills, and experience. Uses Hugging Face Inference API (free tier) with client-side rate limiting.
+POC implementation of an AI chat widget for recruiters to ask questions about Jason's background, skills, and experience. Uses Groq API (free tier) with client-side rate limiting.
 
 ## Features
 
-- **Zero cost**: Uses Hugging Face free tier
+- **Zero cost**: Uses Groq free tier (14,400 requests/day)
+- **Fast responses**: 300+ tokens/second inference speed
 - **Client-side rate limiting**: 20 messages per day per user
 - **No storage**: Conversation history in browser memory only
-- **Security**: API token server-side only, input validation
+- **Security**: API key server-side only, input validation
 - **Responsive**: Works on mobile and desktop
 
 ## Setup Instructions
 
-### 1. Get Hugging Face API Token
+### 1. Get Groq API Key
 
-1. Go to https://huggingface.co/settings/tokens
-2. Click "New token"
-3. Name: `static-web-chat`
-4. Type: **Read** (sufficient for inference)
-5. Copy the token (starts with `hf_...`)
+1. Go to https://console.groq.com/keys
+2. Sign up for free account (no credit card required)
+3. Click "Create API Key"
+4. Name: `recruiter-chat`
+5. Copy the key (starts with `gsk_...`)
 
 ### 2. Local Development
 
 Create `.env` file in project root:
 
 ```bash
-HF_TOKEN=hf_your_actual_token_here
+GROQ_API_KEY=gsk_your_actual_key_here
 ```
 
 **Important**: Never commit `.env` file. It's already in `.gitignore`.
 
 ### 3. Azure Static Web App Configuration
 
-Add the token to your SWA configuration:
+Add the key to your SWA configuration:
 
 #### Option A: Azure Portal
 1. Navigate to your Static Web App
 2. Settings → Configuration
 3. Application settings → New setting
-4. Name: `HF_TOKEN`
-5. Value: `hf_your_token_here`
+4. Name: `GROQ_API_KEY`
+5. Value: `gsk_your_key_here`
 6. Save
 
 #### Option B: Azure CLI
 ```bash
 az staticwebapp appsettings set \
     --name your-swa-name \
-    --setting-names HF_TOKEN="hf_your_token_here"
+    --setting-names GROQ_API_KEY="gsk_your_key_here"
 ```
 
 ### 4. Test Locally
@@ -79,14 +80,14 @@ Visit http://localhost:4321 and click the chat button in bottom-right corner.
 │  Azure SWA      │
 │  API Function   │
 │  - Validation   │
-│  - HF_TOKEN     │
+│  - GROQ_API_KEY │
 └────────┬────────┘
          │
-         │ Inference API
+         │ OpenAI-compatible API
          │
 ┌────────▼────────┐
-│  Hugging Face   │
-│  Mistral-7B     │
+│  Groq           │
+│  Llama 3.3 70B  │
 │  (Free Tier)    │
 └─────────────────┘
 ```
@@ -108,14 +109,19 @@ If abuse becomes an issue, add Azure Table Storage:
 ## Cost Analysis
 
 ### Current Setup
-- **Hugging Face**: $0 (free tier, ~1000 requests/day)
+- **Groq API**: $0 (free tier: 14,400 requests/day, 70K tokens/min)
 - **Azure SWA Functions**: $0 (included in free tier)
 - **Storage**: $0 (client-side only)
 
 **Total: $0/month**
 
+### Performance
+- **Response time**: ~1-2 seconds (300+ tokens/second)
+- **Model**: Llama 3.3 70B (high quality responses)
+- **Daily capacity**: 14,400 requests (far exceeds expected usage)
+
 ### Worst Case (Abuse)
-- HF rate limits kick in (429 errors)
+- Groq rate limits kick in (429 errors)
 - Chat becomes temporarily unavailable
 - No unexpected costs
 
@@ -137,13 +143,15 @@ If abuse becomes an issue, add Azure Table Storage:
 ## Customization
 
 ### Update System Prompt
-Edit `api/chat.js` line 35-50 to modify Jason's background info.
+Edit `api/chat/index.js` to modify Jason's background info in the system prompt.
 
 ### Change Model
-Edit `api/chat.js` line 73 to use different HF model:
-- `mistralai/Mistral-7B-Instruct-v0.2` (current, good balance)
-- `microsoft/Phi-3-mini-4k-instruct` (faster, smaller)
-- `meta-llama/Llama-3.2-3B-Instruct` (alternative)
+Edit `api/chat/index.js` line ~140 to use different Groq model:
+- `llama-3.3-70b-versatile` (current, best quality)
+- `llama-3.1-70b-versatile` (alternative)
+- `mixtral-8x7b-32768` (longer context)
+
+Available models: https://console.groq.com/docs/models
 
 ### Adjust Rate Limits
 Edit `src/components/RecruiterChat.astro` line 149:
@@ -185,13 +193,14 @@ az staticwebapp functions log \
 - Verify RecruiterChat component imported in BaseLayout.astro
 
 ### "Service configuration error"
-- HF_TOKEN not set in environment
+- GROQ_API_KEY not set in environment
 - Check Azure SWA application settings
+- Verify key starts with `gsk_`
 
 ### "Service temporarily unavailable"
-- Hit Hugging Face rate limit (429)
+- Hit Groq rate limit (14,400/day - unlikely)
+- Check Groq console for API status
 - Wait a few minutes and try again
-- Consider upgrading to paid HF tier if persistent
 
 ### "Daily limit reached"
 - User hit 20 message limit
@@ -207,7 +216,7 @@ az staticwebapp functions log \
 - Conversation export for recruiters
 
 ### Phase 3 (Production)
-- Upgrade to Claude/GPT-4 for better quality
+- Consider paid tier for higher quality (if needed)
 - Add CAPTCHA for abuse prevention
 - Implement conversation persistence
 - Email notifications for high-value conversations
@@ -227,7 +236,7 @@ az staticwebapp functions log \
 
 For issues or questions:
 - Check Azure SWA logs
-- Review Hugging Face API status
+- Review Groq API status: https://status.groq.com
 - Verify environment variables set correctly
 - Test with curl to isolate UI vs API issues
 
