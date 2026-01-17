@@ -138,9 +138,9 @@ Answer recruiter questions about Jason's background, experience, skills, achieve
 
     context.log('Calling HF Chat Completions API...');
 
-    // Call Hugging Face Chat Completions API (OpenAI-compatible)
+    // Call Hugging Face Chat Completions API (new router endpoint)
     const response = await fetch(
-      'https://api-inference.huggingface.co/models/mistralai/Mistral-7B-Instruct-v0.2/v1/chat/completions',
+      'https://router.huggingface.co/v1/chat/completions',
       {
         method: 'POST',
         headers: {
