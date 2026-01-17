@@ -1,48 +1,55 @@
 // Azure Static Web App API function for Hugging Face chat
 // POC: Client-side rate limiting, no storage
 
-export default async function handler(req, context) {
+module.exports = async function (context, req) {
+  context.log('Chat API called');
+
   // Only allow POST
   if (req.method !== 'POST') {
-    return {
+    context.res = {
       status: 405,
-      body: JSON.stringify({ error: 'Method not allowed' })
+      body: { error: 'Method not allowed' }
     };
+    return;
   }
 
   try {
-    const { message, conversationHistory = [] } = await req.json();
+    const { message, conversationHistory = [] } = req.body;
 
     // Input validation
     if (!message || typeof message !== 'string') {
-      return {
+      context.res = {
         status: 400,
-        body: JSON.stringify({ error: 'Message is required' })
+        body: { error: 'Message is required' }
       };
+      return;
     }
 
     if (message.length > 1000) {
-      return {
+      context.res = {
         status: 400,
-        body: JSON.stringify({ error: 'Message too long (max 1000 chars)' })
+        body: { error: 'Message too long (max 1000 chars)' }
       };
+      return;
     }
 
     if (conversationHistory.length > 10) {
-      return {
+      context.res = {
         status: 400,
-        body: JSON.stringify({ error: 'Conversation history too long' })
+        body: { error: 'Conversation history too long' }
       };
+      return;
     }
 
     // Get HF token from environment
     const HF_TOKEN = process.env.HF_TOKEN;
     if (!HF_TOKEN) {
       context.log.error('HF_TOKEN not configured');
-      return {
+      context.res = {
         status: 500,
-        body: JSON.stringify({ error: 'Service configuration error' })
+        body: { error: 'Service configuration error' }
       };
+      return;
     }
 
     // Build system prompt with Jason's context
@@ -143,18 +150,18 @@ Assistant:`;
       context.log.error('HF API error:', response.status, errorText);
       
       if (response.status === 429) {
-        return {
+        context.res = {
           status: 429,
-          body: JSON.stringify({ 
-            error: 'Service temporarily unavailable. Please try again in a moment.' 
-          })
+          body: { error: 'Service temporarily unavailable. Please try again in a moment.' }
         };
+        return;
       }
 
-      return {
+      context.res = {
         status: 500,
-        body: JSON.stringify({ error: 'Failed to generate response' })
+        body: { error: 'Failed to generate response' }
       };
+      return;
     }
 
     const result = await response.json();
@@ -162,22 +169,22 @@ Assistant:`;
     // HF returns array of results
     const generatedText = result[0]?.generated_text || result.generated_text || '';
 
-    return {
+    context.res = {
       status: 200,
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({
+      body: {
         response: generatedText.trim(),
         model: 'mistralai/Mistral-7B-Instruct-v0.2'
-      })
+      }
     };
 
   } catch (error) {
     context.log.error('Chat API error:', error);
-    return {
+    context.res = {
       status: 500,
-      body: JSON.stringify({ error: 'Internal server error' })
+      body: { error: 'Internal server error' }
     };
   }
-}
+};
