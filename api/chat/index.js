@@ -47,10 +47,12 @@ module.exports = async function (context, req) {
       context.log.error('HF_TOKEN not configured');
       context.res = {
         status: 500,
-        body: { error: 'Service configuration error' }
+        body: { error: 'Service configuration error - HF_TOKEN missing' }
       };
       return;
     }
+
+    context.log('HF_TOKEN found, length:', HF_TOKEN.length);
 
     // Build system prompt with Jason's context
     const systemPrompt = `You are an AI assistant helping recruiters learn about Jason Rinehart, a Senior Product Architect and Technology Leader.
@@ -124,6 +126,8 @@ ${conversationContext ? `Previous conversation:\n${conversationContext}\n` : ''}
 User: ${message}
 Assistant:`;
 
+    context.log('Calling HF API...');
+
     // Call Hugging Face Inference API
     const response = await fetch(
       'https://api-inference.huggingface.co/models/mistralai/Mistral-7B-Instruct-v0.2',
@@ -144,6 +148,8 @@ Assistant:`;
         })
       }
     );
+
+    context.log('HF API response status:', response.status);
 
     if (!response.ok) {
       const errorText = await response.text();
