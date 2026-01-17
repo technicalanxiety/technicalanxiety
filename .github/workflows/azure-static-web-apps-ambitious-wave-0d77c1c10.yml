@@ -43,7 +43,7 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
           app_location: "dist" # Point to the built Astro output directory
-          api_location: ""
+          api_location: "api" # Azure Functions API
           output_location: "" # Leave empty since we're pointing app_location to the built files
           skip_app_build: true
 
