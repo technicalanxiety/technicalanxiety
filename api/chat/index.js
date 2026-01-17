@@ -128,9 +128,9 @@ Assistant:`;
 
     context.log('Calling HF API...');
 
-    // Call Hugging Face Inference API
+    // Call Hugging Face Serverless Inference API (new router endpoint)
     const response = await fetch(
-      'https://api-inference.huggingface.co/models/mistralai/Mistral-7B-Instruct-v0.2',
+      'https://router.huggingface.co/v1/models/mistralai/Mistral-7B-Instruct-v0.2',
       {
         method: 'POST',
         headers: {
