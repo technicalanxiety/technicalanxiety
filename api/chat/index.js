@@ -152,14 +152,22 @@ Assistant:`;
       if (response.status === 429) {
         context.res = {
           status: 429,
-          body: { error: 'Service temporarily unavailable. Please try again in a moment.' }
+          body: { error: 'Rate limit reached. Please try again in a moment.' }
+        };
+        return;
+      }
+
+      if (response.status === 503) {
+        context.res = {
+          status: 503,
+          body: { error: 'Model is loading. Please wait 20 seconds and try again.' }
         };
         return;
       }
 
       context.res = {
         status: 500,
-        body: { error: 'Failed to generate response' }
+        body: { error: `HF API error: ${response.status} - ${errorText.substring(0, 100)}` }
       };
       return;
     }
