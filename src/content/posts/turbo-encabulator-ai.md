@@ -44,7 +44,7 @@ The reticulation network is further enhanced by the addition of a phasic normali
 
 *Figure 1: Responsible AI Landing Zone Accelerator — Logical Architecture View*
 
-![Responsible AI Landing Zone Accelerator Architecture Diagram](/img/figure 1 - reference architecture diagram.jpeg)
+![Responsible AI Landing Zone Accelerator Architecture Diagram](/img/figure%201%20-%20reference%20architecture%20diagram.jpeg)
 
 At the center of the diagram, you will observe the Cognitive Inference Nucleus, represented by a hexagon to convey both stability and the six primary embedding dimensions discussed previously. From this nucleus, seventeen arrows radiate outward in a carefully randomized pattern, each terminating at a component box of varying size and color significance.
 
