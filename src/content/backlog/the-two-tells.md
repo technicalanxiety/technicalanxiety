@@ -1,6 +1,6 @@
 ---
 title: "The Two Tells: How to Know If Your Organization Can Govern AI, or Anything"
-date: 2026-01-20
+date: 2026-01-19
 tags: [Governance, Leadership, AI, Architecture]
 description: "Two early signals reveal whether your governance initiative will succeed or fail. Learn to spot them before wasting eighteen months building something that was never going to work."
 image: two-tells.jpg
