@@ -19,20 +19,25 @@ const allTags = [...new Set(posts.flatMap(post => post.data.tags || []))].sort()
     <div class="series-collection-list">
       {recentSeries.map((series) => (
         <article class="series-card">
-          <a href={`/${series.firstPost.slug}/`} class="series-link">
+          <a href={`/series/${series.name.toLowerCase().replace(/\s+/g, '-')}/`} class="series-link">
             <div class="series-main">
               <div class="series-content">
                 <h4 class="series-title">{series.name}</h4>
                 <span class="series-badge">{series.posts.length} PART{series.posts.length !== 1 ? 'S' : ''}</span>
               </div>
               <div class="series-meta">
-                <span class="series-arrow">Start Here</span>
+                <span class="series-arrow">View Series</span>
               </div>
             </div>
           </a>
         </article>
       ))}
     </div>
+    {seriesCollection.length > 5 && (
+      <div style="text-align: center; margin-top: var(--space-md);">
+        <a href="/series/" class="view-all-link">View All Series →</a>
+      </div>
+    )}
   </div>
 
   <!-- Tags Widget -->
@@ -357,6 +362,19 @@ const allTags = [...new Set(posts.flatMap(post => post.data.tags || []))].sort()
 
   .series-card:hover .series-arrow {
     transform: translateX(4px);
+  }
+
+  .view-all-link {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 600;
+    transition: color var(--transition-fast);
+  }
+
+  .view-all-link:hover {
+    color: var(--link-hover);
+    text-decoration: underline;
   }
 
   /* Responsive adjustments */
