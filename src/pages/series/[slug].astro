@@ -1,0 +1,410 @@
+---
+import { getCollection } from 'astro:content';
+import { getPublishedPosts } from '../../utils/posts';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import OptimizedImage from '../../components/OptimizedImage.astro';
+
+export async function getStaticPaths() {
+  const seriesEntries = await getCollection('series');
+  
+  return seriesEntries.map(entry => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+
+// Get only published posts in this series
+const publishedPosts = await getPublishedPosts();
+const seriesPosts = publishedPosts
+  .filter(post => post.data.series === entry.data.title)
+  .sort((a, b) => (a.data.series_part || 0) - (b.data.series_part || 0));
+
+const totalParts = seriesPosts.length;
+---
+
+<BaseLayout 
+  title={entry.data.title}
+  description={entry.data.description}
+  image={entry.data.image}
+>
+  <Header />
+  
+  <article class="series-landing">
+    <!-- Hero Section -->
+    <header class="series-hero">
+      {entry.data.image && (
+        <div class="series-hero-image">
+          <OptimizedImage 
+            src={`/img/${entry.data.image}`}
+            alt={entry.data.title}
+            width={1200}
+            height={400}
+          />
+        </div>
+      )}
+      <div class="series-hero-content">
+        <div class="series-badge">Series</div>
+        <h1 class="series-title">{entry.data.title}</h1>
+        <p class="series-description">{entry.data.description}</p>
+        <div class="series-meta">
+          <span class="series-count">{totalParts} {totalParts === 1 ? 'Part' : 'Parts'}</span>
+          {entry.data.tags && (
+            <div class="series-tags">
+              {entry.data.tags.map(tag => (
+                <a href={`/tags/${tag.toLowerCase()}/`} class="series-tag">
+                  {tag}
+                </a>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+    </header>
+
+    <!-- Series Overview Content -->
+    <div class="series-overview">
+      <Content />
+    </div>
+
+    <!-- Series Posts -->
+    <section class="series-posts">
+      <h2 class="series-posts-title">Series Content</h2>
+      <div class="series-posts-grid">
+        {seriesPosts.map((post) => (
+          <article class="series-post-card">
+            <a href={`/${post.slug}/`} class="series-post-link">
+              <div class="series-post-header">
+                <span class="series-post-number">Part {post.data.series_part}</span>
+                {post.data.image && (
+                  <div class="series-post-image">
+                    <OptimizedImage 
+                      src={`/img/${post.data.image}`}
+                      alt={post.data.title}
+                      width={400}
+                      height={200}
+                    />
+                  </div>
+                )}
+              </div>
+              <div class="series-post-content">
+                <h3 class="series-post-title">{post.data.title}</h3>
+                {post.data.description && (
+                  <p class="series-post-description">{post.data.description}</p>
+                )}
+                <div class="series-post-meta">
+                  <time datetime={post.data.date.toISOString()}>
+                    {post.data.date.toLocaleDateString('en-US', { 
+                      year: 'numeric', 
+                      month: 'long', 
+                      day: 'numeric' 
+                    })}
+                  </time>
+                </div>
+              </div>
+            </a>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <!-- Navigation -->
+    <nav class="series-navigation-footer">
+      <a href="/archive/" class="series-nav-link">
+        ← Back to Archive
+      </a>
+      <a href="/series/" class="series-nav-link">
+        View All Series →
+      </a>
+    </nav>
+  </article>
+  
+  <Footer />
+</BaseLayout>
+
+<style>
+  .series-landing {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+
+  /* Hero Section */
+  .series-hero {
+    margin-bottom: 4rem;
+  }
+
+  .series-hero-image {
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+  }
+
+  .series-hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .series-hero-content {
+    text-align: center;
+  }
+
+  .series-badge {
+    display: inline-block;
+    background: var(--accent-color, #007acc);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+  }
+
+  .series-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin: 0 0 1rem 0;
+    color: var(--text-color, #333);
+    line-height: 1.2;
+  }
+
+  .series-description {
+    font-size: 1.25rem;
+    color: var(--text-muted, #666);
+    margin: 0 0 2rem 0;
+    line-height: 1.6;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .series-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .series-count {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-color, #333);
+  }
+
+  .series-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .series-tag {
+    background: var(--tag-bg, #f0f0f0);
+    color: var(--tag-color, #333);
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .series-tag:hover {
+    background: var(--tag-hover-bg, #e0e0e0);
+  }
+
+  /* Overview Content */
+  .series-overview {
+    max-width: 800px;
+    margin: 0 auto 4rem;
+    padding: 2rem;
+    background: var(--content-bg, #f9f9f9);
+    border-radius: 8px;
+    line-height: 1.8;
+  }
+
+  .series-overview :global(h2) {
+    font-size: 1.75rem;
+    margin: 2rem 0 1rem 0;
+    color: var(--text-color, #333);
+  }
+
+  .series-overview :global(h3) {
+    font-size: 1.25rem;
+    margin: 1.5rem 0 0.75rem 0;
+    color: var(--text-color, #333);
+  }
+
+  .series-overview :global(ul) {
+    margin: 1rem 0;
+    padding-left: 2rem;
+  }
+
+  .series-overview :global(li) {
+    margin: 0.5rem 0;
+  }
+
+  /* Series Posts Grid */
+  .series-posts {
+    margin-bottom: 4rem;
+  }
+
+  .series-posts-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0 0 2rem 0;
+    color: var(--text-color, #333);
+    text-align: center;
+  }
+
+  .series-posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+  }
+
+  .series-post-card {
+    background: var(--card-bg, white);
+    border: 1px solid var(--card-border, #e0e0e0);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .series-post-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  }
+
+  .series-post-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .series-post-header {
+    position: relative;
+  }
+
+  .series-post-number {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background: var(--accent-color, #007acc);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    z-index: 1;
+  }
+
+  .series-post-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+  }
+
+  .series-post-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .series-post-content {
+    padding: 1.5rem;
+  }
+
+  .series-post-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0 0 0.75rem 0;
+    color: var(--text-color, #333);
+    line-height: 1.3;
+  }
+
+  .series-post-description {
+    font-size: 0.95rem;
+    color: var(--text-muted, #666);
+    margin: 0 0 1rem 0;
+    line-height: 1.5;
+  }
+
+  .series-post-meta {
+    font-size: 0.875rem;
+    color: var(--text-muted, #999);
+  }
+
+  /* Navigation Footer */
+  .series-navigation-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color, #e0e0e0);
+  }
+
+  .series-nav-link {
+    color: var(--accent-color, #007acc);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .series-nav-link:hover {
+    color: var(--link-hover-color, #005a9e);
+  }
+
+  /* Dark Theme */
+  :global([data-theme="dark"]) .series-landing {
+    --text-color: #e0e0e0;
+    --text-muted: #a0a0a0;
+    --content-bg: #2d2d2d;
+    --card-bg: #1a1a1a;
+    --card-border: #404040;
+    --tag-bg: #333;
+    --tag-color: #e0e0e0;
+    --tag-hover-bg: #444;
+    --accent-color: #4da6ff;
+    --link-hover-color: #66b3ff;
+    --border-color: #404040;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .series-title {
+      font-size: 2rem;
+    }
+
+    .series-description {
+      font-size: 1.1rem;
+    }
+
+    .series-hero-image {
+      height: 250px;
+    }
+
+    .series-posts-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .series-navigation-footer {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .series-meta {
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
+</style>

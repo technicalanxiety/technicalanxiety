@@ -25,6 +25,68 @@ const description = 'All notable changes to Technical Anxiety website and conten
 
             <div class="changelog-content">
               <section class="changelog-entry">
+                <h2 id="2025-01-19">2025-01-19 - Series Landing Pages</h2>
+                
+                <h3>Added</h3>
+                <ul>
+                  <li><strong>Series landing pages</strong> at <code>/series/[slug]/</code> for all multi-part content</li>
+                  <li>Dedicated overview pages for each series with full descriptions and context</li>
+                  <li>Complete series metadata in <code>src/content/series/</code> collection</li>
+                  <li>Series index page at <code>/series/</code> showing all series with published posts</li>
+                  <li>Featured series section highlighting key frameworks and deep dives</li>
+                  <li>Series navigation component now links to landing pages</li>
+                  <li>Sidebar series collection updated to link to series pages instead of first post</li>
+                  <li>"Series" link added to main navigation</li>
+                  <li><strong>10 series landing pages created</strong>:
+                    <ul>
+                      <li>AI Observability (featured)</li>
+                      <li>Confidence Engineering (featured)</li>
+                      <li>Platform Resiliency (featured)</li>
+                      <li>Decide or Drown (featured)</li>
+                      <li>What Architects Actually Do</li>
+                      <li>Beyond Azure Monitor</li>
+                      <li>The Platform Layer</li>
+                      <li>Intro to Log Analytics</li>
+                      <li>Operational Change</li>
+                      <li>The Poetry of Code</li>
+                    </ul>
+                  </li>
+                </ul>
+
+                <h3>Changed</h3>
+                <ul>
+                  <li><strong>Series discovery improved</strong> - series are now first-class content with dedicated pages</li>
+                  <li>Series pages show complete overview, all parts in order, and metadata</li>
+                  <li>Only series with published posts appear on series index</li>
+                  <li>Series cards display post count and tags</li>
+                  <li><strong>Documentation updated</strong> for series workflow:
+                    <ul>
+                      <li>Blog content standards include series creation guide</li>
+                      <li>README updated with series management section</li>
+                      <li>Pre-commit hook includes series validation checklist</li>
+                    </ul>
+                  </li>
+                </ul>
+
+                <h3>Technical</h3>
+                <ul>
+                  <li><strong>New content collection</strong>: <code>src/content/series/</code> with Zod schema</li>
+                  <li><strong>Dynamic routing</strong>: <code>/series/[slug].astro</code> generates pages for each series</li>
+                  <li><strong>Filtered display</strong>: Series without published posts don't appear on index</li>
+                  <li><strong>Responsive design</strong>: Mobile-optimized series cards and navigation</li>
+                  <li><strong>Dark theme support</strong>: Full theme compatibility for series pages</li>
+                </ul>
+
+                <h3>Impact</h3>
+                <ul>
+                  <li><strong>Content discoverability</strong> - readers can now explore complete series frameworks</li>
+                  <li><strong>SEO improvement</strong> - dedicated pages for series with rich metadata</li>
+                  <li><strong>User experience</strong> - clear entry points for multi-part content</li>
+                  <li><strong>Content organization</strong> - series are structured bodies of work, not just related posts</li>
+                </ul>
+              </section>
+
+              <section class="changelog-entry">
                 <h2 id="2025-01-15">2025-01-15 - Homepage Load More & Archive Thumbnails</h2>
                 
                 <h3>Added</h3>
@@ -56,6 +118,93 @@ const description = 'All notable changes to Technical Anxiety website and conten
                   <li>All posts embedded in initial page load (~48 posts, minimal overhead)</li>
                   <li>JavaScript handles pagination client-side for instant response</li>
                   <li>Graceful degradation: "Browse All Articles" works without JavaScript</li>
+                </ul>
+              </section>
+
+              <section class="changelog-entry">
+                <h2 id="2025-01-10">2025-01-10 - Recruiter Chat Feature & AI Observability Series</h2>
+                
+                <h3>Added</h3>
+                <ul>
+                  <li><strong>AI-powered recruiter chat widget</strong> for career opportunities</li>
+                  <li>Floating chat button in bottom-right corner</li>
+                  <li>Powered by Groq API with Llama 3.1 70B model</li>
+                  <li>Personalized responses based on resume and blog content</li>
+                  <li>Azure Functions backend for secure API key management</li>
+                  <li>Mobile-responsive design with proper z-index management</li>
+                  <li><strong>AI Observability series</strong> (5 parts) added to backlog:
+                    <ul>
+                      <li>Part 1: Infrastructure Layer - Azure OpenAI metrics and cost attribution</li>
+                      <li>Part 2: Retrieval Layer - RAG pipeline monitoring</li>
+                      <li>Part 3: Semantic Layer - Response quality and user outcomes</li>
+                      <li>Part 4: Governance Layer - Policy compliance and audit trails</li>
+                      <li>Part 5: Implementation - Workbooks, alerts, and deployment</li>
+                    </ul>
+                  </li>
+                  <li><strong>Unified series images</strong> for visual consistency across multi-part content</li>
+                </ul>
+
+                <h3>Changed</h3>
+                <ul>
+                  <li><strong>Chat positioning</strong> adjusted to prevent overlap with Back to Top button on mobile</li>
+                  <li><strong>Chat prompt enhanced</strong> with personal story and website CTA</li>
+                  <li><strong>API migration</strong> from Hugging Face to Groq for better performance</li>
+                </ul>
+
+                <h3>Fixed</h3>
+                <ul>
+                  <li><strong>Dependency vulnerability</strong> in diff package resolved</li>
+                  <li><strong>URL encoding</strong> for architecture diagram filenames with spaces</li>
+                  <li><strong>Azure Functions configuration</strong> for proper SWA API integration</li>
+                </ul>
+
+                <h3>Technical</h3>
+                <ul>
+                  <li><strong>Backend</strong>: Azure Functions with Node.js 22 LTS</li>
+                  <li><strong>API</strong>: Groq API with streaming responses</li>
+                  <li><strong>Security</strong>: API keys stored in Azure environment variables</li>
+                  <li><strong>Error handling</strong>: Comprehensive logging and user-friendly messages</li>
+                </ul>
+              </section>
+
+              <section class="changelog-entry">
+                <h2 id="2025-01-05">2025-01-05 - Node.js 22 LTS & Automated Publishing</h2>
+                
+                <h3>Added</h3>
+                <ul>
+                  <li><strong>Automated scheduled post publishing</strong> via GitHub Actions</li>
+                  <li>Daily workflow runs at 9 AM UTC</li>
+                  <li>Automatically moves posts from backlog to published when date arrives</li>
+                  <li>Updates series navigation links automatically</li>
+                  <li>Triggers site rebuild and deployment</li>
+                </ul>
+
+                <h3>Changed</h3>
+                <ul>
+                  <li><strong>CI/CD upgraded to Node.js 22 LTS</strong> from Node.js 18</li>
+                  <li>Improved build performance and security</li>
+                  <li>Updated all GitHub Actions workflows</li>
+                </ul>
+
+                <h3>Fixed</h3>
+                <ul>
+                  <li><strong>Test suite failures</strong> resolved across all test files</li>
+                  <li><strong>Broken links</strong> identified and fixed</li>
+                  <li><strong>Content migration tests</strong> updated for Astro structure</li>
+                </ul>
+              </section>
+
+              <section class="changelog-entry">
+                <h2 id="2024-12-25">2024-12-25 - Turbo Encabulator Satire & KQL Standards</h2>
+                
+                <h3>Added</h3>
+                <ul>
+                  <li><strong>New blog post</strong>: "Hydrostatically-Balanced Token Valves" - AI architecture satire</li>
+                  <li>Technical parody of AI hype and buzzword-driven architecture</li>
+                  <li>Complete with fake architecture diagrams and technical specifications</li>
+                  <li><strong>KQL writing standards</strong> applied to backlog articles</li>
+                  <li>Consistent query formatting and best practices</li>
+                  <li>Improved readability and maintainability of code examples</li>
                 </ul>
               </section>
 

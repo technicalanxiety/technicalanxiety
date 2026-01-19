@@ -30,7 +30,20 @@ const backlogCollection = defineCollection({
   }),
 });
 
+const seriesCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    image: z.string().optional(),
+    tags: z.array(z.string()),
+    order: z.number().optional(), // Display order on series index
+    featured: z.boolean().default(false),
+  }),
+});
+
 export const collections = {
   posts: postsCollection,
   backlog: backlogCollection,
+  series: seriesCollection,
 };
