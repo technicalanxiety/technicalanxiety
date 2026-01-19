@@ -247,7 +247,7 @@ The `['Request Count'] > 10` filter prevents low-traffic periods from generating
 
 ## CONCLUSION
 
-Default Azure Monitor gets you started. These patterns get you to monitoring that actually works. If you're looking at AIOps and wondering whether it's ready, I cover that evolution in [Operational Change](/operational-change-pt1/). Spoiler: the technology finally caught up, but it still needs observability that produces signal instead of noise.
+Default Azure Monitor gets you started. These patterns get you to monitoring that actually works. If you're looking at AIOps and wondering whether it's ready, I cover that evolution in [Operational Change](/ops-changes-pt1/). Spoiler: the technology finally caught up, but it still needs observability that produces signal instead of noise.
 
 The difference matters. I've watched teams drown in alerts they don't trust and miss incidents they should have caught. I've been on those teams. I've owned the platforms that created the noise. And I've seen what happens when you fix it: alert volume drops by half while catch rate goes up. The technology is the same. The intelligence layered on top is what changes.
 

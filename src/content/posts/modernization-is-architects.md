@@ -192,7 +192,7 @@ Some organizations are improvable. Some are unsalvageable. Knowing the differenc
 
 There are many beautiful horses in the world, yet none of them have horns. Stop chasing unicorns. Find an organization that's real, improvable, and willing to let you translate.
 
-If you want to understand what platform architecture actually is, start with [The Platform Layer series](/platform-layer). If you want the diagnostic framework for evaluating whether your organization can support the governance this piece describes, [Decide or Drown Part 4](/decide-or-drown-pt4) covers the preconditions.
+If you want to understand what platform architecture actually is, start with [The Platform Layer series](/platform-layer-pt1/). If you want the diagnostic framework for evaluating whether your organization can support the governance this piece describes, [Decide or Drown Part 4](/decide-or-drown-pt4/) covers the preconditions.
 
 ---
 

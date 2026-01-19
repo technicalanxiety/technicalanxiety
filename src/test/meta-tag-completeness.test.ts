@@ -181,7 +181,7 @@ describe('Meta Tag Completeness Property Tests', () => {
       
       // Verify canonical URL format
       if (metaTags.canonical) {
-        expect(metaTags.canonical).toMatch(/^https:\/\/technicalanxiety\.com/);
+        expect(metaTags.canonical).toMatch(/^https:\/\/(www\.)?technicalanxiety\.com/);
         expect(metaTags.canonical).toMatch(/\/$/); // Should end with /
       }
       

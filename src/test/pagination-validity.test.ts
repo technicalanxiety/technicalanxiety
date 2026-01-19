@@ -286,7 +286,7 @@ describe('Pagination Validity Property Tests', () => {
     expect(allPosts.length).toBeGreaterThan(0);
     
     // Verify posts per page configuration
-    expect(postsPerPage).toBe(7); // Should match Jekyll configuration
+    expect(postsPerPage).toBe(12); // Astro configuration
     
     // Calculate expected pagination
     const expectedTotalPages = Math.ceil(allPosts.length / postsPerPage);

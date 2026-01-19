@@ -276,6 +276,6 @@ Your monitoring is only as good as the questions you ask. Make sure you're askin
 
 ---
 
-*Want to dive deeper into advanced monitoring patterns? Check out the [Beyond Azure Monitor series](/tags/azure/) for enterprise-scale monitoring strategies.*
+*Want to dive deeper into advanced monitoring patterns? Check out the [Beyond Azure Monitor series](/tags/Azure/) for enterprise-scale monitoring strategies.*
 
 **Photo by [Markus Spiske](https://unsplash.com/@markusspiske) on [Unsplash](https://unsplash.com/photos/hvSr_CVecVI)**
