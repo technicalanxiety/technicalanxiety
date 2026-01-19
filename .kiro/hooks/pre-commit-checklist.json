@@ -6,7 +6,7 @@
   },
   "action": {
     "type": "sendMessage",
-    "message": "Before you commit, here's the pre-publish checklist:\n\n- [ ] Front matter complete (title, date, image, tags, description)\n- [ ] Image optimized and in /img/ directory\n- [ ] Image attribution included at end of post\n- [ ] Code blocks have proper syntax highlighting\n- [ ] Links tested (no broken links)\n- [ ] Reading time under 10 minutes\n- [ ] SEO description under 160 characters\n- [ ] Tags are consistent with existing taxonomy\n- [ ] Series metadata added (if applicable)\n\nReady to commit?"
+    "message": "Before you commit, here's the pre-publish checklist:\n\n**Content:**\n- [ ] Front matter complete (title, date, image, tags, description)\n- [ ] Image optimized and in /img/ directory\n- [ ] Image attribution included at end of post\n- [ ] Code blocks have proper syntax highlighting\n- [ ] Links tested (no broken links)\n- [ ] Reading time under 10 minutes\n- [ ] SEO description under 160 characters\n- [ ] Tags are consistent with existing taxonomy\n\n**Series (if applicable):**\n- [ ] Series name matches exactly across all parts\n- [ ] Series metadata file exists in src/content/series/\n- [ ] Series landing page content written\n- [ ] series_part (published) or series_order (backlog) set correctly\n- [ ] SeriesNavigation component will link to /series/[slug]/\n\n**Build:**\n- [ ] Local build passes: npm run build\n- [ ] Dev server works: npm run dev\n\nReady to commit?"
   },
   "enabled": true
 }
