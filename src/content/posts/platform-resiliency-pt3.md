@@ -2,7 +2,7 @@
 title: "Platform Resiliency - Part 3: Promises Made, Promises Kept"
 date: 2025-12-15
 description: "Practical steps to implement Platform Resiliency on Monday morning - from drawing clear boundaries to enforcing standards through the platform."
-image: resiliency-part3.jpg
+image: resiliency-part1.jpg
 tags: ["Operations", "Leadership", "Platform"]
 series: "Platform Resiliency"
 series_part: 3

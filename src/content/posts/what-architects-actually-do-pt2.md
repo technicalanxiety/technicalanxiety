@@ -1,7 +1,7 @@
 ---
 title:  "What Architects Actually Do - Part 2: The Framework"
 date: 2025-12-22
-image:  architects-pt2.jpg
+image:  architects-pt1.jpg
 tags:   [Leadership, Architecture]
 series: "What Architects Actually Do"
 series_part: 2

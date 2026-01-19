@@ -1,7 +1,7 @@
 ---
 title:  "What Architects Actually Do - Part 3: Credibility"
 date: 2025-12-25
-image:  architects-pt3.jpg
+image:  architects-pt1.jpg
 tags:   [Leadership, Architecture]
 series: "What Architects Actually Do"
 series_part: 3

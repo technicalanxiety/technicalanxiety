@@ -2,7 +2,7 @@
 title: "Decide or Drown - Part 4: Feedback"
 date: 2025-12-09
 description: "The preconditions for good decision-making that most organizations lack - and what to do when you cant build them."
-image: drown-pt4.jpg
+image: drown-pt1.jpg
 tags: ["Leadership", "Anxiety"]
 series: "Decide or Drown"
 series_part: 4

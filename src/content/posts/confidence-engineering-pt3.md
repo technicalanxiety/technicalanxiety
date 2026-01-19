@@ -1,7 +1,7 @@
 ---
 title: "Confidence Engineering - Part 3: Adoption Déjà Vu"
 date: 2025-12-24
-image: confidence-engineering-pt3.jpg
+image: confidence-engineering-pt1.jpg
 tags: [Leadership, Governance, Operations]
 description: "You'll build the instrumentation. Leadership will nod at the dashboard. Then nothing will happen. The same organizational failure that killed SRE adoption."
 series: "Confidence Engineering"

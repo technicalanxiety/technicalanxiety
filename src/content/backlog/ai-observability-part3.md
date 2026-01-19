@@ -3,7 +3,7 @@ title: "AI Observability, Part 3: The Orchestration Layer"
 date: 2026-02-03
 tags: [AI, Azure, Operations, Observability]
 description: "Infrastructure metrics can't tell you if AI responses are helpful. Learn to instrument semantic quality, conversation degradation, and user outcomes."
-image: ai-observability-part3.jpg
+image: ai-observability.jpg
 series: "AI Observability"
 series_part: 3
 draft: false
@@ -366,4 +366,4 @@ Technical observability tells you what happened. Governance observability tells 
 
 ---
 
-**Photo by [Photographer Name](https://unsplash.com/@username) on [Unsplash](https://unsplash.com/photos/photo-id)**
+**Photo by [Daniel Lerman](https://unsplash.com/@dlerman6) on [Unsplash](https://unsplash.com/photos/brown-and-silver-telescope-near-body-of-water-during-daytime-fr3YLb9UHSQ)**

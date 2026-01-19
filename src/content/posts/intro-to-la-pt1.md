@@ -2,7 +2,7 @@
 title: "Intro to Log Analytics - Part 1"
 date: 2020-02-07
 description: "Getting started with Azure Log Analytics and KQL - learn to write your first queries and create visualizations from VM performance data."
-image: intro-to-la.jpg
+image: la-view-logs.jpg
 tags: ["Log Analytics", "Azure"]
 series: "Intro to Log Analytics"
 series_part: 1

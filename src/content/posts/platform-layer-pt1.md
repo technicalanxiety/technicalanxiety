@@ -2,7 +2,7 @@
 title: "The Platform Layer - Part 1: What It Is"
 date: 2025-12-10
 description: "Defining platform architecture - the role nobody understands but every organization needs."
-image: platform-layer-1.jpg
+image: platform-layer-2.jpg
 tags: ["Leadership", "Architecture"]
 series: "The Platform Layer"
 series_part: 1

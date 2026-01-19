@@ -2,7 +2,7 @@
 title: "The Platform Layer - Part 3: How Do You Do It"
 date: 2025-12-16
 description: "How to operationalize platform architecture in your organization - practical guidance for building the function."
-image: platform-layer-3.jpg
+image: platform-layer-2.jpg
 tags: ["Leadership", "Architecture"]
 series: "The Platform Layer"
 series_part: 3

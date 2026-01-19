@@ -2,7 +2,7 @@
 title: "Decide or Drown - Part 3: The Four Pillars"
 date: 2025-12-08
 description: "A repeatable framework for evaluating technology decisions that accounts for your people, customers, business, and measurement criteria."
-image: drown-pt3.jpg
+image: drown-pt1.jpg
 tags: ["Leadership"]
 series: "Decide or Drown"
 series_part: 3

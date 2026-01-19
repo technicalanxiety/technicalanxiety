@@ -1,7 +1,7 @@
 ---
 title: "Confidence Engineering - Part 2: The Practice"
 date: 2025-12-23
-image: confidence-engineering-pt2.jpg
+image: confidence-engineering-pt1.jpg
 tags: [Leadership, Operations, Azure]
 description: "A framework for building confidence in AI-enabled systems through observable criteria, instrumentation, and staged authority expansion. Theory meets practice."
 series: "Confidence Engineering"

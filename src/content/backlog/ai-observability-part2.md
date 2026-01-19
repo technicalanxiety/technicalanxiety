@@ -3,7 +3,7 @@ title: "AI Observability, Part 2: The Grounding Layer"
 date: 2026-01-27
 tags: [AI, Azure, Operations, Observability]
 description: "RAG systems fail silently when retrieval breaks. Learn to monitor Azure AI Search, vector stores, and the retrieval pipeline that feeds your models."
-image: ai-observability-part2.jpg
+image: aai-observability.jpg
 series: "AI Observability"
 series_part: 2
 draft: false
@@ -348,4 +348,4 @@ Infrastructure metrics can't tell you if AI responses are helpful. Learn to inst
 
 ---
 
-**Photo by [Photographer Name](https://unsplash.com/@username) on [Unsplash](https://unsplash.com/photos/photo-id)**
+**Photo by [Daniel Lerman](https://unsplash.com/@dlerman6) on [Unsplash](https://unsplash.com/photos/brown-and-silver-telescope-near-body-of-water-during-daytime-fr3YLb9UHSQ)**

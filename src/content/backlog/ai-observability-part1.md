@@ -3,7 +3,7 @@ title: "AI Observability, Part 1: The Model Layer"
 date: 2026-01-20
 tags: [AI, Azure, Operations, Observability]
 description: "Stop monitoring AI infrastructure like web servers. Learn to instrument Azure OpenAI with queries that reveal token consumption, content filters, and cost attribution."
-image: ai-observability-part1.jpg
+image: ai-observability.jpg
 series: "AI Observability"
 series_part: 1
 draft: false
@@ -312,4 +312,4 @@ When someone says "the AI is hallucinating," the problem usually isn't the model
 
 ---
 
-**Photo by [Photographer Name](https://unsplash.com/@username) on [Unsplash](https://unsplash.com/photos/photo-id)**
+**Photo by [Daniel Lerman](https://unsplash.com/@dlerman6) on [Unsplash](https://unsplash.com/photos/brown-and-silver-telescope-near-body-of-water-during-daytime-fr3YLb9UHSQ)**
