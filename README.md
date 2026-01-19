@@ -138,6 +138,25 @@ series_part: 1                    # Optional - for published posts
 - **Internal Links**: Always use trailing slashes: `/post-slug/`
 - **Series**: Use consistent series names across all parts
 
+### Series Management
+
+**Series Landing Pages**: Each series has a dedicated landing page at `/series/[series-slug]/` that provides:
+- Series overview and description
+- Complete list of all parts in order
+- Tags and metadata
+- Only appears when series has published posts
+
+**Creating a New Series**:
+1. Create series metadata file in `src/content/series/series-name.md`
+2. Add frontmatter with title, description, image, tags, order, and featured status
+3. Write series overview content in markdown
+4. Ensure series name in posts matches series title exactly
+
+**Series URLs**:
+- Series index: `/series/`
+- Individual series: `/series/confidence-engineering/`
+- Series posts automatically link to landing page via SeriesNavigation component
+
 ## 🔧 Development
 
 ### Local Development

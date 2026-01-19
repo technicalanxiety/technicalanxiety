@@ -125,8 +125,38 @@ draft: false                 # Optional (defaults to false)
 
 ## Series Posts
 
+**Series Landing Pages**:
+- Each series has a dedicated landing page at `/series/[series-slug]/`
+- Landing pages provide series overview, description, and list all parts
+- Series metadata stored in `src/content/series/` directory
+- Only series with published posts appear on `/series/` index
+
+**Creating a New Series**:
+1. Create series metadata file: `src/content/series/series-name.md`
+2. Use this template:
+```yaml
+---
+title: "Series Name"
+description: "Comprehensive description of what the series covers"
+image: "series-image.jpg"
+tags: ["Tag1", "Tag2"]
+order: 1                    # Display order on series index
+featured: true              # Show on featured series list
+---
+
+## Overview
+Series overview content in markdown...
+
+## What You'll Learn
+- Key point 1
+- Key point 2
+
+## Who This Is For
+Target audience description...
+```
+
 **Frontmatter Requirements**:
-- **Consistent series name** across all parts (exact match)
+- **Consistent series name** across all parts (exact match with series title)
 - **Backlog posts**: Use `series_order: 1` for part numbering
 - **Published posts**: Use `series_part: 1` for part numbering
 - **Sequential numbering**: 1, 2, 3... (not Part 1, Part 2)
@@ -136,11 +166,13 @@ draft: false                 # Optional (defaults to false)
 - Include series context in introduction
 - End with navigation to other parts
 - Use "What's Next" sections for upcoming parts
+- Link to series landing page: `/series/[series-slug]/`
 
 **Navigation Requirements**:
-- **Every series part** must include navigation at the end
-- Place before photo attribution
-- Format: `*This is Part X of the "Series Name" series. [Part Y: Title](/part-y/) covers topic.*`
+- **Every series part** includes automatic navigation component
+- **Series landing page link** in SeriesNavigation component header
+- Place manual navigation before photo attribution
+- Format: `*This is Part X of the "Series Name" series. [View full series](/series/series-slug/). [Part Y: Title](/part-y/) covers topic.*`
 - **Internal links**: Always use trailing slashes (`/post-slug/`)
 
 **Automated Linking System**:
@@ -186,6 +218,7 @@ Brief preview of what the next part will cover.
 **Content Collections**:
 - Published posts: `src/content/posts/` collection
 - Scheduled posts: `src/content/backlog/` collection
+- Series metadata: `src/content/series/` collection
 - Separate collections prevent duplicate ID warnings
 
 **URL Structure**:
@@ -268,6 +301,7 @@ node scripts/manage-backlog.js    # Direct script access
 **File Locations**:
 - **Published**: `src/content/posts/`
 - **Scheduled**: `src/content/backlog/`
+- **Series Metadata**: `src/content/series/`
 - **Images**: `public/img/` (originals), `public/img/optimized/` (processed)
 - **Config**: `src/config.ts`, `astro.config.mjs`
 - **Workflows**: `.github/workflows/`
