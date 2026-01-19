@@ -46,9 +46,9 @@
 <style>
   .chat-widget {
     position: fixed;
-    bottom: 30px;
-    right: 100px;
-    z-index: 1000;
+    bottom: 10rem;
+    right: 2rem;
+    z-index: 1001; /* Above BackToTop button */
   }
 
   .chat-toggle {
@@ -231,10 +231,10 @@
     font-size: 12px;
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: 768px) {
     .chat-widget {
-      bottom: 20px;
-      right: 75px;
+      bottom: 8rem; /* Stack above BackToTop button on mobile with clearance */
+      right: 1.5rem;
     }
 
     .chat-toggle {
