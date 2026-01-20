@@ -413,8 +413,4 @@ Turn observability patterns into operational infrastructure with alert rules, wo
 
 ---
 
-*This is Part 4 of a 5-part series on AI Observability. [Part 1: The Model Layer](/ai-observability-pt1/) covers Azure OpenAI monitoring. [Part 2: The Grounding Layer](/ai-observability-pt2/) examines retrieval quality. [Part 3: The Orchestration Layer](/ai-observability-pt3/) addresses application-level measurement. [Part 5: Making It Operational](/ai-observability-pt5/) covers alerts, workbooks, and deployment.*
-
----
-
 **Photo by [Daniel Lerman](https://unsplash.com/@dlerman6) on [Unsplash](https://unsplash.com/photos/brown-and-silver-telescope-near-body-of-water-during-daytime-fr3YLb9UHSQ)**

@@ -362,8 +362,4 @@ Technical observability tells you what happened. Governance observability tells 
 
 ---
 
-*This is Part 3 of a 5-part series on AI Observability. [Part 1: The Model Layer](/ai-observability-pt1/) covers Azure OpenAI monitoring. [Part 2: The Grounding Layer](/ai-observability-pt2/) examines retrieval quality. [Part 4: The Governance Layer](/ai-observability-pt4/) addresses accountability and compliance.*
-
----
-
 **Photo by [Daniel Lerman](https://unsplash.com/@dlerman6) on [Unsplash](https://unsplash.com/photos/brown-and-silver-telescope-near-body-of-water-during-daytime-fr3YLb9UHSQ)**
