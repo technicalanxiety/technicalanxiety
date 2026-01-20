@@ -343,25 +343,18 @@
   padding: var(--space-lg);
 }
 
-.article-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  gap: var(--space-sm);
-  margin-bottom: var(--space-md);
-}
-
 .article-date {
   font-size: 0.875rem;
   color: var(--text-secondary);
   font-weight: 500;
+  margin-bottom: var(--space-sm);
 }
 
 .article-tags {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-xs);
+  margin-bottom: var(--space-md);
 }
 
 .tag {

@@ -81,24 +81,22 @@ const allPostsData = sortedPosts.map(post => ({
                   </a>
                 </div>
                 <div class="article-content">
-                  <div class="article-header">
-                    <div class="article-date">
-                      <time datetime={post.data.date.toISOString()}>
-                        {post.data.date.toLocaleDateString('en-US', { 
-                          year: 'numeric', 
-                          month: 'short', 
-                          day: 'numeric' 
-                        })}
-                      </time>
-                    </div>
-                    {post.data.tags && post.data.tags.length > 0 && (
-                      <div class="article-tags">
-                        {post.data.tags.map((tag) => (
-                          <a href={`/tags/${tag}/`} class="tag">{tag}</a>
-                        ))}
-                      </div>
-                    )}
+                  <div class="article-date">
+                    <time datetime={post.data.date.toISOString()}>
+                      {post.data.date.toLocaleDateString('en-US', { 
+                        year: 'numeric', 
+                        month: 'short', 
+                        day: 'numeric' 
+                      })}
+                    </time>
                   </div>
+                  {post.data.tags && post.data.tags.length > 0 && (
+                    <div class="article-tags">
+                      {post.data.tags.map((tag) => (
+                        <a href={`/tags/${tag}/`} class="tag">{tag}</a>
+                      ))}
+                    </div>
+                  )}
                   <h3 class="article-title">
                     <a href={`/${post.slug}/`}>{post.data.title}</a>
                   </h3>
