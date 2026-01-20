@@ -30,7 +30,7 @@ const totalParts = seriesPosts.length;
 <BaseLayout 
   title={entry.data.title}
   description={entry.data.description}
-  image={entry.data.image}
+  image={entry.data.image ? `/img/${entry.data.image}` : undefined}
 >
   <Header />
   
