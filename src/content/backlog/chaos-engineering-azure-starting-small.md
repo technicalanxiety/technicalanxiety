@@ -1,6 +1,6 @@
 ---
 title: "Chaos Engineering on Azure: Controlled Vandalism"
-date: 2026-01-22
+date: 2026-01-23
 image: chaos-engineering.jpg
 tags: [Azure, Operations, Chaos Engineering, Resilience]
 description: "Skip the Netflix-scale chaos. Learn to start chaos engineering in Azure with simple, safe experiments that actually improve your systems without breaking production."
