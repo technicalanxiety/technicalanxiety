@@ -300,11 +300,7 @@ That gap is where most AI observability stops and most AI value leaks away.
 
 ## What's Next?
 
-<!-- NEXT_PART: ai-observability-part2.md -->
-**Coming Next:** Part 2: The Grounding Layer (Published January 23, 2026)
-
-When someone says "the AI is hallucinating," the problem usually isn't the model. Learn to monitor Azure AI Search, vector stores, and the retrieval pipeline that feeds your models.
-<!-- END_NEXT_PART -->
+**Next in Series:** [AI Observability, Part 2: The Grounding Layer →](/ai-observability-part2/)
 
 ---
 
