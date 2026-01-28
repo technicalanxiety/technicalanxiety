@@ -1,0 +1,814 @@
+---
+const { architecture, backlog, peerings, stats, nextPublishDate } = Astro.props;
+
+// Azure color palette (official Azure brand colors)
+const azureColors = {
+  mentalHealth: {
+    primary: '#f4af2d',    // Tron 1982 gold
+    accent: '#2f8ca3',
+    glow: 'rgba(244, 175, 45, 0.6)'
+  },
+  leadership: {
+    primary: '#FF0000',    // Tron Ares red
+    accent: '#F9A656',
+    glow: 'rgba(255, 0, 0, 0.6)'
+  },
+  azure: {
+    primary: '#0078D4',    // Official Azure blue (instead of Tron cyan for bottom layer)
+    accent: '#00BCF2',
+    glow: 'rgba(0, 120, 212, 0.6)'
+  },
+  vending: {
+    queue: '#FFA500',      // Orange for backlog queue
+    deploying: '#00FF00',  // Green for active deployment
+    deployed: '#0078D4'    // Azure blue for completed
+  }
+};
+
+// Layout constants - reduced for compact view
+const svgWidth = 1400;
+const layerSpacing = 40;
+const rgWidth = 160;
+const rgHeight = 110;
+const rgSpacing = 15;
+const subscriptionPadding = 40; // Left padding for subscription box
+
+// Calculate dynamic layer positions based on content
+const calculateLayerPositions = () => {
+  const maxPerRow = 6; // Increased from 5 to fit more per row
+  
+  const mentalHealthRows = Math.ceil(Object.keys(architecture.mentalHealth.resourceGroups).length / maxPerRow);
+  const leadershipRows = Math.ceil(Object.keys(architecture.leadership.resourceGroups).length / maxPerRow);
+  const azureRows = Math.ceil(Object.keys(architecture.azure.resourceGroups).length / maxPerRow);
+  
+  const mentalHealthHeight = 45 + mentalHealthRows * (rgHeight + 15) + 15;
+  const leadershipHeight = 45 + leadershipRows * (rgHeight + 15) + 15;
+  const azureHeight = 45 + azureRows * (rgHeight + 15) + 15;
+  
+  return {
+    mentalHealth: { y: 50, label: 'Mental Health Subscription', height: mentalHealthHeight },
+    leadership: { y: 50 + mentalHealthHeight + layerSpacing, label: 'Leadership Subscription', height: leadershipHeight },
+    azure: { y: 50 + mentalHealthHeight + layerSpacing + leadershipHeight + layerSpacing, label: 'Azure Subscription', height: azureHeight }
+  };
+};
+
+const layers = calculateLayerPositions();
+
+// Calculate total SVG height dynamically
+const svgHeight = layers.azure.y + layers.azure.height + 40; // Add bottom padding
+
+// Position resource groups horizontally within each layer
+const positionResourceGroups = (subscriptionKey) => {
+  const rgs = Object.keys(architecture[subscriptionKey].resourceGroups);
+  const maxPerRow = 6; // Maximum RGs per row
+  const startX = subscriptionPadding + 30;
+  
+  return rgs.map((rgName, index) => {
+    const row = Math.floor(index / maxPerRow);
+    const col = index % maxPerRow;
+    
+    return {
+      name: rgName,
+      x: startX + col * (rgWidth + rgSpacing),
+      y: layers[subscriptionKey].y + 45 + row * (rgHeight + 15), // Stack rows vertically
+      articles: architecture[subscriptionKey].resourceGroups[rgName]
+    };
+  });
+};
+
+const subscriptionLayouts = {
+  mentalHealth: positionResourceGroups('mentalHealth'),
+  leadership: positionResourceGroups('leadership'),
+  azure: positionResourceGroups('azure')
+};
+
+// Format date for display
+const formatDate = (date) => {
+  if (!date) return 'TBD';
+  return new Date(date).toLocaleDateString('en-US', { 
+    month: 'short', 
+    day: 'numeric',
+    year: 'numeric'
+  });
+};
+---
+
+<div class="azure-topology-visualization">
+  <!-- Vending Machine Section (Left Side) -->
+  <div class="vending-machine">
+    <div class="vending-header">
+      <h2>Subscription Vending</h2>
+      <div class="vending-status">
+        {stats.totalBacklog > 0 ? (
+          <span class="status-active">
+            <span class="status-indicator"></span>
+            Queue processing
+          </span>
+        ) : (
+          <span class="status-idle">
+            <span class="status-indicator"></span>
+            Queue empty
+          </span>
+        )}
+      </div>
+    </div>
+    
+    {stats.totalBacklog > 0 && nextPublishDate && (
+      <div class="next-deployment">
+        <span class="deployment-label">Next Deployment:</span>
+        <span class="deployment-date">{formatDate(nextPublishDate)}</span>
+        <span class="deployment-time">09:00 UTC</span>
+      </div>
+    )}
+    
+    <div class="backlog-queue">
+      {Object.entries(backlog).map(([subKey, articles]) => (
+        articles.length > 0 && (
+          <div class="queue-subscription" data-subscription={subKey}>
+            <div class="queue-header" style={`border-left-color: ${azureColors[subKey].primary}`}>
+              <span class="queue-sub-name">{architecture[subKey].name}</span>
+              <span class="queue-count">{articles.length}</span>
+            </div>
+            <div class="queue-articles">
+              {articles.slice(0, 3).map(article => (
+                <div class="queue-article">
+                  <span class="article-icon">📄</span>
+                  <div class="article-info">
+                    <span class="article-title">{article.title}</span>
+                    <span class="article-date">{formatDate(article.date)}</span>
+                    {article.series && (
+                      <span class="article-series">→ {article.targetResourceGroup}</span>
+                    )}
+                  </div>
+                </div>
+              ))}
+              {articles.length > 3 && (
+                <div class="queue-more">
+                  +{articles.length - 3} more
+                </div>
+              )}
+            </div>
+          </div>
+        )
+      ))}
+      
+      {stats.totalBacklog === 0 && (
+        <div class="queue-empty">
+          <p>No articles queued</p>
+          <p class="queue-empty-subtitle">All content deployed</p>
+        </div>
+      )}
+    </div>
+    
+    <div class="vending-workflow">
+      <div class="workflow-step">
+        <span class="step-icon">⏱</span>
+        <span class="step-label">Scheduled</span>
+      </div>
+      <div class="workflow-arrow">→</div>
+      <div class="workflow-step">
+        <span class="step-icon">⚡</span>
+        <span class="step-label">GitHub Actions</span>
+      </div>
+      <div class="workflow-arrow">→</div>
+      <div class="workflow-step">
+        <span class="step-icon">✓</span>
+        <span class="step-label">Deployed</span>
+      </div>
+    </div>
+    
+    <!-- Deploying Section (shows selected article) -->
+    <div id="deployingSection" class="deploying-section" style="display: none;">
+      <div class="section-header">
+        <h3>Currently Exploring</h3>
+      </div>
+      <div id="deployingContent" class="deploying-content">
+        <!-- Populated by JavaScript -->
+      </div>
+    </div>
+    
+    <!-- Deployed Section (context panel) -->
+    <div id="deployedSection" class="deployed-section" style="display: none;">
+      <div class="section-header">
+        <h3>Exploration Context</h3>
+        <button id="closeContext" class="close-context">✕</button>
+      </div>
+      
+      <!-- Breadcrumb -->
+      <div id="breadcrumb" class="breadcrumb">
+        <!-- Populated by JavaScript -->
+      </div>
+      
+      <!-- Article Details -->
+      <div id="articleDetails" class="article-details">
+        <!-- Populated by JavaScript -->
+      </div>
+      
+      <!-- Connections -->
+      <div id="connections" class="connections">
+        <h4>Connected Resources</h4>
+        <div id="connectionsList" class="connections-list">
+          <!-- Populated by JavaScript -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Architecture Diagram (Right Side) -->
+  <div class="architecture-diagram">
+    <svg 
+      width={svgWidth}
+      height={svgHeight}
+      viewBox={`0 0 ${svgWidth} ${svgHeight}`}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <defs>
+        <!-- Grid pattern -->
+        <pattern id="azureGrid" width="30" height="30" patternUnits="userSpaceOnUse">
+          <path d="M 30 0 L 0 0 0 30" fill="none" stroke="rgba(0, 120, 212, 0.15)" stroke-width="1"/>
+        </pattern>
+        
+        <!-- Gradient from Mental Health to Leadership -->
+        <linearGradient id="gradientMentalToLeadership" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" style={`stop-color:${azureColors.mentalHealth.primary};stop-opacity:1`} />
+          <stop offset="100%" style={`stop-color:${azureColors.leadership.primary};stop-opacity:1`} />
+        </linearGradient>
+        
+        <!-- Gradient from Leadership to Azure -->
+        <linearGradient id="gradientLeadershipToAzure" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" style={`stop-color:${azureColors.leadership.primary};stop-opacity:1`} />
+          <stop offset="100%" style={`stop-color:${azureColors.azure.primary};stop-opacity:1`} />
+        </linearGradient>
+        
+        <!-- Glow filters -->
+        <filter id="glowMentalHealth">
+          <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+          <feMerge>
+            <feMergeNode in="coloredBlur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+        
+        <filter id="glowLeadership">
+          <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+          <feMerge>
+            <feMergeNode in="coloredBlur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+        
+        <filter id="glowAzure">
+          <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+          <feMerge>
+            <feMergeNode in="coloredBlur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+      </defs>
+      
+      <!-- Background grid -->
+      <rect width={svgWidth} height={svgHeight} fill="url(#azureGrid)"/>
+      
+      <!-- Tenant Label -->
+      <text
+        x="20"
+        y="20"
+        fill="#00BCF2"
+        font-size="12"
+        font-family="'Courier New', monospace"
+        opacity="0.6"
+      >
+        Thought Leadership Tenant
+      </text>
+      
+      <!-- Render each subscription layer -->
+      {Object.entries(subscriptionLayouts).map(([subKey, rgs]) => {
+        const colors = azureColors[subKey];
+        const layer = layers[subKey];
+        const maxPerRow = 6;
+        const numRows = Math.ceil(rgs.length / maxPerRow);
+        const subscriptionHeight = 45 + numRows * (rgHeight + 15) + 15; // Dynamic height based on rows
+        const subscriptionWidth = Math.min(rgs.length, maxPerRow) * (rgWidth + rgSpacing) + subscriptionPadding + 80;
+        
+        return (
+          <g class="subscription-layer" data-subscription={subKey}>
+            <!-- Subscription boundary box -->
+            <rect
+              x="30"
+              y={layer.y}
+              width={subscriptionWidth}
+              height={subscriptionHeight}
+              fill="none"
+              stroke={colors.primary}
+              stroke-width="1.5"
+              opacity="0.5"
+              rx="6"
+            />
+            
+            <!-- Subscription label -->
+            <text
+              x="45"
+              y={layer.y + 18}
+              fill={colors.primary}
+              font-size="14"
+              font-weight="bold"
+              font-family="'Courier New', monospace"
+              filter={`url(#glow${subKey.charAt(0).toUpperCase() + subKey.slice(1)})`}
+            >
+              {layer.label}
+            </text>
+            
+            <text
+              x="45"
+              y={layer.y + 32}
+              fill={colors.accent}
+              font-size="10"
+              font-family="'Courier New', monospace"
+            >
+              {stats.subscriptionCounts[subKey]} resources | {rgs.length} resource groups
+            </text>
+            
+            <!-- Resource Groups -->
+            {rgs.map((rg, rgIndex) => (
+              <g 
+                class="resource-group" 
+                data-rg-name={rg.name}
+                data-subscription={subKey}
+              >
+                <!-- RG container -->
+                <rect
+                  x={rg.x}
+                  y={rg.y}
+                  width={rgWidth}
+                  height={rgHeight}
+                  fill="rgba(0, 0, 0, 0.7)"
+                  stroke={colors.accent}
+                  stroke-width="2"
+                  stroke-dasharray="5,3"
+                  rx="4"
+                  class="rg-boundary"
+                />
+                
+                <!-- RG label -->
+                <text
+                  x={rg.x + rgWidth / 2}
+                  y={rg.y + 15}
+                  text-anchor="middle"
+                  fill={colors.primary}
+                  font-size="11"
+                  font-weight="bold"
+                  font-family="'Courier New', monospace"
+                  class="rg-label"
+                >
+                  {rg.name}
+                </text>
+                
+                <text
+                  x={rg.x + rgWidth / 2}
+                  y={rg.y + 27}
+                  text-anchor="middle"
+                  fill={colors.accent}
+                  font-size="9"
+                  font-family="'Courier New', monospace"
+                >
+                  {rg.articles.length} resource{rg.articles.length !== 1 ? 's' : ''}
+                </text>
+                
+                <!-- Article resources as thumbnail images within RG -->
+                {rg.articles.slice(0, 6).map((article, articleIndex) => {
+                  const row = Math.floor(articleIndex / 3);
+                  const col = articleIndex % 3;
+                  const resourceX = rg.x + 12 + col * 45;
+                  const resourceY = rg.y + 35 + row * 30;
+                  const imageUrl = article.image ? `/img/optimized/${article.image.replace(/\.(jpg|jpeg|png)$/i, '.webp')}` : null;
+                  
+                  return (
+                    <g 
+                      class="resource-article"
+                      data-article-id={article.id}
+                      data-article-title={article.title}
+                      data-article-description={article.description}
+                      data-article-url={article.url}
+                      data-series={article.series || ''}
+                      data-series-part={article.seriesPart || ''}
+                    >
+                      {imageUrl ? (
+                        <>
+                          <defs>
+                            <clipPath id={`clip-${article.id}`}>
+                              <rect x={resourceX} y={resourceY} width="40" height="25" rx="2"/>
+                            </clipPath>
+                          </defs>
+                          <image
+                            href={imageUrl}
+                            x={resourceX}
+                            y={resourceY}
+                            width="35"
+                            height="22"
+                            clip-path={`url(#clip-${article.id})`}
+                            class="resource-image"
+                            preserveAspectRatio="xMidYMid slice"
+                          />
+                          <rect
+                            x={resourceX}
+                            y={resourceY}
+                            width="35"
+                            height="22"
+                            fill="none"
+                            stroke={colors.accent}
+                            stroke-width="1"
+                            rx="2"
+                            class="resource-box"
+                          />
+                        </>
+                      ) : (
+                        <rect
+                          x={resourceX}
+                          y={resourceY}
+                          width="35"
+                          height="22"
+                          fill={colors.primary}
+                          stroke={colors.accent}
+                          stroke-width="1"
+                          rx="2"
+                          class="resource-box"
+                        />
+                      )}
+                      {article.series && article.seriesPart && (
+                        <>
+                          <rect
+                            x={resourceX + 22}
+                            y={resourceY + 13}
+                            width="12"
+                            height="8"
+                            fill="rgba(0, 0, 0, 0.8)"
+                            rx="1"
+                          />
+                          <text
+                            x={resourceX + 28}
+                            y={resourceY + 19}
+                            text-anchor="middle"
+                            fill="#fff"
+                            font-size="7"
+                            font-weight="bold"
+                          >
+                            {article.seriesPart}
+                          </text>
+                        </>
+                      )}
+                    </g>
+                  );
+                })}
+                
+                {rg.articles.length > 6 && (
+                  <text
+                    x={rg.x + rgWidth / 2}
+                    y={rg.y + rgHeight - 8}
+                    text-anchor="middle"
+                    fill={colors.accent}
+                    font-size="9"
+                    font-style="italic"
+                  >
+                    +{rg.articles.length - 6} more
+                  </text>
+                )}
+              </g>
+            ))}
+          </g>
+        );
+      })}
+      
+      <!-- Subscription layer connectors (drawn on top) -->
+      <g class="subscription-connectors">
+        <!-- Mental Health → Leadership -->
+        <line 
+          x1={svgWidth / 2} y1={layers.mentalHealth.y + layers.mentalHealth.height}
+          x2={svgWidth / 2} y2={layers.leadership.y}
+          stroke={azureColors.leadership.primary}
+          stroke-width="3"
+          opacity="0.4"
+        />
+        
+        <!-- Leadership → Azure -->
+        <line 
+          x1={svgWidth / 2} y1={layers.leadership.y + layers.leadership.height}
+          x2={svgWidth / 2} y2={layers.azure.y}
+          stroke={azureColors.azure.primary}
+          stroke-width="3"
+          opacity="0.4"
+        />
+      </g>
+      
+      <!-- VNet Peerings (cross-subscription connections) -->
+      <g class="vnet-peerings">
+        {peerings.map(peering => (
+          <path
+            class="peering-line"
+            data-from={peering.from}
+            data-to={peering.to}
+            d=""
+            stroke="#00BCF2"
+            stroke-width="2"
+            stroke-dasharray="8,4"
+            opacity="0.8"
+            fill="none"
+          />
+        ))}
+      </g>
+    </svg>
+    
+    <!-- Tooltip -->
+    <div id="resourceTooltip" class="resource-tooltip">
+      <h3 class="tooltip-title"></h3>
+      <p class="tooltip-description"></p>
+      <span class="tooltip-meta"></span>
+    </div>
+  </div>
+</div>
+
+<style>
+  .azure-topology-visualization {
+    display: flex;
+    gap: 30px;
+    padding: 20px;
+    min-height: 900px;
+  }
+  
+  /* Vending Machine Styles */
+  .vending-machine {
+    flex: 0 0 350px;
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid #0078D4;
+    border-radius: 8px;
+    padding: 20px;
+    height: fit-content;
+    box-shadow: 0 0 30px rgba(0, 120, 212, 0.3);
+  }
+  
+  .vending-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(0, 120, 212, 0.3);
+  }
+  
+  .vending-header h2 {
+    margin: 0;
+    color: #0078D4;
+    font-size: 18px;
+    font-family: 'Courier New', monospace;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .vending-status {
+    font-size: 12px;
+    font-family: 'Courier New', monospace;
+  }
+  
+  .status-active, .status-idle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .status-active {
+    color: #00FF00;
+  }
+  
+  .status-idle {
+    color: #666;
+  }
+  
+  .status-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: currentColor;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+  
+  .next-deployment {
+    background: rgba(0, 120, 212, 0.1);
+    border: 1px solid rgba(0, 120, 212, 0.3);
+    border-radius: 4px;
+    padding: 12px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .deployment-label {
+    font-size: 11px;
+    color: #00BCF2;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .deployment-date {
+    font-size: 16px;
+    color: #0078D4;
+    font-weight: bold;
+  }
+  
+  .deployment-time {
+    font-size: 12px;
+    color: #a0a0a0;
+  }
+  
+  .backlog-queue {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .queue-subscription {
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  
+  .queue-header {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 10px 15px;
+    border-left: 4px solid;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .queue-sub-name {
+    font-size: 13px;
+    font-weight: bold;
+    color: #e0e0e0;
+  }
+  
+  .queue-count {
+    font-size: 11px;
+    background: rgba(0, 120, 212, 0.3);
+    padding: 3px 8px;
+    border-radius: 10px;
+    color: #00BCF2;
+  }
+  
+  .queue-articles {
+    padding: 10px;
+  }
+  
+  .queue-article {
+    display: flex;
+    gap: 10px;
+    padding: 8px;
+    border-radius: 4px;
+    transition: background 0.2s;
+  }
+  
+  .queue-article:hover {
+    background: rgba(0, 120, 212, 0.1);
+  }
+  
+  .article-icon {
+    font-size: 16px;
+  }
+  
+  .article-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  
+  .article-title {
+    font-size: 12px;
+    color: #e0e0e0;
+    line-height: 1.3;
+  }
+  
+  .article-date {
+    font-size: 10px;
+    color: #a0a0a0;
+  }
+  
+  .article-series {
+    font-size: 10px;
+    color: #00BCF2;
+    font-style: italic;
+  }
+  
+  .queue-more {
+    padding: 8px;
+    text-align: center;
+    font-size: 11px;
+    color: #666;
+    font-style: italic;
+  }
+  
+  .queue-empty {
+    text-align: center;
+    padding: 40px 20px;
+    color: #666;
+  }
+  
+  .queue-empty p {
+    margin: 5px 0;
+  }
+  
+  .queue-empty-subtitle {
+    font-size: 12px;
+    font-style: italic;
+  }
+  
+  .vending-workflow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    background: rgba(0, 120, 212, 0.05);
+    border-radius: 4px;
+    border: 1px solid rgba(0, 120, 212, 0.2);
+  }
+  
+  .workflow-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .step-icon {
+    font-size: 20px;
+  }
+  
+  .step-label {
+    font-size: 9px;
+    color: #a0a0a0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .workflow-arrow {
+    color: #0078D4;
+    font-size: 18px;
+  }
+  
+  /* Architecture Diagram Styles */
+  .architecture-diagram {
+    flex: 1;
+    background: #000;
+    border: 2px solid #0078D4;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 40px rgba(0, 120, 212, 0.3);
+  }
+  
+  svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .resource-box, .resource-image {
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .resource-box:hover, .resource-image:hover {
+    filter: brightness(1.5);
+    stroke-width: 2;
+  }
+  
+  .resource-image {
+    opacity: 0.9;
+  }
+  
+  .resource-image:hover {
+    opacity: 1;
+  }
+  
+  .rg-boundary {
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .rg-boundary:hover {
+    stroke-width: 3;
+    filter: brightness(1.2);
+  }
+  
+  .peering-line {
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  
+  /* Tooltip styles are in azure-topology.css */
+</style>

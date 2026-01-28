@@ -19,6 +19,10 @@ const postCount = posts.length;
           <ion-icon name="rocket-outline"></ion-icon>
           Start Here
         </a>
+        <a href="/azure-topology/" class="button button-topology">
+          <ion-icon name="git-network-outline"></ion-icon>
+          Explore Topology
+        </a>
       </div>
       
       <p class="hero-description" style="text-align: center !important; margin: 0 auto; max-width: 800px;">
@@ -66,6 +70,31 @@ const postCount = posts.length;
     font-weight: 500 !important;
     color: var(--text-secondary) !important;
     line-height: 1.6 !important;
+  }
+  
+  .button-topology {
+    position: relative;
+    background: linear-gradient(135deg, #0078D4 0%, #00BCF2 100%) !important;
+    color: white !important;
+    border: 2px solid #00BCF2 !important;
+    box-shadow: 0 4px 15px rgba(0, 188, 242, 0.3) !important;
+    animation: topologyPulse 2s ease-in-out infinite;
+  }
+  
+  .button-topology:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 8px 25px rgba(0, 188, 242, 0.5) !important;
+  }
+  
+  @keyframes topologyPulse {
+    0%, 100% {
+      box-shadow: 0 4px 15px rgba(0, 188, 242, 0.3);
+      transform: scale(1);
+    }
+    50% {
+      box-shadow: 0 6px 30px rgba(0, 188, 242, 0.8);
+      transform: scale(1.02);
+    }
   }
 </style>
 
