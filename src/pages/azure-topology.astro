@@ -1,0 +1,311 @@
+---
+/**
+ * Azure Topology Visualization
+ * 
+ * This page provides an interactive Azure-style architecture diagram of blog content.
+ * 
+ * STRUCTURE:
+ * - Tenant: Technical Anxiety (top-level container)
+ * - Subscriptions: Mental Health, Leadership, Azure (3 layers)
+ * - Resource Groups: Series or topic-based groupings
+ * - Resources: Individual articles (shown as thumbnails)
+ * 
+ * FEATURES:
+ * - Hover over articles to see details in tooltip
+ * - Click articles to explore connections and context
+ * - VNet peering lines show cross-subscription relationships (articles sharing 2+ tags)
+ * - Subscription vending machine shows backlog queue and deployment workflow
+ * 
+ * ORGANIZATION LOGIC:
+ * - Mental Health: Anxiety, Development, Personal topics
+ * - Leadership: Architecture, Platform, Governance topics
+ * - Azure: Operations, Monitoring, Infrastructure topics
+ * - Resource Groups: Determined by series name or dominant tag
+ * 
+ * INTERACTIVITY:
+ * - Hover: Tooltip follows cursor, shows article details
+ * - Click: Persistent selection, shows context panel with connections
+ * - ESC: Clear selection
+ * - Peering lines highlight when hovering/clicking related articles
+ */
+import { getCollection } from 'astro:content';
+import AzureTopology from '../components/AzureTopology.astro';
+import '../styles/global.css';
+import '../styles/azure-topology.css';
+
+// Pull all published posts and backlog
+const publishedPosts = await getCollection('posts');
+const backlogPosts = await getCollection('backlog');
+
+// Filter backlog to only future posts
+const upcomingPosts = backlogPosts.filter(post => {
+  const postDate = new Date(post.data.date);
+  const today = new Date();
+  return postDate > today;
+});
+
+// Organize posts into Azure architecture hierarchy
+// Subscription -> Resource Group -> Resources (articles)
+
+const categorizeIntoSubscription = (post) => {
+  const tags = post.data.tags || [];
+  const tagString = tags.join(' ').toLowerCase();
+  
+  // Mental Health subscription (top layer - human)
+  if (tags.some(t => ['Anxiety', 'Development'].includes(t)) || 
+      tagString.includes('anxiety') || 
+      tagString.includes('mental')) {
+    return 'mentalHealth';
+  }
+  
+  // Azure subscription (bottom layer - technical)
+  if (tags.some(t => ['Azure', 'Operations', 'Monitoring', 'Infrastructure', 'KQL', 'Workbooks'].includes(t))) {
+    return 'azure';
+  }
+  
+  // Leadership subscription (middle layer - translation)
+  if (tags.some(t => ['Leadership', 'Architecture', 'Governance', 'Platform'].includes(t))) {
+    return 'leadership';
+  }
+  
+  return 'leadership'; // default to leadership
+};
+
+const categorizeIntoResourceGroup = (post, subscription) => {
+  const tags = post.data.tags || [];
+  const series = post.data.series;
+  
+  // If it's part of a series, that's the resource group
+  if (series) {
+    return series;
+  }
+  
+  // Otherwise, categorize by dominant tag theme
+  if (subscription === 'mentalHealth') {
+    if (tags.includes('Anxiety')) return 'Anxiety';
+    if (tags.includes('Development')) return 'Growth & Learning';
+    return 'Personal';
+  }
+  
+  if (subscription === 'leadership') {
+    if (tags.includes('Architecture')) return 'Architecture';
+    if (tags.includes('Platform')) return 'Platform';
+    if (tags.includes('Governance')) return 'Governance';
+    if (tags.includes('Leadership')) return 'Leadership Practices';
+    return 'General Leadership';
+  }
+  
+  if (subscription === 'azure') {
+    if (tags.includes('Operations') || tags.includes('Monitoring')) return 'Operations';
+    if (tags.includes('AI')) return 'AI & ML';
+    if (tags.includes('Governance')) return 'Cloud Governance';
+    if (tags.includes('Infrastructure')) return 'Infrastructure';
+    return 'General Azure';
+  }
+  
+  return 'Uncategorized';
+};
+
+// Build the architecture hierarchy
+const architecture = {
+  mentalHealth: {
+    name: 'Mental Health',
+    layer: 'top',
+    resourceGroups: {}
+  },
+  leadership: {
+    name: 'Leadership',
+    layer: 'middle',
+    resourceGroups: {}
+  },
+  azure: {
+    name: 'Azure',
+    layer: 'bottom',
+    resourceGroups: {}
+  }
+};
+
+// Organize published posts
+publishedPosts.forEach(post => {
+  const subscription = categorizeIntoSubscription(post);
+  const resourceGroup = categorizeIntoResourceGroup(post, subscription);
+  
+  if (!architecture[subscription].resourceGroups[resourceGroup]) {
+    architecture[subscription].resourceGroups[resourceGroup] = [];
+  }
+  
+  architecture[subscription].resourceGroups[resourceGroup].push({
+    id: post.slug,
+    title: post.data.title,
+    date: post.data.date,
+    tags: post.data.tags || [],
+    series: post.data.series || null,
+    seriesPart: post.data.series_part || null,
+    description: post.data.description || '',
+    image: post.data.image || null,
+    url: `/${post.slug}/`
+  });
+});
+
+// Sort articles within each resource group by date
+Object.values(architecture).forEach(subscription => {
+  Object.values(subscription.resourceGroups).forEach(rg => {
+    rg.sort((a, b) => new Date(a.date) - new Date(b.date));
+  });
+});
+
+// Build cross-subscription peerings (articles sharing tags across subscriptions)
+const buildPeerings = () => {
+  const peerings = [];
+  const allPosts = Object.values(architecture).flatMap(sub => 
+    Object.values(sub.resourceGroups).flatMap(rg => rg)
+  );
+  
+  allPosts.forEach((post, i) => {
+    allPosts.slice(i + 1).forEach(otherPost => {
+      const sharedTags = post.tags.filter(t => otherPost.tags.includes(t));
+      
+      // Only create peering if posts are in different subscriptions and share 2+ tags
+      if (sharedTags.length >= 2) {
+        const postSub = Object.keys(architecture).find(sub => 
+          Object.values(architecture[sub].resourceGroups).some(rg => 
+            rg.some(p => p.id === post.id)
+          )
+        );
+        const otherSub = Object.keys(architecture).find(sub => 
+          Object.values(architecture[sub].resourceGroups).some(rg => 
+            rg.some(p => p.id === otherPost.id)
+          )
+        );
+        
+        if (postSub !== otherSub) {
+          peerings.push({
+            from: post.id,
+            to: otherPost.id,
+            fromSub: postSub,
+            toSub: otherSub,
+            sharedTags
+          });
+        }
+      }
+    });
+  });
+  
+  return peerings.slice(0, 10); // Limit to avoid clutter
+};
+
+const peerings = buildPeerings();
+
+// Organize backlog by target subscription
+const backlogBySubscription = {
+  mentalHealth: [],
+  leadership: [],
+  azure: []
+};
+
+upcomingPosts.forEach(post => {
+  const subscription = categorizeIntoSubscription(post);
+  backlogBySubscription[subscription].push({
+    id: post.slug,
+    title: post.data.title,
+    date: post.data.date,
+    tags: post.data.tags || [],
+    series: post.data.series || null,
+    targetResourceGroup: categorizeIntoResourceGroup(post, subscription)
+  });
+});
+
+// Sort backlog by date (earliest first)
+Object.values(backlogBySubscription).forEach(sub => {
+  sub.sort((a, b) => new Date(a.date) - new Date(b.date));
+});
+
+const totalBacklog = upcomingPosts.length;
+const nextPublishDate = totalBacklog > 0 ? 
+  new Date(Math.min(...upcomingPosts.map(p => new Date(p.data.date)))) : null;
+
+// Calculate stats
+const stats = {
+  totalPublished: publishedPosts.length,
+  totalBacklog: totalBacklog,
+  nextPublishDate: nextPublishDate,
+  subscriptionCounts: {
+    mentalHealth: Object.values(architecture.mentalHealth.resourceGroups).flat().length,
+    leadership: Object.values(architecture.leadership.resourceGroups).flat().length,
+    azure: Object.values(architecture.azure.resourceGroups).flat().length
+  },
+  resourceGroupCounts: {
+    mentalHealth: Object.keys(architecture.mentalHealth.resourceGroups).length,
+    leadership: Object.keys(architecture.leadership.resourceGroups).length,
+    azure: Object.keys(architecture.azure.resourceGroups).length
+  }
+};
+
+const pageTitle = "Thought Architecture";
+const pageDescription = "Azure-style resource topology of Technical Anxiety content - subscriptions, resource groups, and the thought vending machine.";
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{pageTitle} | Technical Anxiety</title>
+  <meta name="description" content={pageDescription}>
+</head>
+<body data-theme="dark">
+  <div class="azure-topology-container">
+    <div class="page-instructions">
+      <div class="instruction-line">// Azure-style topology visualization of blog content</div>
+      <div class="instruction-line">// Organizes articles into subscriptions, resource groups, and resources</div>
+      <div class="instruction-line">// with interactive exploration and cross-subscription peering connections</div>
+    </div>
+    
+    <header class="topology-header">
+      <div class="header-content">
+        <div class="tenant-badge">
+          <img src="/favicon.svg" alt="Technical Anxiety" class="tenant-icon" width="40" height="40">
+          <div class="tenant-info">
+            <h1>Technical Anxiety</h1>
+          </div>
+        </div>
+        
+        <a href="/" class="return-home">Exit Exploration →</a>
+      </div>
+      
+      <div class="architecture-stats">
+        <div class="stat-card">
+          <span class="stat-label">Published Resources</span>
+          <span class="stat-value">{stats.totalPublished}</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">Queued for Deployment</span>
+          <span class="stat-value">{stats.totalBacklog}</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">Active Subscriptions</span>
+          <span class="stat-value">3</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">Resource Groups</span>
+          <span class="stat-value">
+            {stats.resourceGroupCounts.mentalHealth + 
+             stats.resourceGroupCounts.leadership + 
+             stats.resourceGroupCounts.azure}
+          </span>
+        </div>
+      </div>
+    </header>
+
+    <AzureTopology 
+      architecture={architecture}
+      backlog={backlogBySubscription}
+      peerings={peerings}
+      stats={stats}
+      nextPublishDate={nextPublishDate}
+    />
+  </div>
+
+  <script src="../scripts/azure-topology-engine.js"></script>
+</body>
+</html>
