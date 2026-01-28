@@ -1,0 +1,403 @@
+---
+const { contentGraph, heaviestCluster, clusterCounts } = Astro.props;
+
+// Color palettes for each cluster (Tron themes)
+const clusterColors = {
+  mentalHealth: {
+    primary: '#f4af2d',    // warm yellow/gold (Tron 1982)
+    accent: '#2f8ca3',     // muted teal
+    dark: '#193f4a'        // deep teal
+  },
+  azure: {
+    primary: '#7DFDFE',    // iconic cyan (Tron Legacy)
+    accent: '#DF740C',     // orange
+    dark: '#0d1723'        // deep blue-black
+  },
+  leadership: {
+    primary: '#FF0000',    // neon red (Tron Ares)
+    accent: '#F9A656',     // warm orange
+    dark: '#A30000'        // deep red
+  }
+};
+
+// Calculate triangle vertices based on gravity
+// Inverted triangle - heaviest cluster at bottom point
+const calculateTriangleVertices = (heaviest) => {
+  const centerX = 600;
+  const centerY = 350;
+  const radius = 200;
+  
+  // Base positions (equilateral triangle, inverted)
+  const basePositions = {
+    mentalHealth: { angle: 210 }, // bottom left
+    azure: { angle: 330 },         // bottom right  
+    leadership: { angle: 90 }      // top point
+  };
+  
+  // Rotate triangle so heaviest is at bottom
+  const rotationOffset = {
+    mentalHealth: 0,    // already bottom-left
+    azure: 120,         // rotate to put azure at bottom
+    leadership: 240     // rotate to put leadership at bottom
+  };
+  
+  const offset = rotationOffset[heaviest] || 0;
+  
+  const vertices = {};
+  Object.keys(basePositions).forEach(cluster => {
+    const adjustedAngle = (basePositions[cluster].angle + offset) * Math.PI / 180;
+    vertices[cluster] = {
+      x: centerX + radius * Math.cos(adjustedAngle),
+      y: centerY + radius * Math.sin(adjustedAngle)
+    };
+  });
+  
+  return vertices;
+};
+
+const vertices = calculateTriangleVertices(heaviestCluster);
+
+// Build series connections
+const buildSeriesConnections = () => {
+  const connections = [];
+  Object.values(contentGraph).flat().forEach(post => {
+    if (post.series && post.seriesPart) {
+      const nextPart = post.seriesPart + 1;
+      const nextPost = Object.values(contentGraph).flat().find(p => 
+        p.series === post.series && p.seriesPart === nextPart
+      );
+      if (nextPost) {
+        connections.push({ from: post.id, to: nextPost.id, series: post.series });
+      }
+    }
+  });
+  return connections;
+};
+
+const seriesConnections = buildSeriesConnections();
+
+// Build thematic connections (posts sharing 2+ tags, different clusters)
+const buildThematicConnections = () => {
+  const connections = [];
+  const posts = Object.values(contentGraph).flat();
+  
+  posts.forEach((post, i) => {
+    posts.slice(i + 1).forEach(otherPost => {
+      const sharedTags = post.tags.filter(t => otherPost.tags.includes(t));
+      if (sharedTags.length >= 2) {
+        // Only connect across clusters
+        const postCluster = Object.keys(contentGraph).find(c => 
+          contentGraph[c].some(p => p.id === post.id)
+        );
+        const otherCluster = Object.keys(contentGraph).find(c => 
+          contentGraph[c].some(p => p.id === otherPost.id)
+        );
+        if (postCluster !== otherCluster) {
+          connections.push({ 
+            from: post.id, 
+            to: otherPost.id, 
+            sharedTags 
+          });
+        }
+      }
+    });
+  });
+  
+  return connections.slice(0, 15); // Limit to avoid clutter
+};
+
+const thematicConnections = buildThematicConnections();
+---
+
+<div class="topology-graph" id="topologyGraph">
+  <svg 
+    width="1200" 
+    height="800" 
+    viewBox="0 0 1200 800"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <defs>
+      <!-- Grid pattern -->
+      <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(127, 253, 254, 0.1)" stroke-width="1"/>
+      </pattern>
+      
+      <!-- Glow filters for each cluster -->
+      <filter id="glowMentalHealth">
+        <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+        <feMerge>
+          <feMergeNode in="coloredBlur"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+      
+      <filter id="glowAzure">
+        <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+        <feMerge>
+          <feMergeNode in="coloredBlur"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+      
+      <filter id="glowLeadership">
+        <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+        <feMerge>
+          <feMergeNode in="coloredBlur"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+    </defs>
+    
+    <!-- Background grid -->
+    <rect width="1200" height="800" fill="url(#grid)"/>
+    
+    <!-- Triangle structure -->
+    <g class="triangle-structure">
+      <line 
+        x1={vertices.mentalHealth.x} 
+        y1={vertices.mentalHealth.y}
+        x2={vertices.azure.x}
+        y2={vertices.azure.y}
+        stroke="rgba(127, 253, 254, 0.3)"
+        stroke-width="2"
+      />
+      <line 
+        x1={vertices.azure.x} 
+        y1={vertices.azure.y}
+        x2={vertices.leadership.x}
+        y2={vertices.leadership.y}
+        stroke="rgba(127, 253, 254, 0.3)"
+        stroke-width="2"
+      />
+      <line 
+        x1={vertices.leadership.x} 
+        y1={vertices.leadership.y}
+        x2={vertices.mentalHealth.x}
+        y2={vertices.mentalHealth.y}
+        stroke="rgba(127, 253, 254, 0.3)"
+        stroke-width="2"
+      />
+      
+      <!-- Center "About Me" node -->
+      <g class="center-node" style="cursor: pointer;">
+        <circle
+          cx="600"
+          cy="350"
+          r="25"
+          fill="#ffffff"
+          stroke="#7DFDFE"
+          stroke-width="3"
+          filter="url(#glowAzure)"
+          class="about-me-circle"
+        />
+        <text
+          x="600"
+          y="355"
+          text-anchor="middle"
+          fill="#000000"
+          font-size="12"
+          font-weight="bold"
+          pointer-events="none"
+        >
+          ABOUT
+        </text>
+      </g>
+    </g>
+    
+    <!-- Thematic connections (dotted lines between clusters) -->
+    <g class="thematic-connections">
+      {thematicConnections.map(conn => (
+        <line
+          class="thematic-link"
+          data-from={conn.from}
+          data-to={conn.to}
+          stroke="rgba(127, 253, 254, 0.2)"
+          stroke-width="1"
+          stroke-dasharray="5,5"
+        />
+      ))}
+    </g>
+    
+    <!-- Series connections (solid lines within clusters) -->
+    <g class="series-connections">
+      {seriesConnections.map(conn => (
+        <line
+          class="series-link"
+          data-from={conn.from}
+          data-to={conn.to}
+          data-series={conn.series}
+          stroke="rgba(127, 253, 254, 0.5)"
+          stroke-width="2"
+        />
+      ))}
+    </g>
+    
+    <!-- Cluster nodes -->
+    {Object.entries(contentGraph).map(([clusterName, posts]) => {
+      const vertex = vertices[clusterName];
+      const colors = clusterColors[clusterName];
+      
+      return (
+        <g class={`cluster cluster-${clusterName}`} data-cluster={clusterName}>
+          <!-- Cluster center marker -->
+          <circle
+            cx={vertex.x}
+            cy={vertex.y}
+            r="15"
+            fill={colors.primary}
+            filter={`url(#glow${clusterName.charAt(0).toUpperCase() + clusterName.slice(1)})`}
+            class="cluster-center"
+          />
+          
+          <!-- Cluster label -->
+          <text
+            x={vertex.x}
+            y={vertex.y - 30}
+            text-anchor="middle"
+            fill={colors.primary}
+            font-size="18"
+            font-weight="bold"
+            class="cluster-label"
+          >
+            {clusterName === 'mentalHealth' ? 'Mental Health' : 
+             clusterName === 'azure' ? 'Azure' : 'Leadership'}
+          </text>
+          
+          <!-- Article nodes in spiral around cluster center -->
+          {posts.slice(0, 10).map((post, i) => {
+            const angle = (i / Math.min(posts.length, 10)) * 2 * Math.PI;
+            const distance = 80 + (i % 3) * 30;
+            const nodeX = vertex.x + distance * Math.cos(angle);
+            const nodeY = vertex.y + distance * Math.sin(angle);
+            
+            return (
+              <g class="article-node" data-article-id={post.id}>
+                <circle
+                  cx={nodeX}
+                  cy={nodeY}
+                  r="8"
+                  fill={colors.accent}
+                  stroke={colors.primary}
+                  stroke-width="2"
+                  class="node-circle"
+                  data-title={post.title}
+                  data-description={post.description}
+                  data-url={post.url}
+                  data-series={post.series || ''}
+                  data-series-part={post.seriesPart || ''}
+                />
+                {post.series && post.seriesPart && (
+                  <text
+                    x={nodeX}
+                    y={nodeY + 3}
+                    text-anchor="middle"
+                    fill="#000"
+                    font-size="10"
+                    font-weight="bold"
+                    pointer-events="none"
+                  >
+                    {post.seriesPart}
+                  </text>
+                )}
+              </g>
+            );
+          })}
+        </g>
+      );
+    })}
+  </svg>
+  
+  <!-- Tooltip for hover states -->
+  <div id="nodeTooltip" class="node-tooltip">
+    <h3 class="tooltip-title"></h3>
+    <p class="tooltip-description"></p>
+    <span class="tooltip-meta"></span>
+  </div>
+</div>
+
+<style>
+  .topology-graph {
+    width: 100%;
+    height: 800px;
+    position: relative;
+    background: #000;
+    overflow: hidden;
+  }
+  
+  svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .cluster-center {
+    cursor: pointer;
+    transition: r 0.2s ease;
+  }
+  
+  .cluster-center:hover {
+    r: 20;
+  }
+  
+  .node-circle {
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .node-circle:hover {
+    r: 12;
+    filter: brightness(1.5);
+  }
+  
+  .cluster-label {
+    font-family: 'Courier New', monospace;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    pointer-events: none;
+  }
+  
+  .node-tooltip {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.9);
+    border: 2px solid #7DFDFE;
+    padding: 15px;
+    border-radius: 4px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    max-width: 300px;
+    z-index: 1000;
+  }
+  
+  .node-tooltip.visible {
+    opacity: 1;
+  }
+  
+  .tooltip-title {
+    color: #7DFDFE;
+    margin: 0 0 8px 0;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .tooltip-description {
+    color: #e0e0e0;
+    margin: 0 0 8px 0;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+  
+  .tooltip-meta {
+    color: #a0a0a0;
+    font-size: 12px;
+    font-style: italic;
+  }
+  
+  .series-link {
+    pointer-events: none;
+  }
+  
+  .thematic-link {
+    pointer-events: none;
+  }
+</style>
