@@ -6,6 +6,33 @@ console.log('Azure Topology Engine loading...');
 // State management
 let selectedArticle = null;
 let selectedConnections = [];
+let positionMap = {};
+let isInitialized = false;
+
+// Performance: Debounce helper
+const debounce = (func, wait) => {
+  let timeout;
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+};
+
+// Performance: RequestAnimationFrame throttle
+const throttleRAF = (func) => {
+  let rafId = null;
+  return function(...args) {
+    if (rafId) return;
+    rafId = requestAnimationFrame(() => {
+      func.apply(this, args);
+      rafId = null;
+    });
+  };
+};
 
 document.addEventListener('DOMContentLoaded', () => {
   console.log('DOM loaded, initializing Azure topology...');
@@ -29,9 +56,9 @@ document.addEventListener('DOMContentLoaded', () => {
     return;
   }
   
-  // Build position map for VNet peering lines
+  // Build position map for VNet peering lines (cached)
   const buildPositionMap = () => {
-    const positionMap = {};
+    const newMap = {};
     resourceArticles.forEach(article => {
       const id = article.dataset.articleId;
       const rect = article.querySelector('.resource-box, .resource-image');
@@ -41,14 +68,15 @@ document.addEventListener('DOMContentLoaded', () => {
       const y = parseFloat(rect.getAttribute('y')) + parseFloat(rect.getAttribute('height')) / 2;
       
       if (id && !isNaN(x) && !isNaN(y)) {
-        positionMap[id] = { x, y };
+        newMap[id] = { x, y };
       }
     });
-    console.log('Position map built:', Object.keys(positionMap).length, 'resources');
-    return positionMap;
+    console.log('Position map built:', Object.keys(newMap).length, 'resources');
+    return newMap;
   };
   
-  const positionMap = buildPositionMap();
+  // Initialize position map
+  positionMap = buildPositionMap();
   
   // Get subscription boundaries for routing
   const getSubscriptionBoundaries = () => {
@@ -168,7 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
   updatePeeringLines();
   
-  // Resource article interactions
+  // Resource article interactions (optimized with throttling)
   resourceArticles.forEach(article => {
     const resourceBox = article.querySelector('.resource-box, .resource-image');
     
@@ -200,26 +228,25 @@ document.addEventListener('DOMContentLoaded', () => {
       const articleId = article.dataset.articleId;
       highlightPeerings(articleId, true);
       
-      // Highlight the resource box
-      resourceBox.style.filter = 'brightness(1.5)';
-      resourceBox.style.strokeWidth = '3';
-    });
-    
-    article.addEventListener('mousemove', (e) => {
-      // Follow mouse cursor
-      const x = e.clientX + 15;
-      const y = e.clientY + 15;
-      tooltip.style.left = `${x}px`;
-      tooltip.style.top = `${y}px`;
+      // Highlight the resource box (use CSS class for better performance)
+      resourceBox.classList.add('highlighted');
     });
     
     article.addEventListener('mouseleave', () => {
       tooltip.classList.remove('visible');
-      tooltip.style.transform = ''; // Reset transform
       highlightPeerings(null, false);
-      resourceBox.style.filter = '';
-      resourceBox.style.strokeWidth = '';
+      resourceBox.classList.remove('highlighted');
     });
+  });
+  
+  // Global mousemove for tooltip positioning
+  document.addEventListener('mousemove', (e) => {
+    if (tooltip.classList.contains('visible')) {
+      const x = e.clientX + 15;
+      const y = e.clientY + 15;
+      tooltip.style.left = `${x}px`;
+      tooltip.style.top = `${y}px`;
+    }
   });
   
   // Resource Group interactions
@@ -335,16 +362,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
   
-  // Window resize handler
-  let resizeTimeout;
-  window.addEventListener('resize', () => {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(() => {
-      const newPositionMap = buildPositionMap();
-      Object.assign(positionMap, newPositionMap);
-      updatePeeringLines();
-    }, 250);
-  });
+  // Window resize handler (debounced for better performance)
+  const handleResize = debounce(() => {
+    positionMap = buildPositionMap();
+    updatePeeringLines();
+  }, 300);
+  
+  window.addEventListener('resize', handleResize);
   
   // Click handler for persistent selection
   const selectArticle = (article) => {
@@ -422,7 +446,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const deployingContent = document.getElementById('deployingContent');
     
     deployingContent.innerHTML = `
-      <span class="deploying-icon">⚡</span>
+      <span class="deploying-icon">⚙️</span>
       <span class="deploying-title">${title}</span>
     `;
     
@@ -562,5 +586,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
   
+  // Mark as initialized
+  isInitialized = true;
   console.log('Azure Topology Engine initialized successfully');
+  
+  // Performance: Use Intersection Observer for lazy loading if needed
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    
+    // Observe resource groups for fade-in effect
+    resourceGroups.forEach(rg => observer.observe(rg));
+  }
 });

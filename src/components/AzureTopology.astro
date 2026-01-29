@@ -27,11 +27,12 @@ const azureColors = {
 
 // Layout constants - reduced for compact view
 const svgWidth = 1400;
-const layerSpacing = 40;
+const layerSpacing = 30;
 const rgWidth = 160;
 const rgHeight = 110;
 const rgSpacing = 15;
 const subscriptionPadding = 40; // Left padding for subscription box
+const topMargin = 75; // Space for tenant label at top
 
 // Calculate dynamic layer positions based on content
 const calculateLayerPositions = () => {
@@ -46,16 +47,16 @@ const calculateLayerPositions = () => {
   const azureHeight = 45 + azureRows * (rgHeight + 15) + 15;
   
   return {
-    mentalHealth: { y: 50, label: 'Mental Health Subscription', height: mentalHealthHeight },
-    leadership: { y: 50 + mentalHealthHeight + layerSpacing, label: 'Leadership Subscription', height: leadershipHeight },
-    azure: { y: 50 + mentalHealthHeight + layerSpacing + leadershipHeight + layerSpacing, label: 'Azure Subscription', height: azureHeight }
+    mentalHealth: { y: topMargin, label: 'Mental Health Subscription', height: mentalHealthHeight },
+    leadership: { y: topMargin + mentalHealthHeight + layerSpacing, label: 'Leadership Subscription', height: leadershipHeight },
+    azure: { y: topMargin + mentalHealthHeight + layerSpacing + leadershipHeight + layerSpacing, label: 'Azure Subscription', height: azureHeight }
   };
 };
 
 const layers = calculateLayerPositions();
 
-// Calculate total SVG height dynamically
-const svgHeight = layers.azure.y + layers.azure.height + 40; // Add bottom padding
+// Calculate total SVG height dynamically - tight fit to content
+const svgHeight = layers.azure.y + layers.azure.height + 30; // Add bottom padding
 
 // Position resource groups horizontally within each layer
 const positionResourceGroups = (subscriptionKey) => {
@@ -269,16 +270,42 @@ const formatDate = (date) => {
       <!-- Background grid -->
       <rect width={svgWidth} height={svgHeight} fill="url(#azureGrid)"/>
       
+      <!-- Tenant Boundary Box -->
+      <rect
+        x="10"
+        y="10"
+        width={svgWidth - 20}
+        height={svgHeight - 20}
+        fill="none"
+        stroke="#00BCF2"
+        stroke-width="2"
+        stroke-dasharray="10,5"
+        opacity="0.3"
+        rx="8"
+      />
+      
       <!-- Tenant Label -->
       <text
-        x="20"
-        y="20"
+        x="25"
+        y="35"
         fill="#00BCF2"
-        font-size="12"
+        font-size="16"
+        font-family="'Courier New', monospace"
+        opacity="0.8"
+        font-weight="bold"
+      >
+        Thought Leadership Tenant
+      </text>
+      
+      <text
+        x="25"
+        y="52"
+        fill="#00BCF2"
+        font-size="11"
         font-family="'Courier New', monospace"
         opacity="0.6"
       >
-        Thought Leadership Tenant
+        {stats.totalPublished} resources across {Object.keys(architecture).length} subscriptions
       </text>
       
       <!-- Render each subscription layer -->
@@ -408,6 +435,8 @@ const formatDate = (date) => {
                             clip-path={`url(#clip-${article.id})`}
                             class="resource-image"
                             preserveAspectRatio="xMidYMid slice"
+                            loading="lazy"
+                            decoding="async"
                           />
                           <rect
                             x={resourceX}

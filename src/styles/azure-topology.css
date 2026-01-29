@@ -49,34 +49,36 @@ body {
 /* Page Instructions - Top Left Corner */
 .page-instructions {
   position: absolute;
-  top: 30px;
+  top: 8px;
   left: 15px;
   font-family: 'Fira Code', 'Courier New', monospace;
-  font-size: 11px;
+  font-size: 9px;
   color: var(--accent-color);
-  opacity: 0.8;
-  line-height: 1.5;
+  opacity: 0.5;
+  line-height: 1.3;
   z-index: 10;
+  max-width: 450px;
 }
 
 .page-instructions .instruction-line {
-  margin-bottom: 2px;
+  margin-bottom: 1px;
 }
 
 /* Tenant Header */
 .topology-header {
-  padding: 25px 15px 20px 15px;
+  padding: 30px 15px 20px 15px;
   background: var(--bg-color);
   border-bottom: 2px solid var(--border-color);
 }
 
 .header-content {
   width: 100%;
-  max-width: 1400px;
+  max-width: 1600px;
   margin: 0 auto 15px auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 20px;
 }
 
 .tenant-badge {
@@ -88,17 +90,19 @@ body {
 }
 
 .tenant-icon {
-  font-size: 28px;
+  font-size: 32px;
   filter: drop-shadow(0 0 8px var(--accent-color));
+  flex-shrink: 0;
 }
 
 .tenant-info h1 {
   font-family: 'Orbitron', 'Rajdhani', sans-serif;
-  font-size: 24px;
+  font-size: 32px;
   color: var(--accent-color);
   margin: 0;
   text-transform: uppercase;
-  letter-spacing: 1.5px;
+  letter-spacing: 2px;
+  white-space: nowrap;
 }
 
 .tenant-type {
@@ -179,16 +183,30 @@ body {
   border-radius: 6px;
   padding: 15px;
   height: fit-content;
-  box-shadow: 0 0 15px var(--accent-color);
-  animation: vendingGlow 2s ease-in-out infinite;
+  position: relative;
+  box-shadow: 0 0 20px var(--accent-color);
 }
 
-@keyframes vendingGlow {
+.vending-machine::after {
+  content: '';
+  position: absolute;
+  inset: -25px;
+  border-radius: 12px;
+  background: radial-gradient(circle, var(--accent-color) 0%, transparent 70%);
+  opacity: 0.7;
+  animation: vendingBreath 2s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -1;
+  will-change: opacity;
+  filter: blur(25px);
+}
+
+@keyframes vendingBreath {
   0%, 100% {
-    box-shadow: 0 0 20px var(--accent-color);
+    opacity: 0.4;
   }
   50% {
-    box-shadow: 0 0 40px var(--accent-color), 0 0 60px var(--accent-color);
+    opacity: 1;
   }
 }
 
@@ -241,11 +259,9 @@ body {
 @keyframes pulse {
   0%, 100% {
     opacity: 1;
-    transform: scale(1);
   }
   50% {
-    opacity: 0.5;
-    transform: scale(0.9);
+    opacity: 0.6;
   }
 }
 
@@ -458,25 +474,35 @@ body {
   border: 2px solid var(--azure-blue);
   border-radius: 8px;
   position: relative;
-  overflow: hidden;
+  overflow: auto;
   box-shadow: 0 0 40px rgba(0, 120, 212, 0.3);
+  contain: layout style paint; /* CSS containment for better performance */
+  display: flex;
+  align-items: flex-start; /* Align SVG to top */
+  min-height: 0; /* Allow flex item to shrink */
+  height: fit-content;
+  max-height: 90vh;
 }
 
 svg {
   display: block;
   width: 100%;
-  height: 100%;
+  height: auto; /* Let SVG determine its own height */
+  will-change: auto;
+  /* Ensure no transforms that would affect coordinate system */
+  transform: none;
 }
 
 /* Resource Group Styles */
 .rg-boundary {
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: stroke-width 0.2s ease;
+  will-change: stroke-width;
 }
 
 .rg-boundary:hover {
   stroke-width: 3;
-  filter: brightness(1.2) drop-shadow(0 0 10px currentColor);
+  /* Removed filter for better performance */
 }
 
 .rg-label {
@@ -490,18 +516,30 @@ svg {
 }
 
 .resource-box {
-  transition: all 0.2s ease;
+  transition: stroke-width 0.15s ease, opacity 0.15s ease;
+  will-change: stroke-width, opacity;
 }
 
-.resource-box:hover {
-  filter: brightness(1.5);
-  stroke-width: 2;
+.resource-box:hover,
+.resource-box.highlighted {
+  stroke-width: 3;
+  opacity: 1;
+}
+
+.resource-image {
+  transition: opacity 0.15s ease;
+  will-change: opacity;
+}
+
+.resource-image.highlighted {
+  opacity: 1;
 }
 
 /* VNet Peering Lines */
 .peering-line {
   pointer-events: none;
-  transition: all 0.3s ease;
+  transition: opacity 0.2s ease, stroke-width 0.2s ease;
+  will-change: opacity, stroke-width;
 }
 
 /* Tooltip - Keep Tron colors for diagram tooltips */
@@ -513,11 +551,13 @@ svg {
   border-radius: 6px;
   pointer-events: none;
   opacity: 0;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.15s ease;
   max-width: 320px;
   z-index: 9999;
   box-shadow: 0 0 30px rgba(0, 120, 212, 0.5);
   backdrop-filter: blur(10px);
+  will-change: transform, opacity;
+  transform: translate3d(0, 0, 0); /* Hardware acceleration */
 }
 
 .resource-tooltip.visible {
@@ -550,8 +590,98 @@ svg {
   border-top: 1px solid rgba(0, 120, 212, 0.3);
 }
 
-/* Responsive Design */
-@media (max-width: 1400px) {
+/* Responsive Design - Fluid scaling for all screen sizes */
+
+/* Container queries for better component-level responsiveness */
+.azure-topology-container {
+  container-type: inline-size;
+}
+
+/* Small laptops (13-14") - 1280-1440px */
+@media (min-width: 1280px) and (max-width: 1440px) {
+  .topology-header {
+    padding: 20px 10px 15px 10px;
+  }
+  
+  .tenant-info h1 {
+    font-size: clamp(20px, 2vw, 24px);
+  }
+  
+  .tenant-icon {
+    font-size: clamp(22px, 2vw, 26px);
+  }
+  
+  .architecture-stats {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+  
+  .stat-value {
+    font-size: clamp(16px, 1.5vw, 20px);
+  }
+  
+  .stat-label {
+    font-size: clamp(8px, 0.7vw, 9px);
+  }
+  
+  .azure-topology-visualization {
+    gap: 12px;
+    padding: 10px;
+  }
+  
+  .vending-machine {
+    flex: 0 0 clamp(220px, 18vw, 260px);
+    padding: 12px;
+    font-size: 13px;
+  }
+  
+  .page-instructions {
+    display: none;
+  }
+}
+
+/* Standard laptops/desktops - 1441-1920px */
+@media (min-width: 1441px) and (max-width: 1920px) {
+  .tenant-info h1 {
+    font-size: clamp(24px, 2vw, 28px);
+  }
+  
+  .tenant-icon {
+    font-size: clamp(26px, 2vw, 30px);
+  }
+  
+  .vending-machine {
+    flex: 0 0 280px;
+  }
+}
+
+/* Large displays (27"+) - 1921px+ */
+@media (min-width: 1921px) {
+  .azure-topology-visualization {
+    gap: 30px;
+    padding: 20px;
+  }
+  
+  .vending-machine {
+    flex: 0 0 350px;
+    font-size: 15px;
+  }
+  
+  .architecture-stats {
+    max-width: 1800px;
+  }
+  
+  .tenant-info h1 {
+    font-size: 36px;
+  }
+  
+  .tenant-icon {
+    font-size: 36px;
+  }
+}
+
+/* Tablets and smaller - stack layout */
+@media (max-width: 1279px) {
   .azure-topology-visualization {
     flex-direction: column;
   }
@@ -563,6 +693,14 @@ svg {
   
   .architecture-diagram {
     min-height: 700px;
+  }
+  
+  .architecture-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .page-instructions {
+    display: none;
   }
 }
 
@@ -589,6 +727,7 @@ svg {
   
   .vending-machine {
     padding: 15px;
+    font-size: 13px;
   }
   
   .topology-nav {
@@ -601,27 +740,17 @@ svg {
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(20px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
   }
 }
 
 .azure-topology-container {
-  animation: fadeIn 0.6s ease-out;
+  animation: fadeIn 0.4s ease-out;
 }
 
-/* Glow animation for active elements */
-@keyframes glow {
-  0%, 100% {
-    filter: drop-shadow(0 0 5px currentColor);
-  }
-  50% {
-    filter: drop-shadow(0 0 15px currentColor);
-  }
-}
+/* Removed glow animation for better performance */
 
 /* Deploying Section */
 .deploying-section {
@@ -631,7 +760,7 @@ svg {
   border: 1px solid var(--border-color);
   border-left: 4px solid var(--accent-color);
   border-radius: 4px;
-  animation: pulse 2s ease-in-out infinite;
+  /* Removed animation for better performance */
 }
 
 .section-header {
@@ -681,6 +810,7 @@ svg {
 .deploying-icon {
   font-size: 20px;
   animation: spin 2s linear infinite;
+  will-change: transform;
 }
 
 @keyframes spin {
@@ -806,7 +936,8 @@ svg {
   border-left: 3px solid var(--accent-color);
   border-radius: 4px;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: background 0.2s ease, transform 0.2s ease;
+  will-change: transform;
 }
 
 .connection-item:hover {
@@ -855,11 +986,10 @@ svg {
 .resource-article.selected .resource-box,
 .resource-article.selected .resource-image {
   stroke-width: 3;
-  filter: brightness(1.8) drop-shadow(0 0 15px currentColor);
+  opacity: 1;
 }
 
 .peering-line.highlighted {
   opacity: 1 !important;
   stroke-width: 4 !important;
-  filter: drop-shadow(0 0 8px currentColor);
 }

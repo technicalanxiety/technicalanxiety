@@ -155,14 +155,20 @@ Object.values(architecture).forEach(subscription => {
 });
 
 // Build cross-subscription peerings (articles sharing tags across subscriptions)
+// Limit to top connections for performance
 const buildPeerings = () => {
   const peerings = [];
   const allPosts = Object.values(architecture).flatMap(sub => 
     Object.values(sub.resourceGroups).flatMap(rg => rg)
   );
   
-  allPosts.forEach((post, i) => {
-    allPosts.slice(i + 1).forEach(otherPost => {
+  // Limit comparisons for performance
+  const maxPosts = Math.min(allPosts.length, 50);
+  
+  for (let i = 0; i < maxPosts; i++) {
+    const post = allPosts[i];
+    for (let j = i + 1; j < maxPosts; j++) {
+      const otherPost = allPosts[j];
       const sharedTags = post.tags.filter(t => otherPost.tags.includes(t));
       
       // Only create peering if posts are in different subscriptions and share 2+ tags
@@ -186,12 +192,16 @@ const buildPeerings = () => {
             toSub: otherSub,
             sharedTags
           });
+          
+          // Limit total peerings for performance
+          if (peerings.length >= 8) break;
         }
       }
-    });
-  });
+    }
+    if (peerings.length >= 8) break;
+  }
   
-  return peerings.slice(0, 10); // Limit to avoid clutter
+  return peerings;
 };
 
 const peerings = buildPeerings();
@@ -252,6 +262,10 @@ const pageDescription = "Azure-style resource topology of Technical Anxiety cont
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{pageTitle} | Technical Anxiety</title>
   <meta name="description" content={pageDescription}>
+  
+  <!-- Performance optimizations -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
 </head>
 <body data-theme="dark">
   <div class="azure-topology-container">
@@ -307,5 +321,6 @@ const pageDescription = "Azure-style resource topology of Technical Anxiety cont
   </div>
 
   <script src="../scripts/azure-topology-engine.js"></script>
+  {import.meta.env.DEV && <script src="../scripts/performance-monitor.js"></script>}
 </body>
 </html>
