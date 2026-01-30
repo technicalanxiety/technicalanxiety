@@ -35,14 +35,26 @@
     <div class="search-box">
       <ion-icon name="close-outline" class="search-close-button" aria-label="Close search"></ion-icon>
       <div class="search-hint">Press <kbd>Ctrl</kbd> + <kbd>K</kbd> to search (or <kbd>⌘</kbd> + <kbd>K</kbd> on Mac)</div>
-      <label for="js-search-input" class="screen-reader-text">Search</label>
-      <input type="text" id="js-search-input" class="search-text" autocomplete="off" placeholder="Search posts by title, content, or tags...">
-      <ol id="js-results-container" class="search-results-list"></ol>
+      <label for="search-input" class="screen-reader-text">Search</label>
+      <input type="text" id="search-input" class="search-text" autocomplete="off" placeholder="Search posts by title, content, or tags...">
+      <ol id="search-results-list" class="search-results-list"></ol>
     </div>
   </div>
 </header>
 
 <script>
+  import Fuse from 'fuse.js';
+
+  interface SearchItem {
+    id: string;
+    title: string;
+    description: string;
+    content: string;
+    tags: string[];
+    date: string;
+    url: string;
+  }
+
   // Mobile menu toggle
   document.addEventListener('DOMContentLoaded', () => {
     const menuButton = document.querySelector('.menu-button');
@@ -57,18 +69,104 @@
       navMenu?.classList.remove('is-open');
     });
     
-    // Search toggle
+    // Search functionality
     const searchButton = document.querySelector('.search-button');
     const searchClose = document.querySelector('.search-close-button');
     const search = document.querySelector('.search');
+    const searchInput = document.getElementById('search-input') as HTMLInputElement;
+    const resultsContainer = document.getElementById('search-results-list');
     
+    let fuse: Fuse<SearchItem> | null = null;
+    let searchIndex: SearchItem[] = [];
+    
+    // Load search index
+    async function loadSearchIndex() {
+      try {
+        const response = await fetch('/search.json');
+        searchIndex = await response.json();
+        
+        fuse = new Fuse(searchIndex, {
+          keys: [
+            { name: 'title', weight: 0.4 },
+            { name: 'description', weight: 0.3 },
+            { name: 'content', weight: 0.2 },
+            { name: 'tags', weight: 0.1 }
+          ],
+          threshold: 0.3,
+          includeScore: true,
+          minMatchCharLength: 2,
+        });
+      } catch (error) {
+        console.error('Failed to load search index:', error);
+      }
+    }
+    
+    // Perform search
+    function performSearch(query: string) {
+      if (!fuse || !resultsContainer) return;
+      
+      if (query.length < 2) {
+        resultsContainer.innerHTML = '';
+        return;
+      }
+      
+      const results = fuse.search(query);
+      displayResults(results);
+    }
+    
+    // Display search results
+    function displayResults(results: import('fuse.js').FuseResult<SearchItem>[]) {
+      if (!resultsContainer) return;
+      
+      resultsContainer.innerHTML = '';
+      
+      if (results.length === 0) {
+        resultsContainer.innerHTML = '<li class="search-no-results">No posts found. Try different keywords.</li>';
+        return;
+      }
+      
+      results.slice(0, 10).forEach(result => {
+        const item = result.item;
+        const li = document.createElement('li');
+        li.className = 'search-item';
+        
+        const date = new Date(item.date).toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric'
+        });
+        
+        li.innerHTML = `
+          <a href="${item.url}" class="search-result-link">
+            <div class="search-result-title">${item.title}</div>
+            <div class="search-result-meta">
+              <span class="search-result-date">${date}</span>
+              ${item.tags.length > 0 ? `<span class="search-result-tags">${item.tags.slice(0, 3).join(', ')}</span>` : ''}
+            </div>
+            ${item.description ? `<div class="search-result-description">${item.description}</div>` : ''}
+          </a>
+        `;
+        
+        resultsContainer.appendChild(li);
+      });
+    }
+    
+    // Search input handler
+    searchInput?.addEventListener('input', (e) => {
+      const query = (e.target as HTMLInputElement).value.trim();
+      performSearch(query);
+    });
+    
+    // Search toggle
     searchButton?.addEventListener('click', () => {
       search?.classList.add('is-visible');
-      document.getElementById('js-search-input')?.focus();
+      searchInput?.focus();
     });
     
     searchClose?.addEventListener('click', () => {
       search?.classList.remove('is-visible');
+      if (searchInput) searchInput.value = '';
+      if (resultsContainer) resultsContainer.innerHTML = '';
     });
     
     // Keyboard shortcut for search
@@ -76,13 +174,18 @@
       if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
         e.preventDefault();
         search?.classList.add('is-visible');
-        document.getElementById('js-search-input')?.focus();
+        searchInput?.focus();
       }
       
       if (e.key === 'Escape') {
         search?.classList.remove('is-visible');
         navMenu?.classList.remove('is-open');
+        if (searchInput) searchInput.value = '';
+        if (resultsContainer) resultsContainer.innerHTML = '';
       }
     });
+    
+    // Load search index on page load
+    loadSearchIndex();
   });
 </script>
