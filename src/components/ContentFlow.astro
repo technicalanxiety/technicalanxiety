@@ -194,7 +194,7 @@
     if (toggle && details) {
       toggle.addEventListener('click', () => {
         const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
-        toggle.setAttribute('aria-expanded', !isExpanded);
+        toggle.setAttribute('aria-expanded', String(!isExpanded));
         details.classList.toggle('expanded');
       });
       
