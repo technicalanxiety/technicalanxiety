@@ -37,6 +37,7 @@
     "fast-check": "^4.4.0",
     "jsdom": "^27.3.0",
     "lighthouse": "^13.0.1",
+    "markdownlint-cli": "^0.47.0",
     "puppeteer": "^24.34.0",
     "sharp": "^0.34.5",
     "vitest": "^4.0.16"
