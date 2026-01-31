@@ -76,7 +76,7 @@ Every AI initiative has a checklist. The checklist exists because leadership can
 
 Review processes are concrete. They're measurable. Leadership can point to them and say "we have governance." They think that now that they have a process, the chaos will stop. But they've created a traffic cop, not an enabler. Teams will either comply minimally or find ways around it.
 
-This is where most governance attempts position themselves wrong from the start. The governance function becomes a checkpoint. Submit your proposal, wait for approval, get a yes or no. 
+This is where most governance attempts position themselves wrong from the start. The governance function becomes a checkpoint. Submit your proposal, wait for approval, get a yes or no.
 
 The problem isn't that review processes are inherently bad. The problem is positioning. When governance shows up as a traffic cop, teams treat it as an obstacle. When it shows up as an enabler embedded in the design phase, teams treat it as a partner.
 
@@ -178,7 +178,7 @@ A few organizations will recognize the pattern early and choose a different path
 
 Those organizations won't just have better AI governance. They'll have better everything. Because the preconditions that make governance work are the same preconditions that make any operational paradigm work.
 
-The question isn't whether your organization is on this map. You are. 
+The question isn't whether your organization is on this map. You are.
 
 The question is whether you'll recognize where you are in time to change course, and whether you're willing to do the work that makes the difference.
 
