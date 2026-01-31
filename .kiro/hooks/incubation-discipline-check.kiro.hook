@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "name": "Incubation Discipline Check",
+  "description": "Automatically review INCUBATION.md changes against publishing gate rules to prevent bypassing the forcing functions",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "INCUBATION.md"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Review the changes to INCUBATION.md against the publishing gate rules. Check: Are any ideas being moved too quickly (Cold to Warming before 72hrs)? Is Pull over the limit of 3? Are new entries properly distilled to one claim/tension/question in 4 lines or less? Are you organizing/categorizing instead of letting ideas sit? Flag any violations of the incubation discipline."
+  }
+}
