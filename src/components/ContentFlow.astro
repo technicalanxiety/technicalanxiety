@@ -1,0 +1,205 @@
+---
+// Content Flow Visualization
+// Manual updates only - no automation
+// Shows the incubation system in action
+---
+
+<div class="content-flow">
+  <h3 class="flow-title">Content Pipeline</h3>
+  
+  <div class="flow-stage">
+    <div class="stage-label">Incubation</div>
+    <div class="stage-value private">Private</div>
+    <div class="flow-arrow">↓</div>
+  </div>
+
+  <div class="flow-stage">
+    <div class="stage-label">Pull</div>
+    <div class="stage-value">0 active</div>
+    <div class="flow-arrow">↓</div>
+  </div>
+
+  <div class="flow-stage expandable">
+    <div class="stage-label">Backlog</div>
+    <button class="stage-button" id="backlog-toggle">
+      <div class="stage-value">6 scheduled</div>
+      <ion-icon name="chevron-down-outline" class="expand-icon"></ion-icon>
+    </button>
+    <div class="stage-details" id="backlog-details">
+      <ul class="backlog-list">
+        <li>The Hunger (Feb 1)</li>
+        <li>AI Observability, Part 3 (Feb 3)</li>
+        <li>AI Governance Trap, Part 1 (Feb 4)</li>
+        <li>AI Governance Trap, Part 2 (Feb 5)</li>
+        <li>AI Observability, Part 4 (Feb 10)</li>
+        <li>AI Observability, Part 5 (Feb 17)</li>
+      </ul>
+    </div>
+    <div class="flow-arrow">↓</div>
+  </div>
+
+  <div class="flow-stage">
+    <a href="/archive/" class="stage-link">
+      <div class="stage-label">Published</div>
+      <div class="stage-value">67 articles</div>
+    </a>
+  </div>
+</div>
+
+<style>
+  .content-flow {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    margin-bottom: var(--space-xl);
+  }
+
+  .flow-title {
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-lg);
+    text-align: center;
+  }
+
+  .flow-stage {
+    margin-bottom: var(--space-md);
+  }
+
+  .flow-stage:last-child {
+    margin-bottom: 0;
+  }
+
+  .stage-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-xs);
+  }
+
+  .stage-value {
+    font-size: 0.875rem;
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+
+  .stage-value.private {
+    color: var(--text-secondary);
+    font-style: italic;
+  }
+
+  .flow-arrow {
+    text-align: center;
+    color: var(--border-color);
+    font-size: 1.25rem;
+    margin: var(--space-sm) 0;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 0.4;
+    }
+    50% {
+      opacity: 0.8;
+    }
+  }
+
+  .stage-button {
+    width: 100%;
+    background: transparent;
+    border: none;
+    padding: 0;
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: opacity var(--transition-fast);
+  }
+
+  .stage-button:hover {
+    opacity: 0.8;
+  }
+
+  .stage-button .stage-label,
+  .stage-button .stage-value {
+    pointer-events: none;
+  }
+
+  .expand-icon {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    transition: transform var(--transition-fast);
+  }
+
+  .stage-button[aria-expanded="true"] .expand-icon {
+    transform: rotate(180deg);
+  }
+
+  .stage-details {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+  }
+
+  .stage-details.expanded {
+    max-height: 300px;
+    transition: max-height 0.3s ease-in;
+  }
+
+  .backlog-list {
+    list-style: none;
+    padding: 0;
+    margin: var(--space-md) 0 0 0;
+  }
+
+  .backlog-list li {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    padding: var(--space-xs) 0;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .backlog-list li:last-child {
+    border-bottom: none;
+  }
+
+  .stage-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    transition: opacity var(--transition-fast);
+  }
+
+  .stage-link:hover {
+    opacity: 0.8;
+  }
+
+  .stage-link .stage-value {
+    color: var(--accent-color);
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const toggle = document.getElementById('backlog-toggle');
+    const details = document.getElementById('backlog-details');
+    
+    if (toggle && details) {
+      toggle.addEventListener('click', () => {
+        const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+        toggle.setAttribute('aria-expanded', !isExpanded);
+        details.classList.toggle('expanded');
+      });
+      
+      // Initialize aria-expanded
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+</script>

@@ -5,7 +5,7 @@
 
 /* Jekyll Grid System */
 .container {
-  max-width: 1200px;
+  max-width: 1400px;
   padding-left: 15px;
   padding-right: 15px;
   margin: 0 auto;
@@ -420,13 +420,15 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-xs);
-  margin-bottom: var(--space-md);
+  margin-bottom: var(--space-lg);
+  height: 3.5rem; /* Fixed height for exactly 2 lines of tags */
+  align-content: flex-start;
 }
 
 .tag {
   display: inline-block;
-  padding: 0.25rem 0.75rem;
-  font-size: 0.75rem;
+  padding: 0.2rem 0.625rem;
+  font-size: 0.7rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -467,6 +469,8 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-xl);
+  position: sticky;
+  top: calc(60px + var(--space-lg)); /* Below header */
 }
 
 .widget {

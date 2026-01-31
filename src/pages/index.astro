@@ -8,6 +8,8 @@ import Sidebar from '../components/Sidebar.astro';
 import BackToTop from '../components/BackToTop.astro';
 import { siteConfig } from '../config';
 
+import ContentFlow from '../components/ContentFlow.astro';
+
 const posts = await getPublishedPosts();
 const sortedPosts = posts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 const recentPosts = sortedPosts.slice(0, siteConfig.postsPerPage);
@@ -69,8 +71,13 @@ const allPostsData = sortedPosts.map(post => ({
         </article>
       )}
 
-      <!-- Content Grid -->
-      <div class="content-grid">
+      <!-- Content Grid with Left Sidebar -->
+      <div class="content-grid-three-col">
+        <!-- Left Sidebar - Content Flow -->
+        <aside class="left-sidebar">
+          <ContentFlow />
+        </aside>
+
         <!-- Regular Articles -->
         <section class="articles-section">
           <div class="articles-grid">
@@ -140,7 +147,7 @@ const allPostsData = sortedPosts.map(post => ({
           )}
         </section>
         
-        <!-- Sidebar -->
+        <!-- Right Sidebar -->
         <Sidebar />
       </div>
     </div>
@@ -151,6 +158,64 @@ const allPostsData = sortedPosts.map(post => ({
 </BaseLayout>
 
 <style>
+  /* Three-column grid for homepage with left sidebar */
+  .content-grid-three-col {
+    display: grid;
+    gap: var(--space-xl);
+    align-items: start;
+  }
+
+  /* Mobile: stack everything */
+  @media (max-width: 767px) {
+    .content-grid-three-col {
+      grid-template-columns: 1fr;
+    }
+    
+    .left-sidebar {
+      order: 2; /* Show after main content on mobile */
+    }
+    
+    .articles-section {
+      order: 1;
+    }
+    
+    .sidebar {
+      order: 3;
+    }
+  }
+
+  /* Tablet: two columns (hide left sidebar or stack) */
+  @media (min-width: 768px) and (max-width: 1199px) {
+    .content-grid-three-col {
+      grid-template-columns: 1fr 280px;
+    }
+    
+    .left-sidebar {
+      display: none; /* Hide on tablet to avoid cramping */
+    }
+  }
+
+  /* Desktop: three columns */
+  @media (min-width: 1200px) {
+    .content-grid-three-col {
+      grid-template-columns: 240px 1fr 320px;
+      gap: 2rem;
+    }
+  }
+
+  /* Wide screen: more breathing room */
+  @media (min-width: 1400px) {
+    .content-grid-three-col {
+      grid-template-columns: 260px 1fr 340px;
+      gap: 3rem;
+    }
+  }
+
+  .left-sidebar {
+    position: sticky;
+    top: calc(60px + var(--space-lg)); /* Below header */
+  }
+
   .section-heading {
     text-align: center;
     margin-bottom: var(--space-2xl);
