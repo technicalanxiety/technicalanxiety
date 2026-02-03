@@ -336,11 +336,7 @@ A query that retrieves five relevant chunks with high similarity scores might st
 
 ## What's Next?
 
-<!-- NEXT_PART: ai-observability-part3.md -->
-**Coming Next:** Part 3: The Orchestration Layer (Published January 24, 2026)
-
-Infrastructure metrics can't tell you if AI responses are helpful. Learn to instrument semantic quality, conversation degradation, and user outcomes at the application layer.
-<!-- END_NEXT_PART -->
+**Next in Series:** [AI Observability, Part 3: The Orchestration Layer →](/ai-observability-part3/)
 
 ---
 
