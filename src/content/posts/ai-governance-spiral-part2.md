@@ -5,7 +5,7 @@ tags: [Leadership, Architecture, AI, Governance]
 description: "You've seen the map. You know where you are. Here's the work that actually prevents the spiral - the requirements, the cost, and why most won't do it."
 image: "governance-failure-spiral.jpg"
 series: "ai-governance"
-series_order: 2
+series_part: 2
 ---
 
 [Part 1](/ai-governance-trap/) showed the map. Nine predictable stages of governance failure. The same pattern, the same script, the same ending. Chaos plus theater.

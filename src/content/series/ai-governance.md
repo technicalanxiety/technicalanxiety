@@ -3,7 +3,8 @@ title: "AI Governance"
 description: "Most organizations are at Stage 2 right now: leadership knows there's chaos, someone's been tasked with 'figuring out governance.' The spiral from here is predictable. The escape is possible. The cost is real."
 image: "governance-failure-spiral.jpg"
 tags: [Leadership, Architecture, AI, Governance]
-type: "series"
+order: 1
+featured: true
 ---
 
 ## Overview
@@ -49,25 +50,3 @@ AI governance is where organizational dysfunction patterns converge. [Technical 
 This series connects those dots. The diagnostic showing where you are. The work that prevents the spiral. The choice most organizations won't make.
 
 *Pattern recognition across 100+ organizations over 20+ years. The same dysfunction, the same script, the same ending. Until you choose differently.*
-
-## Series Content
-
-[Part 1
-
-![The AI Governance Trap (And Where Your Organization Probably Is Right Now)](/img/optimized/governance-failure-spiral.svg)
-
-### The AI Governance Trap (And Where Your Organization Probably Is Right Now)
-
-We're rushing toward AI governance as the solution to AI chaos. I've watched this movie before. Here's the map, here's where you are, and here's what happens next if you don't change course.
-
-January 29, 2026](/ai-governance-trap/)
-
-[Part 2
-
-![Escaping the AI Governance Spiral: The Road Less Traveled](/img/optimized/governance-failure-spiral.svg)
-
-### Escaping the AI Governance Spiral: The Road Less Traveled
-
-You've seen the map. You know where you are. Here's the work that actually prevents the spiral - and why most organizations won't do it.
-
-February 5, 2026](/ai-governance-spiral-escape/)
