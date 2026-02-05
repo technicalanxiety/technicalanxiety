@@ -4,8 +4,9 @@ date: 2026-02-04
 tags: [Leadership, Architecture, AI, Governance]
 description: "We're rushing toward AI governance as the solution to AI chaos. I've watched this movie before. Here's the map, here's where you are, and here's what happens next if you don't change course."
 image: "governance-failure-spiral.jpg"
-series: "ai-governance"
+series: "AI-Governance"
 series_part: 1
+draft: false
 ---
 
 We're in the middle of a conversation at work that feels familiar. Leadership wants "AI governance." Engineering wants "AI guardrails." Security wants "AI controls." Everyone's using different words for the same thing: someone needs to make sense of the chaos before it becomes load-bearing.
