@@ -109,6 +109,7 @@ draft: false                 # Optional (defaults to false)
 - [ ] **Image**: Optimized and properly referenced (filename only, no quotes)
 - [ ] **Content**: Headers, code blocks with language tags, internal links with trailing slashes
 - [ ] **Series**: Consistent naming and navigation (if applicable)
+- [ ] **Series Name Match**: If part of series, verify `series:` value EXACTLY matches series `title:` in `src/content/series/`
 - [ ] **Local Test**: `npm run dev` and `npm run build` both work
 - [ ] **Links**: All internal links use trailing slashes (`/post-slug/`)
 - [ ] **Performance**: Images optimized, content scannable
@@ -157,6 +158,11 @@ Target audience description...
 
 **Frontmatter Requirements**:
 - **Consistent series name** across all parts (exact match with series title)
+- **CRITICAL**: Series name in posts must EXACTLY match the series title in `src/content/series/[series-name].md`
+  - Posts use: `series: "AI Governance"` 
+  - Series file has: `title: "AI Governance"`
+  - These must match exactly (case-sensitive, spacing matters)
+  - Mismatch prevents series from appearing on `/series/` index
 - **Backlog posts**: Use `series_order: 1` for part numbering
 - **Published posts**: Use `series_part: 1` for part numbering
 - **Sequential numbering**: 1, 2, 3... (not Part 1, Part 2)
