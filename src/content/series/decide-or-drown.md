@@ -4,7 +4,7 @@ description: "Your engineers are drowning in decisions that don't matter. The ch
 image: "drown-pt1.jpg"
 tags: ["Leadership", "Anxiety"]
 order: 4
-featured: true
+featured: false
 ---
 
 ### Overview
