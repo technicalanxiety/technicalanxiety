@@ -194,11 +194,7 @@ The question isn't whether to follow the script. The question is whether you can
 
 ## What Happens Next
 
-<!-- NEXT_PART: ai-governance-spiral-part2.md -->
-**Coming Next:** Part 2: Escaping the AI Governance Spiral - The Road Less Traveled
-
-In Part 2, we'll cover what that work actually looks like. The preconditions that separate governance that works from governance theater. The organizational foundations that need to exist before any governance framework can succeed. The uncomfortable conversations and structural changes most organizations won't make - and why that guarantees they'll end up in the spiral.
-<!-- END_NEXT_PART -->
+**Next in Series:** [Escaping the AI Governance Spiral: The Road Less Traveled →](/ai-governance-spiral-part2/)
 
 *The path into the spiral looks faster. It produces visible artifacts. It lets you check boxes and tell leadership "we have governance." That's why everyone takes it. The hard path requires conversations leadership would rather avoid, authority that threatens existing power structures, and measurement that might reveal uncomfortable truths. But the spiral always ends the same way: chaos plus theater. Make a decision.*
 
