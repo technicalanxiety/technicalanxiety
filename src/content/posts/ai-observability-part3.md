@@ -354,11 +354,7 @@ That's what Layer 4 addresses: governance, audit trails, and the organizational 
 
 ## What's Next?
 
-<!-- NEXT_PART: ai-observability-part4.md -->
-**Coming Next:** Part 4: The Governance Layer (Published January 25, 2026)
-
-Technical observability tells you what happened. Governance observability tells you whether it was acceptable and proves you're governing responsibly with audit trails and compliance evidence.
-<!-- END_NEXT_PART -->
+**Next in Series:** [AI Observability, Part 4: The Governance Layer →](/ai-observability-part4/)
 
 ---
 
