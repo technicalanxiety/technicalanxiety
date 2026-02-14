@@ -4,7 +4,6 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "dev:swa": "swa start http://localhost:4321 --api-location ./api",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
@@ -31,7 +30,6 @@
     "typescript": "^5.9.3"
   },
   "devDependencies": {
-    "@azure/static-web-apps-cli": "^2.0.7",
     "@types/jsdom": "^27.0.0",
     "@types/node": "^25.0.3",
     "fast-check": "^4.4.0",
