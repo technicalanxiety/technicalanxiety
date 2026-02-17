@@ -405,11 +405,7 @@ Each layer answers questions the others can't. Together, they make AI observabil
 
 ## What's Next?
 
-<!-- NEXT_PART: ai-observability-part5.md -->
-**Coming Next:** Part 5: Making It Operational (Published January 26, 2026)
-
-Turn observability patterns into operational infrastructure with alert rules, workbooks, and deployment guidance that makes AI monitoring actionable instead of theoretical.
-<!-- END_NEXT_PART -->
+**Next in Series:** [AI Observability, Part 5: Making It Operational →](/ai-observability-part5/)
 
 ---
 
