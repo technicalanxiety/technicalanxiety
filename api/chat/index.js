@@ -1,36 +1,5 @@
 // Azure Static Web App API function for Groq chat
 // POC: Client-side rate limiting, no storage
-const https = require('https');
-
-/**
- * Make an HTTPS POST request (works on Node 16+ without fetch)
- */
-function httpsPost(url, headers, body) {
-  return new Promise((resolve, reject) => {
-    const parsed = new URL(url);
-    const options = {
-      hostname: parsed.hostname,
-      path: parsed.pathname,
-      method: 'POST',
-      headers: {
-        ...headers,
-        'Content-Type': 'application/json'
-      }
-    };
-
-    const req = https.request(options, (res) => {
-      let data = '';
-      res.on('data', (chunk) => { data += chunk; });
-      res.on('end', () => {
-        resolve({ status: res.statusCode, body: data });
-      });
-    });
-
-    req.on('error', reject);
-    req.write(JSON.stringify(body));
-    req.end();
-  });
-}
 
 module.exports = async function (context, req) {
   context.log('Chat API called');
@@ -39,7 +8,6 @@ module.exports = async function (context, req) {
   if (req.method !== 'POST') {
     context.res = {
       status: 405,
-      headers: { 'Content-Type': 'application/json' },
       body: { error: 'Method not allowed' }
     };
     return;
@@ -52,7 +20,6 @@ module.exports = async function (context, req) {
     if (!message || typeof message !== 'string') {
       context.res = {
         status: 400,
-        headers: { 'Content-Type': 'application/json' },
         body: { error: 'Message is required' }
       };
       return;
@@ -61,7 +28,6 @@ module.exports = async function (context, req) {
     if (message.length > 1000) {
       context.res = {
         status: 400,
-        headers: { 'Content-Type': 'application/json' },
         body: { error: 'Message too long (max 1000 chars)' }
       };
       return;
@@ -70,7 +36,6 @@ module.exports = async function (context, req) {
     if (conversationHistory.length > 10) {
       context.res = {
         status: 400,
-        headers: { 'Content-Type': 'application/json' },
         body: { error: 'Conversation history too long' }
       };
       return;
@@ -79,10 +44,9 @@ module.exports = async function (context, req) {
     // Get Groq API key from environment
     const GROQ_API_KEY = process.env.GROQ_API_KEY;
     if (!GROQ_API_KEY) {
-      context.log.error('GROQ_API_KEY not configured in application settings');
+      context.log.error('GROQ_API_KEY not configured');
       context.res = {
         status: 500,
-        headers: { 'Content-Type': 'application/json' },
         body: { error: 'Service configuration error - GROQ_API_KEY missing' }
       };
       return;
@@ -198,27 +162,33 @@ If you don't know something specific, say so honestly and suggest they visit tec
     context.log('Calling Groq Chat Completions API...');
 
     // Call Groq API (OpenAI-compatible endpoint)
-    const response = await httpsPost(
+    const response = await fetch(
       'https://api.groq.com/openai/v1/chat/completions',
-      { 'Authorization': `Bearer ${GROQ_API_KEY}` },
       {
-        model: 'llama-3.3-70b-versatile',
-        messages: messages,
-        max_tokens: 500,
-        temperature: 0.7,
-        top_p: 0.95
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${GROQ_API_KEY}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          model: 'llama-3.3-70b-versatile',
+          messages: messages,
+          max_tokens: 500,
+          temperature: 0.7,
+          top_p: 0.95
+        })
       }
     );
 
     context.log('Groq API response status:', response.status);
 
-    if (response.status !== 200) {
-      context.log.error('Groq API error:', response.status, response.body);
+    if (!response.ok) {
+      const errorText = await response.text();
+      context.log.error('Groq API error:', response.status, errorText);
       
       if (response.status === 429) {
         context.res = {
           status: 429,
-          headers: { 'Content-Type': 'application/json' },
           body: { error: 'Rate limit reached. Please try again in a moment.' }
         };
         return;
@@ -226,13 +196,12 @@ If you don't know something specific, say so honestly and suggest they visit tec
 
       context.res = {
         status: 500,
-        headers: { 'Content-Type': 'application/json' },
-        body: { error: `Groq API error (${response.status}): ${response.body.substring(0, 150)}` }
+        body: { error: `Groq API error: ${response.status} - ${errorText.substring(0, 100)}` }
       };
       return;
     }
 
-    const result = JSON.parse(response.body);
+    const result = await response.json();
     
     // Extract response from chat completion format
     const generatedText = result.choices?.[0]?.message?.content || '';
@@ -249,11 +218,10 @@ If you don't know something specific, say so honestly and suggest they visit tec
     };
 
   } catch (error) {
-    context.log.error('Chat API error:', error.message, error.stack);
+    context.log.error('Chat API error:', error);
     context.res = {
       status: 500,
-      headers: { 'Content-Type': 'application/json' },
-      body: { error: `Internal server error: ${error.message}` }
+      body: { error: 'Internal server error' }
     };
   }
 };
