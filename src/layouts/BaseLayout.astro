@@ -1,7 +1,6 @@
 ---
 import { siteConfig } from '../config';
 import ThemeToggle from '../components/ThemeToggle.astro';
-import RecruiterChat from '../components/RecruiterChat.astro';
 import '../styles/theme.css';
 import '../styles/base.css';
 import '../styles/layout.css';
@@ -137,6 +136,5 @@ const imageURL = new URL(image, siteOrigin).href;
   <body>
     <slot />
     <ThemeToggle />
-    <RecruiterChat />
   </body>
 </html>
