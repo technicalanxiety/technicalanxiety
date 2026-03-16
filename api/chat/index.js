@@ -8,6 +8,7 @@ module.exports = async function (context, req) {
   if (req.method !== 'POST') {
     context.res = {
       status: 405,
+      headers: { 'Content-Type': 'application/json' },
       body: { error: 'Method not allowed' }
     };
     return;
@@ -20,6 +21,7 @@ module.exports = async function (context, req) {
     if (!message || typeof message !== 'string') {
       context.res = {
         status: 400,
+        headers: { 'Content-Type': 'application/json' },
         body: { error: 'Message is required' }
       };
       return;
@@ -28,6 +30,7 @@ module.exports = async function (context, req) {
     if (message.length > 1000) {
       context.res = {
         status: 400,
+        headers: { 'Content-Type': 'application/json' },
         body: { error: 'Message too long (max 1000 chars)' }
       };
       return;
@@ -36,6 +39,7 @@ module.exports = async function (context, req) {
     if (conversationHistory.length > 10) {
       context.res = {
         status: 400,
+        headers: { 'Content-Type': 'application/json' },
         body: { error: 'Conversation history too long' }
       };
       return;
@@ -44,9 +48,10 @@ module.exports = async function (context, req) {
     // Get Groq API key from environment
     const GROQ_API_KEY = process.env.GROQ_API_KEY;
     if (!GROQ_API_KEY) {
-      context.log.error('GROQ_API_KEY not configured');
+      context.log.error('GROQ_API_KEY not configured in application settings');
       context.res = {
         status: 500,
+        headers: { 'Content-Type': 'application/json' },
         body: { error: 'Service configuration error - GROQ_API_KEY missing' }
       };
       return;
@@ -189,6 +194,7 @@ If you don't know something specific, say so honestly and suggest they visit tec
       if (response.status === 429) {
         context.res = {
           status: 429,
+          headers: { 'Content-Type': 'application/json' },
           body: { error: 'Rate limit reached. Please try again in a moment.' }
         };
         return;
@@ -196,7 +202,8 @@ If you don't know something specific, say so honestly and suggest they visit tec
 
       context.res = {
         status: 500,
-        body: { error: `Groq API error: ${response.status} - ${errorText.substring(0, 100)}` }
+        headers: { 'Content-Type': 'application/json' },
+        body: { error: `Groq API error (${response.status}): ${errorText.substring(0, 150)}` }
       };
       return;
     }
@@ -218,10 +225,11 @@ If you don't know something specific, say so honestly and suggest they visit tec
     };
 
   } catch (error) {
-    context.log.error('Chat API error:', error);
+    context.log.error('Chat API error:', error.message, error.stack);
     context.res = {
       status: 500,
-      body: { error: 'Internal server error' }
+      headers: { 'Content-Type': 'application/json' },
+      body: { error: `Internal server error: ${error.message}` }
     };
   }
 };

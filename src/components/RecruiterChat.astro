@@ -371,13 +371,15 @@
       if (!response.ok) {
         let errorMessage = 'Failed to get response';
         try {
-          const error = await response.json();
-          errorMessage = error.error || errorMessage;
-        } catch {
-          // Response wasn't JSON, likely a server error
-          if (response.status === 500) {
-            errorMessage = 'Service not configured. Please add GROQ_API_KEY to Azure settings.';
+          const errorBody = await response.text();
+          try {
+            const errorJson = JSON.parse(errorBody);
+            errorMessage = errorJson.error || errorMessage;
+          } catch {
+            errorMessage = `Server error (${response.status}): ${errorBody.substring(0, 150) || 'No details available'}`;
           }
+        } catch {
+          errorMessage = `Server error (${response.status})`;
         }
         throw new Error(errorMessage);
       }
