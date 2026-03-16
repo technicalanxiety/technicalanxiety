@@ -1,5 +1,36 @@
 // Azure Static Web App API function for Groq chat
 // POC: Client-side rate limiting, no storage
+const https = require('https');
+
+/**
+ * Make an HTTPS POST request (works on Node 16+ without fetch)
+ */
+function httpsPost(url, headers, body) {
+  return new Promise((resolve, reject) => {
+    const parsed = new URL(url);
+    const options = {
+      hostname: parsed.hostname,
+      path: parsed.pathname,
+      method: 'POST',
+      headers: {
+        ...headers,
+        'Content-Type': 'application/json'
+      }
+    };
+
+    const req = https.request(options, (res) => {
+      let data = '';
+      res.on('data', (chunk) => { data += chunk; });
+      res.on('end', () => {
+        resolve({ status: res.statusCode, body: data });
+      });
+    });
+
+    req.on('error', reject);
+    req.write(JSON.stringify(body));
+    req.end();
+  });
+}
 
 module.exports = async function (context, req) {
   context.log('Chat API called');
@@ -167,29 +198,22 @@ If you don't know something specific, say so honestly and suggest they visit tec
     context.log('Calling Groq Chat Completions API...');
 
     // Call Groq API (OpenAI-compatible endpoint)
-    const response = await fetch(
+    const response = await httpsPost(
       'https://api.groq.com/openai/v1/chat/completions',
+      { 'Authorization': `Bearer ${GROQ_API_KEY}` },
       {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${GROQ_API_KEY}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          model: 'llama-3.3-70b-versatile',
-          messages: messages,
-          max_tokens: 500,
-          temperature: 0.7,
-          top_p: 0.95
-        })
+        model: 'llama-3.3-70b-versatile',
+        messages: messages,
+        max_tokens: 500,
+        temperature: 0.7,
+        top_p: 0.95
       }
     );
 
     context.log('Groq API response status:', response.status);
 
-    if (!response.ok) {
-      const errorText = await response.text();
-      context.log.error('Groq API error:', response.status, errorText);
+    if (response.status !== 200) {
+      context.log.error('Groq API error:', response.status, response.body);
       
       if (response.status === 429) {
         context.res = {
@@ -203,12 +227,12 @@ If you don't know something specific, say so honestly and suggest they visit tec
       context.res = {
         status: 500,
         headers: { 'Content-Type': 'application/json' },
-        body: { error: `Groq API error (${response.status}): ${errorText.substring(0, 150)}` }
+        body: { error: `Groq API error (${response.status}): ${response.body.substring(0, 150)}` }
       };
       return;
     }
 
-    const result = await response.json();
+    const result = JSON.parse(response.body);
     
     // Extract response from chat completion format
     const generatedText = result.choices?.[0]?.message?.content || '';
