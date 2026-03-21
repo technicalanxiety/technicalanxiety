@@ -57,7 +57,7 @@ const governancePosts = posts
               {governancePosts.map((post) => (
                 <article class="post-card">
                   <div class="post-image" style={`background-image: url(/img/${post.data.image || 'article-header.jpg'})`}>
-                    <a href={`/${post.slug}/`} class="image-link"></a>
+                    <a href={`/${post.id}/`} class="image-link"></a>
                   </div>
                   <div class="post-content">
                     <div class="post-meta">
@@ -73,7 +73,7 @@ const governancePosts = posts
                       </span>
                     </div>
                     <h4 class="post-title">
-                      <a href={`/${post.slug}/`}>{post.data.title}</a>
+                      <a href={`/${post.id}/`}>{post.data.title}</a>
                     </h4>
                     <p class="post-excerpt">
                       {post.data.description || 'Read more about this article...'}

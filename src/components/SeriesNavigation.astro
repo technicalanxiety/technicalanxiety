@@ -56,7 +56,7 @@ const shouldRender = currentSeries && seriesPosts.length > 1;
 
     <div class="series-nav-links">
       {previousPost ? (
-        <a href={`/${previousPost.slug}/`} class="series-nav-link series-nav-prev">
+        <a href={`/${previousPost.id}/`} class="series-nav-link series-nav-prev">
           <span class="nav-direction">← Previous</span>
           <span class="nav-title">{previousPost.data.title}</span>
           <span class="nav-part">Part {previousPost.data.series_part}</span>
@@ -66,7 +66,7 @@ const shouldRender = currentSeries && seriesPosts.length > 1;
       )}
 
       {nextPost ? (
-        <a href={`/${nextPost.slug}/`} class="series-nav-link series-nav-next">
+        <a href={`/${nextPost.id}/`} class="series-nav-link series-nav-next">
           <span class="nav-direction">Next →</span>
           <span class="nav-title">{nextPost.data.title}</span>
           <span class="nav-part">Part {nextPost.data.series_part}</span>
@@ -85,7 +85,7 @@ const shouldRender = currentSeries && seriesPosts.length > 1;
           {seriesPosts.map(post => (
             <li class="series-list-item">
               <a 
-                href={`/${post.slug}/`} 
+                href={`/${post.id}/`} 
                 class={`series-list-link ${post.data.series_part === currentPart ? 'current' : ''}`}
                 aria-current={post.data.series_part === currentPart ? 'page' : undefined}
               >

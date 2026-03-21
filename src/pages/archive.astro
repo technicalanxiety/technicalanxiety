@@ -83,7 +83,7 @@ const postsByYearAndMonth = Object.entries(postsByYear)
                                   loading="lazy"
                                 />
                               </div>
-                              <a class="archive-link" href={`/${post.slug}/`}>
+                              <a class="archive-link" href={`/${post.id}/`}>
                                 {post.data.title}
                               </a>
                               {post.data.tags && post.data.tags.length > 0 && (

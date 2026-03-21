@@ -9,7 +9,7 @@ series_part: 2
 draft: false
 ---
 
-[Part 1](/ai-governance-trap/) showed the map. Nine predictable stages of governance failure. The same pattern, the same script, the same ending. Chaos plus theater.
+[Part 1](/ai-governance-spiral-part1/) showed the map. Nine predictable stages of governance failure. The same pattern, the same script, the same ending. Chaos plus theater.
 
 Most organizations are at Stage 2 right now. They know there's AI chaos. Leadership is demanding answers. Someone's been tasked with "figuring out AI governance."
 
@@ -161,7 +161,7 @@ Choose.
 
 ---
 
-*This piece concludes the AI Governance series. For the diagnostic that shows where your organization is on the spiral, read [Part 1: The AI Governance Trap](/ai-governance-trap/). For the organizational health preconditions that must exist before governance can work, see [Decide or Drown Part 4](/decide-or-drown-pt4/). For why architects stop doing the translation work that governance requires, read [Architects Stop Translating](/architects-stop-translating/). For recognizing improvable versus unsalvageable environments, the diagnostic is also in Decide or Drown Part 4.*
+*This piece concludes the AI Governance series. For the diagnostic that shows where your organization is on the spiral, read [Part 1: The AI Governance Trap](/ai-governance-spiral-part1/). For the organizational health preconditions that must exist before governance can work, see [Decide or Drown Part 4](/decide-or-drown-pt4/). For why architects stop doing the translation work that governance requires, read [Architects Stop Translating](/architects-stop-translating/). For recognizing improvable versus unsalvageable environments, the diagnostic is also in Decide or Drown Part 4.*
 
 ---
 

@@ -633,7 +633,7 @@ That's what observability makes possible.
 
 ---
 
-*This concludes the AI Observability series. [Part 1: The Model Layer](/ai-observability-pt1/) | [Part 2: The Grounding Layer](/ai-observability-pt2/) | [Part 3: The Orchestration Layer](/ai-observability-pt3/) | [Part 4: The Governance Layer](/ai-observability-pt4/)*
+*This concludes the AI Observability series. [Part 1: The Model Layer](/ai-observability-part1/) | [Part 2: The Grounding Layer](/ai-observability-part2/) | [Part 3: The Orchestration Layer](/ai-observability-part3/) | [Part 4: The Governance Layer](/ai-observability-part4/)*
 
 ---
 

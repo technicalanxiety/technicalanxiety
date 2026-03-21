@@ -13,10 +13,10 @@ const recentPosts = posts
 
 // Get some featured posts for getting started
 const featuredPosts = posts.filter(post => 
-  post.slug === 'basecamp-summit' || 
-  post.slug === 'azure-governance' || 
-  post.slug === 'psychological-safety' ||
-  post.slug === 'decide-or-drown-pt1'
+  post.id === 'basecamp-summit' || 
+  post.id === 'azure-governance' || 
+  post.id === 'psychological-safety' ||
+  post.id === 'decide-or-drown-pt1'
 ).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 
@@ -125,7 +125,7 @@ const featuredPosts = posts.filter(post =>
               {recentPosts.map((post) => (
                 <article class="post-card">
                   <div class="post-image" style={`background-image: url(/img/${post.data.image || 'article-header.jpg'})`}>
-                    <a href={`/${post.slug}/`} class="image-link"></a>
+                    <a href={`/${post.id}/`} class="image-link"></a>
                   </div>
                   <div class="post-content">
                     <div class="post-meta">
@@ -141,7 +141,7 @@ const featuredPosts = posts.filter(post =>
                       </span>
                     </div>
                     <h4 class="post-title">
-                      <a href={`/${post.slug}/`}>{post.data.title}</a>
+                      <a href={`/${post.id}/`}>{post.data.title}</a>
                     </h4>
                     <p class="post-excerpt">
                       {post.data.description || 'Read more about this article...'}

@@ -8,13 +8,13 @@ export const GET: APIRoute = async () => {
   const searchIndex = posts
     .filter(post => !post.data.draft)
     .map(post => ({
-      id: post.slug,
+      id: post.id,
       title: post.data.title,
       description: post.data.description || '',
       content: post.body,
       tags: post.data.tags || [],
       date: post.data.date.toISOString(),
-      url: `/${post.slug}/`,
+      url: `/${post.id}/`,
     }))
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 

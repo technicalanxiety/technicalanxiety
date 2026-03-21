@@ -10,6 +10,7 @@ import BackToTop from '../components/BackToTop.astro';
 import GiscusComments from '../components/GiscusComments.astro';
 import { siteConfig } from '../config';
 import type { CollectionEntry } from 'astro:content';
+import { render } from 'astro:content';
 
 export interface Props {
   post: CollectionEntry<'posts'>;
@@ -17,7 +18,7 @@ export interface Props {
 }
 
 const { post, headings = [] } = Astro.props;
-const { Content } = await post.render();
+const { Content } = await render(post);
 
 // Calculate reading time (average 200-250 words per minute)
 function calculateReadingTime(content: string): number {
@@ -41,7 +42,7 @@ const pageDescription = post.data.description || `${post.data.title} - ${siteCon
 const pageImage = post.data.image ? `/img/${post.data.image}` : '/img/social-share-default.png';
 
 // Generate canonical URL
-const canonicalURL = new URL(`/${post.slug}/`, Astro.site).href;
+const canonicalURL = new URL(`/${post.id}/`, Astro.site).href;
 ---
 
 <BaseLayout 
