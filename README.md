@@ -1,6 +1,6 @@
 # Technical Anxiety Blog
 
-A technical blog covering Azure, Log Analytics, leadership, and navigating anxiety in tech. Built with Astro for optimal performance and developer experience.
+A technical blog covering Azure, Log Analytics, leadership, and navigating anxiety in tech. Built with Astro 6 for optimal performance and developer experience.
 
 🌐 **Live Site**: [www.technicalanxiety.com](https://www.technicalanxiety.com)
 
@@ -29,7 +29,8 @@ This site was migrated from Jekyll to Astro to improve:
 │   ├── content/            # Content collections
 │   │   ├── posts/          # Published blog posts (live on site)
 │   │   ├── backlog/        # Scheduled posts (future dates)
-│   │   └── config.ts       # Content schema definitions
+│   │   └── series/         # Series metadata and landing pages
+│   ├── content.config.ts   # Content schema definitions (Content Layer API)
 │   ├── layouts/            # Page layouts
 │   │   ├── BaseLayout.astro # Base HTML structure
 │   │   └── PostLayout.astro # Blog post template
@@ -114,7 +115,7 @@ npm run backlog add "Your Post Title"
 ```yaml
 ---
 title: "Your Post Title"
-date: 2025-01-01
+date: 2026-01-01
 tags: [Azure, Leadership, Anxiety]
 description: "Brief description for SEO (150-160 characters)"
 image: "your-image.jpg"           # Optional - filename only, stored in public/img/
@@ -298,9 +299,13 @@ npm run build
 
 ## 📚 Migration History
 
-### Jekyll to Astro Migration (December 2024)
+### Astro v6 Upgrade (March 2026)
 
-**Completed**: December 2024
+Upgraded from Astro 5.x to Astro 6.0.8 with Content Layer API migration, `.slug` → `.id` refactor, `render()` call updates, and Node 22 across all CI workflows.
+
+### Jekyll to Astro Migration (December 2025)
+
+**Completed**: December 2025
 
 **Key Improvements**:
 - ⚡ 40% faster build times with Astro static site generation
