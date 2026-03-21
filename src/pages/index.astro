@@ -16,7 +16,7 @@ const recentPosts = sortedPosts.slice(0, siteConfig.postsPerPage);
 
 // Prepare all posts data for client-side pagination
 const allPostsData = sortedPosts.map(post => ({
-  slug: post.slug,
+  slug: post.id,
   title: post.data.title,
   description: post.data.description,
   date: post.data.date.toISOString(),
@@ -60,12 +60,12 @@ const allPostsData = sortedPosts.map(post => ({
                 </time>
               </div>
               <h2 class="featured-title">
-                <a href={`/${recentPosts[0].slug}/`}>{recentPosts[0].data.title}</a>
+                <a href={`/${recentPosts[0].id}/`}>{recentPosts[0].data.title}</a>
               </h2>
               <p class="featured-excerpt">
                 {recentPosts[0].data.description || 'Read more about this article...'}
               </p>
-              <a href={`/${recentPosts[0].slug}/`} class="button button-primary">Read More</a>
+              <a href={`/${recentPosts[0].id}/`} class="button button-primary">Read More</a>
             </div>
           </div>
         </article>
@@ -84,7 +84,7 @@ const allPostsData = sortedPosts.map(post => ({
             {recentPosts.slice(1).map((post) => (
               <article class="article">
                 <div class="article-image" style={`background-image: url(/img/${post.data.image || 'article-header.jpg'})`}>
-                  <a href={`/${post.slug}/`} class="image-link">
+                  <a href={`/${post.id}/`} class="image-link">
                   </a>
                 </div>
                 <div class="article-content">
@@ -105,7 +105,7 @@ const allPostsData = sortedPosts.map(post => ({
                     </div>
                   )}
                   <h3 class="article-title">
-                    <a href={`/${post.slug}/`}>{post.data.title}</a>
+                    <a href={`/${post.id}/`}>{post.data.title}</a>
                   </h3>
                   <p class="article-excerpt">
                     {post.data.description || 'Read more about this article...'}

@@ -20,7 +20,7 @@ export async function GET(context) {
       pubDate: post.data.date,
       description: post.data.description || `Read "${post.data.title}" on Technical Anxiety`,
       author: `${siteConfig.author.name}@technicalanxiety.com (${siteConfig.author.name})`,
-      link: `/${post.slug}/`,
+      link: `/${post.id}/`,
       content: post.body, // Include full content in RSS feed
       categories: post.data.tags || [],
     })),

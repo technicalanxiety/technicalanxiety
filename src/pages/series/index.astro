@@ -47,7 +47,7 @@ const otherSeries = seriesData.filter(s => !s.data.featured);
         <div class="series-grid featured">
           {featuredSeries.map(series => (
             <article class="series-card featured">
-              <a href={`/series/${series.slug}/`} class="series-card-link">
+              <a href={`/series/${series.id}/`} class="series-card-link">
                 {series.data.image && (
                   <div class="series-card-image">
                     <OptimizedImage 
@@ -88,7 +88,7 @@ const otherSeries = seriesData.filter(s => !s.data.featured);
         <div class="series-grid">
           {otherSeries.map(series => (
             <article class="series-card">
-              <a href={`/series/${series.slug}/`} class="series-card-link">
+              <a href={`/series/${series.id}/`} class="series-card-link">
                 {series.data.image && (
                   <div class="series-card-image">
                     <OptimizedImage 

@@ -1,7 +1,9 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection } from 'astro:content';
+import { z } from 'astro/zod';
+import { glob } from 'astro/loaders';
 
 const postsCollection = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/[^_]*.md', base: './src/content/posts' }),
   schema: z.object({
     title: z.string(),
     date: z.coerce.date(), // Handle Jekyll date strings
@@ -16,7 +18,7 @@ const postsCollection = defineCollection({
 });
 
 const backlogCollection = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/[^_]*.md', base: './src/content/backlog' }),
   schema: z.object({
     title: z.string(),
     date: z.coerce.date(), // Handle Jekyll date strings
@@ -31,7 +33,7 @@ const backlogCollection = defineCollection({
 });
 
 const seriesCollection = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/[^_]*.md', base: './src/content/series' }),
   schema: z.object({
     title: z.string(),
     description: z.string(),

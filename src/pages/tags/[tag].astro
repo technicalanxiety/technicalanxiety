@@ -53,7 +53,7 @@ const postCount = posts.length;
               <article class="post-preview">
                 <header class="post-header">
                   <h2 class="post-title">
-                    <a href={`/${post.slug}/`}>{post.data.title}</a>
+                    <a href={`/${post.id}/`}>{post.data.title}</a>
                   </h2>
                   <time class="post-date" datetime={post.data.date.toISOString()}>
                     {post.data.date.toLocaleDateString('en-US', { 
