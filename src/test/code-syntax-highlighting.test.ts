@@ -16,7 +16,7 @@ describe('Property 6: Code Block Syntax Highlighting', () => {
     const files = fs.readdirSync(postsDir).filter(file => file.endsWith('.md'));
     
     return files.map(file => {
-      const content = fs.readFileSync(path.join(postsDir, file), 'utf8');
+      const content = fs.readFileSync(path.join(postsDir, file), 'utf8').replace(/\r\n/g, '\n');
       const frontmatterMatch = content.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
       
       if (!frontmatterMatch) {

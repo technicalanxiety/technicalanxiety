@@ -33,7 +33,7 @@ describe('URL Structure Preservation Property Tests', () => {
     const centralDateString = `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
     
     return files.map(file => {
-      const content = fs.readFileSync(path.join(postsDir, file), 'utf8');
+      const content = fs.readFileSync(path.join(postsDir, file), 'utf8').replace(/\r\n/g, '\n');
       const frontmatterMatch = content.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
       
       if (!frontmatterMatch) {
@@ -113,6 +113,7 @@ describe('URL Structure Preservation Property Tests', () => {
               !basePath.includes('tags') && 
               !basePath.includes('page') && 
               !basePath.includes('search') &&
+              !basePath.includes('series') &&
               !staticPages.includes(basePath)) {
             pages.push({
               slug,

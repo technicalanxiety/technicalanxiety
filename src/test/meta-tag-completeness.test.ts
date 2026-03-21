@@ -198,7 +198,7 @@ describe('Meta Tag Completeness Property Tests', () => {
 
   test('Property 11 Coverage: Verify test covers all page types', () => {
     const pages = getBuiltPages();
-    const pagePaths = pages.map(p => p.path);
+    const pagePaths = pages.map(p => p.path.replace(/\\/g, '/'));
     
     // Verify we're testing different types of pages
     const hasHomepage = pagePaths.some(path => path === '/' || path === '');
