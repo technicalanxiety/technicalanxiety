@@ -25,6 +25,76 @@ const description = 'All notable changes to Technical Anxiety website and conten
 
             <div class="changelog-content">
               <section class="changelog-entry">
+                <h2 id="2026-03-21">2026-03-21 - Astro v6 Migration</h2>
+                
+                <h3>Changed</h3>
+                <ul>
+                  <li><strong>Migrated to Astro 6.0.8</strong> from Astro 5.x with Content Layer API</li>
+                  <li>Content config moved from <code>src/content/config.ts</code> to <code>src/content.config.ts</code></li>
+                  <li>Collections now use <code>glob()</code> loaders instead of <code>type: 'content'</code></li>
+                  <li><code>entry.render()</code> replaced with <code>render(entry)</code> from <code>astro:content</code></li>
+                  <li><code>.slug</code> replaced with <code>.id</code> across 15 source files</li>
+                  <li>Node.js pinned to 22 in all GitHub Actions workflows</li>
+                  <li><strong>@astrojs/rss</strong> upgraded to 4.0.17, <strong>@astrojs/sitemap</strong> to 3.7.1</li>
+                </ul>
+
+                <h3>Fixed</h3>
+                <ul>
+                  <li><strong>CRLF line ending handling</strong> in 8 test files — frontmatter regex now normalizes line endings</li>
+                  <li><strong>Windows path separator</strong> issue in meta-tag-completeness test</li>
+                  <li><strong>URL preservation test</strong> now correctly excludes <code>/series/</code> pages</li>
+                  <li><strong>6 broken internal links</strong> corrected in ai-governance-spiral-part2 and ai-observability-part5</li>
+                  <li><strong>NPM vulnerabilities patched</strong> — h3, lodash, @astrojs/check updated</li>
+                </ul>
+
+                <h3>Technical</h3>
+                <ul>
+                  <li>Build: 124 pages generated, all 52 tests passing</li>
+                  <li>Removed Rollup <code>onwarn</code> override from <code>astro.config.mjs</code> (no longer needed)</li>
+                  <li>34 files changed across migration</li>
+                </ul>
+              </section>
+
+              <section class="changelog-entry">
+                <h2 id="2026-03-16">2026-03-16 - Recruiter Chat Disabled & Dependency Updates</h2>
+                
+                <h3>Changed</h3>
+                <ul>
+                  <li><strong>Recruiter chat feature disabled</strong> — removed from active deployment</li>
+                  <li><strong>Dependencies updated</strong> to Astro 5.18.1 and latest packages</li>
+                  <li>Multiple rounds of security vulnerability patches throughout Q1 2026</li>
+                </ul>
+
+                <h3>Fixed</h3>
+                <ul>
+                  <li><strong>Security vulnerabilities</strong> resolved across multiple dependency updates (h3, lodash, fast-xml-parser, devalue)</li>
+                  <li>Backlog directory preserved with <code>.gitkeep</code> to prevent empty collection warnings</li>
+                </ul>
+              </section>
+
+              <section class="changelog-entry">
+                <h2 id="2026-02-05">2026-02-05 - AI Governance Series & Content Pipeline</h2>
+                
+                <h3>Added</h3>
+                <ul>
+                  <li><strong>AI Governance series</strong> (2 parts) with companion deployment post</li>
+                  <li><strong>New articles published</strong>: The Storage Architect's Curse, The Hunger, You Can't Train Clear Thinking, Learning Through the Machine</li>
+                  <li><strong>Content pipeline visualization</strong> added to homepage (ContentFlow component)</li>
+                  <li><strong>Incubation system</strong> for content development with publishing gates</li>
+                  <li><strong>New backlog articles</strong>: K8s Accountability, The Value of Context, Confidence Is Not a Feeling, The Cost of Cognitive Optimization</li>
+                </ul>
+
+                <h3>Fixed</h3>
+                <ul>
+                  <li><strong>Search functionality</strong> rebuilt with Fuse.js for working client-side search</li>
+                  <li><strong>Series name mismatch</strong> corrected: AI-Governance to AI Governance</li>
+                  <li><strong>Series frontmatter</strong> cleaned up — <code>series_order</code> to <code>series_part</code> for published posts</li>
+                  <li><strong>Social share images</strong> fixed for series landing pages</li>
+                  <li>Card hover effects and layout consistency improvements</li>
+                </ul>
+              </section>
+
+              <section class="changelog-entry">
                 <h2 id="2025-01-19">2025-01-19 - Series Landing Pages</h2>
                 
                 <h3>Added</h3>
