@@ -29,6 +29,9 @@
     "sass": "^1.97.0",
     "typescript": "^5.9.3"
   },
+  "overrides": {
+    "fast-xml-parser": "5.5.9"
+  },
   "devDependencies": {
     "@types/jsdom": "^27.0.0",
     "@types/node": "^25.0.3",
