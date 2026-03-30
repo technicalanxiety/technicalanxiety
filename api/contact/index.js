@@ -102,7 +102,19 @@ module.exports = async function (context, req) {
     if (!response.ok) {
       const errorText = await response.text();
       context.log.error('SendGrid error:', response.status, errorText);
-      context.res = { status: 500, body: { error: 'Failed to send message. Please try again.' } };
+
+      let userMessage = 'Failed to send message. Please try again.';
+      if (response.status === 403) {
+        userMessage = 'Email sender not verified. Contact site owner.';
+      } else if (response.status === 401) {
+        userMessage = 'Email service authentication failed. Contact site owner.';
+      }
+
+      context.res = {
+        status: 502,
+        headers: { 'Content-Type': 'application/json' },
+        body: { error: userMessage, sendgridStatus: response.status }
+      };
       return;
     }
 
