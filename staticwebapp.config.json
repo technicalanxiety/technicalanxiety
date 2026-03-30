@@ -47,7 +47,8 @@
     }
   ],
   "navigationFallback": {
-    "rewrite": "/404.html"
+    "rewrite": "/404.html",
+    "exclude": ["/api/*"]
   },
   "responseOverrides": {
     "404": {
