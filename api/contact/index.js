@@ -5,45 +5,64 @@ module.exports = async function (context, req) {
   context.log('Contact API called');
 
   if (req.method !== 'POST') {
-    context.res = { status: 405, body: { error: 'Method not allowed' } };
+    context.res = { status: 405, headers: { 'Content-Type': 'application/json' }, body: { error: 'Method not allowed' } };
     return;
   }
 
   try {
-    const { name, email, company, size, cloudState, interests, problem } = req.body;
+    // SWA managed functions may not auto-parse JSON body
+    let body = req.body;
+    if (typeof body === 'string') {
+      try {
+        body = JSON.parse(body);
+      } catch (parseErr) {
+        context.log.error('Failed to parse request body:', parseErr);
+        context.res = { status: 400, headers: { 'Content-Type': 'application/json' }, body: { error: 'Invalid JSON body' } };
+        return;
+      }
+    }
+
+    if (!body || typeof body !== 'object') {
+      context.res = { status: 400, headers: { 'Content-Type': 'application/json' }, body: { error: 'Request body is required' } };
+      return;
+    }
+
+    const { name, email, company, size, cloudState, interests, problem } = body;
 
     // Input validation
     if (!name || typeof name !== 'string' || name.trim().length === 0) {
-      context.res = { status: 400, body: { error: 'Name is required' } };
+      context.res = { status: 400, headers: { 'Content-Type': 'application/json' }, body: { error: 'Name is required' } };
       return;
     }
 
     if (!email || typeof email !== 'string' || !email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
-      context.res = { status: 400, body: { error: 'Valid email is required' } };
+      context.res = { status: 400, headers: { 'Content-Type': 'application/json' }, body: { error: 'Valid email is required' } };
       return;
     }
 
     if (name.length > 200 || email.length > 200) {
-      context.res = { status: 400, body: { error: 'Input too long' } };
+      context.res = { status: 400, headers: { 'Content-Type': 'application/json' }, body: { error: 'Input too long' } };
       return;
     }
 
     if (company && company.length > 200) {
-      context.res = { status: 400, body: { error: 'Company name too long' } };
+      context.res = { status: 400, headers: { 'Content-Type': 'application/json' }, body: { error: 'Company name too long' } };
       return;
     }
 
     if (problem && problem.length > 5000) {
-      context.res = { status: 400, body: { error: 'Problem description too long (max 5000 chars)' } };
+      context.res = { status: 400, headers: { 'Content-Type': 'application/json' }, body: { error: 'Problem description too long (max 5000 chars)' } };
       return;
     }
 
     const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY;
     if (!SENDGRID_API_KEY) {
       context.log.error('SENDGRID_API_KEY not configured');
-      context.res = { status: 500, body: { error: 'Service configuration error' } };
+      context.res = { status: 500, headers: { 'Content-Type': 'application/json' }, body: { error: 'Service configuration error - SENDGRID_API_KEY missing' } };
       return;
     }
+
+    context.log('SENDGRID_API_KEY found, length:', SENDGRID_API_KEY.length);
 
     // Build email content
     const interestList = Array.isArray(interests) && interests.length > 0
@@ -125,8 +144,12 @@ module.exports = async function (context, req) {
     };
 
   } catch (error) {
-    context.log.error('Contact API error:', error);
-    context.res = { status: 500, body: { error: 'Internal server error' } };
+    context.log.error('Contact API error:', error.message, error.stack);
+    context.res = {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' },
+      body: { error: 'Internal server error', detail: error.message }
+    };
   }
 };
 
