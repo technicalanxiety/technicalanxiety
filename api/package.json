@@ -1,8 +1,11 @@
 {
   "name": "api",
   "version": "1.0.0",
-  "description": "Azure Functions API for recruiter chat",
+  "description": "Azure Functions API for Technical Anxiety",
   "main": "index.js",
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
     "start": "func start"
   },
