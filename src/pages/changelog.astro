@@ -25,6 +25,31 @@ const description = 'All notable changes to Technical Anxiety website and conten
 
             <div class="changelog-content">
               <section class="changelog-entry">
+                <h2 id="2026-03-30">2026-03-30 - Consulting Page & Contact Form</h2>
+                
+                <h3>Added</h3>
+                <ul>
+                  <li><strong>Consulting page</strong> (<code>/consulting</code>) — service offerings, engagement funnel, and contact form</li>
+                  <li><strong>Contact form API</strong> (<code>/api/contact</code>) — Azure Function with SendGrid integration for form submissions</li>
+                  <li>Consulting link added to site navigation</li>
+                  <li>Back to Top button on consulting page</li>
+                </ul>
+
+                <h3>Changed</h3>
+                <ul>
+                  <li>Consulting hero section styled to match homepage full-width hero pattern</li>
+                  <li>Contact section centered to align with hero layout</li>
+                </ul>
+
+                <h3>Technical</h3>
+                <ul>
+                  <li>Form submits via fetch to <code>/api/contact</code>, same SWA API pattern as recruiter chat</li>
+                  <li>SendGrid v3 API for email delivery, reply-to set to submitter's address</li>
+                  <li>Server-side input validation, HTML escaping, structured email formatting</li>
+                </ul>
+              </section>
+
+              <section class="changelog-entry">
                 <h2 id="2026-03-21">2026-03-21 - Astro v6 Migration</h2>
                 
                 <h3>Changed</h3>

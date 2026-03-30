@@ -1,0 +1,1083 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import BackToTop from '../components/BackToTop.astro';
+---
+
+<BaseLayout 
+  title="Consulting | Technical Anxiety"
+  description="Post-migration Azure architecture consulting. Platform observability, governance, and design for organizations that shipped to cloud and are now living with the consequences."
+>
+  <Header />
+
+  <!-- Hero - full width, matches homepage hero style -->
+  <section class="consulting-hero">
+    <div class="container">
+      <div class="consulting-hero-wrapper">
+        <h1 class="consulting-title">Consulting</h1>
+        <span class="consulting-subtitle">Post-migration architecture for Azure environments in production.</span>
+        <p class="consulting-lead">
+          You migrated to Azure. It works, mostly. But costs are climbing without a clear reason, 
+          incidents surface from users before your alerts do, and the next expansion is exposing 
+          cracks in a foundation that was never quite finished.
+        </p>
+        <p class="consulting-lead">
+          That is the problem I solve. Not in theory. In production, across 100+ organizations, 
+          over twenty years.
+        </p>
+        <div class="consulting-hero-buttons">
+          <a href="#contact" class="button button-primary">Start a Conversation</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="consulting-page">
+    <div class="container">
+
+      <!-- Who This Is For -->
+      <section class="consulting-section">
+        <h2 class="section-title">Who This Is For</h2>
+        <p class="section-intro">
+          This is not for organizations at the beginning of their cloud journey. It is for those 
+          12 to 24 months post-migration who are realizing that getting to Azure and operating 
+          Azure are two different problems.
+        </p>
+        <div class="signal-grid">
+          <div class="signal-card">
+            <p>You have monitoring but no confidence in what it is actually watching</p>
+          </div>
+          <div class="signal-card">
+            <p>Costs are unpredictable and the tagging hygiene from the migration never got cleaned up</p>
+          </div>
+          <div class="signal-card">
+            <p>Policy exists on paper, but the environment has drifted and nobody owns enforcement</p>
+          </div>
+          <div class="signal-card">
+            <p>You are about to onboard another team or product and the platform is not ready to hold the weight</p>
+          </div>
+          <div class="signal-card">
+            <p>The team that built it has moved on and institutional knowledge left with them</p>
+          </div>
+          <div class="signal-card">
+            <p>You are being asked to scale something that was never designed to scale</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- How It Works -->
+      <section class="consulting-section">
+        <h2 class="section-title">How It Works</h2>
+        <p class="section-intro">
+          Every engagement starts in the same place: a clear assessment of what you actually have 
+          before recommending what you should do. The path forward is chosen from evidence, not assumptions.
+        </p>
+
+        <div class="funnel">
+
+          <!-- Step 1 -->
+          <div class="funnel-step">
+            <div class="funnel-step-header">
+              <div class="step-number">01</div>
+              <div class="step-meta">
+                <h3 class="step-title">Discovery Call</h3>
+                <span class="step-price">Free &nbsp;&middot;&nbsp; 30 minutes</span>
+              </div>
+            </div>
+            <p class="step-description">
+              A direct conversation about your current environment, the problem you are trying to solve, 
+              and whether this is the right engagement for it. This is mutual qualification. You are 
+              deciding if I am the right fit. I am deciding if I can add real value to your situation.
+            </p>
+            <p class="step-description">
+              No pitch. No proposal template. Just an honest conversation.
+            </p>
+          </div>
+
+          <div class="funnel-arrow">&#8595;</div>
+
+          <!-- Step 2 -->
+          <div class="funnel-step funnel-step--featured">
+            <div class="funnel-step-header">
+              <div class="step-number">02</div>
+              <div class="step-meta">
+                <h3 class="step-title">Platform Assessment</h3>
+                <span class="step-price">$750 &nbsp;&middot;&nbsp; Fixed scope, written deliverable</span>
+              </div>
+            </div>
+            <p class="step-description">
+              A structured review of your current Azure environment covering operational posture, 
+              governance state, observability coverage, and architecture integrity. Delivered as a 
+              written report that includes current state, risk surface, and a prioritized path 
+              forward naming which engagements apply and why.
+            </p>
+            <p class="step-description">
+              The deliverable is yours. If you choose to act on it independently, you can. 
+              If you want to continue, the Assessment becomes the foundation for everything that follows.
+            </p>
+            <div class="assessment-includes">
+              <h4>The assessment covers:</h4>
+              <ul>
+                <li>Monitoring coverage and alert reliability</li>
+                <li>Policy enforcement and environment drift</li>
+                <li>Cost visibility and tagging hygiene</li>
+                <li>RBAC structure and ownership clarity</li>
+                <li>Organizational accountability gaps</li>
+                <li>Prioritized recommendations with rationale</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="funnel-arrow">&#8595;</div>
+
+          <!-- Step 3: Three Paths -->
+          <div class="paths-section">
+            <div class="paths-header">
+              <h3 class="paths-title">Engagement Paths</h3>
+              <p class="paths-description">
+                The Assessment identifies which of the following apply to your environment. 
+                Each can be engaged individually or combined. All are available as standalone 
+                fixed-scope projects or as part of the monthly retainer.
+              </p>
+            </div>
+
+            <div class="paths-grid">
+
+              <div class="path-card">
+                <div class="path-header">
+                  <h4 class="path-title">Platform Observability</h4>
+                  <span class="path-price">From $2,000</span>
+                </div>
+                <p class="path-description">
+                  For environments where monitoring exists but nobody trusts it. Alert noise has 
+                  replaced signal. Dashboards are built but not acted on. Incidents arrive from 
+                  users before they arrive from tools.
+                </p>
+                <div class="path-deliverables">
+                  <h5>Deliverables include:</h5>
+                  <ul>
+                    <li>Observability design covering what to watch and why</li>
+                    <li>Alert thresholds that reflect actual operational risk</li>
+                    <li>Runbook triggers and escalation paths</li>
+                    <li>Ownership assignments so signal produces action</li>
+                    <li>Log Analytics and Azure Monitor rationalization</li>
+                  </ul>
+                </div>
+                <p class="path-note">
+                  The technical fix without the organizational accountability structure produces 
+                  better-looking dashboards nobody acts on. Both layers get addressed.
+                </p>
+              </div>
+
+              <div class="path-card">
+                <div class="path-header">
+                  <h4 class="path-title">Governance &amp; Scale</h4>
+                  <span class="path-price">From $2,000</span>
+                </div>
+                <p class="path-description">
+                  For environments where policy exists on paper but enforcement is inconsistent, 
+                  costs are climbing without clear attribution, and the environment no longer 
+                  resembles the original design.
+                </p>
+                <div class="path-deliverables">
+                  <h5>Deliverables include:</h5>
+                  <ul>
+                    <li>Governance framework with enforcement approach</li>
+                    <li>Azure Policy definitions and remediation roadmap</li>
+                    <li>Cost control structure and tagging standards</li>
+                    <li>RBAC rationalization and ownership model</li>
+                    <li>Organizational clarity on who enforces what</li>
+                  </ul>
+                </div>
+                <p class="path-note">
+                  Governance that blocks teams creates shadow IT. The goal is a framework that 
+                  enables speed by removing ambiguity, not one that adds friction.
+                </p>
+              </div>
+
+              <div class="path-card">
+                <div class="path-header">
+                  <h4 class="path-title">Platform Design</h4>
+                  <span class="path-price">From $2,500</span>
+                </div>
+                <p class="path-description">
+                  For organizations planning a migration, a significant expansion, or a rebuild of 
+                  a platform that was shipped fast the first time. The goal is architecture that 
+                  does not create the operational debt the other two paths fix.
+                </p>
+                <div class="path-deliverables">
+                  <h5>Deliverables include:</h5>
+                  <ul>
+                    <li>Reference architecture with decision rationale</li>
+                    <li>Implementation roadmap with sequencing</li>
+                    <li>Observability and governance baked into the design</li>
+                    <li>Organizational readiness assessment</li>
+                    <li>Platform decisions documented so they survive team changes</li>
+                  </ul>
+                </div>
+                <p class="path-note">
+                  Platform decisions compound. A weak foundation does not just slow you down today. 
+                  It limits what you can build on top of it for years.
+                </p>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="funnel-arrow">&#8595;</div>
+
+          <!-- Step 4: Retainer -->
+          <div class="funnel-step funnel-step--retainer">
+            <div class="funnel-step-header">
+              <div class="step-number">04</div>
+              <div class="step-meta">
+                <h3 class="step-title">Monthly Retainer</h3>
+                <span class="step-price">20 hours per month &nbsp;&middot;&nbsp; $5,000/month</span>
+              </div>
+            </div>
+            <p class="step-description">
+              For organizations that need sustained architecture guidance, not a one-time fix. 
+              The retainer covers both organizational advisory and hands-on technical deliverables. 
+              Weekly touchpoints, async availability, and active architecture work within the monthly hours.
+            </p>
+            <p class="step-description">
+              This is selective. I work with retainer clients where I can add real value over time, 
+              not where I am filling hours. The Assessment and initial engagement determine fit 
+              before the retainer conversation happens.
+            </p>
+            <div class="retainer-covers">
+              <div class="retainer-column">
+                <h4>Organizational</h4>
+                <ul>
+                  <li>Architecture decision support</li>
+                  <li>Stakeholder communication guidance</li>
+                  <li>Team structure and ownership review</li>
+                  <li>Technology selection advisory</li>
+                </ul>
+              </div>
+              <div class="retainer-column">
+                <h4>Technical</h4>
+                <ul>
+                  <li>Hands-on implementation work</li>
+                  <li>Policy and governance deliverables</li>
+                  <li>Observability design and configuration</li>
+                  <li>Architecture documentation</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Background Strip -->
+      <section class="background-strip">
+        <p>
+          Twenty years. Helpdesk to platform architecture. Healthcare, energy, finance, SaaS. 
+          Built managed services from scratch as employee #2 at 10th Magnitude. Currently Senior 
+          Product Architect at Rackspace. Over 100 Azure environments. The pattern recognition 
+          that comes from that volume is what you are actually buying.
+        </p>
+        <a href="/resume/" class="btn-secondary">View Full Background</a>
+      </section>
+
+      <!-- Contact Form -->
+      <section class="consulting-section" id="contact">
+        <h2 class="section-title">Start a Conversation</h2>
+        <p class="section-intro">
+          Fill out what you can. The more context you provide, the more useful the Discovery Call 
+          will be. If you are not sure how to answer something, skip it.
+        </p>
+
+        <form class="contact-form" id="consulting-form">
+          <input type="hidden" name="form-name" value="consulting-inquiry" />
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name" class="form-label">Name <span class="required">*</span></label>
+              <input type="text" id="name" name="name" class="form-input" required placeholder="Your name" />
+            </div>
+            <div class="form-group">
+              <label for="email" class="form-label">Email <span class="required">*</span></label>
+              <input type="email" id="email" name="email" class="form-input" required placeholder="your@email.com" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="company" class="form-label">Company</label>
+              <input type="text" id="company" name="company" class="form-input" placeholder="Organization name" />
+            </div>
+            <div class="form-group">
+              <label for="size" class="form-label">Company Size</label>
+              <select id="size" name="size" class="form-input form-select">
+                <option value="">Select range</option>
+                <option value="1-50">1 to 50 employees</option>
+                <option value="51-250">51 to 250 employees</option>
+                <option value="251-1000">251 to 1,000 employees</option>
+                <option value="1000+">1,000 or more employees</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group form-group--full">
+            <label for="cloud-state" class="form-label">Current Cloud State</label>
+            <select id="cloud-state" name="cloud-state" class="form-input form-select">
+              <option value="">Select the closest description</option>
+              <option value="planning">Planning a migration or major expansion</option>
+              <option value="in-progress">Migration in progress</option>
+              <option value="post-migration-early">Post-migration, less than 12 months in</option>
+              <option value="post-migration-established">Post-migration, 12 to 24 months in</option>
+              <option value="established-scaling">Established environment, trying to scale</option>
+              <option value="established-fixing">Established environment, cleaning up technical debt</option>
+            </select>
+          </div>
+
+          <div class="form-group form-group--full">
+            <label class="form-label">Areas of Interest</label>
+            <div class="checkbox-group">
+              <label class="checkbox-label">
+                <input type="checkbox" name="interest" value="observability" class="checkbox-input" />
+                <span>Platform Observability</span>
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="interest" value="governance" class="checkbox-input" />
+                <span>Governance &amp; Scale</span>
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="interest" value="platform-design" class="checkbox-input" />
+                <span>Platform Design</span>
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="interest" value="not-sure" class="checkbox-input" />
+                <span>Not sure yet, need the assessment first</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group form-group--full">
+            <label for="problem" class="form-label">What are you trying to solve?</label>
+            <textarea 
+              id="problem" 
+              name="problem" 
+              class="form-input form-textarea" 
+              rows="5"
+              placeholder="Describe the problem in your own words. No need to frame it technically. What is actually going wrong, or what are you trying to build?"
+            ></textarea>
+          </div>
+
+          <div class="form-submit">
+            <button type="submit" class="btn-primary btn-submit" id="submit-btn">Request Discovery Call</button>
+            <p class="form-note" id="form-status">I respond within two business days. Discovery calls are scheduled within one week.</p>
+          </div>
+        </form>
+      </section>
+
+    </div>
+  </main>
+
+  <BackToTop />
+  <Footer />
+</BaseLayout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('consulting-form');
+    const submitBtn = document.getElementById('submit-btn');
+    const formStatus = document.getElementById('form-status');
+
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
+      formStatus.textContent = '';
+      formStatus.className = 'form-note';
+
+      // Gather checkbox values
+      const interests = Array.from(
+        form.querySelectorAll('input[name="interest"]:checked')
+      ).map(cb => cb.value);
+
+      const payload = {
+        name: form.querySelector('#name')?.value || '',
+        email: form.querySelector('#email')?.value || '',
+        company: form.querySelector('#company')?.value || '',
+        size: form.querySelector('#size')?.value || '',
+        cloudState: form.querySelector('#cloud-state')?.value || '',
+        interests,
+        problem: form.querySelector('#problem')?.value || ''
+      };
+
+      try {
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        if (!res.ok) {
+          const err = await res.json().catch(() => ({}));
+          throw new Error(err.error || `Request failed (${res.status})`);
+        }
+
+        formStatus.textContent = 'Sent. I\'ll be in touch within two business days.';
+        formStatus.className = 'form-note form-success';
+        form.reset();
+      } catch (err) {
+        console.error('Form submission error:', err);
+        formStatus.textContent = err.message || 'Something went wrong. Please try again or email directly.';
+        formStatus.className = 'form-note form-error';
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Request Discovery Call';
+      }
+    });
+  });
+</script>
+
+<style>
+  .consulting-page {
+    padding: 2rem 0 4rem;
+  }
+
+  /* Hero - matches homepage hero style */
+  .consulting-hero {
+    padding: 60px 0 80px;
+    background: linear-gradient(135deg, 
+      var(--bg-primary) 0%, 
+      var(--bg-secondary) 100%);
+    border-bottom: 1px solid var(--border-color);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .consulting-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      radial-gradient(circle at 20% 50%, rgba(33, 150, 243, 0.03) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(33, 150, 243, 0.03) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .consulting-hero-wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .consulting-title {
+    font-size: 48px;
+    font-weight: 800;
+    line-height: 1.2;
+    color: var(--text-heading);
+    margin-bottom: 0.5rem;
+  }
+
+  .consulting-subtitle {
+    display: block;
+    color: var(--accent-color);
+    font-size: 24px;
+    margin-bottom: var(--space-lg);
+    font-weight: 500;
+  }
+
+  .consulting-lead {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    max-width: 660px;
+    margin: 0 auto 1.25rem;
+  }
+
+  .consulting-lead:last-of-type {
+    margin-bottom: 2rem;
+  }
+
+  .consulting-hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  /* Buttons */
+  .btn-primary {
+    display: inline-block;
+    background: var(--accent-color);
+    color: white;
+    padding: 0.875rem 2rem;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: opacity var(--transition-fast), transform var(--transition-fast);
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn-primary:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary {
+    display: inline-block;
+    background: transparent;
+    color: var(--accent-color);
+    padding: 0.875rem 2rem;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    border: 2px solid var(--accent-color);
+    transition: all var(--transition-fast);
+    white-space: nowrap;
+  }
+
+  .btn-secondary:hover {
+    background: var(--accent-color);
+    color: white;
+  }
+
+  /* Sections */
+  .consulting-section {
+    margin-bottom: 5rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-heading);
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  .section-intro {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    max-width: 720px;
+    margin-bottom: 2.5rem;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Signal Grid */
+  .signal-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  @media (min-width: 1024px) {
+    .signal-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .signal-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .signal-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-left: 3px solid var(--accent-color);
+    border-radius: var(--radius-md);
+    padding: 1.25rem 1.5rem;
+  }
+
+  .signal-card p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+    font-size: 0.95rem;
+  }
+
+  /* Funnel */
+  .funnel {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .funnel-step {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+  }
+
+  .funnel-step--featured {
+    border-color: var(--accent-color);
+    border-width: 2px;
+  }
+
+  .funnel-step--retainer {
+    border-color: var(--accent-color);
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+  }
+
+  .funnel-step-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .step-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    opacity: 0.4;
+    line-height: 1;
+    flex-shrink: 0;
+    width: 3rem;
+  }
+
+  .step-meta {
+    flex: 1;
+  }
+
+  .step-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-heading);
+    margin-bottom: 0.25rem;
+  }
+
+  .step-price {
+    font-size: 0.9rem;
+    color: var(--accent-color);
+    font-weight: 600;
+  }
+
+  .step-description {
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+  }
+
+  .step-description:last-child {
+    margin-bottom: 0;
+  }
+
+  .assessment-includes {
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-md);
+    padding: 1.25rem 1.5rem;
+    margin-top: 1.25rem;
+  }
+
+  .assessment-includes h4 {
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+    margin-bottom: 0.75rem;
+  }
+
+  .assessment-includes ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+  }
+
+  @media (max-width: 640px) {
+    .assessment-includes ul {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .assessment-includes li {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    padding-left: 1.25rem;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .assessment-includes li::before {
+    content: '\2192';
+    position: absolute;
+    left: 0;
+    color: var(--accent-color);
+  }
+
+  .funnel-arrow {
+    text-align: center;
+    font-size: 1.5rem;
+    color: var(--accent-color);
+    opacity: 0.5;
+    padding: 0.75rem 0;
+  }
+
+  /* Paths */
+  .paths-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .paths-header {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+  }
+
+  .paths-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-heading);
+    margin-bottom: 0.75rem;
+  }
+
+  .paths-description {
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin: 0;
+    max-width: 680px;
+  }
+
+  .paths-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+
+  @media (max-width: 1024px) {
+    .paths-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .path-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .path-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .path-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--text-heading);
+    margin: 0;
+  }
+
+  .path-price {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--accent-color);
+    white-space: nowrap;
+  }
+
+  .path-description {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    font-size: 0.95rem;
+    margin: 0;
+  }
+
+  .path-deliverables h5 {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+    margin-bottom: 0.6rem;
+  }
+
+  .path-deliverables ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .path-deliverables li {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    padding-left: 1.25rem;
+    position: relative;
+    line-height: 1.4;
+  }
+
+  .path-deliverables li::before {
+    content: '\2192';
+    position: absolute;
+    left: 0;
+    color: var(--accent-color);
+  }
+
+  .path-note {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    font-style: italic;
+    line-height: 1.6;
+    margin: 0;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border-color);
+  }
+
+  /* Retainer */
+  .retainer-covers {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+  }
+
+  @media (max-width: 640px) {
+    .retainer-covers {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .retainer-column h4 {
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--accent-color);
+    margin-bottom: 0.75rem;
+  }
+
+  .retainer-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .retainer-column li {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    padding-left: 1.25rem;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .retainer-column li::before {
+    content: '\2192';
+    position: absolute;
+    left: 0;
+    color: var(--accent-color);
+  }
+
+  /* Background Strip */
+  .background-strip {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem;
+    margin-bottom: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .background-strip p {
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin: 0;
+    max-width: 680px;
+    font-size: 1rem;
+  }
+
+  /* Contact Form */
+  .contact-form {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+
+  @media (max-width: 640px) {
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .form-group--full {
+    margin-bottom: 1.25rem;
+  }
+
+  .form-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+  }
+
+  .required {
+    color: var(--accent-color);
+  }
+
+  .form-input {
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+    font-family: inherit;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    transition: border-color var(--transition-fast);
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .form-input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+  }
+
+  .form-select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.5rem;
+    cursor: pointer;
+  }
+
+  .form-textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  .checkbox-group {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    margin-top: 0.25rem;
+  }
+
+  @media (max-width: 640px) {
+    .checkbox-group {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    cursor: pointer;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+  }
+
+  .checkbox-input {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    accent-color: var(--accent-color);
+    cursor: pointer;
+  }
+
+  .form-submit {
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-submit {
+    font-size: 1rem;
+    padding: 1rem 2.5rem;
+  }
+
+  .form-note {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .form-success {
+    color: #4CAF50;
+    font-weight: 600;
+  }
+
+  .form-error {
+    color: #f44336;
+    font-weight: 600;
+  }
+
+  @media (max-width: 768px) {
+    .consulting-title {
+      font-size: 36px;
+    }
+
+    .consulting-subtitle {
+      font-size: 20px;
+    }
+
+    .consulting-hero {
+      padding: 40px 0 50px;
+    }
+
+    .background-strip {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .contact-form {
+      padding: 1.75rem;
+    }
+  }
+</style>
