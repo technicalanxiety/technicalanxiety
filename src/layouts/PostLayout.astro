@@ -8,6 +8,7 @@ import Breadcrumbs from '../components/Breadcrumbs.astro';
 import SeriesNavigation from '../components/SeriesNavigation.astro';
 import BackToTop from '../components/BackToTop.astro';
 import GiscusComments from '../components/GiscusComments.astro';
+import RecruiterChat from '../components/RecruiterChat.astro';
 import { siteConfig } from '../config';
 import type { CollectionEntry } from 'astro:content';
 import { render } from 'astro:content';
@@ -130,6 +131,7 @@ const canonicalURL = new URL(`/${post.id}/`, Astro.site).href;
   </main>
   
   <BackToTop />
+  <RecruiterChat articleContext={{ title: post.data.title, description: post.data.description || '', content: post.body?.slice(0, 3000) || '' }} />
   <Footer />
 </BaseLayout>
 

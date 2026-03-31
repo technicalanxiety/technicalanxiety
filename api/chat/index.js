@@ -1,4 +1,4 @@
-// Azure Static Web App API function for Groq chat
+// Azure Static Web App API function for Gemini chat
 // POC: Client-side rate limiting, no storage
 
 module.exports = async function (context, req) {
@@ -14,7 +14,7 @@ module.exports = async function (context, req) {
   }
 
   try {
-    const { message, conversationHistory = [] } = req.body;
+    const { message, conversationHistory = [], articleContext } = req.body;
 
     // Input validation
     if (!message || typeof message !== 'string') {
@@ -33,7 +33,7 @@ module.exports = async function (context, req) {
       return;
     }
 
-    if (conversationHistory.length > 10) {
+    if (conversationHistory.length > 8) {
       context.res = {
         status: 400,
         body: { error: 'Conversation history too long' }
@@ -41,18 +41,29 @@ module.exports = async function (context, req) {
       return;
     }
 
-    // Get Groq API key from environment
-    const GROQ_API_KEY = process.env.GROQ_API_KEY;
-    if (!GROQ_API_KEY) {
-      context.log.error('GROQ_API_KEY not configured');
+    // Get Gemini API key from environment
+    const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
+    if (!GEMINI_API_KEY) {
+      context.log.error('GEMINI_API_KEY not configured');
       context.res = {
         status: 500,
-        body: { error: 'Service configuration error - GROQ_API_KEY missing' }
+        body: { error: 'Service configuration error - GEMINI_API_KEY missing' }
       };
       return;
     }
 
-    context.log('GROQ_API_KEY found, length:', GROQ_API_KEY.length);
+    context.log('GEMINI_API_KEY found, length:', GEMINI_API_KEY.length);
+
+    // Validate articleContext if present
+    let validatedArticleContext = null;
+    if (articleContext && typeof articleContext === 'object') {
+      const title = typeof articleContext.title === 'string' ? articleContext.title.slice(0, 200) : '';
+      const description = typeof articleContext.description === 'string' ? articleContext.description.slice(0, 500) : '';
+      const content = typeof articleContext.content === 'string' ? articleContext.content.slice(0, 3000) : '';
+      if (title) {
+        validatedArticleContext = { title, description, content };
+      }
+    }
 
     // Build system prompt with Jason's context
     const systemPrompt = `You are an AI assistant helping recruiters learn about Jason Rinehart, a Senior Product Architect and Technology Leader.
@@ -135,7 +146,16 @@ For deeper insights into Jason's career philosophy, personal journey, and though
 - Understand his approach to mental health and authenticity in tech
 - Explore his detailed technical content and real-world solutions
 
-If you don't know something specific, say so honestly and suggest they visit technicalanxiety.com or contact Jason directly at jason.rinehart@technicalanxiety.com.`;
+If you don't know something specific, say so honestly and suggest they visit technicalanxiety.com or contact Jason directly at jason.rinehart@technicalanxiety.com.${validatedArticleContext ? `
+
+---
+ARTICLE CONTEXT:
+The recruiter is currently reading one of Jason's published articles. Prioritize answering questions about this specific article. Draw on his background above where relevant, but ground your answers in what the article actually says.
+
+Title: ${validatedArticleContext.title}
+Summary: ${validatedArticleContext.description}
+Article content:
+${validatedArticleContext.content}` : ''}`;
 
     // Build messages array for chat completion API
     const messages = [
@@ -159,19 +179,19 @@ If you don't know something specific, say so honestly and suggest they visit tec
       content: message
     });
 
-    context.log('Calling Groq Chat Completions API...');
+    context.log('Calling Gemini Chat Completions API...');
 
-    // Call Groq API (OpenAI-compatible endpoint)
+    // Call Gemini API (OpenAI-compatible endpoint)
     const response = await fetch(
-      'https://api.groq.com/openai/v1/chat/completions',
+      'https://generativelanguage.googleapis.com/v1beta/openai/chat/completions',
       {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${GROQ_API_KEY}`,
+          'Authorization': `Bearer ${GEMINI_API_KEY}`,
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          model: 'llama-3.3-70b-versatile',
+          model: 'gemini-2.0-flash',
           messages: messages,
           max_tokens: 500,
           temperature: 0.7,
@@ -180,11 +200,11 @@ If you don't know something specific, say so honestly and suggest they visit tec
       }
     );
 
-    context.log('Groq API response status:', response.status);
+    context.log('Gemini API response status:', response.status);
 
     if (!response.ok) {
       const errorText = await response.text();
-      context.log.error('Groq API error:', response.status, errorText);
+      context.log.error('Gemini API error:', response.status, errorText);
       
       if (response.status === 429) {
         context.res = {
@@ -196,7 +216,7 @@ If you don't know something specific, say so honestly and suggest they visit tec
 
       context.res = {
         status: 500,
-        body: { error: `Groq API error: ${response.status} - ${errorText.substring(0, 100)}` }
+        body: { error: `Gemini API error: ${response.status} - ${errorText.substring(0, 100)}` }
       };
       return;
     }
@@ -213,7 +233,7 @@ If you don't know something specific, say so honestly and suggest they visit tec
       },
       body: {
         response: generatedText.trim(),
-        model: 'llama-3.3-70b-versatile'
+        model: 'gemini-2.0-flash'
       }
     };
 
