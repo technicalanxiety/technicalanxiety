@@ -191,7 +191,7 @@ ${validatedArticleContext.content}` : ''}`;
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          model: 'llama-3.1-8b-instant',
+          model: 'llama-3.3-70b-versatile',
           messages: messages,
           max_tokens: 500,
           temperature: 0.7,
@@ -233,7 +233,7 @@ ${validatedArticleContext.content}` : ''}`;
       },
       body: {
         response: generatedText.trim(),
-        model: 'llama-3.1-8b-instant'
+        model: 'llama-3.3-70b-versatile'
       }
     };
 
