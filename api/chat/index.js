@@ -1,4 +1,4 @@
-// Azure Static Web App API function for Gemini chat
+// Azure Static Web App API function for Groq chat
 // POC: Client-side rate limiting, no storage
 
 module.exports = async function (context, req) {
@@ -41,18 +41,18 @@ module.exports = async function (context, req) {
       return;
     }
 
-    // Get Gemini API key from environment
-    const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
-    if (!GEMINI_API_KEY) {
-      context.log.error('GEMINI_API_KEY not configured');
+    // Get Groq API key from environment
+    const GROQ_API_KEY = process.env.GROQ_API_KEY;
+    if (!GROQ_API_KEY) {
+      context.log.error('GROQ_API_KEY not configured');
       context.res = {
         status: 500,
-        body: { error: 'Service configuration error - GEMINI_API_KEY missing' }
+        body: { error: 'Service configuration error - GROQ_API_KEY missing' }
       };
       return;
     }
 
-    context.log('GEMINI_API_KEY found, length:', GEMINI_API_KEY.length);
+    context.log('GROQ_API_KEY found, length:', GROQ_API_KEY.length);
 
     // Validate articleContext if present
     let validatedArticleContext = null;
@@ -179,19 +179,19 @@ ${validatedArticleContext.content}` : ''}`;
       content: message
     });
 
-    context.log('Calling Gemini Chat Completions API...');
+    context.log('Calling Groq Chat Completions API...');
 
-    // Call Gemini API (OpenAI-compatible endpoint)
+    // Call Groq API (OpenAI-compatible endpoint)
     const response = await fetch(
-      'https://generativelanguage.googleapis.com/v1beta/openai/chat/completions',
+      'https://api.groq.com/openai/v1/chat/completions',
       {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${GEMINI_API_KEY}`,
+          'Authorization': `Bearer ${GROQ_API_KEY}`,
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          model: 'gemini-2.0-flash',
+          model: 'llama-3.1-8b-instant',
           messages: messages,
           max_tokens: 500,
           temperature: 0.7,
@@ -200,11 +200,11 @@ ${validatedArticleContext.content}` : ''}`;
       }
     );
 
-    context.log('Gemini API response status:', response.status);
+    context.log('Groq API response status:', response.status);
 
     if (!response.ok) {
       const errorText = await response.text();
-      context.log.error('Gemini API error:', response.status, errorText);
+      context.log.error('Groq API error:', response.status, errorText);
       
       if (response.status === 429) {
         context.res = {
@@ -216,7 +216,7 @@ ${validatedArticleContext.content}` : ''}`;
 
       context.res = {
         status: 500,
-        body: { error: `Gemini API error: ${response.status} - ${errorText.substring(0, 100)}` }
+        body: { error: `Groq API error: ${response.status} - ${errorText.substring(0, 100)}` }
       };
       return;
     }
@@ -233,7 +233,7 @@ ${validatedArticleContext.content}` : ''}`;
       },
       body: {
         response: generatedText.trim(),
-        model: 'gemini-2.0-flash'
+        model: 'llama-3.1-8b-instant'
       }
     };
 
