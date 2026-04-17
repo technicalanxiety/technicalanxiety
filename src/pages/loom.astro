@@ -1,0 +1,684 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import BackToTop from '../components/BackToTop.astro';
+---
+
+<BaseLayout
+  title="Project Loom - PostgreSQL-Native Memory Compiler for AI Workflows"
+  description="A PostgreSQL-native memory compiler for AI workflows. Evidence-grounded memory, strict scoping, shallow graph, inspectable context assembly."
+>
+  <Header />
+
+  <!-- Hero -->
+  <section class="loom-hero">
+    <div class="container">
+      <div class="loom-hero-wrapper">
+        <span class="loom-eyebrow">Project</span>
+        <h1 class="loom-title">Loom</h1>
+        <p class="loom-lead">
+          A PostgreSQL-native memory compiler for AI workflows. Evidence-grounded memory,
+          strict scoping, shallow graph, inspectable context assembly.
+        </p>
+        <p class="loom-tagline">"Weaving threads of knowledge into fabric."</p>
+      </div>
+    </div>
+  </section>
+
+  <main class="loom-page">
+    <div class="container">
+
+      <!-- The Problem -->
+      <section class="loom-section">
+        <span class="loom-section-label">The problem</span>
+        <h2 class="section-title">Every LLM starts with amnesia</h2>
+        <p class="section-body">
+          Claude Code doesn't know what you discussed in ChatGPT. Copilot doesn't know the
+          architecture decisions you made in Claude. You re-explain the same context dozens of
+          times per week. Simple top-k vector retrieval doesn't fix this. It returns fragments
+          without structure, ranking, or provenance.
+        </p>
+      </section>
+
+      <!-- What Loom Is -->
+      <section class="loom-section">
+        <span class="loom-section-label">What Loom is</span>
+        <h2 class="section-title">A memory layer that follows you across tools</h2>
+        <p class="section-body">
+          Loom watches your work across LLM tools, builds a knowledge graph from it, and compiles
+          the right context into any AI tool at query time. It replaces "paste your context" with
+          an always-on memory layer spanning Claude Code, Codex CLI, ChatGPT, GitHub Copilot, and
+          anything that speaks MCP.
+        </p>
+        <div class="loom-flow-strip">
+          <span class="loom-flow-step">You work normally</span>
+          <span class="loom-flow-arrow">&rarr;</span>
+          <span class="loom-flow-step">Loom learns</span>
+          <span class="loom-flow-arrow">&rarr;</span>
+          <span class="loom-flow-step">You ask any LLM</span>
+          <span class="loom-flow-arrow">&rarr;</span>
+          <span class="loom-flow-step">Loom compiles + injects</span>
+        </div>
+      </section>
+
+      <!-- Architecture -->
+      <section class="loom-section">
+        <span class="loom-section-label">Architecture</span>
+        <h2 class="section-title">Two pipelines, one database</h2>
+        <p class="section-body">
+          PostgreSQL 16 is the single system of record. No external vector store. No graph database.
+          pgvector handles embeddings, recursive CTEs handle graph traversal, pgAudit handles
+          compliance. Two strictly separated pipelines share the database but never share runtime.
+        </p>
+        <div class="loom-pipeline-grid">
+          <div class="loom-card">
+            <h3><span class="loom-dot loom-dot--teal"></span> Online pipeline</h3>
+            <ol>
+              <li>Intent classification (primary + secondary class)</li>
+              <li>Namespace resolution</li>
+              <li>Parallel retrieval profiles (1-3, merged)</li>
+              <li>Memory weight modifiers per task class</li>
+              <li>Rank on 4 dimensions: relevance, recency, stability, provenance</li>
+              <li>Compile context package</li>
+              <li>Full audit trace</li>
+            </ol>
+          </div>
+          <div class="loom-card">
+            <h3><span class="loom-dot loom-dot--accent"></span> Offline pipeline</h3>
+            <ol>
+              <li>Ingest episode + SHA-256 dedup</li>
+              <li>Extract entities (structured prompt)</li>
+              <li>Three-pass entity resolution</li>
+              <li>Extract facts against predicate registry</li>
+              <li>Link facts to source episodes</li>
+              <li>Resolve supersession</li>
+              <li>Compute derived ranking state</li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <!-- Memory Model -->
+      <section class="loom-section">
+        <span class="loom-section-label">Memory model</span>
+        <h2 class="section-title">Three types, strict authority</h2>
+        <p class="section-body">
+          Facts are never more authoritative than their source episodes. Procedures are candidate
+          patterns until promoted. Two tiers in MVP: Hot (always injected, configurable budget per
+          namespace) and Warm (retrieved per-query). New facts always start warm. Namespace
+          isolation is absolute.
+        </p>
+        <div class="loom-memory-row">
+          <div class="loom-mem-card loom-mem--teal">
+            <h4>Episodic</h4>
+            <p>Raw interaction records. Immutable evidence. Strongest audit anchor. Primary for debug and compliance tasks.</p>
+          </div>
+          <div class="loom-mem-card loom-mem--blue">
+            <h4>Semantic</h4>
+            <p>Extracted facts and entity relationships. Derived from episodes. Revisable. Primary for architecture tasks.</p>
+          </div>
+          <div class="loom-mem-card loom-mem--purple">
+            <h4>Procedural</h4>
+            <p>Inferred behavioral patterns. Most provisional. Requires 3+ episodes across 7+ days and 0.8+ confidence to promote.</p>
+          </div>
+        </div>
+        <p class="loom-authority">Authority: Episodes &gt; Facts &gt; Procedures</p>
+      </section>
+
+      <!-- Technology Stack -->
+      <section class="loom-section">
+        <span class="loom-section-label">Technology stack</span>
+        <h2 class="section-title">Rust engine, local inference, zero cloud dependency</h2>
+        <div class="loom-stack-grid">
+          <div class="loom-stack-item">
+            <span class="loom-stack-label">Engine</span>
+            <strong class="loom-stack-value">Rust</strong>
+            <p>tokio, axum, sqlx. Compile-time SQL checking. ~20MB Docker image.</p>
+          </div>
+          <div class="loom-stack-item">
+            <span class="loom-stack-label">Dashboard</span>
+            <strong class="loom-stack-value">React + Vite</strong>
+            <p>TypeScript. Static files served by Caddy.</p>
+          </div>
+          <div class="loom-stack-item">
+            <span class="loom-stack-label">Database</span>
+            <strong class="loom-stack-value">PostgreSQL 16</strong>
+            <p>pgvector, pgAudit. Single system of record.</p>
+          </div>
+          <div class="loom-stack-item">
+            <span class="loom-stack-label">LLM inference</span>
+            <strong class="loom-stack-value">Ollama (local)</strong>
+            <p>Gemma 4 26B MoE extraction. Gemma 4 E4B classification. nomic-embed-text embeddings.</p>
+          </div>
+          <div class="loom-stack-item">
+            <span class="loom-stack-label">Bootstrap</span>
+            <strong class="loom-stack-value">Python</strong>
+            <p>Run-once scripts. Parses Claude.ai, ChatGPT, Codex CLI exports.</p>
+          </div>
+          <div class="loom-stack-item">
+            <span class="loom-stack-label">Deployment</span>
+            <strong class="loom-stack-value">Docker Compose</strong>
+            <p>Caddy reverse proxy + TLS. Five containers total.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- MCP Interface -->
+      <section class="loom-section">
+        <span class="loom-section-label">MCP interface</span>
+        <h2 class="section-title">Three tools. Not five.</h2>
+        <div class="loom-tool-row">
+          <div class="loom-card loom-tool-card">
+            <code>loom_think</code>
+            <p>Compiles a context package for a query. Fires automatically before complex tasks. The primary integration point.</p>
+          </div>
+          <div class="loom-card loom-tool-card">
+            <code>loom_learn</code>
+            <p>Ingests a new episode from any source. Returns accepted, duplicate, or queued status.</p>
+          </div>
+          <div class="loom-card loom-tool-card">
+            <code>loom_recall</code>
+            <p>Returns raw search results without compilation. For when you want to browse, not compile.</p>
+          </div>
+        </div>
+        <p class="loom-mcp-note">
+          Primary integration: Claude Code via native MCP. Secondary: manual REST ingestion.
+          Codex CLI follows after validation.
+        </p>
+      </section>
+
+      <!-- Quality Gates -->
+      <section class="loom-section">
+        <span class="loom-section-label">Quality gates</span>
+        <h2 class="section-title">Fail either gate: simplify or kill</h2>
+        <div class="loom-gate-row">
+          <div class="loom-gate-card">
+            <h4>Week 4: Extraction</h4>
+            <p>50-episode sample, human-annotated. Blocks all further work if thresholds aren't met.</p>
+            <div class="loom-threshold">
+              Entity precision &ge; 0.80<br />
+              Fact precision &ge; 0.75<br />
+              Predicate consistency &ge; 0.85
+            </div>
+          </div>
+          <div class="loom-gate-card">
+            <h4>Week 8: Compilation</h4>
+            <p>Compiled context (C) must beat raw retrieval (B) across 10 benchmark tasks.</p>
+            <div class="loom-threshold">
+              Precision improvement &ge; 15%<br />
+              Token reduction &ge; 30%<br />
+              Zero task success regression
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Operational Dashboard -->
+      <section class="loom-section">
+        <span class="loom-section-label">Operational dashboard</span>
+        <h2 class="section-title">Full observability into the memory system</h2>
+        <p class="section-body">
+          Pipeline health monitoring, compilation trace viewer with per-candidate score breakdowns,
+          knowledge graph explorer, entity conflict review queue, predicate candidate review with
+          pack browsing, retrieval quality metrics (precision, latency percentiles, classification
+          confidence), extraction quality comparison across model versions, and A/B/C benchmark
+          comparison views.
+        </p>
+      </section>
+
+    </div>
+
+    <!-- Thesis footer -->
+    <section class="loom-thesis">
+      <div class="container">
+        <p>
+          Core thesis: a memory compiler with explicit ranking, graph traversal, and audit logging
+          produces better context packages than simple top-k vector retrieval. The MVP exists to
+          prove or disprove that thesis.
+        </p>
+        <span class="loom-build-info">12-week build &middot; PostgreSQL-native &middot; Local inference &middot; MCP-first</span>
+      </div>
+    </section>
+  </main>
+
+  <BackToTop />
+  <Footer />
+</BaseLayout>
+
+<style>
+  /* ==========================================================
+     Loom Page — Uses site design tokens throughout.
+     ========================================================== */
+
+  .loom-page {
+    padding: 2rem 0 0;
+  }
+
+  /* ---- Hero ---- */
+  .loom-hero {
+    padding: 60px 0 80px;
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+    border-bottom: 1px solid var(--border-color);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .loom-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 20% 50%, rgba(33, 150, 243, 0.03) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(33, 150, 243, 0.03) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .loom-hero-wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .loom-eyebrow {
+    display: block;
+    font-family: var(--font-mono, 'SF Mono', monospace);
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent-color);
+    margin-bottom: 0.75rem;
+  }
+
+  .loom-title {
+    font-size: 48px;
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--text-heading);
+    margin-bottom: var(--space-lg);
+  }
+
+  .loom-lead {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    max-width: 600px;
+    margin: 0 auto var(--space-lg);
+  }
+
+  .loom-tagline {
+    font-style: italic;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    opacity: 0.7;
+  }
+
+  /* ---- Sections ---- */
+  .loom-section {
+    margin-bottom: 3.5rem;
+    padding-bottom: 3.5rem;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .loom-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+  }
+
+  .loom-section-label {
+    display: block;
+    font-family: var(--font-mono, 'SF Mono', monospace);
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-color);
+    margin-bottom: 0.5rem;
+  }
+
+  .section-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-heading);
+    margin-bottom: 1rem;
+    line-height: 1.25;
+  }
+
+  .section-body {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.7;
+    max-width: 720px;
+  }
+
+  /* ---- Flow strip ---- */
+  .loom-flow-strip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    margin-top: 1.75rem;
+    flex-wrap: wrap;
+  }
+
+  .loom-flow-step {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 0.6rem 1.1rem;
+    font-size: 0.875rem;
+    color: var(--text-primary);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .loom-flow-arrow {
+    color: var(--accent-color);
+    font-size: 0.875rem;
+    padding: 0 0.5rem;
+    opacity: 0.6;
+  }
+
+  /* ---- Shared card style ---- */
+  .loom-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+  }
+
+  /* ---- Pipeline grid ---- */
+  .loom-pipeline-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+  }
+
+  .loom-pipeline-grid h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-heading);
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .loom-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+    flex-shrink: 0;
+  }
+
+  .loom-dot--teal {
+    background: #5ab8a0;
+  }
+
+  .loom-dot--accent {
+    background: var(--accent-color);
+  }
+
+  .loom-pipeline-grid ol {
+    list-style: none;
+    counter-reset: step;
+    padding: 0;
+    margin: 0;
+  }
+
+  .loom-pipeline-grid ol li {
+    counter-increment: step;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    padding: 0.3rem 0 0.3rem 1.75rem;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .loom-pipeline-grid ol li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    font-family: var(--font-mono, 'SF Mono', monospace);
+    font-size: 0.7rem;
+    color: var(--accent-color);
+    opacity: 0.5;
+    width: 1.2rem;
+    text-align: right;
+  }
+
+  /* ---- Memory cards ---- */
+  .loom-memory-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .loom-mem-card {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+    border: 1px solid var(--border-color);
+    border-top: 3px solid;
+  }
+
+  .loom-mem-card h4 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+  }
+
+  .loom-mem-card p {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  .loom-mem--teal {
+    border-top-color: #5ab8a0;
+  }
+  .loom-mem--teal h4 {
+    color: #5ab8a0;
+  }
+
+  .loom-mem--blue {
+    border-top-color: var(--accent-color);
+  }
+  .loom-mem--blue h4 {
+    color: var(--accent-color);
+  }
+
+  .loom-mem--purple {
+    border-top-color: #8a7cc8;
+  }
+  .loom-mem--purple h4 {
+    color: #8a7cc8;
+  }
+
+  .loom-authority {
+    font-family: var(--font-mono, 'SF Mono', monospace);
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    text-align: center;
+    margin-top: 1rem;
+    letter-spacing: 0.04em;
+    opacity: 0.7;
+  }
+
+  /* ---- Stack grid ---- */
+  .loom-stack-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .loom-stack-item {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+  }
+
+  .loom-stack-label {
+    display: block;
+    font-family: var(--font-mono, 'SF Mono', monospace);
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 0.25rem;
+  }
+
+  .loom-stack-value {
+    display: block;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-heading);
+    margin-bottom: 0.25rem;
+  }
+
+  .loom-stack-item p {
+    font-size: 0.825rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* ---- Tool cards ---- */
+  .loom-tool-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .loom-tool-card code {
+    font-family: var(--font-mono, 'SF Mono', monospace);
+    font-size: 0.95rem;
+    color: var(--accent-color);
+    font-weight: 600;
+  }
+
+  .loom-tool-card p {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-top: 0.5rem;
+    line-height: 1.55;
+    margin-bottom: 0;
+  }
+
+  .loom-mcp-note {
+    margin-top: 1.25rem;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    opacity: 0.7;
+  }
+
+  /* ---- Quality gate cards ---- */
+  .loom-gate-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .loom-gate-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    border-left: 3px solid var(--accent-color);
+  }
+
+  .loom-gate-card h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    margin-bottom: 0.5rem;
+  }
+
+  .loom-gate-card p {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  .loom-threshold {
+    font-family: var(--font-mono, 'SF Mono', monospace);
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-top: 0.75rem;
+    line-height: 1.7;
+    opacity: 0.8;
+  }
+
+  /* ---- Thesis footer ---- */
+  .loom-thesis {
+    text-align: center;
+    padding: 3rem 0;
+    border-top: 1px solid var(--border-color);
+    margin-top: 1rem;
+  }
+
+  .loom-thesis p {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .loom-build-info {
+    display: block;
+    font-family: var(--font-mono, 'SF Mono', monospace);
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    margin-top: 1rem;
+    color: var(--text-secondary);
+    opacity: 0.5;
+  }
+
+  /* ---- Responsive ---- */
+  @media (max-width: 768px) {
+    .loom-hero {
+      padding: 40px 0 60px;
+    }
+
+    .loom-title {
+      font-size: 36px;
+    }
+
+    .loom-pipeline-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .loom-memory-row {
+      grid-template-columns: 1fr;
+    }
+
+    .loom-tool-row {
+      grid-template-columns: 1fr;
+    }
+
+    .loom-gate-row {
+      grid-template-columns: 1fr;
+    }
+
+    .loom-flow-strip {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .loom-flow-arrow {
+      transform: rotate(90deg);
+      padding: 0;
+    }
+  }
+</style>
