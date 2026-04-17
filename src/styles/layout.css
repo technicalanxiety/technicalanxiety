@@ -154,6 +154,10 @@
   color: var(--accent-color);
 }
 
+.menu-link--accent {
+  color: var(--accent-color);
+}
+
 @media (min-width: 992px) {
   .nav-menu {
     display: flex;

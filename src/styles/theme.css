@@ -9,6 +9,34 @@
   --color-secondary: #C19CD8;
   --color-accent: #2196F3;
   --accent-color: #2196F3;
+
+  /* Accent scale */
+  --color-accent-300: #66B3FF;
+  --color-accent-400: #4DA6FF;
+  --color-accent-500: #2196F3;
+  --color-accent-600: #1976D2;
+  --color-accent-secondary: #C19CD8;
+
+  /* Neutral scale */
+  --neutral-0:   #0d1117;
+  --neutral-50:  #1a1c1f;
+  --neutral-100: #161b22;
+  --neutral-150: #21262d;
+  --neutral-200: #232427;
+  --neutral-250: #2C2F36;
+  --neutral-300: #2d2d2d;
+  --neutral-450: #3E4250;
+  --neutral-500: #7d8590;
+  --neutral-600: #9BA3B8;
+  --neutral-800: #E8E6E3;
+  --neutral-900: #F0EEE9;
+
+  /* Status / semantic */
+  --status-error:        #FF5F56;
+  --status-warn:         #FFBD2E;
+  --status-ok:           #27CA3F;
+  --status-code-string:  #4EC9B0;
+  --status-code-keyword: #569CD6;
   
   /* Dark Theme (Default) */
   --bg-primary: #2C2F36;
@@ -27,10 +55,13 @@
   
   --shadow: rgba(0, 0, 0, 0.25);
   --shadow-lg: 0 9px 18px 0 rgba(0, 0, 0, 0.25);
+  --shadow-terminal: 0 8px 24px rgba(0, 0, 0, 0.3);
+  --shadow-accent-hover: 0 16px 32px rgba(33, 150, 243, 0.25);
   
   /* Typography */
-  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-  --font-mono: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+  --font-display: 'Orbitron', 'Rajdhani', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-sans: 'Rajdhani', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'Fira Code', 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, monospace;
   
   /* Spacing */
   --space-xs: 0.25rem;
