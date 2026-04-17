@@ -9,6 +9,8 @@ import BackToTop from '../components/BackToTop.astro';
   title="Project Loom - PostgreSQL-Native Memory Compiler for AI Workflows"
   description="A PostgreSQL-native memory compiler for AI workflows. Evidence-grounded memory, strict scoping, shallow graph, inspectable context assembly."
 >
+  <div id="loom-weave" aria-hidden="true"></div>
+  <script is:inline>document.body.classList.add('loom-page-active');</script>
   <Header />
 
   <!-- Hero -->
@@ -246,10 +248,42 @@ import BackToTop from '../components/BackToTop.astro';
   <Footer />
 </BaseLayout>
 
+<script src="/js/loom-weave.js" defer></script>
+
 <style>
   /* ==========================================================
      Loom Page — Uses site design tokens throughout.
      ========================================================== */
+
+  /* Weave layer */
+  :global(#loom-weave) {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.85;
+  }
+  :global(#loom-weave .weave-svg) {
+    position: absolute;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+  }
+
+  /* Soften the header so threads pass through */
+  :global(.loom-page-active .header) {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    border-bottom-color: transparent !important;
+  }
+  :global(.loom-page-active .logo-text),
+  :global(.loom-page-active .menu-link) {
+    opacity: 0.75;
+    transition: opacity 200ms ease, color 200ms ease;
+  }
+  :global(.loom-page-active .logo-text:hover),
+  :global(.loom-page-active .menu-link:hover) {
+    opacity: 1;
+  }
 
   .loom-page {
     padding: 2rem 0 0;
@@ -258,7 +292,7 @@ import BackToTop from '../components/BackToTop.astro';
   /* ---- Hero ---- */
   .loom-hero {
     padding: 60px 0 80px;
-    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+    background: transparent;
     border-bottom: 1px solid var(--border-color);
     position: relative;
     overflow: hidden;
@@ -266,13 +300,7 @@ import BackToTop from '../components/BackToTop.astro';
   }
 
   .loom-hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image:
-      radial-gradient(circle at 20% 50%, rgba(33, 150, 243, 0.03) 0%, transparent 50%),
-      radial-gradient(circle at 80% 80%, rgba(33, 150, 243, 0.03) 0%, transparent 50%);
-    pointer-events: none;
+    display: none;
   }
 
   .loom-hero-wrapper {
@@ -363,7 +391,7 @@ import BackToTop from '../components/BackToTop.astro';
   }
 
   .loom-flow-step {
-    background: var(--bg-secondary);
+    background: rgba(22, 27, 34, 0.92);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-md);
     padding: 0.6rem 1.1rem;
@@ -382,7 +410,7 @@ import BackToTop from '../components/BackToTop.astro';
 
   /* ---- Shared card style ---- */
   .loom-card {
-    background: var(--bg-secondary);
+    background: rgba(22, 27, 34, 0.92);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-lg);
     padding: 1.5rem;
@@ -459,7 +487,7 @@ import BackToTop from '../components/BackToTop.astro';
   }
 
   .loom-mem-card {
-    background: var(--bg-secondary);
+    background: rgba(22, 27, 34, 0.92);
     border-radius: var(--radius-lg);
     padding: 1.25rem;
     border: 1px solid var(--border-color);
@@ -519,7 +547,7 @@ import BackToTop from '../components/BackToTop.astro';
   }
 
   .loom-stack-item {
-    background: var(--bg-secondary);
+    background: rgba(22, 27, 34, 0.92);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-lg);
     padding: 1.25rem;
@@ -589,7 +617,7 @@ import BackToTop from '../components/BackToTop.astro';
   }
 
   .loom-gate-card {
-    background: var(--bg-secondary);
+    background: rgba(22, 27, 34, 0.92);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-lg);
     padding: 1.5rem;
