@@ -25,6 +25,7 @@ npm-debug.log*
 # Local development
 .vercel
 .netlify
+.claude
 
 # Incubation - personal idea parking lot
 # This file should not be committed to prevent publishing momentum
