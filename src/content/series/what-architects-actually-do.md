@@ -1,6 +1,6 @@
 ---
 title: "What Architects Actually Do"
-description: "TThe technical skills are table stakes. The real job is translation."
+description: "The technical skills are table stakes. The real job is translation."
 image: "architects-pt1.jpg"
 tags: ["Leadership", "Architecture"]
 order: 5
