@@ -110,6 +110,7 @@
 }
 
 .nav-menu.is-open {
+  display: block;
   opacity: 1;
   visibility: visible;
 }
