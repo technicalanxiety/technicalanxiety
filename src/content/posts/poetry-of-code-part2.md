@@ -5,7 +5,7 @@ image: ai-collaboration.jpg
 tags: [Leadership, Anxiety, AI]
 description: "Addressing real objections to AI adoption: quality concerns, supportability, and what happens when your craft becomes accessible to everyone."
 series: "The Poetry of Code"
-series_order: 2
+series_part: 2
 ---
 *This is Part 2 of "The Poetry of Code" series. [Part 1: Building Your Digital Self](/poetry-of-code-part1/) covered the co-pilot mindset and how I use AI tools as extensions of myself. This piece addresses the real objections head-on.*
 
