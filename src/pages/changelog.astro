@@ -25,6 +25,54 @@ const description = 'All notable changes to Technical Anxiety website and conten
 
             <div class="changelog-content">
               <section class="changelog-entry">
+                <h2 id="2026-04-19">2026-04-19 - Project Loom, UX Redesign & README Overhaul</h2>
+
+                <h3>Added</h3>
+                <ul>
+                  <li><strong>Project Loom page</strong> (<code>/loom</code>) — one-pager for the PostgreSQL-native AI memory compiler project, styled to match the site's design system</li>
+                  <li><strong>Architecture page</strong> (<code>/architecture</code>) — interactive architecture visualization using React (ArchitectureMap component)</li>
+                  <li><strong>Weaving Memory series</strong> — new series with landing page and Part 1 backlog post</li>
+                  <li><strong>The Consultant's Exit</strong> — new blog post auto-published from backlog</li>
+                  <li>Loom and Architecture links added to site navigation</li>
+                </ul>
+
+                <h3>Changed</h3>
+                <ul>
+                  <li><strong>UX redesign</strong> — Tron-inspired background, architecture map integration, updated content flow</li>
+                  <li><strong>README.md completely rewritten</strong> — updated project structure, site pages, tech stack, deployment, and documentation references to reflect current state</li>
+                  <li><strong>ContentFlow component</strong> updated across multiple iterations</li>
+                  <li>Removed Consulting link from nav, replaced with Architecture and Loom</li>
+                </ul>
+
+                <h3>Fixed</h3>
+                <ul>
+                  <li><strong>Series tag links</strong> — tag links on series pages were lowercased, causing 404s (e.g., <code>/tags/azure/</code> instead of <code>/tags/Azure/</code>)</li>
+                  <li><strong>Mobile hamburger menu</strong> — menu was not opening on mobile devices</li>
+                  <li>Typo corrected in What Architects Actually Do series</li>
+                </ul>
+              </section>
+
+              <section class="changelog-entry">
+                <h2 id="2026-04-02">2026-04-02 - Dependency Updates & Security Patches</h2>
+
+                <h3>Changed</h3>
+                <ul>
+                  <li><strong>Astro updated to 6.1.3</strong>, @astrojs/rss to 4.0.18, @astrojs/sitemap to 3.7.2</li>
+                  <li><strong>Lighthouse updated to 13.1.0</strong></li>
+                  <li>Image optimization pass and content flow updates</li>
+                  <li>Removed unused <code>.resume-contact</code> CSS from resume page</li>
+                </ul>
+
+                <h3>Fixed</h3>
+                <ul>
+                  <li><strong>Security vulnerabilities patched</strong>: lodash-es, defu prototype pollution, basic-ftp CRLF injection, vite, yaml, brace-expansion</li>
+                  <li><strong>Recruiter chat model restored</strong> — switched back to Groq with llama-3.3-70b-versatile after Gemini free tier quota issues</li>
+                  <li><strong>Contact API hardened</strong> — improved error handling, body parsing, SendGrid debugging, and Node https module usage</li>
+                  <li><strong>Azure SWA configuration fixes</strong> — extension bundle v4, Node 18 runtime, API route exclusion from navigation fallback</li>
+                </ul>
+              </section>
+
+              <section class="changelog-entry">
                 <h2 id="2026-03-30">2026-03-30 - Consulting Page & Contact Form</h2>
                 
                 <h3>Added</h3>

@@ -1,116 +1,124 @@
-# Technical Anxiety Blog
+# Technical Anxiety
 
-A technical blog covering Azure, Log Analytics, leadership, and navigating anxiety in tech. Built with Astro 6 for optimal performance and developer experience.
+A technical blog covering Azure, cloud architecture, leadership, and navigating anxiety in tech. Built with Astro 6, deployed to Azure Static Web Apps.
 
-🌐 **Live Site**: [www.technicalanxiety.com](https://www.technicalanxiety.com)
+**Live**: [www.technicalanxiety.com](https://www.technicalanxiety.com)
 
-## Migration Status
-
-✅ **Migration Complete** - Successfully migrated from Jekyll to Astro in December 2025
-
-This site was migrated from Jekyll to Astro to improve:
-- Build performance and developer experience  
-- Modern web standards and accessibility
-- SEO and Core Web Vitals scores (90+ Lighthouse scores)
-- Automated content management workflow
-
-## 🚀 Project Structure
+## Project Structure
 
 ```text
 /
-├── public/                  # Static assets (images, favicon, etc.)
-│   └── img/                # Blog post images and graphics
+├── api/                         # Azure Functions (contact form, recruiter chat)
+│   ├── chat/                    # Recruiter chat function
+│   └── contact/                 # Consulting contact form function
+├── docs/                        # Project documentation
+├── public/
+│   └── img/                     # Static images
+├── scripts/                     # Build, maintenance, and utility scripts
 ├── src/
-│   ├── components/         # Reusable Astro components
-│   │   ├── Header.astro    # Site navigation and theme toggle
-│   │   ├── Footer.astro    # Site footer with social links
-│   │   ├── Sidebar.astro   # Author bio and recent posts
-│   │   └── ...             # Other UI components
-│   ├── content/            # Content collections
-│   │   ├── posts/          # Published blog posts (live on site)
-│   │   ├── backlog/        # Scheduled posts (future dates)
-│   │   └── series/         # Series metadata and landing pages
-│   ├── content.config.ts   # Content schema definitions (Content Layer API)
-│   ├── layouts/            # Page layouts
-│   │   ├── BaseLayout.astro # Base HTML structure
-│   │   └── PostLayout.astro # Blog post template
-│   ├── pages/              # Route pages
-│   │   ├── index.astro     # Homepage
-│   │   ├── about.astro     # About page
-│   │   ├── archive.astro   # Post archive
-│   │   └── [...slug].astro # Dynamic blog post pages
-│   ├── styles/             # CSS and styling
-│   └── utils/              # Utility functions
-├── scripts/                # Build and maintenance scripts
-├── astro.config.mjs        # Astro configuration
+│   ├── components/              # Astro and React components
+│   │   ├── ArchitectureMap.tsx   # Interactive architecture visualization (React)
+│   │   ├── BackToTop.astro      # Scroll-to-top button
+│   │   ├── Breadcrumbs.astro    # Breadcrumb navigation
+│   │   ├── ContentFlow.astro    # Content layout flow
+│   │   ├── CookieConsent.astro  # Cookie consent banner
+│   │   ├── GiscusComments.astro # Giscus comment integration
+│   │   ├── Header.astro         # Site navigation and search
+│   │   ├── Footer.astro         # Site footer
+│   │   ├── Hero.astro           # Homepage hero section
+│   │   ├── OptimizedImage.astro # Image optimization wrapper
+│   │   ├── Pagination.astro     # Post list pagination
+│   │   ├── ReadingProgress.astro # Reading progress bar
+│   │   ├── RecruiterChat.astro  # AI recruiter chat widget
+│   │   ├── SearchBox.astro      # Search UI
+│   │   ├── SeriesNavigation.astro # Series part navigation
+│   │   ├── Sidebar.astro        # Author bio and recent posts
+│   │   ├── TableOfContents.astro # Auto-generated TOC
+│   │   └── ThemeToggle.astro    # Dark/light mode toggle
+│   ├── content/
+│   │   ├── posts/               # Published blog posts (~70 articles)
+│   │   ├── backlog/             # Scheduled posts (future dates)
+│   │   └── series/              # Series metadata (12 series)
+│   ├── layouts/
+│   │   ├── BaseLayout.astro     # Base HTML structure, meta tags, analytics
+│   │   └── PostLayout.astro     # Blog post template
+│   ├── pages/                   # Route pages (see Site Pages below)
+│   ├── styles/                  # CSS (theme, base, layout, hero, critical)
+│   ├── test/                    # Vitest test suite (12 test files)
+│   ├── utils/posts.ts           # Post query and filtering utilities
+│   ├── config.ts                # Site configuration
+│   └── content.config.ts        # Content collection schemas (Content Layer API)
+├── .kiro/
+│   ├── hooks/                   # Agent hooks (lint, validation, changelog)
+│   ├── steering/                # Steering files (coding standards, publishing gates)
+│   └── settings/                # MCP and editor settings
+├── astro.config.mjs
 └── package.json
 ```
 
-## 🧞 Commands
+## Site Pages
 
-All commands are run from the root of the project, from a terminal:
+| Route | Description |
+|:------|:------------|
+| `/` | Homepage with paginated post grid |
+| `/archive/` | Full post archive |
+| `/series/` | Series index with landing pages |
+| `/tags/` | Tag index and per-tag post lists |
+| `/about/` | About Jason Rinehart |
+| `/resume/` | Professional resume |
+| `/consulting/` | Consulting services and contact form |
+| `/architecture/` | Interactive architecture map |
+| `/loom/` | Project Loom — PostgreSQL-native AI memory compiler |
+| `/search/` | Full-text post search (Fuse.js) |
+| `/start-here/` | Curated starting point for new readers |
+| `/azure/`, `/governance/`, `/leadership/`, `/operations/`, `/log-analytics/` | Topic landing pages |
+| `/changelog/` | Site changelog |
+| `/privacy/`, `/security/` | Legal and security policy |
+| `/rss.xml` | RSS feed |
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run test`            | Run test suite (unit and property-based tests)   |
-| `npm run test:watch`      | Run tests in watch mode                          |
-| **Content Management**    |                                                  |
-| `npm run backlog:list`    | List all scheduled posts                         |
-| `npm run backlog:check`   | Check posts ready to publish                     |
-| `npm run backlog add "Title"` | Create new scheduled post                    |
-| `npm run backlog publish file.md` | Manually publish specific post          |
-| **Utilities**             |                                                  |
-| `node optimize-images.js` | Optimize images for web performance              |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## Commands
 
-## 📝 Content Management
+| Command | Action |
+|:--------|:-------|
+| `npm install` | Install dependencies |
+| `npm run dev` | Start dev server at `localhost:4321` |
+| `npm run build` | Build production site to `./dist/` |
+| `npm run preview` | Preview production build locally |
+| `npm run check` | Run Astro type checking |
+| `npm run test` | Run Vitest test suite |
+| `npm run test:watch` | Run tests in watch mode |
+| `npm run test:ui` | Run tests with Vitest UI |
+| `npm run test:cross-browser` | Run cross-browser tests (Puppeteer) |
+| `npm run deploy:check` | Check, test, and build in sequence |
+| `npm run verify:production` | Verify production deployment |
+| `npm run verify:staging` | Verify staging deployment |
 
-### Automated Publishing Workflow
+### Content Management
 
-The site uses an automated publishing system with scheduled posts:
+| Command | Action |
+|:--------|:-------|
+| `npm run backlog:list` | List all scheduled posts |
+| `npm run backlog:check` | Check posts ready to publish |
+| `npm run backlog add "Title"` | Create new scheduled post |
+| `npm run backlog publish file.md` | Manually publish a specific post |
 
-**Directories**:
-- `src/content/posts/` - Published posts (live on site)
-- `src/content/backlog/` - Scheduled posts (future dates)
+## Content Management
 
-**Publishing Commands**:
+### Automated Publishing
+
+Posts in `src/content/backlog/` with a date ≤ today are automatically moved to `src/content/posts/` and deployed. The GitHub Actions workflow runs daily at 9 AM UTC.
+
+### Adding a Post
+
+**Scheduled (recommended):**
 ```bash
-# List all scheduled posts
-npm run backlog:list
-
-# Check which posts are ready to publish
-npm run backlog:check
-
-# Create a new scheduled post
-npm run backlog add "Post Title"
-
-# Manually publish a specific post
-npm run backlog publish post-filename.md
-```
-
-### Adding New Blog Posts
-
-**Option 1: Scheduled Publishing (Recommended)**
-```bash
-# Create a new scheduled post
 npm run backlog add "Your Post Title"
-
 # Edit the generated file in src/content/backlog/
-# Set a future date in frontmatter
-# The post will auto-publish when the date arrives
+# Set a future date — it auto-publishes when the date arrives
 ```
 
-**Option 2: Direct Publishing**
-1. Create a new `.md` file in `src/content/posts/`
-2. Use the frontmatter template below
-3. Commit and push to deploy immediately
-
-### Frontmatter Template
+**Direct:**
+Create a `.md` file in `src/content/posts/` with this frontmatter:
 
 ```yaml
 ---
@@ -118,232 +126,154 @@ title: "Your Post Title"
 date: 2026-01-01
 tags: [Azure, Leadership, Anxiety]
 description: "Brief description for SEO (150-160 characters)"
-image: "your-image.jpg"           # Optional - filename only, stored in public/img/
-series: "Optional Series Name"    # Optional
-series_order: 1                   # Optional - for backlog posts
-series_part: 1                    # Optional - for published posts
+image: "your-image.jpg"
+series: "Optional Series Name"
+series_part: 1
 ---
 ```
 
-### Automated Publishing
+### Content Collections
 
-- **Schedule**: Daily at 9 AM UTC
-- **Process**: Posts with dates ≤ today automatically move from backlog to published
-- **Deployment**: Publishing triggers automatic site rebuild and deployment
-- **Series Links**: Automatically updates navigation between series parts
+Defined in `src/content.config.ts` using Astro's Content Layer API with Zod schemas:
+
+- **posts** — Published articles with title, date, tags, optional series membership
+- **backlog** — Scheduled posts (uses `series_order` instead of `series_part`)
+- **series** — Series metadata with title, description, image, tags, display order, featured flag
+
+### Series
+
+Each series has a landing page at `/series/[slug]/` with overview content, tag links, and ordered post list. Series metadata lives in `src/content/series/`. Currently 12 series covering topics from AI governance to platform resiliency.
 
 ### Content Guidelines
 
-- **Images**: Place originals in `public/img/`, run `node optimize-images.js` to generate optimized versions
-- **Tags**: Use PascalCase format: `[Azure, Leadership, Anxiety]`
-- **Internal Links**: Always use trailing slashes: `/post-slug/`
-- **Series**: Use consistent series names across all parts
+- **Images**: Place in `public/img/`, run `node optimize-images.js` to generate optimized versions
+- **Tags**: PascalCase format — `[Azure, Leadership, Anxiety]`
+- **Internal links**: Always use trailing slashes — `/post-slug/`
+- **Series**: Series name in post frontmatter must match the series title exactly
 
-### Series Management
+## Tech Stack
 
-**Series Landing Pages**: Each series has a dedicated landing page at `/series/[series-slug]/` that provides:
-- Series overview and description
-- Complete list of all parts in order
-- Tags and metadata
-- Only appears when series has published posts
+| Layer | Technology |
+|:------|:-----------|
+| Framework | Astro 6 (static output) |
+| UI Components | Astro components + React (architecture map) |
+| Styling | CSS custom properties, dark/light theme |
+| Fonts | Rajdhani, Orbitron, Fira Code (Google Fonts) |
+| Search | Fuse.js (client-side fuzzy search) |
+| Comments | Giscus (GitHub Discussions) |
+| Analytics | Google Analytics (GA4) |
+| Testing | Vitest, Puppeteer (cross-browser) |
+| Image optimization | Sharp |
+| Linting | markdownlint |
+| Icons | Ionicons 7 |
 
-**Creating a New Series**:
-1. Create series metadata file in `src/content/series/series-name.md`
-2. Add frontmatter with title, description, image, tags, order, and featured status
-3. Write series overview content in markdown
-4. Ensure series name in posts matches series title exactly
+### Dependencies
 
-**Series URLs**:
-- Series index: `/series/`
-- Individual series: `/series/confidence-engineering/`
-- Series posts automatically link to landing page via SeriesNavigation component
+**Runtime**: Astro, @astrojs/react, @astrojs/rss, @astrojs/sitemap, Fuse.js, React 19, Sass, TypeScript
 
-## 🔧 Development
+**Dev**: Vitest, jsdom, fast-check (property-based testing), Puppeteer, Sharp, Lighthouse, markdownlint-cli
 
-### Local Development
+## Deployment
+
+### Azure Static Web Apps
+
+The site deploys automatically via GitHub Actions on push to `master`.
+
+- **Production**: [www.technicalanxiety.com](https://www.technicalanxiety.com) — `master` branch
+- **Preview**: Automatic preview deployments on pull requests
+- **Workflow**: `.github/workflows/azure-static-web-apps-ambitious-wave-0d77c1c10.yml`
+
+### Scheduled Publishing
+
+- **Workflow**: `.github/workflows/publish-scheduled-posts.yml`
+- **Schedule**: Daily at 9 AM UTC (also manually triggerable)
+- **Process**: Moves ready posts from backlog → posts, triggers site rebuild
+
+### API Functions
+
+Azure Functions in the `api/` directory handle:
+- **Contact form** (`/api/contact`) — Consulting inquiry submissions
+- **Recruiter chat** (`/api/chat`) — AI-powered recruiter chat responses
+
+## Testing
+
+12 test files covering:
+
+- Content migration integrity
+- URL preservation
+- Meta tag completeness
+- Search relevance
+- Series navigation
+- Pagination validity
+- Tag linking
+- Theme toggle
+- Table of contents
+- Code syntax highlighting
+- Link checking
+- Cross-browser compatibility
 
 ```bash
-# Install dependencies
-npm install
-
-# Start development server
-npm run dev
-
-# Open http://localhost:4321 in your browser
+npm run test              # Single run
+npm run test:watch        # Watch mode
+npm run test:ui           # Vitest UI
+npm run test:cross-browser # Puppeteer cross-browser tests
 ```
 
-### Testing
+## Theme and Styling
 
-The site includes comprehensive testing:
+- **CSS variables**: `src/styles/theme.css` (colors, spacing, typography, transitions)
+- **Dark/light mode**: System detection with manual toggle, persisted to localStorage
+- **Base styles**: `src/styles/base.css`, `src/styles/layout.css`
+- **Critical CSS**: Inlined in `BaseLayout.astro` for fastest paint
 
+## Kiro Integration
+
+The project uses Kiro steering files (`.kiro/steering/`) for consistent AI-assisted development:
+
+- Coding standards, anti-patterns, security practices
+- Astro technical guide, publishing gates
+- Blog content standards, KQL writing standards
+- Git workflow, testing strategy
+
+Agent hooks (`.kiro/hooks/`) automate validation on file save, pre-commit checks, changelog updates, and image optimization checks.
+
+## Documentation
+
+| Document | Location |
+|:---------|:---------|
+| Publishing workflow | `docs/PUBLISHING_WORKFLOW.md` |
+| Cross-browser testing | `docs/CROSS_BROWSER_TESTING.md` |
+| Recruiter chat setup | `docs/RECRUITER_CHAT_SETUP.md` |
+| GitHub Actions setup | `GITHUB_ACTIONS_SETUP.md` |
+| Deployment configuration | `DEPLOYMENT_CONFIGURATION.md` |
+| Groq migration notes | `GROQ_MIGRATION.md` |
+
+## Troubleshooting
+
+**Build errors**: Clear the Astro cache and rebuild:
 ```bash
-# Run all tests
-npm run test
-
-# Run tests in watch mode (for development)
-npm run test:watch
-
-# Run specific test file
-npm run test src/test/content-migration.test.ts
-```
-
-### Build and Deploy
-
-```bash
-# Build for production
-npm run build
-
-# Preview production build locally
-npm run preview
-
-# Deploy (automatic via GitHub Actions)
-git push origin main
-```
-
-## 🚀 Deployment
-
-The site is automatically deployed via GitHub Actions with two workflows:
-
-### Automated Publishing
-- **Schedule**: Daily at 9 AM UTC
-- **Trigger**: Automatic (cron) or manual via GitHub Actions
-- **Process**: Moves scheduled posts to published, updates series links, triggers deployment
-
-### Azure Static Web Apps Deployment
-- **Trigger**: Push to `master` branch (including from auto-publish)
-- **Build**: Astro static site generation
-- **Deploy**: Azure Static Web Apps with global CDN
-
-### Deployment Targets
-
-- **Production**: [www.technicalanxiety.com](https://www.technicalanxiety.com) (master branch)
-- **Preview**: Automatic preview deployments for pull requests
-
-### Manual Deployment
-
-```bash
-# Build and deploy (automatic via GitHub Actions)
-git push origin master
-
-# Or manually trigger auto-publish workflow
-# Go to GitHub Actions → "Publish Scheduled Posts" → "Run workflow"
-```
-
-## 🎨 Customization
-
-### Theme and Styling
-
-- **CSS Variables**: Defined in `src/styles/theme.css`
-- **Dark/Light Mode**: Automatic system detection with manual toggle
-- **Typography**: Configured in `src/styles/base.css`
-
-### Components
-
-Key components for customization:
-
-- `Header.astro` - Navigation and branding
-- `Footer.astro` - Social links and copyright
-- `Hero.astro` - Homepage hero section
-- `Sidebar.astro` - Author bio and recent posts
-
-## 📊 Analytics and SEO
-
-### Analytics Setup
-
-- **Google Analytics**: Configured in `src/config.ts`
-- **Search Console**: Sitemap automatically generated at `/sitemap.xml`
-
-### SEO Features
-
-- Automatic meta tags and Open Graph data
-- Structured data for blog posts
-- RSS feed at `/rss.xml`
-- Optimized images with lazy loading
-
-## 🔍 Troubleshooting
-
-### Common Issues
-
-**Build Errors**
-```bash
-# Clear cache and rebuild
 rm -rf node_modules/.astro
 npm run build
 ```
 
-**Content Not Showing**
-- Check frontmatter syntax in blog posts
-- Verify file is in correct directory (`src/content/posts/` for published, `src/content/backlog/` for scheduled)
-- Ensure date format is correct (YYYY-MM-DD)
-- For scheduled posts, check if date is in the future
+**Content not showing**: Check frontmatter syntax, verify the file is in the correct directory, and confirm the date format is `YYYY-MM-DD`.
 
-**Images Not Loading**
-- Verify images are in `public/img/`
-- Use filename only in frontmatter (no path, no quotes): `image: filename.jpg`
-- Run `node optimize-images.js` after adding new images
-- Ensure image files are committed to git
+**Images not loading**: Verify images are in `public/img/`, use filename only in frontmatter (no path prefix), and run `node optimize-images.js` after adding new images.
 
-**Auto-publish Not Working**
-- Check GitHub Actions logs for "Publish Scheduled Posts" workflow
-- Verify posts in backlog have dates ≤ today
-- Check that PAT_TOKEN secret is configured in repository settings
+**Auto-publish not working**: Check the GitHub Actions logs for the "Publish Scheduled Posts" workflow. Verify `PAT_TOKEN` is configured in repository secrets.
 
-### Getting Help
+## Migration History
 
-- **Documentation**: 
-  - [Astro Docs](https://docs.astro.build)
-  - [Publishing Workflow](docs/PUBLISHING_WORKFLOW.md)
-  - [GitHub Actions Setup](GITHUB_ACTIONS_SETUP.md)
-- **Issues**: Create an issue in this repository
-- **Contact**: [Contact form on the website](https://www.technicalanxiety.com/about/)
+- **Astro 6 upgrade** (March 2026) — Content Layer API migration, `.slug` → `.id` refactor, `render()` updates, Node 22 CI
+- **Jekyll → Astro migration** (December 2025) — Full site migration with URL preservation, 90+ Lighthouse scores, automated publishing
 
-## 📚 Migration History
+## License
 
-### Astro v6 Upgrade (March 2026)
+- **Code and framework**: MIT License — see [LICENSE](LICENSE)
+- **Blog content**: Creative Commons Attribution 4.0 International (CC BY 4.0)
 
-Upgraded from Astro 5.x to Astro 6.0.8 with Content Layer API migration, `.slug` → `.id` refactor, `render()` call updates, and Node 22 across all CI workflows.
+## Links
 
-### Jekyll to Astro Migration (December 2025)
-
-**Completed**: December 2025
-
-**Key Improvements**:
-- ⚡ 40% faster build times with Astro static site generation
-- 🎯 Improved Lighthouse scores (90+ across all metrics)
-- 🔧 Better developer experience with TypeScript and modern tooling
-- 📱 Enhanced mobile performance and Core Web Vitals
-- 🔍 Improved SEO and accessibility compliance
-- 🤖 Automated publishing workflow with scheduled posts
-- 🔗 Automatic series navigation and link management
-
-**New Features**:
-- Automated daily publishing at 9 AM UTC
-- Scheduled post management with backlog system
-- Automatic image optimization (WebP/AVIF generation)
-- Series post navigation with automatic linking
-- Enhanced search functionality
-- Improved comment system integration
-
-### Migration Verification
-
-All migration requirements were validated through:
-- ✅ Content parity verification (all posts migrated)
-- ✅ URL structure preservation (no broken links)
-- ✅ Feature parity testing (search, comments, themes)
-- ✅ Performance benchmarking (Lighthouse audits)
-- ✅ Cross-browser compatibility testing
-
-## 👀 Want to learn more?
-
-- **Astro Documentation**: [docs.astro.build](https://docs.astro.build)
-- **Technical Anxiety Blog**: [www.technicalanxiety.com](https://www.technicalanxiety.com)
+- **Site**: [www.technicalanxiety.com](https://www.technicalanxiety.com)
 - **Author**: [Jason Rinehart on LinkedIn](https://linkedin.com/in/rinehart76)
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-- **Code & Framework**: MIT License
-- **Blog Content**: Creative Commons Attribution 4.0 International (CC BY 4.0)
-
-Feel free to use this Astro blog setup for your own projects!
+- **Astro docs**: [docs.astro.build](https://docs.astro.build)
