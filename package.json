@@ -36,7 +36,7 @@
   },
   "//overrides": "Remove yaml override when yaml-language-server ships with yaml >= 2.8.3 (GHSA-48c2-rrv3-qjmp)",
   "overrides": {
-    "fast-xml-parser": "5.5.9",
+    "fast-xml-parser": "5.7.0",
     "yaml-language-server": {
       "yaml": "2.8.3"
     }
