@@ -50,12 +50,14 @@ import BackToTop from '../components/BackToTop.astro';
       <!-- What Loom Is -->
       <section class="loom-section">
         <span class="loom-section-label">What Loom is</span>
-        <h2 class="section-title">A memory layer that follows you across tools</h2>
+        <h2 class="section-title">A memory layer that follows you across five surfaces</h2>
         <p class="section-body">
           Loom watches your work across LLM tools, builds a knowledge graph from it, and compiles
           the right context into any AI tool at query time. It replaces "paste your context" with
-          an always-on memory layer spanning Claude Code, Codex CLI, ChatGPT, GitHub Copilot, and
-          anything that speaks MCP.
+          an always-on memory layer spanning Claude Desktop, Claude Code, ChatGPT Desktop, GitHub
+          Copilot, and M365 Copilot. All five are first-class clients with shipped integration
+          guides, discipline templates, and where the vendor publishes one, a bootstrap parser for
+          vendor exports.
         </p>
         <div class="loom-flow-strip">
           <span class="loom-flow-step">You work normally</span>
@@ -71,11 +73,13 @@ import BackToTop from '../components/BackToTop.astro';
       <!-- Architecture -->
       <section class="loom-section">
         <span class="loom-section-label">Architecture</span>
-        <h2 class="section-title">Two pipelines, one database</h2>
+        <h2 class="section-title">Two pipelines, one database, one telemetry sampler</h2>
         <p class="section-body">
-          PostgreSQL 16 is the single system of record. No external vector store. No graph database.
+          PostgreSQL 17 is the single system of record. No external vector store. No graph database.
           pgvector handles embeddings, recursive CTEs handle graph traversal, pgAudit handles
           compliance. Two strictly separated pipelines share the database but never share runtime.
+          A 1&nbsp;Hz telemetry sampler runs alongside both, streaming live status to the dashboard
+          via SSE.
         </p>
         <div class="loom-pipeline-grid">
           <div class="loom-card">
@@ -83,10 +87,10 @@ import BackToTop from '../components/BackToTop.astro';
             <ol>
               <li>Intent classification (primary + secondary class)</li>
               <li>Namespace resolution</li>
-              <li>Parallel retrieval profiles (1-3, merged)</li>
+              <li>Parallel retrieval profiles via tokio::join!</li>
               <li>Memory weight modifiers per task class</li>
               <li>Rank on 4 dimensions: relevance, recency, stability, provenance</li>
-              <li>Compile context package</li>
+              <li>Compile context package (XML for Claude, JSON for others)</li>
               <li>Full audit trace</li>
             </ol>
           </div>
@@ -94,15 +98,56 @@ import BackToTop from '../components/BackToTop.astro';
             <h3><span class="loom-dot loom-dot--accent"></span> Offline pipeline</h3>
             <ol>
               <li>Ingest episode + SHA-256 dedup</li>
-              <li>Extract entities (structured prompt)</li>
+              <li>Embed (768d via nomic-embed-text)</li>
+              <li>Extract entities (schema-constrained output via Ollama response_format)</li>
               <li>Three-pass entity resolution</li>
-              <li>Extract facts against predicate registry</li>
+              <li>Extract facts against pack-aware predicate registry</li>
               <li>Link facts to source episodes</li>
-              <li>Resolve supersession</li>
-              <li>Compute derived ranking state</li>
+              <li>Resolve supersession with bounded retries on failure</li>
             </ol>
           </div>
+          <div class="loom-card loom-card--full">
+            <h3><span class="loom-dot loom-dot--purple"></span> Telemetry sampler</h3>
+            <p>In-process ring buffer. Host CPU/memory, Ollama state, per-stage p50 latency, queue counters, recent failures. Streams to the Runtime dashboard at 1&nbsp;Hz over SSE. No new tables, no time-series store.</p>
+          </div>
         </div>
+      </section>
+
+      <!-- Ingestion Model -->
+      <section class="loom-section">
+        <span class="loom-section-label">Ingestion model</span>
+        <h2 class="section-title">Three modes, one invariant</h2>
+        <p class="section-body">
+          Every episode entering Loom carries an <code>ingestion_mode</code> that determines how
+          the four-dimension ranker weights it. The three valid modes are the only paths in. The
+          taxonomy enforces a single invariant: LLM-generated content cannot become canonical memory.
+        </p>
+        <div class="loom-ingest-table">
+          <div class="loom-ingest-row loom-ingest-header">
+            <span>Mode</span>
+            <span>How it enters</span>
+            <span>Provenance coefficient</span>
+          </div>
+          <div class="loom-ingest-row">
+            <code>user_authored_seed</code>
+            <span>The <code>loom-seed</code> CLI POSTs markdown you wrote</span>
+            <span class="loom-coeff">0.8</span>
+          </div>
+          <div class="loom-ingest-row">
+            <code>vendor_import</code>
+            <span>Bootstrap parsers POST vendor export excerpts</span>
+            <span class="loom-coeff">0.6</span>
+          </div>
+          <div class="loom-ingest-row">
+            <code>live_mcp_capture</code>
+            <span>MCP <code>loom_learn</code> or PostSession hook</span>
+            <span class="loom-coeff loom-coeff--high">1.0</span>
+          </div>
+        </div>
+        <p class="loom-invariant-note">
+          A fourth mode for LLM reconstructions does not exist. The MCP server hardcodes
+          <code>live_mcp_capture</code> at the entry point — clients cannot forge the mode.
+        </p>
       </section>
 
       <!-- Memory Model -->
@@ -111,7 +156,7 @@ import BackToTop from '../components/BackToTop.astro';
         <h2 class="section-title">Three types, strict authority</h2>
         <p class="section-body">
           Facts are never more authoritative than their source episodes. Procedures are candidate
-          patterns until promoted. Two tiers in MVP: Hot (always injected, configurable budget per
+          patterns until promoted. Two tiers: Hot (always injected, configurable budget per
           namespace) and Warm (retrieved per-query). New facts always start warm. Namespace
           isolation is absolute.
         </p>
@@ -140,32 +185,32 @@ import BackToTop from '../components/BackToTop.astro';
           <div class="loom-stack-item">
             <span class="loom-stack-label">Engine</span>
             <strong class="loom-stack-value">Rust</strong>
-            <p>tokio, axum, sqlx. Compile-time SQL checking. ~20MB Docker image.</p>
+            <p>tokio, axum 0.8, sqlx 0.8. Compile-time SQL checking. ring as the rustls crypto provider. Single static binary on debian:bookworm-slim.</p>
           </div>
           <div class="loom-stack-item">
             <span class="loom-stack-label">Dashboard</span>
-            <strong class="loom-stack-value">React + Vite</strong>
-            <p>TypeScript. Static files served by Caddy.</p>
+            <strong class="loom-stack-value">React 19 + Vite 8</strong>
+            <p>TypeScript 6. 13 pages. Built into a static volume served by Caddy.</p>
           </div>
           <div class="loom-stack-item">
             <span class="loom-stack-label">Database</span>
-            <strong class="loom-stack-value">PostgreSQL 16</strong>
-            <p>pgvector, pgAudit. Single system of record.</p>
+            <strong class="loom-stack-value">PostgreSQL 17</strong>
+            <p>pgvector, pgAudit optional. Single system of record.</p>
           </div>
           <div class="loom-stack-item">
             <span class="loom-stack-label">LLM inference</span>
             <strong class="loom-stack-value">Ollama (local)</strong>
-            <p>Gemma 4 26B MoE extraction. Gemma 4 E4B classification. nomic-embed-text embeddings.</p>
+            <p>gemma4:26b for discrete GPU, qwen2.5:14b for iGPU/APU/CPU, gemma4:e4b for tight memory. gemma4:e4b for classification. nomic-embed-text for embeddings.</p>
           </div>
           <div class="loom-stack-item">
             <span class="loom-stack-label">Bootstrap</span>
             <strong class="loom-stack-value">Python</strong>
-            <p>Run-once scripts. Parses Claude.ai, ChatGPT, Codex CLI exports.</p>
+            <p>Per-client vendor export parsers for Claude Code, Claude.ai/Desktop, ChatGPT Data Controls, M365 Copilot Purview audit. GitHub Copilot stub (no export published).</p>
           </div>
           <div class="loom-stack-item">
             <span class="loom-stack-label">Deployment</span>
             <strong class="loom-stack-value">Docker Compose</strong>
-            <p>Caddy reverse proxy + TLS. Five containers total.</p>
+            <p>Caddy reverse proxy + automatic TLS. Five containers total.</p>
           </div>
         </div>
       </section>
@@ -173,7 +218,16 @@ import BackToTop from '../components/BackToTop.astro';
       <!-- MCP Interface -->
       <section class="loom-section">
         <span class="loom-section-label">MCP interface</span>
-        <h2 class="section-title">Three tools. Not five.</h2>
+        <h2 class="section-title">Three tools, two transports</h2>
+        <p class="section-body">
+          Loom exposes its three tools on two HTTP surfaces. Both require a bearer token.
+          <strong>POST /mcp</strong> is the MCP JSON-RPC 2.0 dispatcher — what real MCP clients
+          hit after registering Loom as an MCP server. The per-tool REST endpoints
+          (<strong>/mcp/loom_learn</strong>, <strong>/mcp/loom_think</strong>,
+          <strong>/mcp/loom_recall</strong>) remain mounted for direct curl, integration tests,
+          and callers that don't want to speak the JSON-RPC wire protocol. Both surfaces share the
+          same handler code. Clients cannot override <code>ingestion_mode</code> through either.
+        </p>
         <div class="loom-tool-row">
           <div class="loom-card loom-tool-card">
             <code>loom_think</code>
@@ -181,27 +235,23 @@ import BackToTop from '../components/BackToTop.astro';
           </div>
           <div class="loom-card loom-tool-card">
             <code>loom_learn</code>
-            <p>Ingests a new episode from any source. Returns accepted, duplicate, or queued status.</p>
+            <p>Ingests a new episode. Returns accepted, duplicate, or queued status.</p>
           </div>
           <div class="loom-card loom-tool-card">
             <code>loom_recall</code>
             <p>Returns raw search results without compilation. For when you want to browse, not compile.</p>
           </div>
         </div>
-        <p class="loom-mcp-note">
-          Primary integration: Claude Code via native MCP. Secondary: manual REST ingestion.
-          Codex CLI follows after validation.
-        </p>
       </section>
 
-      <!-- Quality Gates -->
+      <!-- What gets measured -->
       <section class="loom-section">
-        <span class="loom-section-label">Quality gates</span>
-        <h2 class="section-title">Fail either gate: simplify or kill</h2>
-        <div class="loom-gate-row">
+        <span class="loom-section-label">What gets measured</span>
+        <h2 class="section-title">Three honest gates, held in production</h2>
+        <div class="loom-gate-row loom-gate-row--three">
           <div class="loom-gate-card">
-            <h4>Week 4: Extraction</h4>
-            <p>50-episode sample, human-annotated. Blocks all further work if thresholds aren't met.</p>
+            <h4>Extraction quality</h4>
+            <p>50-episode samples held against thresholds. The Metrics page reports current rolling values.</p>
             <div class="loom-threshold">
               Entity precision &ge; 0.80<br />
               Fact precision &ge; 0.75<br />
@@ -209,13 +259,17 @@ import BackToTop from '../components/BackToTop.astro';
             </div>
           </div>
           <div class="loom-gate-card">
-            <h4>Week 8: Compilation</h4>
-            <p>Compiled context (C) must beat raw retrieval (B) across 10 benchmark tasks.</p>
+            <h4>Compilation quality</h4>
+            <p>A/B/C benchmark runs across 10 tasks. Compiled context (C) measured against raw retrieval (B) and no-memory baseline (A).</p>
             <div class="loom-threshold">
-              Precision improvement &ge; 15%<br />
-              Token reduction &ge; 30%<br />
-              Zero task success regression
+              Precision improvement<br />
+              Token reduction<br />
+              Task success
             </div>
+          </div>
+          <div class="loom-gate-card">
+            <h4>Pipeline reliability</h4>
+            <p>The Runtime page reports the live state. Failed episodes surface for operator triage rather than retrying forever.</p>
           </div>
         </div>
       </section>
@@ -223,14 +277,20 @@ import BackToTop from '../components/BackToTop.astro';
       <!-- Operational Dashboard -->
       <section class="loom-section">
         <span class="loom-section-label">Operational dashboard</span>
-        <h2 class="section-title">Full observability into the memory system</h2>
-        <p class="section-body">
-          Pipeline health monitoring, compilation trace viewer with per-candidate score breakdowns,
-          knowledge graph explorer, entity conflict review queue, predicate candidate review with
-          pack browsing, retrieval quality metrics (precision, latency percentiles, classification
-          confidence), extraction quality comparison across model versions, and A/B/C benchmark
-          comparison views.
-        </p>
+        <h2 class="section-title">Thirteen pages, one purpose</h2>
+        <p class="section-body">Full inspectability into the memory system. The dashboard is how you trust the compiler.</p>
+        <div class="loom-dashboard-grid">
+          <div class="loom-dash-item"><strong>Runtime</strong> — SSE-driven live status. Host CPU/memory, Ollama model and GPU/CPU badge, per-stage p50 latency, ingestion queue counters, recent failures with bulk-requeue.</div>
+          <div class="loom-dash-item"><strong>Pipeline Health</strong> — Episode counts by source and namespace, entity counts by type, pending queue depth, failed-episode count, model config.</div>
+          <div class="loom-dash-item"><strong>Compilations</strong> — Paginated loom_think history with drill-down to per-candidate score breakdowns.</div>
+          <div class="loom-dash-item"><strong>Entities</strong> — Search and detail view with 1–2 hop neighborhood graph, tier pills, salience bars.</div>
+          <div class="loom-dash-item"><strong>Predicates</strong> — Custom predicate candidate queue with map-to-canonical and promote-to-pack actions. Pack browser with usage heatmap.</div>
+          <div class="loom-dash-item"><strong>Conflicts</strong> — Entity resolution conflict queue. Merge, keep separate, split.</div>
+          <div class="loom-dash-item"><strong>Metrics</strong> — Retrieval precision over time, latency percentiles, classification confidence, extraction quality, hot-tier utilization.</div>
+          <div class="loom-dash-item"><strong>Benchmarks</strong> — A/B/C condition runs, per-task precision and latency, winner card.</div>
+          <div class="loom-dash-item"><strong>Parser Health</strong> — Per-bootstrap-parser episode counts, parser versions, freshness pills.</div>
+          <div class="loom-dash-item"><strong>Ingestion Mode Distribution</strong> — Per-namespace Mode 1/2/3 breakdown with seed-only warning list.</div>
+        </div>
       </section>
 
     </div>
@@ -239,11 +299,15 @@ import BackToTop from '../components/BackToTop.astro';
     <section class="loom-thesis">
       <div class="container">
         <p>
-          Core thesis: a memory compiler with explicit ranking, graph traversal, and audit logging
-          produces better context packages than simple top-k vector retrieval. The MVP exists to
-          prove or disprove that thesis.
+          The thesis: a memory compiler with explicit ranking, graph traversal, and audit logging
+          produces better context packages than simple top-k vector retrieval. The dashboard is
+          where that thesis is proven or disproven on a continuous basis.
         </p>
-        <span class="loom-build-info">12-week build &middot; PostgreSQL-native &middot; Local inference &middot; MCP-first</span>
+        <p class="loom-series-link">
+          Read more in <a href="/series/weaving-memory/">Weaving Memory</a>, the practitioner
+          journal of building, using, and learning from Loom.
+        </p>
+        <span class="loom-build-info">PostgreSQL-native &middot; Local inference &middot; MCP-first</span>
       </div>
     </section>
   </main>
@@ -480,6 +544,10 @@ import BackToTop from '../components/BackToTop.astro';
     background: var(--accent-color);
   }
 
+  .loom-dot--purple {
+    background: #8a7cc8;
+  }
+
   .loom-pipeline-grid ol {
     list-style: none;
     counter-reset: step;
@@ -506,6 +574,80 @@ import BackToTop from '../components/BackToTop.astro';
     opacity: 0.5;
     width: 1.2rem;
     text-align: right;
+  }
+
+  .loom-card--full {
+    grid-column: 1 / -1;
+  }
+
+  .loom-card--full p {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* ---- Ingestion table ---- */
+  .loom-ingest-table {
+    margin-top: 1.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+
+  .loom-ingest-row {
+    display: grid;
+    grid-template-columns: 1.5fr 2fr 1fr;
+    gap: 1rem;
+    padding: 0.75rem 1.25rem;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .loom-ingest-row:last-child {
+    border-bottom: none;
+  }
+
+  .loom-ingest-header {
+    background: rgba(22, 27, 34, 0.92);
+    font-family: var(--font-mono, 'SF Mono', monospace);
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+
+  .loom-ingest-row code {
+    font-size: 0.8rem;
+    color: var(--accent-color);
+  }
+
+  .loom-ingest-row span {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+  }
+
+  .loom-coeff {
+    font-family: var(--font-mono, 'SF Mono', monospace);
+    font-size: 0.875rem !important;
+    color: var(--text-secondary) !important;
+  }
+
+  .loom-coeff--high {
+    color: #5ab8a0 !important;
+  }
+
+  .loom-invariant-note {
+    margin-top: 1rem;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    opacity: 0.7;
+    line-height: 1.6;
+  }
+
+  .loom-invariant-note code {
+    font-size: 0.8rem;
+    color: var(--accent-color);
   }
 
   /* ---- Memory cards ---- */
@@ -646,6 +788,10 @@ import BackToTop from '../components/BackToTop.astro';
     margin-top: 1.5rem;
   }
 
+  .loom-gate-row--three {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
   .loom-gate-card {
     background: rgba(22, 27, 34, 0.92);
     border: 1px solid var(--border-color);
@@ -677,6 +823,28 @@ import BackToTop from '../components/BackToTop.astro';
     opacity: 0.8;
   }
 
+  /* ---- Dashboard grid ---- */
+  .loom-dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .loom-dash-item {
+    background: rgba(22, 27, 34, 0.92);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 1rem 1.25rem;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+  }
+
+  .loom-dash-item strong {
+    color: var(--text-heading);
+  }
+
   /* ---- Thesis footer ---- */
   .loom-thesis {
     text-align: center;
@@ -691,6 +859,20 @@ import BackToTop from '../components/BackToTop.astro';
     line-height: 1.7;
     max-width: 640px;
     margin: 0 auto;
+  }
+
+  .loom-series-link {
+    margin-top: 1rem !important;
+    font-size: 0.9rem !important;
+  }
+
+  .loom-series-link a {
+    color: var(--accent-color);
+    text-decoration: none;
+  }
+
+  .loom-series-link a:hover {
+    text-decoration: underline;
   }
 
   .loom-build-info {
@@ -725,8 +907,18 @@ import BackToTop from '../components/BackToTop.astro';
       grid-template-columns: 1fr;
     }
 
-    .loom-gate-row {
+    .loom-gate-row,
+    .loom-gate-row--three {
       grid-template-columns: 1fr;
+    }
+
+    .loom-ingest-row {
+      grid-template-columns: 1fr;
+      gap: 0.25rem;
+    }
+
+    .loom-ingest-header {
+      display: none;
     }
 
     .loom-flow-strip {

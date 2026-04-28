@@ -25,6 +25,28 @@ const description = 'All notable changes to Technical Anxiety website and conten
 
             <div class="changelog-content">
               <section class="changelog-entry">
+                <h2 id="2026-04-28">2026-04-28 - Loom Page Rework</h2>
+
+                <h3>Changed</h3>
+                <ul>
+                  <li><strong>Project Loom page</strong> — substantial content overhaul to reflect current project state</li>
+                  <li><strong>"What Loom is"</strong> — updated to name all five first-class surfaces: Claude Desktop, Claude Code, ChatGPT Desktop, GitHub Copilot, M365 Copilot; clarified that each has integration guides, discipline templates, and bootstrap parsers</li>
+                  <li><strong>Architecture section</strong> — title updated to "Two pipelines, one database, one telemetry sampler"; PostgreSQL version corrected from 16 → 17; online pipeline step 3 now names <code>tokio::join!</code>, step 6 specifies XML for Claude / JSON for others; offline pipeline reordered to add embed step before entity extraction; entity extraction updated to schema-constrained output via <code>Ollama response_format</code>; predicate registry noted as pack-aware; supersession step notes bounded retries on failure</li>
+                  <li><strong>Architecture section</strong> — added Telemetry sampler card describing in-process ring buffer, 1 Hz SSE streaming, and no additional storage requirements</li>
+                  <li><strong>Technology stack</strong> — axum 0.8, sqlx 0.8, ring as rustls crypto provider, debian:bookworm-slim noted; dashboard updated to React 19 + Vite 8 + TypeScript 6 (13 pages); database corrected to PostgreSQL 17 (pgAudit noted as optional); LLM inference updated with hardware-tier model selection (gemma4:26b / qwen2.5:14b / gemma4:e4b); bootstrap parsers updated to list Claude Code, Claude.ai/Desktop, ChatGPT Data Controls, M365 Copilot Purview audit, GitHub Copilot stub</li>
+                  <li><strong>MCP interface</strong> — title changed to "Three tools, two transports"; added explanation of both HTTP surfaces (<code>POST /mcp</code> JSON-RPC dispatcher and per-tool REST endpoints); removed old integration priority note</li>
+                  <li><strong>Quality gates → "What gets measured"</strong> — reframed from Week 4/8 build gates to three ongoing production measurements: Extraction quality, Compilation quality, Pipeline reliability</li>
+                  <li><strong>Operational dashboard</strong> — title changed to "Thirteen pages, one purpose"; expanded from a paragraph to a grid listing all 13 dashboard pages by name with descriptions</li>
+                  <li><strong>Thesis footer</strong> — closing line updated to reflect continuous measurement; removed "12-week build" label; added link to Weaving Memory series</li>
+                </ul>
+
+                <h3>Added</h3>
+                <ul>
+                  <li><strong>Ingestion model section</strong> — new section "Three modes, one invariant" with provenance coefficient table (<code>user_authored_seed</code> 0.8, <code>vendor_import</code> 0.6, <code>live_mcp_capture</code> 1.0) and note that the MCP server hardcodes the mode so clients cannot forge it</li>
+                </ul>
+              </section>
+
+              <section class="changelog-entry">
                 <h2 id="2026-04-19">2026-04-19 - Project Loom, UX Redesign & README Overhaul</h2>
 
                 <h3>Added</h3>
