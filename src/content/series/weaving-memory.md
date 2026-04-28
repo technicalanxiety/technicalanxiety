@@ -1,6 +1,6 @@
 ---
 title: "Weaving Memory"
-description: "The seventy percent of AI context that cannot be exported. A sixteen-week build journal for a memory compiler that makes the invisible layer portable."
+description: "The seventy percent of AI context that cannot be exported. A practitioner journal of building, using, and learning from a memory compiler designed to make the invisible layer portable."
 image: "weaving-memory.jpg"
 tags: [AI, Architecture, Memory, Leadership]
 order: 2
@@ -17,7 +17,7 @@ Stop pasting context across tools. Start architecting what should have been port
 
 The Value of Context established the seventy percent problem. Bilateral adaptation between a practitioner and an AI tool develops over months of sustained interaction, and only thirty percent of it is portable. The remaining seventy percent is the invisible layer. It cannot be exported because no tool currently treats it as a first-class artifact. Every tool change, contract renegotiation, or vendor deprecation destroys the accumulated understanding.
 
-Weaving Memory is the honest follow-up. If the invisible layer is what actually matters, and no tool is built to move it, then the value a practitioner builds evaporates every time they switch windows. This series documents the build of Loom, a memory compiler designed to solve exactly that problem. It is not a spec walkthrough. It is a practitioner journal documenting the design decisions, the tradeoffs, and the things the author is most afraid of getting wrong.
+Weaving Memory is the honest follow-up. If the invisible layer is what actually matters, and no tool is built to move it, then the value a practitioner builds evaporates every time they switch windows. This series documents the build of Loom, the lived experience of using it across multiple AI surfaces, and what the build taught me about the spec I started with. It is not a spec walkthrough. It is a practitioner journal documenting the design decisions, the tradeoffs, the surprises, and the things the author is most afraid of getting wrong.
 
 ### The Core Problem
 
@@ -33,25 +33,25 @@ Weaving Memory takes the position that this is a market failure worth solving wi
 The series opener. Names the three anchors of the work: the precedent in Value of Context, the civilian-scale catalyst in Nate B. Jones's open brain pattern, and the co-development with Benjamin Villanueva on Borg. Introduces Loom without schema. Sets the stakes.
 
 **Part 2: The Groove Problem**
-Loom is mechanically a comfort-groove amplifier if built wrong. The same accumulated understanding that makes AI collaboration valuable is the thing that files down the pushback a practitioner actually needs. The architectural counter-moves that keep the memory compiler from becoming a faster, better accommodation engine.
+Loom is mechanically a comfort-groove amplifier if built wrong. The same accumulated understanding that makes AI collaboration valuable is the thing that files down the pushback a practitioner actually needs. The four architectural counter-moves that ship in Loom and what they still cannot solve.
 
-**Part 3: Memory Isn't RAG, and RAG Isn't Memory**
-Retrieval-augmented generation is a search problem. Memory is an evidence problem. The three memory types, their authority hierarchy, and where pure RAG architecturally fails.
+**Part 3: Across Five Surfaces**
+What it actually feels like to use Loom in a working day across Claude Desktop, Claude Code, ChatGPT, GitHub Copilot, and M365 Copilot. The Council seat continues. The handoffs that hold and the handoffs that do not. The practitioner reality the architecture was supposed to support.
 
-**Part 4: Compile-Per-Task**
-Context assembly is a compiler problem, not a retrieval problem. The four-stage compiler, dual-profile intent classification, memory weight modifiers, and the insight that makes Loom Loom.
+**Part 4: What the Build Caught**
+The story of what survived contact with implementation and what did not. The three-mode ingestion taxonomy that was not in the original spec. The verbatim content invariant that emerged once LLM-summarized memory threatened to corrupt the authority hierarchy. The hardware reality that forced a per-tier extraction model decision. What the build taught me about the spec I thought I had finished.
 
 **Part 5: Evidence Is the Feature**
-Provenance tracking, supersession chains, and why immutability of episodes is a regulatory requirement rather than a design preference. How AI-assisted decisions become defensible.
+Provenance tracking, supersession chains, and the audit log as itself evidence. Why immutability of episodes is not a design preference. Why the verbatim content invariant is the foundation everything else stands on. How AI-assisted decisions become defensible across regulated and unregulated environments alike.
 
 **Part 6: Predicate Packs**
 How Loom speaks your domain's language. The pack architecture, the colleague review that catalyzed it, and the GRC pack as the worked example.
 
 **Part 7: What I Got Wrong**
-The deferrals, the retractions, the model changes, and the benchmarks that did not go the way they were planned. The post that earns the rest of the series.
+The deferrals, the retractions, the model changes, and the benchmarks that did not go the way they were planned. Read against the changelog and the ADRs. The post that earns the rest of the series.
 
 **Part 8: Measurement Receipts**
-Conditional. Real numbers from the Week 8 benchmark gate. If the data is not real, this part does not ship. A measurement post without measurements is how technical credibility dies.
+Conditional. Real numbers from the benchmark gate. If the data is not real, this part does not ship. A measurement post without measurements is how technical credibility dies.
 
 ### Why This Matters
 
