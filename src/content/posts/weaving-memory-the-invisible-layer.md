@@ -5,7 +5,7 @@ tags: [AI, Architecture, Memory]
 description: "The first part of Weaving Memory. What cannot be exported has to be built. Why I stopped trying to paste context across tools and started building the bridge."
 image: "weaving-memory.jpg"
 series: "Weaving Memory"
-series_order: 1
+series_part: 1
 ---
 
 # The Invisible Layer
