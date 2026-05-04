@@ -116,13 +116,7 @@ I took the Council seat. That means evaluating new tools from zero context. I wi
 
 *"The depth was the product. The portability is what makes the depth survive."*
 
-<!-- NEXT_PART: weaving-memory-the-groove-problem.md -->
-## What's Next?
-
-**Coming Next:** Part 2: The Groove Problem
-
-Loom is mechanically a comfort-groove amplifier if built wrong. The same accumulated understanding that makes AI collaboration valuable is the thing that files down the pushback a practitioner actually needs. The architectural counter-moves that keep the memory compiler from becoming a faster, better accommodation engine.
-<!-- END_NEXT_PART -->
+**Next in Series:** [Weaving Memory Part 2: The Groove Problem →](/weaving-memory-the-groove-problem/)
 
 ---
 
