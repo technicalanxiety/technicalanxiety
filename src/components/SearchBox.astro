@@ -142,6 +142,15 @@
       this.displayResults(results, query);
     }
 
+    private escapeHtml(str: string): string {
+      return str
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
     private displayResults(results: import('fuse.js').FuseResult<SearchItem>[], query: string) {
       if (!this.searchResultsList || !this.searchResultsCount) return;
 
@@ -152,12 +161,16 @@
       this.searchResultsList.innerHTML = '';
 
       if (results.length === 0) {
-        this.searchResultsList.innerHTML = `
-          <div class="search-no-results">
-            <p>No posts found for "${query}"</p>
-            <p class="search-suggestion">Try different keywords or browse <a href="/archive/">all posts</a></p>
-          </div>
-        `;
+        const noResults = document.createElement('div');
+        noResults.className = 'search-no-results';
+        const p1 = document.createElement('p');
+        p1.textContent = `No posts found for "${query}"`;
+        const p2 = document.createElement('p');
+        p2.className = 'search-suggestion';
+        p2.innerHTML = 'Try different keywords or browse <a href="/archive/">all posts</a>';
+        noResults.appendChild(p1);
+        noResults.appendChild(p2);
+        this.searchResultsList.appendChild(noResults);
       } else {
         // Display results (limit to 10)
         results.slice(0, 10).forEach(result => {
@@ -185,14 +198,14 @@
       const excerpt = this.createExcerpt(item.content, query);
 
       resultDiv.innerHTML = `
-        <a href="${item.url}" class="search-result-link">
+        <a href="${this.escapeHtml(item.url)}" class="search-result-link">
           <div class="search-result-header">
-            <h3 class="search-result-title">${this.highlightText(item.title, query)}</h3>
+            <h3 class="search-result-title">${this.highlightText(this.escapeHtml(item.title), query)}</h3>
             <span class="search-result-date">${date}</span>
           </div>
-          ${item.description ? `<p class="search-result-description">${this.highlightText(item.description, query)}</p>` : ''}
+          ${item.description ? `<p class="search-result-description">${this.highlightText(this.escapeHtml(item.description), query)}</p>` : ''}
           <p class="search-result-excerpt">${excerpt}</p>
-          ${item.tags.length > 0 ? `<div class="search-result-tags">${item.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}</div>` : ''}
+          ${item.tags.length > 0 ? `<div class="search-result-tags">${item.tags.map(tag => `<span class="tag">${this.escapeHtml(tag)}</span>`).join('')}</div>` : ''}
         </a>
       `;
 
@@ -207,8 +220,7 @@
       const queryIndex = cleanContent.toLowerCase().indexOf(query.toLowerCase());
       
       if (queryIndex === -1) {
-        // If query not found, return beginning of content
-        return this.highlightText(cleanContent.substring(0, maxLength) + '...', query);
+        return this.highlightText(this.escapeHtml(cleanContent.substring(0, maxLength)) + '...', query);
       }
 
       // Extract excerpt around the search term
@@ -219,7 +231,7 @@
       if (start > 0) excerpt = '...' + excerpt;
       if (end < cleanContent.length) excerpt = excerpt + '...';
 
-      return this.highlightText(excerpt, query);
+      return this.highlightText(this.escapeHtml(excerpt), query);
     }
 
     private highlightText(text: string, query: string): string {

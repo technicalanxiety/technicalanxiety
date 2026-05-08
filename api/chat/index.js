@@ -167,10 +167,12 @@ ${validatedArticleContext.content}` : ''}`;
 
     // Add conversation history
     conversationHistory.slice(-4).forEach(msg => {
-      messages.push({
-        role: msg.role === 'user' ? 'user' : 'assistant',
-        content: msg.content
-      });
+      if (typeof msg.content === 'string' && msg.content.length <= 2000) {
+        messages.push({
+          role: msg.role === 'user' ? 'user' : 'assistant',
+          content: msg.content
+        });
+      }
     });
 
     // Add current message
@@ -216,7 +218,7 @@ ${validatedArticleContext.content}` : ''}`;
 
       context.res = {
         status: 500,
-        body: { error: `Groq API error: ${response.status} - ${errorText.substring(0, 100)}` }
+        body: { error: 'Chat service temporarily unavailable. Please try again.' }
       };
       return;
     }

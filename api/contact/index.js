@@ -91,7 +91,10 @@ module.exports = async function (context, req) {
     }
     context.log('SENDGRID_API_KEY found, length:', SENDGRID_API_KEY.length);
 
-    const interestList = Array.isArray(interests) && interests.length > 0 ? interests.join(', ') : 'Not specified';
+    const safeInterests = Array.isArray(interests)
+      ? interests.slice(0, 20).filter(i => typeof i === 'string' && i.length <= 100)
+      : [];
+    const interestList = safeInterests.length > 0 ? safeInterests.join(', ') : 'Not specified';
 
     const emailHtml = `<h2>New Consulting Inquiry</h2>
 <table style="border-collapse:collapse;width:100%;max-width:600px;">
@@ -138,6 +141,6 @@ ${problem ? `<h3 style="margin-top:20px;">What they're trying to solve</h3><p st
   } catch (error) {
     context.log.error('Contact API error:', error.message, error.stack);
     context.res = { status: 500, headers: { 'Content-Type': 'application/json' },
-      body: { error: 'Internal server error', detail: error.message } };
+      body: { error: 'Internal server error' } };
   }
 };
