@@ -104,9 +104,10 @@ describe('URL Structure Preservation Property Tests', () => {
           // Only include post pages (not homepage, static pages, tags, pagination, etc.)
           // Filter out known static pages by exact match, not substring match
           const staticPages = [
-            'about', 'archive', 'azure', 'changelog', 'governance', 
-            'leadership', 'log-analytics', 'operations', 'privacy', 
-            'resume', 'security', 'start-here', '404'
+            'about', 'architecture', 'archive', 'azure', 'changelog',
+            'consulting', 'governance', 'leadership', 'log-analytics',
+            'loom', 'operations', 'privacy', 'resume', 'security',
+            'start-here', '404'
           ];
           
           if (basePath && 

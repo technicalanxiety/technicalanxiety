@@ -21,18 +21,18 @@
     "verify:staging": "node scripts/verify-deployment.js staging"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.8",
-    "@astrojs/react": "^5.0.3",
+    "@astrojs/check": "^0.9.9",
+    "@astrojs/react": "^5.0.4",
     "@astrojs/rss": "^4.0.18",
     "@astrojs/sitemap": "^3.7.2",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
-    "astro": "^6.1.3",
-    "fuse.js": "^7.1.0",
-    "react": "^19.2.5",
-    "react-dom": "^19.2.5",
-    "sass": "^1.97.0",
-    "typescript": "^5.9.3"
+    "astro": "^6.3.1",
+    "fuse.js": "^7.3.0",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
+    "sass": "^1.99.0",
+    "typescript": "^6.0.3"
   },
   "//overrides": "Remove yaml override when yaml-language-server ships with yaml >= 2.8.3 (GHSA-48c2-rrv3-qjmp)",
   "overrides": {
@@ -42,14 +42,14 @@
     }
   },
   "devDependencies": {
-    "@types/jsdom": "^27.0.0",
-    "@types/node": "^25.0.3",
-    "fast-check": "^4.4.0",
-    "jsdom": "^27.3.0",
-    "lighthouse": "^13.1.0",
+    "@types/jsdom": "^28.0.1",
+    "@types/node": "^25.6.2",
+    "fast-check": "^4.7.0",
+    "jsdom": "^29.1.1",
+    "lighthouse": "^13.3.0",
     "markdownlint-cli": "^0.48.0",
-    "puppeteer": "^24.34.0",
+    "puppeteer": "^24.43.0",
     "sharp": "^0.34.5",
-    "vitest": "^4.0.16"
+    "vitest": "^4.1.5"
   }
 }
