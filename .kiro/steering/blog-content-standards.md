@@ -68,7 +68,7 @@ draft: false                 # Optional (defaults to false)
 - **Placement**: Immediately after the main title (H1), before the first subtitle
 - **Width**: Use `width="100%"` to match article content width
 - **Height**: Standard `height="102px"` for episode embeds
-- **Format**: `<iframe src="https://creators.spotify.com/pod/profile/technicalanxiety/embed/episodes/[episode-id]/[embed-id]" height="102px" width="100%" frameborder="0" scrolling="no"></iframe>`
+- **Format**: `<iframe style="border-radius:12px" src="https://open.spotify.com/embed/episode/[episode-id]?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`
 - **Purpose**: Link related podcast episodes to blog posts for cross-platform content
 - **Testing**: Always preview locally with `npm run dev` to verify sizing and appearance
 

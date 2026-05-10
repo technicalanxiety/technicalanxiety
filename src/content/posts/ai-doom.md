@@ -8,7 +8,7 @@ image: "ai-doom.jpg"
 
 # The End of Humanity Won't Be Caused by AI
 
-<iframe src="https://creators.spotify.com/pod/profile/technicalanxiety/embed/episodes/The-End-of-Humanity-Isnt-AI-e3d8qdh/a-acd9c4a" height="102px" width="100%" frameborder="0" scrolling="no"></iframe>
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/episode/385cTNhMRRzJlhe6smMeNB?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
 
 ## It Never Was Going to Be
 

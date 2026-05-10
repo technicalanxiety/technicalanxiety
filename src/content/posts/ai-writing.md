@@ -8,7 +8,7 @@ image: "ai-writing.jpg"
 
 # Thinking Through the Machine
 
-<iframe src="https://creators.spotify.com/pod/profile/technicalanxiety/embed/episodes/Thinking-Through-The-Machine-e3dhjfl/a-acdkhkn" height="102px" width="100%" frameborder="0" scrolling="no"></iframe>
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/episode/4ycD1ev7uUAYr0wbRAy4J5?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
 
 ## AI as a Writing Partner, Not a Ghostwriter
 
