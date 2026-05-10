@@ -32,10 +32,7 @@ const shouldPreload = priority && loading === 'eager';
 ---
 
 {shouldPreload && isOptimized && (
-  <>
-    <link rel="preload" as="image" href={`/img/optimized/${filename}.avif`} type="image/avif" />
-    <link rel="preload" as="image" href={`/img/optimized/${filename}.webp`} type="image/webp" />
-  </>
+  <link rel="preload" as="image" href={`/img/optimized/${filename}.avif`} type="image/avif" />
 )}
 
 {isOptimized ? (
