@@ -32,6 +32,9 @@ A framework for building confidence through five components: observable criteria
 **Part 3: Adoption Déjà Vu**
 You'll build the instrumentation. Leadership will nod at the dashboard. Then nothing will happen. The same organizational patterns that killed SRE adoption, DevOps transformation, and cloud migration will kill your AI governance. This part addresses the preconditions that actually matter: servant leadership, psychological safety, and willingness to act on evidence when the answer is uncomfortable.
 
+**Part 4: The Variable Nobody Measures**
+You measured confidence. You never measured what failure costs. Consequence is the dimension that was driving every component of the framework from the start, and nobody made it explicit. This part introduces the consequence profile: four dimensions (impact, blast radius, velocity, reversibility) that determine how tightly the confidence components need to be held. It shows how consequence warps the decision space around every person sitting at a staged authority gate, bending toward paralysis or recklessness depending on the seat. And it makes the case that the preconditions aren't just organizational health requirements. They're the counterweight to a force that, left unchecked, distorts every decision the framework produces.
+
 ### Why This Matters
 
 AI adoption is stalling not because the technology isn't ready, but because organizations don't have frameworks for deploying it with appropriate confidence levels. The binary choice between "trust completely" and "don't use at all" ignores how you've built confidence in every other system you operate.
