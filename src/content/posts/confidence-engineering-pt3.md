@@ -137,11 +137,7 @@ I can't tell you which one you're in. But I can tell you the collision is coming
 
 ## What's Next?
 
-<!-- NEXT_PART: confidence-engineering-pt4.md -->
-**Coming Next:** Part 4: The Variable Nobody Measures (Published June 8, 2026)
-
-You measured confidence. You never measured what failure costs. Consequence is the dimension that was driving every component of the framework from the start.
-<!-- END_NEXT_PART -->
+**Next in Series:** [Confidence Engineering - Part 4: The Variable Nobody Measures →](/confidence-engineering-pt4/)
 
 ---
 
