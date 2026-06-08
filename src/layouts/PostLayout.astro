@@ -9,6 +9,7 @@ import SeriesNavigation from '../components/SeriesNavigation.astro';
 import BackToTop from '../components/BackToTop.astro';
 import GiscusComments from '../components/GiscusComments.astro';
 import RecruiterChat from '../components/RecruiterChat.astro';
+import OptimizedImage from '../components/OptimizedImage.astro';
 import { siteConfig } from '../config';
 import type { CollectionEntry } from 'astro:content';
 import { render } from 'astro:content';
@@ -88,7 +89,7 @@ const canonicalURL = new URL(`/${post.id}/`, Astro.site).href;
                 
                 {post.data.tags && post.data.tags.length > 0 && (
                   <div class="post-tags">
-                    {post.data.tags.map(tag => (
+                    {post.data.tags.map((tag: string) => (
                       <a href={`/tags/${tag}/`} class="post-tag">
                         {tag}
                       </a>
