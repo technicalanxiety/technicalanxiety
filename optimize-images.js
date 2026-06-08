@@ -65,6 +65,9 @@ function isAlreadyOptimized(filename) {
   return sourceStat.mtime <= webpStat.mtime;
 }
 
+// Maximum width for article images (per blog standards: 1200x630 featured)
+const MAX_WIDTH = 1200;
+
 async function optimizeImage(inputPath, filename) {
   const baseName = path.parse(filename).name;
   const ext = path.parse(filename).ext.toLowerCase();
@@ -78,9 +81,19 @@ async function optimizeImage(inputPath, filename) {
     
     console.log(`   Original: ${metadata.width}x${metadata.height}, ${Math.round(inputStats.size / 1024)}KB`);
     
+    // Resize if wider than MAX_WIDTH (preserves aspect ratio)
+    const needsResize = metadata.width > MAX_WIDTH && !criticalImages.includes(filename);
+    const pipeline = needsResize 
+      ? image.resize(MAX_WIDTH, null, { withoutEnlargement: true })
+      : image;
+    
+    if (needsResize) {
+      console.log(`   Resizing to ${MAX_WIDTH}px wide...`);
+    }
+    
     // Generate WebP version (best compression, wide support)
     const webpPath = path.join(OUTPUT_DIR, `${baseName}.webp`);
-    await image
+    await pipeline.clone()
       .webp(optimizationSettings.webp)
       .toFile(webpPath);
     
@@ -89,7 +102,7 @@ async function optimizeImage(inputPath, filename) {
     
     // Generate AVIF version (best compression, newer browsers)
     const avifPath = path.join(OUTPUT_DIR, `${baseName}.avif`);
-    await image
+    await pipeline.clone()
       .avif(optimizationSettings.avif)
       .toFile(avifPath);
     
@@ -100,12 +113,12 @@ async function optimizeImage(inputPath, filename) {
     let optimizedPath;
     if (ext === '.jpg' || ext === '.jpeg') {
       optimizedPath = path.join(OUTPUT_DIR, `${baseName}.jpg`);
-      await image
+      await pipeline.clone()
         .jpeg(optimizationSettings.jpeg)
         .toFile(optimizedPath);
     } else if (ext === '.png') {
       optimizedPath = path.join(OUTPUT_DIR, `${baseName}.png`);
-      await image
+      await pipeline.clone()
         .png(optimizationSettings.png)
         .toFile(optimizedPath);
     }
@@ -128,20 +141,20 @@ async function optimizeImage(inputPath, filename) {
       for (const size of sizes) {
         if (size.width < metadata.width) {
           // WebP responsive
-          await image
+          await sharp(inputPath)
             .resize(size.width, null, { withoutEnlargement: true })
             .webp(optimizationSettings.webp)
             .toFile(path.join(OUTPUT_DIR, `${baseName}${size.suffix}.webp`));
           
           // AVIF responsive
-          await image
+          await sharp(inputPath)
             .resize(size.width, null, { withoutEnlargement: true })
             .avif(optimizationSettings.avif)
             .toFile(path.join(OUTPUT_DIR, `${baseName}${size.suffix}.avif`));
           
           // Original format responsive
           if (ext === '.jpg' || ext === '.jpeg') {
-            await image
+            await sharp(inputPath)
               .resize(size.width, null, { withoutEnlargement: true })
               .jpeg(optimizationSettings.jpeg)
               .toFile(path.join(OUTPUT_DIR, `${baseName}${size.suffix}.jpg`));

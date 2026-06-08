@@ -98,9 +98,10 @@ const canonicalURL = new URL(`/${post.id}/`, Astro.site).href;
                 
                 {post.data.image && (
                   <div class="post-image">
-                    <img 
-                      src={`/img/${post.data.image}`} 
+                    <OptimizedImage 
+                      src={`/img/${post.data.image}`}
                       alt={post.data.title}
+                      width={1200}
                       loading="lazy"
                     />
                   </div>
