@@ -14,7 +14,7 @@ series_part: 4
 
 ---
 
-A founder building an AI reliability platform read the observability series and pushed back on something specific. The framework defines what to measure. It assumes you already know which failure modes to instrument for. His point: in production, the failures that matter most are the ones you didn't think to write an alert for. Preset metrics only catch the problems you anticipated.
+[Jerry Zhang](https://www.linkedin.com/in/jerry-n-zhang/), co-founder of [Lemma](https://www.uselemma.ai/), read the observability series and pushed back on something specific. The framework defines what to measure. It assumes you already know which failure modes to instrument for. His point: in production, the failures that matter most are the ones you didn't think to write an alert for. Preset metrics only catch the problems you anticipated.
 
 He's right. But there's a different question underneath his.
 
@@ -54,7 +54,7 @@ The instinct is to say the goal is zero negative consequences. That instinct is 
 
 These questions feel bottomless. They aren't.
 
-Instrumentation is always bounded by the platform the system runs on. Azure gives you a finite telemetry surface. AWS gives you a different finite surface. The unknown-unknowns in instrumentation aren't infinite. They're constrained by what the platform can actually emit. That constraint doesn't eliminate the gap between what you instrument and what you should have instrumented. But it bounds the gap. The fear of infinite unknowns meets the engineering reality of finite observability.
+Instrumentation is always bounded by the platform the system runs on. Azure gives you a finite telemetry surface. AWS gives you a different finite surface. The platform bounds what you can observe, not what can fail. Those are different boundaries. But bounding the observation surface is still a meaningful reduction from the fear of infinite unknowns. The gap between what you instrument and what you should have instrumented doesn't disappear, but it becomes finite and navigable rather than bottomless.
 
 Consequence then tells you how much of that finite surface you need to cover. Low-consequence system? Instrument the obvious failure modes and iterate as you learn. High-consequence system? Instrument to the edges of what the platform can emit and build governance for what lives beyond the boundary. The depth of instrumentation is proportional to the cost of missing something.
 
