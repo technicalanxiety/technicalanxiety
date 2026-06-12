@@ -206,13 +206,7 @@ It's messy. It will always be messy. Because consequence is human. The systems a
 
 The framework doesn't clean that up. It gives you a structure for operating inside the mess without pretending it's clean.
 
-<!-- NEXT_PART: confidence-engineering-pt5.md -->
-## What's Next?
-
-**Coming Next:** Part 5: Confidently Execute Authority (June 12, 2026)
-
-Parts 1 through 4 built a framework for knowing whether to act. None of them specified what a system that acts on those measurements looks like. Multi-agent orchestration exposes the contradiction: parallel execution and uniform human gating are structurally incompatible. Part 5 introduces confidence-routed gates, the mechanism layer where confidence scores, consequence, and staged authority become executable routing decisions.
-<!-- END_NEXT_PART -->
+**Next in Series:** [Confidence Engineering - Part 5: Confidently Execute Authority →](/confidence-engineering-pt5/)
 
 ---
 
