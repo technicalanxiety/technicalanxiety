@@ -2,7 +2,7 @@
 title: "A Thousand Acres"
 date: 2026-06-14
 description: "Cal Newport wrote a book about the craftsman mindset. My dad built a house. One of them taught me what the other left out."
-image: a-thousand-acres.jpg
+image: a-thousand-acres.jpeg
 tags: ["Leadership", "Anxiety", "Architecture"]
 ---
 
