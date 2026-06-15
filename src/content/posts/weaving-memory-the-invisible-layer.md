@@ -10,7 +10,7 @@ series_part: 1
 
 # The Invisible Layer
 
-## Weaving Memory, Part 1 of 8
+## Weaving Memory, Part 1 of 3
 
 Moving between AI tools and copy-pasting context is painful and mostly unusable. I said this already, in different words, when I wrote Value of Context. The honest response, the one I actually made, was to stop trying. I have almost abandoned serious use of any tool other than the one I have built the most context and memory with. The tool is not the point. The accumulated understanding is.
 
@@ -120,6 +120,6 @@ I took the Council seat. That means evaluating new tools from zero context. I wi
 
 ---
 
-*This is Part 1 of the "Weaving Memory" series. [View full series](/series/weaving-memory/).*
+*This is Part 1 of the "Weaving Memory" series. [View full series](/series/weaving-memory/). [Part 2: The Groove Problem](/weaving-memory-the-groove-problem/) examines the comfort-amplifier risk. [Part 3: Memory Isn't RAG](/weaving-memory-memory-isnt-rag/) closes the series.*
 
 **Photo by [Andrea Bortolotti](https://unsplash.com/@bortox) on [Unsplash](https://unsplash.com/photos/old-weaving-looms-in-a-rustic-workshop-setting--hMS1KniuG4)**

@@ -1,6 +1,6 @@
 ---
 title: "Weaving Memory"
-description: "The seventy percent of AI context that cannot be exported. A practitioner journal of building, using, and learning from a memory compiler designed to make the invisible layer portable."
+description: "The seventy percent of AI context that cannot be exported. A practitioner journal of building Loom, the tradeoffs that shaped it, and what a neuroscience paper changed about the spec."
 image: "weaving-memory.jpg"
 tags: [AI, Architecture, Memory, Leadership]
 order: 2
@@ -11,13 +11,15 @@ featured: true
 
 Stop pasting context across tools. Start architecting what should have been portable in the first place.
 
-8 Parts
+3 Parts
 
 ### Overview
 
 The Value of Context established the seventy percent problem. Bilateral adaptation between a practitioner and an AI tool develops over months of sustained interaction, and only thirty percent of it is portable. The remaining seventy percent is the invisible layer. It cannot be exported because no tool currently treats it as a first-class artifact. Every tool change, contract renegotiation, or vendor deprecation destroys the accumulated understanding.
 
-Weaving Memory is the honest follow-up. If the invisible layer is what actually matters, and no tool is built to move it, then the value a practitioner builds evaporates every time they switch windows. This series documents the build of Loom, the lived experience of using it across multiple AI surfaces, and what the build taught me about the spec I started with. It is not a spec walkthrough. It is a practitioner journal documenting the design decisions, the tradeoffs, the surprises, and the things the author is most afraid of getting wrong.
+Weaving Memory is the honest follow-up. If the invisible layer is what actually matters, and no tool is built to move it, then the value a practitioner builds evaporates every time they switch windows. This series documents the build of Loom through three posts. It is not a spec walkthrough. It is a practitioner journal documenting the design decisions, the tradeoffs, and the things the author was most afraid of getting wrong.
+
+The series was originally planned as eight posts. It ends at three. The circumstances that would have shaped posts four through eight changed, and publishing filler to hit a number made in public was not the right call. The three-post arc is complete. The build is not.
 
 ### The Core Problem
 
@@ -35,29 +37,14 @@ The series opener. Names the three anchors of the work: the precedent in Value o
 **Part 2: The Groove Problem**
 Loom is mechanically a comfort-groove amplifier if built wrong. The same accumulated understanding that makes AI collaboration valuable is the thing that files down the pushback a practitioner actually needs. The four architectural counter-moves that ship in Loom and what they still cannot solve.
 
-**Part 3: Across Five Surfaces**
-What it actually feels like to use Loom in a working day across Claude Desktop, Claude Code, ChatGPT, GitHub Copilot, and M365 Copilot. The Council seat continues. The handoffs that hold and the handoffs that do not. The practitioner reality the architecture was supposed to support.
-
-**Part 4: What the Build Caught**
-The story of what survived contact with implementation and what did not. The three-mode ingestion taxonomy that was not in the original spec. The verbatim content invariant that emerged once LLM-summarized memory threatened to corrupt the authority hierarchy. The hardware reality that forced a per-tier extraction model decision. What the build taught me about the spec I thought I had finished.
-
-**Part 5: Evidence Is the Feature**
-Provenance tracking, supersession chains, and the audit log as itself evidence. Why immutability of episodes is not a design preference. Why the verbatim content invariant is the foundation everything else stands on. How AI-assisted decisions become defensible across regulated and unregulated environments alike.
-
-**Part 6: Predicate Packs**
-How Loom speaks your domain's language. The pack architecture, the colleague review that catalyzed it, and the GRC pack as the worked example.
-
-**Part 7: What I Got Wrong**
-The deferrals, the retractions, the model changes, and the benchmarks that did not go the way they were planned. Read against the changelog and the ADRs. The post that earns the rest of the series.
-
-**Part 8: Measurement Receipts**
-Conditional. Real numbers from the benchmark gate. If the data is not real, this part does not ship. A measurement post without measurements is how technical credibility dies.
+**Part 3: Memory Isn't RAG, and RAG Isn't Memory**
+A neuroscience document from a friend mapped eight principles of biological memory architecture onto data storage patterns. Loom already had six. The two it did not have changed the spec. This post makes the case that retrieval-augmented generation is a search technique, not a memory architecture, and shows what the difference costs in production.
 
 ### Why This Matters
 
 The practitioners who get the most out of these tools pay the highest switching cost. That is not a bug. It is the price of building something real. The industry's response to date has been to call it vendor lock-in and sell third-party memory layers that paper over the problem without addressing it architecturally. Weaving Memory takes a different position. The memory is already yours. The work is making it portable, inspectable, domain-aware, and defensible when it matters most.
 
-Every practitioner reading this will hit at least one of these in the next two years. A tool deprecation. A contract change. A role transition. An evaluation seat on a council. Each of those moments exposes the cost of treating accumulated context as something that belongs to a platform rather than to the person whose work produced it.
+Every practitioner reading this will hit at least one of these in the next two years. A tool deprecation. A contract change. A role transition. Each of those moments exposes the cost of treating accumulated context as something that belongs to a platform rather than to the person whose work produced it.
 
 ### Who This Is For
 

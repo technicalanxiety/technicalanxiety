@@ -5,12 +5,12 @@ tags: [AI, Architecture, Memory]
 description: "The second part of Weaving Memory. What the build taught me about the comfort-amplifier risk I named in Part 1, and why grounding memory outside the probabilistic system was the move I did not see in the spec."
 image: "weaving-memory.jpg"
 series: "Weaving Memory"
-series_order: 2
+series_part: 2
 ---
 
 # The Groove Problem
 
-## Weaving Memory, Part 2 of 8
+## Weaving Memory, Part 2 of 3
 
 In Part 1 I said Loom was mechanically a comfort-groove amplifier if I built it wrong. That was the line I was most afraid of getting right. The whole point of the memory compiler was that the accumulated understanding between you and the tool was the product. The same accumulated understanding that made the collaboration valuable was the thing that filed down the pushback you actually needed. A faster, better accommodation engine.
 
@@ -80,16 +80,10 @@ The grooves are still mine. They are sharper now than they were when I started.
 
 *"Grind the memory. The grooves remain."*
 
-<!-- NEXT_PART: weaving-memory-across-five-surfaces.md -->
-## What's Next?
-
-**Coming Next:** Part 3: Across Five Surfaces
-
-What it actually feels like to use Loom in a working day across Claude Desktop, Claude Code, ChatGPT, GitHub Copilot, and M365 Copilot. The Council seat continues. The handoffs that hold and the handoffs that do not. The practitioner reality the architecture was supposed to support.
-<!-- END_NEXT_PART -->
+**Next in Series:** [Weaving Memory Part 3: Memory Isn't RAG, and RAG Isn't Memory →](/weaving-memory-memory-isnt-rag/)
 
 ---
 
-*This is Part 2 of the "Weaving Memory" series. [View full series](/series/weaving-memory/). [Part 1: The Invisible Layer](/weaving-memory-the-invisible-layer/) covered why the invisible layer cannot be exported and why portability has to be architected.*
+*This is Part 2 of the "Weaving Memory" series. [View full series](/series/weaving-memory/). [Part 1: The Invisible Layer](/weaving-memory-the-invisible-layer/) covered why the invisible layer cannot be exported. [Part 3: Memory Isn't RAG, and RAG Isn't Memory](/weaving-memory-memory-isnt-rag/) closes the series with what a neuroscience paper changed about the spec.*
 
 **Photo by [Andrea Bortolotti](https://unsplash.com/@bortox) on [Unsplash](https://unsplash.com/photos/old-weaving-looms-in-a-rustic-workshop-setting--hMS1KniuG4)**
