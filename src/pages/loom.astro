@@ -105,10 +105,18 @@ import BackToTop from '../components/BackToTop.astro';
               <li>Link facts to source episodes</li>
               <li>Resolve supersession with bounded retries on failure</li>
             </ol>
+            <p class="loom-pipeline-note">Embedding inputs are bounded at 16K characters. Extraction output is constrained to a JSON Schema via Ollama's <code>response_format</code> — neither stage can produce routine poison pills. See ADR-011.</p>
+          </div>
+          <div class="loom-card loom-card--full">
+            <h3><span class="loom-dot loom-dot--gold"></span> Consolidation phase</h3>
+            <p>Runs nightly per namespace. Two steps in sequence:</p>
+            <p><strong>Consolidation.</strong> Queries entities with &ge;&nbsp;5 stable, non-superseded facts older than 48 hours (capped at 20 entities per run). For each cluster, calls the offline LLM with a schema-constrained prompt to produce a single coherent summary paragraph with a coverage map — every claim must cite a source fact UUID. A hallucination guard cross-checks every cited UUID against the source cluster; any unrecognized UUID causes the summary to be rejected rather than stored. Accepted summaries are written to <code>loom_summaries</code> with full provenance: source fact UUIDs, synthesis model, prompt version, and an <code>invalidated_at</code> timestamp that is stamped when any source fact is superseded.</p>
+            <p><strong>Pruning.</strong> Soft-deletes stale procedures (default 90-day TTL since last match), auto-resolves resolution conflicts older than 60 days, and removes summaries whose source facts were superseded more than 30 days ago. TTLs are configurable per namespace.</p>
+            <p>All consolidation activity is logged to <code>loom_consolidation_log</code>. The Consolidation dashboard page surfaces run history, KPIs, and a manual trigger. See ADR-012.</p>
           </div>
           <div class="loom-card loom-card--full">
             <h3><span class="loom-dot loom-dot--purple"></span> Telemetry sampler</h3>
-            <p>In-process ring buffer. Host CPU/memory, Ollama state, per-stage p50 latency, queue counters, recent failures. Streams to the Runtime dashboard at 1&nbsp;Hz over SSE. No new tables, no time-series store.</p>
+            <p>In-process ring buffers, 300 data points per metric (5-minute window at 1&nbsp;Hz). Host CPU/memory sampled via the <code>sysinfo</code> crate. Ollama model state and GPU/CPU compute placement queried from Ollama's <code>/api/ps</code> every 5 seconds. Per-stage p50 latency and queue counters queried from PostgreSQL every 5 seconds — no schema changes, no new tables. <code>EventSource</code> cannot send <code>Authorization</code> headers; the SSE endpoint accepts <code>?token=</code> as a fallback, TLS-only, read-only route. No Prometheus, no external monitoring stack. See ADR-010.</p>
           </div>
         </div>
       </section>
@@ -185,7 +193,7 @@ import BackToTop from '../components/BackToTop.astro';
           <div class="loom-stack-item">
             <span class="loom-stack-label">Engine</span>
             <strong class="loom-stack-value">Rust</strong>
-            <p>tokio, axum 0.8, sqlx 0.8. Compile-time SQL checking. ring as the rustls crypto provider. Single static binary on debian:bookworm-slim.</p>
+            <p>tokio, axum 0.8, sqlx 0.8. Compile-time SQL checking. ring as the rustls crypto provider. Single static binary on debian:bookworm-slim. Telemetry: <code>sysinfo</code> (host resource sampling), <code>async-stream</code> + <code>tokio-stream</code> (SSE feed).</p>
           </div>
           <div class="loom-stack-item">
             <span class="loom-stack-label">Dashboard</span>
@@ -280,7 +288,7 @@ import BackToTop from '../components/BackToTop.astro';
         <h2 class="section-title">Thirteen pages, one purpose</h2>
         <p class="section-body">Full inspectability into the memory system. The dashboard is how you trust the compiler.</p>
         <div class="loom-dashboard-grid">
-          <div class="loom-dash-item"><strong>Runtime</strong> — SSE-driven live status. Host CPU/memory, Ollama model and GPU/CPU badge, per-stage p50 latency, ingestion queue counters, recent failures with bulk-requeue.</div>
+          <div class="loom-dash-item"><strong>Runtime</strong> — SSE-driven live status at 1&nbsp;Hz. Dense btop-inspired layout: host CPU/memory bar gauges with 5-minute sparklines, Ollama model name with GPU/CPU compute badge, per-stage p50 pipeline latency (classify &rarr; retrieve &rarr; rank &rarr; compile) with latency sparkline, ingestion queue counters (active / pending / failed), recent extraction failure tail with episode ID, source, and error. Ring buffers hold 300 data points per metric. Sparkline history resets on engine restart — acceptable for single-operator local infrastructure.</div>
           <div class="loom-dash-item"><strong>Pipeline Health</strong> — Episode counts by source and namespace, entity counts by type, pending queue depth, failed-episode count, model config.</div>
           <div class="loom-dash-item"><strong>Compilations</strong> — Paginated loom_think history with drill-down to per-candidate score breakdowns.</div>
           <div class="loom-dash-item"><strong>Entities</strong> — Search and detail view with 1–2 hop neighborhood graph, tier pills, salience bars.</div>
@@ -290,7 +298,54 @@ import BackToTop from '../components/BackToTop.astro';
           <div class="loom-dash-item"><strong>Benchmarks</strong> — A/B/C condition runs, per-task precision and latency, winner card.</div>
           <div class="loom-dash-item"><strong>Parser Health</strong> — Per-bootstrap-parser episode counts, parser versions, freshness pills.</div>
           <div class="loom-dash-item"><strong>Ingestion Mode Distribution</strong> — Per-namespace Mode 1/2/3 breakdown with seed-only warning list.</div>
+          <div class="loom-dash-item"><strong>Consolidation</strong> — Active and invalidated summary counts, nightly run history (type, status, duration, per-phase counters), and a "Run now" button that triggers an immediate consolidation + pruning cycle for the selected namespace.</div>
         </div>
+      </section>
+
+      <!-- Architecture Decision Records -->
+      <section class="loom-section">
+        <span class="loom-section-label">Architecture decision records</span>
+        <h2 class="section-title">Architecture Decision Records</h2>
+        <p class="section-body">Non-obvious design choices are documented as ADRs with zero-padded three-digit numbering under <code>docs/adr/</code> in the repository.</p>
+        <div class="loom-adr-table">
+          <div class="loom-adr-row loom-adr-header">
+            <span>ADR</span>
+            <span>Decision</span>
+          </div>
+          <div class="loom-adr-row">
+            <span><strong>ADR-001</strong></span>
+            <span>PostgreSQL as single system of record — no external vector store, no graph database</span>
+          </div>
+          <div class="loom-adr-row">
+            <span><strong>ADR-004</strong></span>
+            <span>Three-mode ingestion taxonomy — <code>user_authored_seed</code>, <code>vendor_import</code>, <code>live_mcp_capture</code>. <code>llm_reconstruction</code> does not exist</span>
+          </div>
+          <div class="loom-adr-row">
+            <span><strong>ADR-007</strong></span>
+            <span>Episode retry backoff — bounded attempts with exponential backoff; permanently-failed episodes surface for operator triage rather than retrying forever</span>
+          </div>
+          <div class="loom-adr-row">
+            <span><strong>ADR-008</strong></span>
+            <span>MCP JSON-RPC 2.0 dispatcher at <code>POST /mcp</code> alongside per-tool REST endpoints</span>
+          </div>
+          <div class="loom-adr-row">
+            <span><strong>ADR-009</strong></span>
+            <span>Extraction model selection by hardware tier — <code>qwen2.5:14b</code> for iGPU/APU, <code>gemma4:26b</code> for discrete GPU, <code>gemma4:e4b</code> for tight memory</span>
+          </div>
+          <div class="loom-adr-row">
+            <span><strong>ADR-010</strong></span>
+            <span>Streaming telemetry via SSE + in-process ring buffers — SSE over WebSockets; ring buffers over persisted time-series; <code>sysinfo</code> over NVML; Ollama <code>/api/ps</code> over direct GPU access</span>
+          </div>
+          <div class="loom-adr-row">
+            <span><strong>ADR-011</strong></span>
+            <span>Bounded inputs + constrained outputs — 16K character embed cap; <code>response_format: json_schema</code> on all extraction calls</span>
+          </div>
+          <div class="loom-adr-row">
+            <span><strong>ADR-012</strong></span>
+            <span>Memory consolidation + active forgetting — nightly synthesis of stable fact clusters into provenance-traced summaries; TTL-based pruning of stale procedures, conflicts, and invalidated summaries</span>
+          </div>
+        </div>
+        <p class="loom-adr-note">The ADR log is where rejected alternatives live. The choices that were not made are as important as the ones that were.</p>
       </section>
 
     </div>
@@ -548,6 +603,10 @@ import BackToTop from '../components/BackToTop.astro';
     background: #8a7cc8;
   }
 
+  .loom-dot--gold {
+    background: #c9a84c;
+  }
+
   .loom-pipeline-grid ol {
     list-style: none;
     counter-reset: step;
@@ -585,6 +644,22 @@ import BackToTop from '../components/BackToTop.astro';
     color: var(--text-secondary);
     line-height: 1.6;
     margin: 0;
+  }
+
+  .loom-card--full p + p {
+    margin-top: 0.75rem;
+  }
+
+  .loom-pipeline-note {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-top: 0.75rem;
+  }
+
+  .loom-pipeline-note code {
+    font-size: 0.8rem;
+    color: var(--accent-color);
   }
 
   /* ---- Ingestion table ---- */
@@ -821,6 +896,62 @@ import BackToTop from '../components/BackToTop.astro';
     margin-top: 0.75rem;
     line-height: 1.7;
     opacity: 0.8;
+  }
+
+  /* ---- ADR table ---- */
+  .loom-adr-table {
+    margin-top: 1.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+
+  .loom-adr-row {
+    display: grid;
+    grid-template-columns: 7rem 1fr;
+    gap: 1rem;
+    padding: 0.75rem 1.25rem;
+    align-items: baseline;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .loom-adr-row:last-child {
+    border-bottom: none;
+  }
+
+  .loom-adr-header {
+    background: rgba(22, 27, 34, 0.92);
+    font-family: var(--font-mono, 'SF Mono', monospace);
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+
+  .loom-adr-row span {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+  }
+
+  .loom-adr-row strong {
+    font-family: var(--font-mono, 'SF Mono', monospace);
+    font-size: 0.8rem;
+    color: var(--text-heading);
+  }
+
+  .loom-adr-row code {
+    font-size: 0.8rem;
+    color: var(--accent-color);
+  }
+
+  .loom-adr-note {
+    margin-top: 1rem;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    opacity: 0.7;
+    line-height: 1.6;
+    font-style: italic;
   }
 
   /* ---- Dashboard grid ---- */
