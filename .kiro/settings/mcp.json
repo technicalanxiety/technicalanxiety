@@ -12,8 +12,8 @@
       "args": [
         "-y",
         "@modelcontextprotocol/server-filesystem",
-        "/Users/jason.rinehart",
-        "/Users/jason.rinehart/.kiro"
+        "/Users/jason",
+        "/Users/jason/.kiro"
       ],
       "env": {
         "FASTMCP_LOG_LEVEL": "ERROR"
