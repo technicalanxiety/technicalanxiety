@@ -69,7 +69,7 @@ const operationsPosts = posts
                         })}
                       </time>
                       <span class="read-time">
-                        {Math.ceil(post.body.split(' ').length / 225)} min read
+                        {Math.ceil((post.body || '').split(' ').length / 225)} min read
                       </span>
                     </div>
                     <h4 class="post-title">

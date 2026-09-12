@@ -32,7 +32,9 @@ describe('URL Structure Preservation Property Tests', () => {
     const [month, day, year] = centralTimeString.split('/');
     const centralDateString = `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
     
-    return files.map(file => {
+    type ExpectedPostUrl = { originalFile: string; slug: string; expectedUrl: string };
+
+    return files.map((file): ExpectedPostUrl | null => {
       const content = fs.readFileSync(path.join(postsDir, file), 'utf8').replace(/\r\n/g, '\n');
       const frontmatterMatch = content.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
       
@@ -71,7 +73,7 @@ describe('URL Structure Preservation Property Tests', () => {
         slug,
         expectedUrl
       };
-    }).filter(Boolean); // Remove null entries
+    }).filter((entry): entry is ExpectedPostUrl => entry !== null); // Remove null entries
   }
 
   // Helper function to get Astro built pages

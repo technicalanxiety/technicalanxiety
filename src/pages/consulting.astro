@@ -383,12 +383,13 @@ import BackToTop from '../components/BackToTop.astro';
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('consulting-form');
-    const submitBtn = document.getElementById('submit-btn');
+    const form = document.getElementById('consulting-form') as HTMLFormElement | null;
+    const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement | null;
     const formStatus = document.getElementById('form-status');
 
     form?.addEventListener('submit', async (e) => {
       e.preventDefault();
+      if (!submitBtn || !formStatus) return;
 
       submitBtn.disabled = true;
       submitBtn.textContent = 'Sending...';
@@ -397,17 +398,20 @@ import BackToTop from '../components/BackToTop.astro';
 
       // Gather checkbox values
       const interests = Array.from(
-        form.querySelectorAll('input[name="interest"]:checked')
+        form.querySelectorAll<HTMLInputElement>('input[name="interest"]:checked')
       ).map(cb => cb.value);
 
+      const getValue = (selector: string): string =>
+        (form.querySelector(selector) as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | null)?.value || '';
+
       const payload = {
-        name: form.querySelector('#name')?.value || '',
-        email: form.querySelector('#email')?.value || '',
-        company: form.querySelector('#company')?.value || '',
-        size: form.querySelector('#size')?.value || '',
-        cloudState: form.querySelector('#cloud-state')?.value || '',
+        name: getValue('#name'),
+        email: getValue('#email'),
+        company: getValue('#company'),
+        size: getValue('#size'),
+        cloudState: getValue('#cloud-state'),
         interests,
-        problem: form.querySelector('#problem')?.value || ''
+        problem: getValue('#problem')
       };
 
       try {
@@ -427,7 +431,7 @@ import BackToTop from '../components/BackToTop.astro';
         form.reset();
       } catch (err) {
         console.error('Form submission error:', err);
-        formStatus.textContent = err.message || 'Something went wrong. Please try again or email directly.';
+        formStatus.textContent = err instanceof Error ? err.message : 'Something went wrong. Please try again or email directly.';
         formStatus.className = 'form-note form-error';
       } finally {
         submitBtn.disabled = false;

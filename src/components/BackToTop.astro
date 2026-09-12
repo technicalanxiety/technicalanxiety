@@ -72,13 +72,14 @@
   function initBackToTop() {
     const backToTopButton = document.getElementById('back-to-top');
     if (!backToTopButton) return;
+    const button: HTMLElement = backToTopButton;
 
     // Show/hide button based on scroll position
     function toggleVisibility() {
       if (window.scrollY > 300) {
-        backToTopButton.classList.add('visible');
+        button.classList.add('visible');
       } else {
-        backToTopButton.classList.remove('visible');
+        button.classList.remove('visible');
       }
     }
 

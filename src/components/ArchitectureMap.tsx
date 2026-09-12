@@ -347,8 +347,9 @@ export default function ArchitectureMap({ posts }: Props) {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
+    const ctx2d = canvas.getContext('2d');
+    if (!ctx2d) return;
+    const ctx: CanvasRenderingContext2D = ctx2d;
 
     function frame() {
       rafRef.current = requestAnimationFrame(frame);

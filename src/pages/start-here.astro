@@ -137,7 +137,7 @@ const featuredPosts = posts.filter(post =>
                         })}
                       </time>
                       <span class="read-time">
-                        {Math.ceil(post.body.split(' ').length / 225)} min read
+                        {Math.ceil((post.body || '').split(' ').length / 225)} min read
                       </span>
                     </div>
                     <h4 class="post-title">
@@ -599,8 +599,8 @@ const featuredPosts = posts.filter(post =>
   let currentLine = 0;
   let currentChar = 0;
   let isTyping = false;
-  let terminalContent;
-  let cursor;
+  let terminalContent: HTMLElement | null = null;
+  let cursor: Element | null = null;
 
   /**
    * Initialize the terminal animation
@@ -645,6 +645,7 @@ const featuredPosts = posts.filter(post =>
    * Type a single character and schedule the next one
    */
   function typeCharacter() {
+    if (!terminalContent) return;
     const line = terminalSequence[currentLine];
     
     if (currentChar < line.text.length) {
@@ -684,7 +685,8 @@ const featuredPosts = posts.filter(post =>
   /**
    * Add a complete line to the terminal (for blank lines)
    */
-  function addLine(text, type) {
+  function addLine(text: string, type: string) {
+    if (!terminalContent) return;
     const lineElement = document.createElement('div');
     lineElement.className = `terminal-line terminal-${type}`;
     lineElement.textContent = text;
@@ -695,6 +697,7 @@ const featuredPosts = posts.filter(post =>
    * Reset the terminal and restart the animation
    */
   function resetTerminal() {
+    if (!terminalContent) return;
     terminalContent.innerHTML = '';
     currentLine = 0;
     currentChar = 0;

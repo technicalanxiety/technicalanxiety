@@ -342,8 +342,8 @@ const description = 'The page you are looking for could not be found.';
   let currentLine = 0;
   let currentChar = 0;
   let isTyping = false;
-  let terminalContent;
-  let cursor;
+  let terminalContent: HTMLElement | null = null;
+  let cursor: Element | null = null;
 
   function initTerminal() {
     terminalContent = document.getElementById('terminal-content');
@@ -374,6 +374,7 @@ const description = 'The page you are looking for could not be found.';
   }
 
   function typeCharacter() {
+    if (!terminalContent) return;
     const line = terminalSequence[currentLine];
     
     if (currentChar < line.text.length) {
@@ -404,7 +405,8 @@ const description = 'The page you are looking for could not be found.';
     }
   }
 
-  function addLine(text, type) {
+  function addLine(text: string, type: string) {
+    if (!terminalContent) return;
     const lineElement = document.createElement('div');
     lineElement.className = `terminal-line terminal-${type}`;
     lineElement.textContent = text;
@@ -412,6 +414,7 @@ const description = 'The page you are looking for could not be found.';
   }
 
   function resetTerminal() {
+    if (!terminalContent) return;
     terminalContent.innerHTML = '';
     currentLine = 0;
     currentChar = 0;
