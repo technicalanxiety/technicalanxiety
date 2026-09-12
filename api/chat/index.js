@@ -54,6 +54,12 @@ module.exports = async function (context, req) {
 
     context.log('GROQ_API_KEY found, length:', GROQ_API_KEY.length);
 
+    // Model is configurable via env var so future Groq deprecations are a
+    // config change, not a code deploy. Default to Groq's recommended
+    // replacement for the retired llama-3.3-70b-versatile model.
+    const GROQ_MODEL = process.env.GROQ_MODEL || 'openai/gpt-oss-120b';
+    context.log('Using Groq model:', GROQ_MODEL);
+
     // Validate articleContext if present
     let validatedArticleContext = null;
     if (articleContext && typeof articleContext === 'object') {
@@ -193,7 +199,7 @@ ${validatedArticleContext.content}` : ''}`;
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          model: 'llama-3.3-70b-versatile',
+          model: GROQ_MODEL,
           messages: messages,
           max_tokens: 500,
           temperature: 0.7,
@@ -235,7 +241,7 @@ ${validatedArticleContext.content}` : ''}`;
       },
       body: {
         response: generatedText.trim(),
-        model: 'llama-3.3-70b-versatile'
+        model: GROQ_MODEL
       }
     };
 

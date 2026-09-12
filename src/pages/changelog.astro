@@ -25,6 +25,17 @@ const description = 'All notable changes to Technical Anxiety website and conten
 
             <div class="changelog-content">
               <section class="changelog-entry">
+                <h2 id="2026-09-12">2026-09-12 - Security Patches, Type Safety & Chat Model Migration</h2>
+
+                <h3>Fixed</h3>
+                <ul>
+                  <li><strong>Recruiter chat model migrated</strong> — <code>llama-3.3-70b-versatile</code> was deprecated and shut down by Groq on 2026-08-16, breaking the chat. Switched to Groq's recommended replacement <code>openai/gpt-oss-120b</code>. The model ID is now read from the <code>GROQ_MODEL</code> environment variable so future deprecations are a config change, not a code deploy.</li>
+                  <li><strong>All 78 TypeScript errors resolved</strong> — DOM element typing and null guards in inline scripts, optional <code>post.body</code> handling, and test type-guards; <code>astro check</code> now passes clean</li>
+                  <li><strong>npm vulnerabilities patched</strong> — resolved 6 audit findings (1 critical Astro RCE, 3 high, 2 moderate) via astro 7.3.2, sharp, js-yaml, svgo, and vitest updates</li>
+                </ul>
+              </section>
+
+              <section class="changelog-entry">
                 <h2 id="2026-04-28">2026-04-28 - Loom Page Rework</h2>
 
                 <h3>Changed</h3>

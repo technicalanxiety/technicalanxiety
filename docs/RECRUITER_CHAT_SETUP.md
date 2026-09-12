@@ -146,12 +146,24 @@ If abuse becomes an issue, add Azure Table Storage:
 Edit `api/chat/index.js` to modify Jason's background info in the system prompt.
 
 ### Change Model
-Edit `api/chat/index.js` line ~140 to use different Groq model:
-- `llama-3.3-70b-versatile` (current, best quality)
-- `llama-3.1-70b-versatile` (alternative)
-- `mixtral-8x7b-32768` (longer context)
+The model is configurable via the `GROQ_MODEL` environment variable (no code
+change needed). Set it in your `.env` locally or in the Azure Static Web App
+application settings. If unset, it defaults to `openai/gpt-oss-120b`.
 
-Available models: https://console.groq.com/docs/models
+Current production models (as of Sept 2026):
+- `openai/gpt-oss-120b` (default, best quality — Groq's recommended replacement
+  for the retired Llama 3.3 70B)
+- `openai/gpt-oss-20b` (smaller, faster, lower cost)
+- `qwen/qwen3.6-27b` (alternative mid-size model)
+
+Deprecated / shut down — do NOT use:
+- `llama-3.3-70b-versatile` (shut down 2026-08-16)
+- `llama-3.1-70b-versatile` (shut down 2025-01-24)
+- `mixtral-8x7b-32768` (shut down 2025-03-20)
+
+Always verify current IDs before deploying:
+- Available models: https://console.groq.com/docs/models
+- Deprecations: https://console.groq.com/docs/deprecations
 
 ### Adjust Rate Limits
 Edit `src/components/RecruiterChat.astro` line 149:

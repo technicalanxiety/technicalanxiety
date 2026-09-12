@@ -72,9 +72,17 @@ git push origin feature/recruiter-chat
 
 ## API Details
 - **Endpoint**: `https://api.groq.com/openai/v1/chat/completions`
-- **Model**: `llama-3.3-70b-versatile`
+- **Model**: `openai/gpt-oss-120b` (configurable via the `GROQ_MODEL` env var)
 - **Rate Limit**: 14,400 requests/day, 70K tokens/min
 - **Format**: OpenAI-compatible (standard chat completions)
+
+> **Model history:** originally launched on `llama-3.3-70b-versatile`, which
+> Groq shut down on 2026-08-16 for free/developer tiers. Migrated to
+> `openai/gpt-oss-120b` (Groq's recommended replacement). The model ID is now
+> read from the `GROQ_MODEL` environment variable so future deprecations are a
+> config change rather than a code deploy. Check the
+> [Groq deprecations page](https://console.groq.com/docs/deprecations) before
+> changing it.
 
 ## Cost
 **$0/month** - Completely free tier, no credit card required.
