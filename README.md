@@ -1,6 +1,6 @@
 # Technical Anxiety
 
-A technical blog covering Azure, cloud architecture, leadership, and navigating anxiety in tech. Built with Astro 6, deployed to Azure Static Web Apps.
+A technical blog covering Azure, cloud architecture, leadership, and navigating anxiety in tech. Built with Astro 7, deployed to Azure Static Web Apps.
 
 **Live**: [www.technicalanxiety.com](https://www.technicalanxiety.com)
 
@@ -36,7 +36,7 @@ A technical blog covering Azure, cloud architecture, leadership, and navigating 
 │   │   ├── TableOfContents.astro # Auto-generated TOC
 │   │   └── ThemeToggle.astro    # Dark/light mode toggle
 │   ├── content/
-│   │   ├── posts/               # Published blog posts (~70 articles)
+│   │   ├── posts/               # Published blog posts (~78 articles)
 │   │   ├── backlog/             # Scheduled posts (future dates)
 │   │   └── series/              # Series metadata (12 series)
 │   ├── layouts/
@@ -155,7 +155,7 @@ Each series has a landing page at `/series/[slug]/` with overview content, tag l
 
 | Layer | Technology |
 |:------|:-----------|
-| Framework | Astro 6 (static output) |
+| Framework | Astro 7 (static output) |
 | UI Components | Astro components + React (architecture map) |
 | Styling | CSS custom properties, dark/light theme |
 | Fonts | Rajdhani, Orbitron, Fira Code (Google Fonts) |
@@ -264,6 +264,7 @@ npm run build
 
 ## Migration History
 
+- **Astro 7 upgrade** — Dependency upgrade from Astro 6.3.1 to 7.1.4
 - **Astro 6 upgrade** (March 2026) — Content Layer API migration, `.slug` → `.id` refactor, `render()` updates, Node 22 CI
 - **Jekyll → Astro migration** (December 2025) — Full site migration with URL preservation, 90+ Lighthouse scores, automated publishing
 
