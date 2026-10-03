@@ -113,7 +113,7 @@ Everything lives in my cloudthings repo:
 
 Structure:
 
-```
+```text
 monitoring-foundation/
 ├── main.bicep                    # Deploy everything
 ├── modules/                      # Individual components

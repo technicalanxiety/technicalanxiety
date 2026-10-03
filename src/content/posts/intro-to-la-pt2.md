@@ -51,8 +51,12 @@ As you can see, we're looking at the **Perf** log table. In that table, we want 
 >**!has** and **has**
 If you haven't seen/used this, it's really powerful because it will match, case-insensitive, on the exact string. The *!* means *not*.
 
+---
+
 >**!contains** and **contains**
 Also very powerful. This will search for a match on the a string using the value provided. If you don't know the exact value like in *has*, use this.
+
+---
 
 >Why not **==** or **!=** ? Both are case sensitive and must be exact. You'll find that query performance is much improved using *has* and *contains* variants.
 

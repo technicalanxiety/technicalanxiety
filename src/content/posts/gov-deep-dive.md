@@ -122,7 +122,7 @@ Based on [From Base Camp to Summit](https://www.technicalanxiety.com/basecamp-su
 
 These five disciplines are not independent. They reinforce each other:
 
-```
+```text
 Cost Management ←→ Resource Consistency
       ↓                    ↓
 Security Baseline ←→ Identity Baseline

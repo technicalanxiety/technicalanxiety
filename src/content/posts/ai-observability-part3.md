@@ -41,7 +41,7 @@ Before writing queries, you need telemetry to query. Your orchestration code mus
 
 **Minimum viable instrumentation per AI interaction:**
 
-```
+```text
 Request Context:
 - conversation_id: Links multi-turn interactions
 - turn_number: Position in conversation

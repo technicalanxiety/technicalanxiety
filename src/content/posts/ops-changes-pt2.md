@@ -44,7 +44,7 @@ The technology caught up.
 
 ---
 
-## The Operations Waterline
+## The New Operations
 
 When Microsoft took over everything below the infrastructure waterline, the job changed. You stopped managing hardware, hypervisors, and fabric. You started managing platforms, data, and applications. The responsibility shifted up the stack.
 

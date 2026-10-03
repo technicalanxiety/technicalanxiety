@@ -481,7 +481,7 @@ Different audiences need different views. A workbook that serves everyone serves
 
 Each workbook should follow a consistent structure:
 
-```
+```text
 1. Summary Tiles
    - 3-5 key metrics as large numbers
    - Color-coded status (green/yellow/red)
@@ -585,7 +585,7 @@ Many organizations don't have this level of sophistication. For those environmen
 
 Observability isn't complete until it feeds back into operations.
 
-```
+```text
 Metrics surface problems
     ↓
 Alerts notify responders
@@ -603,7 +603,7 @@ Updated observability catches the next problem earlier
 
 The governance layer closes a second loop:
 
-```
+```text
 Confidence metrics track capability performance
     ↓
 Thresholds determine authority levels

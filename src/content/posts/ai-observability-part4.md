@@ -54,7 +54,7 @@ Like Layer 3, Layer 4 telemetry comes from your application code. Unlike Layer 3
 
 **What your governance layer must emit:**
 
-```
+```text
 Authority Changes:
 - capability_id: Which AI capability changed
 - previous_authority: Prior level (suggest/recommend/approve/execute)

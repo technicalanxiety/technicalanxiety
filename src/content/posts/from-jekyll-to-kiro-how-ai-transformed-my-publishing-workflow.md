@@ -81,7 +81,7 @@ If you're reading this, you're reading it on my new blog platform that I built w
 
 Here's what the system looks like now:
 
-```
+```text
 ┌─────────────────────────────────────────────────────────────────┐
 │                     CONTENT CREATION                            │
 ├─────────────────────────────────────────────────────────────────┤

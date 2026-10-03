@@ -90,10 +90,8 @@ If all went well, you should see your site being regenerated each time you save 
 
 Could you have just as easily installed Ruby on Windows? Sure. However, this is way more fun! Also, to easily transfer files between Windows and WSL, from inside WSL simply type the below and the file system opens in a file explorer window. Enjoy!
 
-```ruby
-    explorer.exe .
-```
 
+   > explorer.exe .
 
 <br>
 

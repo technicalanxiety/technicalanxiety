@@ -27,7 +27,7 @@ I get this question often these days, why not just use Copilot to write this for
 
 I'll begin by putting the entire query here and then we'll disect it.
 
-```
+```kql
     let deallocatedVMs = AzureActivity
     | where TimeGenerated > now(-1h)
     | where OperationNameValue has 'microsoft.compute/virtualmachines/deallocate/action' 
@@ -82,39 +82,32 @@ To make things easier, I'm not considering any other potential **state** that a 
 
 The first `let` function 'deallocatedVMs' evaluates the `OperationNameValue` column for **deallocate** and **start** actions and summarizes the results by the most recent time stamp by the resource ID. As always, be sure to use `has` as much as possible and to limit the amount of table data by first filtering on **TimeGenerated**. Because the intent of the output is a simple table showing virtual machine state currently, I'm filtering data to the past 1 hour. I'm then filtering out the values we are looking for, deallocate and start. I then summarize that data and only return the resource IDs of each row. It's not important to keep any other details, we'll get those from the `Heartbeat` table in the main query.
 
->
-> let deallocatedVMs = AzureActivity
-> > | where TimeGenerated > now(-1h)
-> >
-> > | where OperationNameValue has 'microsoft.compute/virtualmachines/deallocate/action' or OperationNameValue has 'microsoft.compute/virtualmachines/start/action'
-> >
-> > | summarize isDeallocation = arg_max(TimeGenerated, *) by _ResourceId;
-
+```kql
+  let deallocatedVMs = AzureActivity
+    | where TimeGenerated > now(-1h)
+    | where OperationNameValue has 'microsoft.compute/virtualmachines/deallocate/action' or OperationNameValue has 'microsoft.compute/virtualmachines/start/action'
+    | summarize isDeallocation = arg_max(TimeGenerated, *) by _ResourceId;
+```
 
 For the next function, `shutdownVMs`
 
->
-> let shutdownVMs = AzureActivity
-> > | where TimeGenerated > now(-1h)
-> >
-> > | extend Title = tostring(parse_json(Properties_d.eventProperties)['title'])
-> >
-> > | extend Status = tostring(parse_json(Properties_d.eventProperties)['currentHealthStatus'])
-> >
-> > | where Title has 'stopped by user or process' and Status has 'unavailable' or OperationNameValue has 'microsoft.compute/virtualmachines/start/action'
-> >
-> > | summarize isShutdown = arg_max(TimeGenerated, *) by _ResourceId;
-
+```kql
+  let shutdownVMs = AzureActivity
+    | where TimeGenerated > now(-1h)
+    | extend Title = tostring(parse_json(Properties_d.eventProperties)['title'])
+    | extend Status = tostring(parse_json(Properties_d.eventProperties)['currentHealthStatus'])
+    | where Title has 'stopped by user or process' and Status has 'unavailable' or OperationNameValue has 'microsoft.compute/virtualmachines/start/action'
+    | summarize isShutdown = arg_max(TimeGenerated, *) by _ResourceId;
+```
 
 And for the final function, `deletedVMs`
 
->
-> let deletedVMs = AzureActivity
-> > | where TimeGenerated > now(-1h)
-> >
-> > | where OperationNameValue has 'microsoft.compute/virtualmachines/delete'
-> >
-> > | summarize isDeleted = arg_max(TimeGenerated, *) by _ResourceId;
+```kql
+  let deletedVMs = AzureActivity
+    | where TimeGenerated > now(-1h)
+    | where OperationNameValue has 'microsoft.compute/virtualmachines/delete'
+    | summarize isDeleted = arg_max(TimeGenerated, *) by _ResourceId;
+```
 
 Now for the fun part. The query itself.
 
