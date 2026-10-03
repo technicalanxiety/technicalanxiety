@@ -13,17 +13,18 @@ series_part: 1
 Quick link to get started learing:
 [Azure Log Query Education](https://docs.microsoft.com/en-us/azure/azure-monitor/log-query/query-language)
 
-Let me just get this out there, Azure Monitor Logs (formerly OMS, formerly Log Analytics) is quite possibly one of the most powerful log aggregation platforms out there. With so many ways and options to ingest data and with the powerful query language plus ability to integrate queries into monitoring alerts there really is almost nothing you *can't* do with AML. In this post I'll go over how to begin to use the **InsightsMetrics** table for Azure Virtual Machine performance modeling and viewing. As well as a general beginning to using Log Analytics. 
+Let me just get this out there, Azure Monitor Logs (formerly OMS, formerly Log Analytics) is quite possibly one of the most powerful log aggregation platforms out there. With so many ways and options to ingest data and with the powerful query language plus ability to integrate queries into monitoring alerts there really is almost nothing you *can't* do with AML. In this post I'll go over how to begin to use the **InsightsMetrics** table for Azure Virtual Machine performance modeling and viewing. As well as a general beginning to using Log Analytics.
 
 > Assumptions
+
 * Virtual Machines are onboarded to Azure Monitor Virtual Machines (Preview)
 * New to log queries
 
 <br>
 
-## WALKTHROUGH 
+## WALKTHROUGH
 
-*If you're a seasoned KQL veteran, this post probably isn't for you. If you're new and just don't know how or where to get started, this post is for you.* 
+*If you're a seasoned KQL veteran, this post probably isn't for you. If you're new and just don't know how or where to get started, this post is for you.*
 
 There are quite a few ways to get to the log workspace: from Monitor, from the VM blade, from All Resources, etc. I like to add Log Analytics as a favorite on my side bar (I'm in log analytics A LOT) for easy finding. Also, the new Azure Portal homepage has a really cool history Home page now that remembers your most used resource types.
 
@@ -46,7 +47,7 @@ Congradulations! You've just run your first query. You're also probably not very
 
 <br>
 
-The first thing to understand about Log Analytics, it's a data collector. It is constantly collecting data of all kinds and organizing this data into tables (called schema). After running the query above, you can see that what is returned is simply an 'excel' type worksheet full of all types of columns and rows filled with various 'data'. 
+The first thing to understand about Log Analytics, it's a data collector. It is constantly collecting data of all kinds and organizing this data into tables (called schema). After running the query above, you can see that what is returned is simply an 'excel' type worksheet full of all types of columns and rows filled with various 'data'.
 
 The hardest part of creating queries is understanding the data you're working with. If I'm working with a new table or a table that I haven't worked with for a while, I'll usually filter the table to get an idea of what things we can start to look at. In our example of the InsightsMetric table, we'll do this by adding a line to the first query like this:
 
@@ -69,7 +70,7 @@ Now that we know what metrics we can query, let's take a look at how to view Pro
 
 <br>
 
-As you can see, while *summarize* and *where* both filter data, the output is much different. "Where" filters cell contents while "Summarize" filters the entire table. You'll usually want to use summarize at the end of your query to only see the data you're looking for as opposed to the whole table just filtered on the cell contents. 
+As you can see, while *summarize* and *where* both filter data, the output is much different. "Where" filters cell contents while "Summarize" filters the entire table. You'll usually want to use summarize at the end of your query to only see the data you're looking for as opposed to the whole table just filtered on the cell contents.
 
 Now that we know the metric to query, let's find out what counter types are available. These are found in the *Name* column.
 
@@ -81,7 +82,7 @@ Now that we know the metric to query, let's find out what counter types are avai
 
 For the metic category Processor we have counter value UtilizationPercentage. There is also one other column that we need to focus on, **Val**. This contains the metric values for the processor utilization at the time the data was sent to the log workspace. And now we're getting somewhere.
 
-The next step is to get rid of everything else that we don't need. Not only does this help you read the table but it makes the query more efficient the less data it has to deal with. 
+The next step is to get rid of everything else that we don't need. Not only does this help you read the table but it makes the query more efficient the less data it has to deal with.
 
         InsightsMetric //table to query
         | where Namespace == "Processor" and Name == "UtilizationPercentage" //only for Processor AND UtilizationPercentage

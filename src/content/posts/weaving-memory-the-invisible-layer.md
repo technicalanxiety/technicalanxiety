@@ -52,7 +52,7 @@ Watching the video was the moment I realized this was a pattern with a name, not
 
 ---
 
-## Ben Built Borg. I Wrote the Amendments.
+## Ben Built Borg, I Wrote the Amendments
 
 [Benjamin Villanueva](https://www.linkedin.com/in/benjamin-villanueva/), a colleague and friend at Rackspace, had been working on the same problem from an adjacent angle when I started on mine. His work had a head start.
 

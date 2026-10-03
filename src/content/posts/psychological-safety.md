@@ -10,7 +10,8 @@ tags: ["Anxiety", "Leadership"]
 
 ---
 
-## For years, I worked afraid.
+## For years, I worked afraid
+
 Afraid of being wrong. Afraid of being replaced. Afraid that one mistake would end everything I had worked for.
 
 Early in my career, fear was not just part of the job. It was the operating system. I worked for organizations where silence meant survival. Speaking up meant risk. Failure was not a learning opportunity. It was a scarlet letter.
@@ -20,6 +21,7 @@ I obsessed over perfection. I killed ideas before they left my notebook. I avoid
 ---
 
 ## The Scar That Shaped Me
+
 My first big career move was a leap from call-center helpdesk to corporate administration. I thought I understood what success meant: loyalty, hard work, zero mistakes. That was the script I followed.
 
 Then came the failure that defined a decade.
@@ -36,6 +38,7 @@ Eventually, I fixed it. Backups resumed. But the scar remained. For years, that 
 ---
 
 ## The Breakthrough That Changed Everything
+
 Each career change brought new responsibilities and new lessons. The rocketship moment was joining a team to build a managed service from the ground up. Going in, I was still paralyzed by perfection. I believed I could learn anything, but the shadow of past failures followed me.
 
 For a time, I was successful. Then came the challenge that tested everything: leading a team with drastic differences in experience, backgrounds, and knowledge domains.
@@ -53,6 +56,7 @@ Without psychological safety, we would have never achieved together what none of
 ---
 
 ## My Definition
+
 For me, psychological safety means speaking honestly without fear of judgement or reprisal. It means creating space where ideas can breathe, mistakes are not fatal they are encouraged, and feedback is not a weapon but a tool for success.
 
 It is not about being nice. It is about being real without fear.
@@ -60,7 +64,9 @@ It is not about being nice. It is about being real without fear.
 ---
 
 ## The Impact
+
 Once I embraced this, my career trajectory shifted.  
+
 - I stopped managing through control and started leading through curiosity.  
 - I built teams where trust was not a buzzword. It was the foundation.  
 - I stopped fearing mistakes and started embracing them as fuel for innovation.  
@@ -71,6 +77,7 @@ Before, I killed ideas before they left my notebook. Today, my team understands 
 ---
 
 ## Why It Matters
+
 Fear-driven cultures do not scale. They do not innovate. They do not retain talent. They manage survival, not success.
 
 If you are leading through fear, you are not leading. You are controlling. And control is brittle.
@@ -80,6 +87,7 @@ Psychological safety is not optional anymore. It is the difference between teams
 ---
 
 ## Your Move
+
 Ask yourself:  
 What would change in your career if fear was not the driver?  
 What would your team build if mistakes were not fatal?

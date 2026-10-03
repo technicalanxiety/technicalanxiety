@@ -17,6 +17,7 @@ Based on [From Base Camp to Summit](https://www.technicalanxiety.com/basecamp-su
 **Why you'll fail without it:** Cloud costs escalate immediately. Organizations consistently overspend by 200-400% in their first quarter without proper cost governance.
 
 **Key Policies:**
+
 - Required tags for cost allocation (CostCenter, Project, Owner)
 - Budget alerts at 80% threshold
 - Auto-shutdown schedules for non-production resources
@@ -37,6 +38,7 @@ Based on [From Base Camp to Summit](https://www.technicalanxiety.com/basecamp-su
 **Why you'll fail without it:** Security retrofits cost 10x more than building it correctly from the start. Establishing security after deployment is like installing airbags after the crash.
 
 **Key Policies:**
+
 - Storage account firewall rules required
 - No public IP addresses without approval
 - Encryption at rest enforced
@@ -58,6 +60,7 @@ Based on [From Base Camp to Summit](https://www.technicalanxiety.com/basecamp-su
 **Why you'll fail without it:** Improper access control creates immediate risk. Every over-privileged account is a potential security incident waiting to happen.
 
 **Key Policies:**
+
 - MFA required for all users
 - Just-in-time access for privileged operations
 - Service principals with minimal permissions
@@ -79,6 +82,7 @@ Based on [From Base Camp to Summit](https://www.technicalanxiety.com/basecamp-su
 **Why you'll fail without it:** Inconsistent resource organization makes everything harder. The "we'll organize things later" approach never works. Later never comes.
 
 **Key Policies:**
+
 - Naming convention enforcement
 - Required tags (Environment, Owner, CostCenter, Application)
 - Allowed locations/regions
@@ -99,6 +103,7 @@ Based on [From Base Camp to Summit](https://www.technicalanxiety.com/basecamp-su
 **Why you'll fail without it:** Manual deployments are slow, error-prone, and inconsistent. Without automation, every environment becomes a unique snowflake.
 
 **Key Policies:**
+
 - All infrastructure deployed via IaC
 - Peer review required for infrastructure changes
 - Automated testing in pipelines
@@ -126,6 +131,7 @@ Security Baseline ←→ Identity Baseline
 ```
 
 **Example:** A resource created without proper tagging (Resource Consistency) is:
+
 - Harder to secure (Security Baseline)
 - Impossible to cost-allocate (Cost Management)
 - Difficult to govern access (Identity Baseline)
@@ -138,26 +144,31 @@ Security Baseline ←→ Identity Baseline
 ## Implementation Priority
 
 ### Week 1-2: Foundation
+
 1. Deploy management group structure
 2. Enable cost budgets and alerts
 3. Implement tagging policies (audit mode)
 
 ### Week 3-4: Security
+
 1. Block public IPs
 2. Enforce storage security
 3. Enable diagnostic logging
 
 ### Week 5-6: Consistency
+
 1. Enforce required tags (deny mode)
 2. Implement naming conventions
 3. Restrict allowed locations
 
 ### Week 7-8: Automation
+
 1. Deploy IaC pipelines
 2. Automate diagnostic settings
 3. Enable auto-shutdown for dev
 
 ### Ongoing: Optimization
+
 1. Monitor compliance
 2. Remediate gaps
 3. Iterate based on data
@@ -191,11 +202,13 @@ The question isn't whether you'll implement proper governance. It's whether you'
 ## Quick Commands
 
 ### Check Compliance
+
 ```bash
 az policy state summarize --management-group "mg-root"
 ```
 
 ### Deploy Governance Initiative
+
 ```bash
 az policy set-definition create \
   --name "governance-foundation" \
@@ -203,6 +216,7 @@ az policy set-definition create \
 ```
 
 ### Remediate Non-Compliance
+
 ```bash
 az policy remediation create \
   --name "fix-tags" \
@@ -210,6 +224,7 @@ az policy remediation create \
 ```
 
 ### Cost Analysis
+
 ```bash
 az consumption usage list \
   --start-date 2025-01-01 \

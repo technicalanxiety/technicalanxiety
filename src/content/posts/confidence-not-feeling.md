@@ -7,6 +7,7 @@ image: "confidence-not-feeling.jpg"
 ---
 
 # Confidence Is Not a Feeling
+
 ## The Category Error Behind Every AI Trust Debate
 
 ---

@@ -614,7 +614,7 @@ Governance Portal: https://portal.azure.com/agents/governance
 }
 ```
 
-### Lifecycle Management
+### Agent Lifecycle Management
 
 ```powershell
 function Start-AgentLifecycleManagement {
@@ -875,21 +875,25 @@ Your governance policies don't change. Only the implementation mechanism changes
 Track these KPIs to measure agent governance effectiveness:
 
 ### Compliance Rate
+
 - **Target:** 95% of agents compliant with governance policies
 - **Measure:** Daily compliance report
 - **Action:** Automated remediation for violations
 
 ### Shadow Agent Detection
+
 - **Target:** <5% shadow agents at any time
 - **Measure:** Registry query results
 - **Action:** Notify creators within 24 hours
 
 ### Lifecycle Management
+
 - **Target:** Zero agents exceeding max lifetime
 - **Measure:** Age distribution report
 - **Action:** Auto-disable after grace period
 
 ### Remediation Time
+
 - **Target:** <7 days from detection to resolution
 - **Measure:** Violation timestamp to compliance timestamp
 - **Action:** Escalate unresolved violations

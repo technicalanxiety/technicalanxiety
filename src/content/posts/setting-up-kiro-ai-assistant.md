@@ -59,12 +59,14 @@ Kiro isn't smarter than other AI assistants. It's configurable.
 You can teach it who you are, how you think, and what you're trying to build through "steering rules" - structured configuration files that stay with you across every interaction. Not through endless prompting, but through documentation that becomes part of Kiro's understanding of you.
 
 I spent a few hours documenting:
+
 - Who I am (architect, not developer)
 - How I think (practical, not theoretical)
 - What I'm building (a blog, not a distributed system)
 - What I value (simplicity over perfection)
 
 Now when I say "I want to add a feature," Kiro knows:
+
 - Keep it simple
 - Explain the why, not just the how
 - Show me what to do, don't assume I know
@@ -90,6 +92,7 @@ I created two types:
 I started with three core files that define me:
 
 **personal-profile.md** - The foundation
+
 ```markdown
 ---
 inclusion: always
@@ -126,6 +129,7 @@ Tools: Git, Jekyll, WSL
 ```
 
 **anti-patterns.md** - What NOT to do
+
 ```markdown
 ---
 inclusion: always
@@ -149,6 +153,7 @@ Practical > theoretical | Maintainable > "perfect"
 ```
 
 **learning-goals.md** - How to teach me
+
 ```markdown
 ---
 inclusion: always
@@ -183,18 +188,21 @@ Teaching Approach:
 For my Jekyll blog, I created project-specific rules:
 
 **blog-content-standards.md** - Writing guidelines
+
 - Authentic voice, no corporate speak
 - Target sub-10 minute reads
 - Always credit Unsplash photographers
 - Flexible structure based on content
 
 **jekyll-technical-guide.md** - Technical reference
+
 - Project structure and commands
 - Post workflow (draft → publish)
 - Image optimization standards
 - Troubleshooting common issues
 
 **automated-checks.md** - Quality checks
+
 - Front matter validation
 - Image optimization checks
 - Reading time validation
@@ -205,20 +213,24 @@ For my Jekyll blog, I created project-specific rules:
 Here's the clever part - you control WHEN rules are included:
 
 **`inclusion: always`** - Always in context (keep these small, ~400 tokens)
+
 - personal-profile.md
 - anti-patterns.md
 - learning-goals.md
 
 **`inclusion: fileMatch`** - Only when working on matching files
+
 ```markdown
 ---
 inclusion: fileMatch
 fileMatchPattern: "_posts/**/*.md"
 ---
 ```
+
 This rule only loads when I'm editing blog posts.
 
 **`inclusion: manual`** - Only when explicitly referenced
+
 - Reference documentation
 - Detailed technical guides
 - Rarely-needed standards
@@ -230,6 +242,7 @@ This keeps token usage low while ensuring relevant context is always available.
 Kiro supports MCP (Model Context Protocol) servers that add new capabilities. I configured three:
 
 ### 1. Fetch Server
+
 ```json
 {
   "fetch": {
@@ -239,9 +252,11 @@ Kiro supports MCP (Model Context Protocol) servers that add new capabilities. I 
   }
 }
 ```
+
 Lets Kiro fetch web content and documentation.
 
 ### 2. Microsoft Learn
+
 ```json
 {
   "microsoft-learn": {
@@ -251,9 +266,11 @@ Lets Kiro fetch web content and documentation.
   }
 }
 ```
+
 Direct access to Microsoft Learn documentation and code samples.
 
 ### 3. Filesystem
+
 ```json
 {
   "filesystem": {
@@ -264,9 +281,11 @@ Direct access to Microsoft Learn documentation and code samples.
   }
 }
 ```
+
 Enhanced file operations with Windows path support.
 
 **Setup Notes:**
+
 - Install `uv` for Python MCP servers: `pip install uv`
 - Install Node.js for JavaScript MCP servers
 - Use Windows paths in WSL environment (not WSL paths)
@@ -277,6 +296,7 @@ Enhanced file operations with Windows path support.
 Agent hooks trigger actions automatically. I created:
 
 **validate-post-on-save.json** - Check posts when saved
+
 ```json
 {
   "name": "Validate Post on Save",
@@ -290,6 +310,7 @@ Agent hooks trigger actions automatically. I created:
 ```
 
 **pre-commit-checklist.json** - Remind before commits
+
 ```json
 {
   "name": "Pre-Commit Checklist",
@@ -302,6 +323,7 @@ Agent hooks trigger actions automatically. I created:
 ```
 
 **weekly-planning-reminder.json** - Weekly post planning
+
 ```json
 {
   "name": "Weekly Planning Reminder",
@@ -316,6 +338,7 @@ Agent hooks trigger actions automatically. I created:
 ## Token Optimization
 
 Initial setup had ~15,000 tokens always loaded. After optimization:
+
 - Global always-included: ~1,200 tokens
 - Workspace always-included: ~400 tokens
 - Domain-specific (loaded on demand): ~8,000 tokens
@@ -323,6 +346,7 @@ Initial setup had ~15,000 tokens always loaded. After optimization:
 **Total always-loaded: ~1,600 tokens** (89% reduction)
 
 Key strategies:
+
 1. Keep always-included files tiny (400-800 tokens)
 2. Use fileMatch for domain-specific rules
 3. Remove embedded code examples (reference actual files instead)
@@ -333,11 +357,13 @@ Key strategies:
 Here's what changed for me:
 
 **Before Kiro:**
+
 - Me: "I want to optimize my blog images"
 - Generic AI: "Here's a Node.js image processing pipeline with streams, error handling, and unit tests"
 - Me: *stares at 300 lines of code I don't understand*
 
 **After Kiro:**
+
 - Me: "I want to optimize my blog images"
 - Kiro: "You're working on a Jekyll blog. Let's use a simple bash script with ImageMagick. Here's what it does, line by line..."
 - Me: *actually implements it*
@@ -345,6 +371,7 @@ Here's what changed for me:
 **The difference?** Kiro knows I'm an architect who scripts, not a developer who architects.
 
 Now when I work on my blog, Kiro:
+
 - Explains things at my level
 - Keeps solutions simple
 - Shows me what to do, step by step
@@ -352,12 +379,14 @@ Now when I work on my blog, Kiro:
 - Remembers what we did last time
 
 When I work on Azure infrastructure:
+
 - Applies my naming standards automatically
 - Uses patterns I actually understand
 - Explains trade-offs in architect terms
 - Doesn't assume I know every Azure service
 
 When I write Python scripts:
+
 - Writes verbose, readable code I can modify
 - Explains what each part does
 - Includes error handling I understand
@@ -384,26 +413,31 @@ Kiro doesn't make me a developer. It makes me effective despite not being one.
 ## Lessons Learned
 
 **Start Small**
+
 - Begin with 2-3 core global rules
 - Add workspace rules as needs emerge
 - Don't try to document everything upfront
 
 **Be Specific**
+
 - "Write verbose code" is better than "write good code"
 - "No over-engineering" is clearer than "keep it simple"
 - Include examples of what you want AND don't want
 
 **Iterate**
+
 - Review what Kiro suggests
 - Update rules when suggestions miss the mark
 - Remove rules that don't add value
 
 **Token Budget Matters**
+
 - Always-included rules should be tiny
 - Use fileMatch patterns aggressively
 - Reference external files instead of embedding content
 
 **Test Your Setup**
+
 - Ask Kiro to describe your preferences
 - See if suggestions match your style
 - Adjust rules based on actual usage

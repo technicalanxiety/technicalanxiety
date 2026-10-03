@@ -21,7 +21,8 @@ When I'm exploring a new query, I always use the following demo site provided by
 I get this question often these days, why not just use Copilot to write this for you? Of course you can try and it's a great way to get started and also understand specific functions and some examples but it doesn't work very well in this situation. You can certainly use Copilot to piece together the parts but arranging it and making it work all together is still very much a human task, in this example. Copilot for Azure is great at creating alert queries though. So try everything and put together what you like and how best you work.
 
 ---
-## WALKTHROUGH 
+
+## WALKTHROUGH
 
 
 I'll begin by putting the entire query here and then we'll disect it.
@@ -72,6 +73,7 @@ I'll begin by putting the entire query here and then we'll disect it.
 In this query we've introduced a more advanced technique of creating **functions** outside of our main query on the `Heartbeat` table. Doing this improves the query by avoiding joining other tables inside the main query. It also simplifies the query significantly. This method is especially useful if you are calculating or comparing, as you'll notice, values. More complex functions can be created and stored in the workspace and called directly from KQL.
 
 The 3 functions use the AzureActivity table to set the values for 3 of the most common virtual machine states. So, we're really creating 3 functions called.
+
 * deallocatedVMs
 * shutdownVMs
 * deletedVMs
@@ -82,41 +84,42 @@ The first `let` function 'deallocatedVMs' evaluates the `OperationNameValue` col
 
 >
 > let deallocatedVMs = AzureActivity
-> >   | where TimeGenerated > now(-1h)
+> > | where TimeGenerated > now(-1h)
 > >
-> >   | where OperationNameValue has 'microsoft.compute/virtualmachines/deallocate/action' or OperationNameValue has 'microsoft.compute/virtualmachines/start/action'
+> > | where OperationNameValue has 'microsoft.compute/virtualmachines/deallocate/action' or OperationNameValue has 'microsoft.compute/virtualmachines/start/action'
 > >
-> >   | summarize isDeallocation = arg_max(TimeGenerated, *) by _ResourceId;
+> > | summarize isDeallocation = arg_max(TimeGenerated, *) by _ResourceId;
 
 
 For the next function, `shutdownVMs`
 
 >
 > let shutdownVMs = AzureActivity
-> >    | where TimeGenerated > now(-1h)
+> > | where TimeGenerated > now(-1h)
 > >
-> >    | extend Title = tostring(parse_json(Properties_d.eventProperties)['title'])
+> > | extend Title = tostring(parse_json(Properties_d.eventProperties)['title'])
 > >
-> >    | extend Status = tostring(parse_json(Properties_d.eventProperties)['currentHealthStatus'])
+> > | extend Status = tostring(parse_json(Properties_d.eventProperties)['currentHealthStatus'])
 > >
-> >    | where Title has 'stopped by user or process' and Status has 'unavailable' or OperationNameValue has 'microsoft.compute/virtualmachines/start/action'
+> > | where Title has 'stopped by user or process' and Status has 'unavailable' or OperationNameValue has 'microsoft.compute/virtualmachines/start/action'
 > >
-> >    | summarize isShutdown = arg_max(TimeGenerated, *) by _ResourceId;
+> > | summarize isShutdown = arg_max(TimeGenerated, *) by _ResourceId;
 
 
 And for the final function, `deletedVMs`
 
 >
 > let deletedVMs = AzureActivity
-> >    | where TimeGenerated > now(-1h)
+> > | where TimeGenerated > now(-1h)
 > >
-> >    | where OperationNameValue has 'microsoft.compute/virtualmachines/delete'
+> > | where OperationNameValue has 'microsoft.compute/virtualmachines/delete'
 > >
-> >    | summarize isDeleted = arg_max(TimeGenerated, *) by _ResourceId;
+> > | summarize isDeleted = arg_max(TimeGenerated, *) by _ResourceId;
 
 Now for the fun part. The query itself.
 
 ---
+
 ## CONCLUSION
 
 ![The Result](/img/log-results-formatted.png)

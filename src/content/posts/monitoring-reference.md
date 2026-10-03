@@ -44,6 +44,7 @@ What you get:
 **Action Groups** configured for email notifications and ITSM webhook integration. The placeholder for ServiceNow, PagerDuty, or whatever your operations team uses.
 
 **Intelligent Alert Rules** that encode operational knowledge:
+
 - Context-aware CPU monitoring that adjusts thresholds during business hours
 - Dynamic baseline response time alerts that learn normal patterns
 - Capacity prediction alerts that warn 7 days before you hit limits

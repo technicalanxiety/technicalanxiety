@@ -30,11 +30,11 @@ Here is what we'll be starting with:
 
 <br>
 
-The key items to point out here are *project* and *join*. I'll get into those as we go along. You'll also notice the importance of moving to the new Azure Monitor for Virtual Machines. Before, you needed separate queries for both Windows and Linux on most things but with the new platform, that's no longer a problem. If you're writing these for alerting purposes, this should be interesting.             
+The key items to point out here are *project* and *join*. I'll get into those as we go along. You'll also notice the importance of moving to the new Azure Monitor for Virtual Machines. Before, you needed separate queries for both Windows and Linux on most things but with the new platform, that's no longer a problem. If you're writing these for alerting purposes, this should be interesting.
 
 <br>
 
-## WALKTHROUGH 
+## WALKTHROUGH
 
 Going back to the first post on this topic we must understand what data is contained in the table. Once we know what we're looking for, we can then structure the query to model a view. If you haven't noticed in the query above, this is a disk query that is filtering data first on Windows computers, calculating average percent free disk space and then joining that data against Windows computers free megabytes of disk space. Why would you do this? While it's really easy to see either of these metric separately, it's also very important to view them together. If you have a disk that has less than 20% free space that may not be a problem if it's on a 4TB volume. On the other hand, with the same situation it may have more of an impact if the volume is only 30GB. It's also important to realize this query ignores the C: drive because that's the OS drive and is probably going to be viewed separately.
 
@@ -46,19 +46,19 @@ I'll first explain how this query works then I'll show what it looks like in the
 
 <br>
 
-As you can see, we're looking at the **Perf** log table. In that table, we want to first filter on CounterName and then OS Type. Because there isn't an OS type column in the Perf table, we are taking the *Computer* column and matching that columns data with data in the Heartbeat table where *OSType* matches "Windows". Then, we want to filter out *_total*, *harddisk* and *C:*. This will leave you with all other drive letters only. 
+As you can see, we're looking at the **Perf** log table. In that table, we want to first filter on CounterName and then OS Type. Because there isn't an OS type column in the Perf table, we are taking the *Computer* column and matching that columns data with data in the Heartbeat table where *OSType* matches "Windows". Then, we want to filter out *_total*, *harddisk* and *C:*. This will leave you with all other drive letters only.
 
 >**!has** and **has**
 If you haven't seen/used this, it's really powerful because it will match, case-insensitive, on the exact string. The *!* means *not*.
 
 >**!contains** and **contains**
-Also very powerful. This will search for a match on the a string using the value provided. If you don't know the exact value like in *has*, use this. 
+Also very powerful. This will search for a match on the a string using the value provided. If you don't know the exact value like in *has*, use this.
 
 >Why not **==** or **!=** ? Both are case sensitive and must be exact. You'll find that query performance is much improved using *has* and *contains* variants.
 
 <br>
 
-In the next part of the query we are projecting and summarizing. The *project* only returns table columns that we want to work with. This is a great way to trim data that's returned which only makes your query faster. 
+In the next part of the query we are projecting and summarizing. The *project* only returns table columns that we want to work with. This is a great way to trim data that's returned which only makes your query faster.
 
         | project Computer, InstanceName, CounterValue 
         | summarize PercentFree=avg(CounterValue) by Computer, InstanceName 
@@ -68,7 +68,7 @@ In the next part of the query we are projecting and summarizing. The *project* o
 
 Before we calculate the average, we want to filter only on the data we want to work with: Computer, InstanceName (drive letter) and CounterValue (% free space). As we saw in the previous posts example, we are calculating the average *avg()* of the CounterValue. This is exactly like calcuating the average percent CPU usage. After the calculation, another *project* is used to create a brand new table with the new value **PercentFree** (from the average of the % free space CounterValue).
 
-This next section is really cool because we're joining the same table together **EXCEPT** we're using a different CounterName. This is where we can create the data necessary to build a view that fits our needs of looking at Computer, Drive Letter, % Free Space and Used Space. 
+This next section is really cool because we're joining the same table together **EXCEPT** we're using a different CounterName. This is where we can create the data necessary to build a view that fits our needs of looking at Computer, Drive Letter, % Free Space and Used Space.
 
         | join (Perf 
         | where CounterName has 'free megabytes' and Computer in ((Heartbeat | where OSType has 'windows' | distinct Computer)) 

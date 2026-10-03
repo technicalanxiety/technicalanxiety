@@ -24,6 +24,7 @@ That's confidence engineering in action, even if I didn't have a name for it yet
 What follows is a framework, not a prescription. It's a work in progress because I'm a work in progress. The goal isn't to hand you a finished playbook. It's to give you a structure for building confidence in AI-enabled systems that you can adapt to your platform, your organization, your context.
 
 ---
+
 ## WALKTHROUGH
 
 ### Where Confidence Engineering Lives
@@ -159,6 +160,7 @@ How do you communicate confidence levels to stakeholders who are still stuck in 
 I'm sharing this anyway because frameworks get better through use and feedback, not through waiting until they're perfect. If you try this and find gaps, I want to hear about them. The point isn't to be right. The point is to be useful.
 
 ---
+
 ## CONCLUSION
 
 Confidence engineering is the practice of building confidence in AI-enabled systems through observable criteria, instrumentation, staged authority, closed feedback loops, and empirical metrics.

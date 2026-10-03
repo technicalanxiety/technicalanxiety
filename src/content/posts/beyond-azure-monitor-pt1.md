@@ -8,6 +8,7 @@ series_part: 1
 description: "Azure Monitor is just the starting point. Real enterprise monitoring requires custom solutions, advanced KQL, and architectural thinking beyond the basics."
 ---
 # Beyond Azure Monitor - Part 1: The Reality of Enterprise Monitoring
+
 ## When Defaults Aren't Enough
 
 ---
@@ -21,6 +22,7 @@ The queries in this series require specific data sources configured in your Log 
 An important message about the Perf table here [InsightsMetrics](https://learn.microsoft.com/en-us/azure/azure-monitor/reference/tables/insightsmetrics). I've used the Perf table, but you may consider writing these for the InsightsMetrics table instead.
 
 Required for CPU, memory, and disk monitoring queries. Enable via Azure Monitor Agent (AMA) with a Data Collection Rule (DCR) that includes:
+
 - `\Processor(_Total)\% Processor Time`
 - `\Memory(*)\Available MBytes`
 - `\LogicalDisk(*)\% Free Space`
@@ -69,6 +71,7 @@ Azure Monitor is Microsoft's answer to every monitoring question. Check the docs
 The problem isn't Azure Monitor. The problem is that most teams stop at the defaults and wonder why their alerting feels broken. I've inherited monitoring configurations from hundreds of organizations. The pattern is always the same: out-of-the-box dashboards, static thresholds, and an operations team that stopped trusting alerts six months ago because they cry wolf constantly.
 
 **What Azure Monitor gives you:**
+
 - Metrics collection from Azure resources
 - Log aggregation through Log Analytics
 - Basic alerting rules
@@ -76,6 +79,7 @@ The problem isn't Azure Monitor. The problem is that most teams stop at the defa
 - Integration with other Azure services
 
 **What it doesn't give you:**
+
 - Dashboards that match your business context
 - Alerts that understand the difference between symptoms and root causes
 - Correlation between different data sources

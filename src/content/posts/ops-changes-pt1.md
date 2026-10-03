@@ -106,4 +106,3 @@ In the next part, we’ll explore what changes when you've made the translation.
 ---
 
 **Photo by [Alex Kotliarskyi](https://unsplash.com/@frantic) on [Unsplash](https://unsplash.com/photos/people-doing-office-works-QBpZGqEMsKg)**
-      

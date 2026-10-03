@@ -130,17 +130,14 @@ Your credibility with leadership comes from:
 ### Being right more often than you're wrong
 
 
-
 This sounds obvious, but it requires courage. You have to make calls. You have to take positions. If you hedge everything, you're not valuable. If you take positions and they consistently turn out well, you build trust.
 
 ### Framing technical decisions in business terms
 
 
-
 We covered this in Parts 1 and 2. The ability to translate is itself a credibility builder with leadership. When you explain technology in terms of risk, cost, and opportunity, you demonstrate that you understand what matters to them.
 
 ### Not overselling or underselling
-
 
 
 Leaders have been burned by technologists who overpromise and underdeliver. They've also been frustrated by technologists who are so conservative that nothing ever gets done.

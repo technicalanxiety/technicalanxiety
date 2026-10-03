@@ -30,6 +30,7 @@ We don't need to trust AI. We need confidence in systems we've built, observed, 
 That distinction isn't semantic. It's operationally meaningful. And until we get it right, we're going to keep stalling on adoption while a new era of industrialization moves forward without us.
 
 ---
+
 ## WALKTHROUGH
 
 ### The Category Error
@@ -139,6 +140,7 @@ When an executive tells you they need a "trust framework" before adopting AI, as
 Push for specificity. What would give you confidence? That question has an answer. "What would make you trust this?" often doesn't.
 
 ---
+
 ## CONCLUSION
 
 The concerns driving the AI trust discourse are legitimate. Job displacement anxiety is real. Uncertainty about AI behavior is real. The need for governance and accountability is real.

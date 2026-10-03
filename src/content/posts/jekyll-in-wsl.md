@@ -11,7 +11,7 @@ tags: ["Jekyll"]
 In this post, I'll walk through how I setup my WSL (*Windows Subsystem for Linux*) so I can edit/create Posts for this blog without have to wait around for direct changes to the Github repo and waiting for updates. If you need to make minor changes or if you want to quickly see and change styles, formatting, layout etc. this is a great way to quickly do that. I have collected these steps through several sources and will link them for your reference.
 
 This is where I began:
-[Scott Dorman's Blog](https://scottdorman.blog/2019/02/27/running-jekyll-on-wsl/) 
+[Scott Dorman's Blog](https://scottdorman.blog/2019/02/27/running-jekyll-on-wsl/)
 
 This was also referenced:
 [Jekyll Requirements](https://jekyllrb.com/docs/installation/#requirements) and
@@ -19,7 +19,7 @@ This was also referenced:
 
 <br>
 
-## WALKTHROUGH 
+## WALKTHROUGH
 
 Before you start, you'll need to go through the normal update process for your Ubuntu subsystem. This is my subsystem:
 
@@ -32,16 +32,16 @@ You'll also need to have a few things done prior to all of this, none of which I
 
 First things first, prepare for Jekyll and install a few programs in your subsystem:
 
-1. Install MAKE, GCC and G++: 
-        
+1. Install MAKE, GCC and G++:
+
         sudo apt-get install make gcc g++
 
 1. Install Ruby and Dev tools:
-        
+
         sudo apt-get install ruby-full build-essential zlib1g-dev ruby-dev
 
 1. Add environment variables:
-        
+
         echo '# Install Ruby Gems to ~/gems' >> ~/.bashrc
         echo 'export GEM_HOME="$HOME/gems"' >> ~/.bashrc
         echo 'export PATH="$HOME/gems/bin:$PATH"' >> ~/.bashrc

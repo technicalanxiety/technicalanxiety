@@ -274,21 +274,25 @@ az policy remediation create \
 Track these KPIs to measure governance effectiveness:
 
 ### Cost Management
+
 - **Target:** Stay within 5% of budget
 - **Measure:** Monthly spend vs. budget
 - **Action:** Alert at 80% threshold
 
 ### Security Baseline
+
 - **Target:** 100% compliance with security policies
 - **Measure:** Policy compliance score
 - **Action:** Automated remediation for critical gaps
 
 ### Resource Consistency
+
 - **Target:** 95% of resources properly tagged
 - **Measure:** Tag compliance rate
 - **Action:** Block untagged resource creation
 
 ### Deployment Acceleration
+
 - **Target:** 90% of deployments via IaC
 - **Measure:** Manual vs. automated deployment ratio
 - **Action:** Deprecate manual deployment access

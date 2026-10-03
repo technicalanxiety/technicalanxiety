@@ -14,7 +14,7 @@ tags: ["Governance", "Azure"]
 
 I've been asked to write up something on Azure Governance. A little background on why. A asked a colleague of mine to give me a topic to write about to share. He mentioned a particular client and how they were well versed in Azure but didn't understand at all the idea of Governance and why it's so critical so here we go ...
 
-## WALKTHROUGH 
+## WALKTHROUGH
 
 What is Governance?
 
@@ -62,7 +62,7 @@ This is a very tiny sample of governance topics but if you at the very least sta
 
 ## CONCLUSION
 
-By this point, I think you get the idea. From here, it's dealer's choice on where to go and how to apply this framework. As always, I highly suggest you read through the Microsoft official documents for all the best practices found in the Cloud Adoption Framework as that touches heavily on this. 
+By this point, I think you get the idea. From here, it's dealer's choice on where to go and how to apply this framework. As always, I highly suggest you read through the Microsoft official documents for all the best practices found in the Cloud Adoption Framework as that touches heavily on this.
 
 <br>
 

@@ -78,7 +78,7 @@ You're not watching your content through layers of abstraction. You're just... d
 
 ## Why Smart Architects Make This Choice Anyway
 
-If Bicep is native and Terraform adds overhead, why does this debate keep happening? 
+If Bicep is native and Terraform adds overhead, why does this debate keep happening?
 
 I've watched this pattern enough times to name the root causes. None of them are technical. And none of them make the architects bad at their jobs.
 

@@ -34,6 +34,7 @@ This is the same pattern that killed SRE adoption at most organizations. Separat
 Confidence engineering without decision rights is SRE all over again. Different technology. Same organizational failure.
 
 ---
+
 ## What You're Going to Hit
 
 Let me tell you the walls you're about to run into.
@@ -49,6 +50,7 @@ Let me tell you the walls you're about to run into.
 I've watched all four of these patterns play out across monitoring, DevOps, cloud, and SRE adoption. Same song, different verse.
 
 ---
+
 ## The Preconditions You Probably Don't Have
 
 I wrote in the Decide or Drown series about preconditions. Servant leadership. Psychological safety. Customer obsession. Willingness to measure honestly. Without these, no framework succeeds.
@@ -68,6 +70,7 @@ Because you don't "trust" it.
 Part 2 gave you the engineering. But engineering assumes someone will act on what it produces. That assumption may not hold.
 
 ---
+
 ## What Accountability Actually Means
 
 Here's the fork in the road.
@@ -85,6 +88,7 @@ The question most organizations won't ask: who has the authority to advance thro
 If failure is career-ending in your culture, the answer is nobody. The gates stay closed. The AI stays in limbo. And everyone else who figured out accountability will move faster.
 
 ---
+
 ## Sentiment as Warning Signal
 
 Part 1 argued against measuring stakeholder feelings as your primary confidence signal. That's still true.
@@ -100,6 +104,7 @@ When adoption stalls despite clear metrics and defined gates, that's a signal th
 These are the early warning signs. By the time they're obvious, the pattern is entrenched.
 
 ---
+
 ## The Question Underneath the Question
 
 You came to this series asking whether to trust AI.
@@ -121,6 +126,7 @@ The technology is new. The failure mode is ancient.
 Trust your governance model. Have confidence in your systems.
 
 ---
+
 ## The Fork
 
 If your organization has the preconditions, this series gives you a path: reframe the question, build the instrumentation, figure out decision rights before you need them, and advance through staged authority as evidence accumulates.

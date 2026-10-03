@@ -8,6 +8,7 @@ series_part: 2
 description: "Master advanced KQL techniques for correlation analysis, anomaly detection, and building monitoring queries that connect the dots across your entire infrastructure."
 ---
 # Beyond Azure Monitor - Part 2: Advanced KQL Patterns
+
 ## Correlation, Anomaly Detection, and Predictive Monitoring
 
 ---

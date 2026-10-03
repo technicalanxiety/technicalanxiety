@@ -400,11 +400,13 @@ Different audiences need different views. A workbook that serves everyone serves
 *Audience:* On-call engineers, support teams
 
 *Questions answered:*
+
 - Is the system healthy right now?
 - What's degraded and since when?
 - Where should I look first?
 
 *Content:*
+
 - Real-time health indicators (last 15 minutes)
 - Active alerts with context
 - Latency trends by deployment
@@ -418,11 +420,13 @@ Different audiences need different views. A workbook that serves everyone serves
 *Audience:* Platform engineers, architects
 
 *Questions answered:*
+
 - How is the system trending over time?
 - Where are the capacity constraints?
 - What needs optimization?
 
 *Content:*
+
 - Weekly/monthly trend analysis
 - Capacity utilization by service
 - Retrieval quality trends
@@ -436,11 +440,13 @@ Different audiences need different views. A workbook that serves everyone serves
 *Audience:* Directors, VPs, executives
 
 *Questions answered:*
+
 - Is the AI investment delivering value?
 - Are we governing responsibly?
 - What's the risk posture?
 
 *Content:*
+
 - User satisfaction trends
 - Cost per interaction over time
 - Authority distribution across capabilities
@@ -454,11 +460,13 @@ Different audiences need different views. A workbook that serves everyone serves
 *Audience:* Auditors, risk managers, compliance officers
 
 *Questions answered:*
+
 - Can you prove governance controls are operating?
 - What's the audit trail for authority decisions?
 - Where are the policy violations?
 
 *Content:*
+
 - Policy evaluation summary
 - Override analysis with justifications
 - Authority change log
@@ -542,6 +550,7 @@ Layer 4 governance data often requires longer retention than Layer 1 infrastruct
 Your application emits custom events to Application Insights. Those events need to flow to the same Log Analytics workspace as your infrastructure diagnostics.
 
 Options:
+
 - Application Insights workspace-based mode (events land directly in Log Analytics)
 - Classic Application Insights with data export to Log Analytics
 - Direct Log Analytics ingestion via Data Collection Rules
@@ -551,6 +560,7 @@ Options:
 **Alert Rule Deployment**
 
 Scheduled query alerts require:
+
 - Log Analytics workspace (data source)
 - Action group (notification targets)
 - Alert rule (query + threshold + schedule)

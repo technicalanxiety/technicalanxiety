@@ -9,6 +9,7 @@ series_part: 1
 ---
 
 # Decide or Drown: Part 1 - The Illusion of Choice
+
 ## Why Your Teams Don't Need More Options
 
 ---

@@ -9,6 +9,7 @@ series_part: 3
 ---
 
 # Decide or Drown: Part 3 - The Four Pillars
+
 ## A Framework for Technology Decisions That Actually Stick
 
 ---

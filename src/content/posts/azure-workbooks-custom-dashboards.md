@@ -27,16 +27,19 @@ This isn't about making pretty charts. It's about designing information that dri
 ## The Dashboard Hierarchy That Works
 
 ### Executive Dashboard (30-second view)
+
 - **Overall health score** - one number that matters
 - **Critical alerts** - what needs immediate attention
 - **Trend indicators** - are things getting better or worse?
 
 ### Operations Dashboard (5-minute view)  
+
 - **Actionable alerts** - what can be fixed right now
 - **Resource status** - capacity, performance, availability
 - **Recent changes** - what might have caused issues
 
 ### Technical Dashboard (deep-dive view)
+
 - **Detailed diagnostics** - root cause analysis
 - **Historical trends** - pattern identification
 - **Correlation analysis** - system relationships
@@ -46,6 +49,7 @@ This isn't about making pretty charts. It's about designing information that dri
 ### Start With Questions, Not Charts
 
 Before opening Workbooks, ask:
+
 - What decisions does this dashboard need to support?
 - What actions should viewers take after seeing it?
 - How much time do they have to process the information?

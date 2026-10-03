@@ -277,6 +277,7 @@ customEvents
 ```
 
 *What you need to log from your application code:*
+
 - `embeddingDurationMs`: Time to generate query embedding
 - `searchDurationMs`: Time for vector search execution  
 - `chunkCount`: Number of chunks returned
