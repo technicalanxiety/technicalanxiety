@@ -37,6 +37,9 @@
   "//overrides": "Remove yaml override when yaml-language-server ships with yaml >= 2.8.3 (GHSA-48c2-rrv3-qjmp)",
   "overrides": {
     "fast-xml-parser": "5.7.0",
+    "markdownlint-cli": {
+      "js-yaml": "5.4.2"
+    },
     "yaml-language-server": {
       "yaml": "2.8.3"
     }
