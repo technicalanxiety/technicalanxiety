@@ -34,11 +34,12 @@
     "sass": "^1.102.0",
     "typescript": "^6.0.3"
   },
-  "//overrides": "Remove yaml override when yaml-language-server ships with yaml >= 2.8.3 (GHSA-48c2-rrv3-qjmp)",
+  "//overrides": "Remove yaml override when yaml-language-server ships with yaml >= 2.8.3 (GHSA-48c2-rrv3-qjmp). Remove markdownlint-cli smol-toml override when it allows smol-toml >= 1.8.1 (GHSA-r4xh-jqrq-34v2)",
   "overrides": {
     "fast-xml-parser": "5.7.0",
     "markdownlint-cli": {
-      "js-yaml": "5.4.2"
+      "js-yaml": "5.4.2",
+      "smol-toml": "1.9.1"
     },
     "yaml-language-server": {
       "yaml": "2.8.3"
