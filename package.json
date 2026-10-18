@@ -46,7 +46,7 @@
     }
   },
   "devDependencies": {
-    "@types/jsdom": "^28.0.3",
+    "@types/jsdom": "^30.0.0",
     "@types/node": "^25.9.5",
     "fast-check": "^4.9.0",
     "jsdom": "^30.0.0",

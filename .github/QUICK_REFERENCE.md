@@ -243,8 +243,8 @@ Most used, in order:
 
 ## Useful Links
 
-- **Live Site**: https://technicalanxiety.com
-- **GitHub Repo**: https://github.com/technicalanxiety/technicalanxiety
-- **Unsplash**: https://unsplash.com
-- **TinyPNG**: https://tinypng.com
-- **Astro Docs**: https://docs.astro.build/
+- **Live Site**: <https://technicalanxiety.com>
+- **GitHub Repo**: <https://github.com/technicalanxiety/technicalanxiety>
+- **Unsplash**: <https://unsplash.com>
+- **TinyPNG**: <https://tinypng.com>
+- **Astro Docs**: <https://docs.astro.build/>
