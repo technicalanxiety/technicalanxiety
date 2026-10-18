@@ -211,7 +211,7 @@ Post-deployment, verify these Lighthouse scores:
 
 - **Azure Static Web Apps**: Azure Portal support
 - **Domain/DNS**: Current domain registrar
-- **Repository**: GitHub (technicalanxiety/technicalanxiety.github.io)
+- **Repository**: GitHub (technicalanxiety/technicalanxiety)
 - **Primary Contact**: Jason Rinehart
 
 ## Notes

@@ -5,64 +5,87 @@ Fast reference for common tasks and patterns.
 ## Creating a New Post
 
 ```bash
-# 1. Create draft
-touch _posts/backlog/2025-01-15-post-slug.md
+# 1. Create a scheduled draft in src/content/backlog/
+npm run backlog add "Post Title"
 
-# 2. Add front matter (see template below)
+# 2. Edit the generated file: front matter (see templates below) and content
 
-# 3. Write content
+# 3. Set the date. The daily workflow (9 AM UTC) moves it to
+#    src/content/posts/ once the date is today or earlier.
+npm run backlog:list     # see what's scheduled
+npm run backlog:check    # see what's ready to publish
 
-# 4. When ready, move to _posts/
-mv _posts/backlog/2025-01-15-post-slug.md _posts/
+# Or publish immediately
+npm run backlog publish post-slug.md
 
-# 5. Commit and push
-git add _posts/2025-01-15-post-slug.md img/image.jpg
-git commit -m "post: publish new post about topic"
+# 4. Commit and push
+git add src/content/backlog/post-slug.md public/img/
+git commit -m "post: schedule new post about topic"
 git push
 ```
 
+The filename becomes the URL slug: `src/content/posts/post-slug.md` → `/post-slug/`.
+
 ## Front Matter Templates
 
+Schemas live in `src/content.config.ts`.
+
 ### Standard Post
+
 ```yaml
 ---
-layout: post
 title: "Post Title"
-date: 2025-01-15 09:00 -0600
-image: filename.jpg
+date: 2026-01-15
 tags: [Azure, Leadership]
 description: "SEO description 150-160 characters that entices clicks from search results and social media"
+image: "filename.jpg"
 ---
 ```
 
 ### Series Post
+
 ```yaml
 ---
-layout: post
 title: "Series Name, Part 1"
-date: 2025-01-15 09:00 -0600
-image: filename.jpg
+date: 2026-01-15
 tags: [Azure, Governance]
 series: "Series Name"
-series_part: 1
+series_part: 1          # use series_order while the post is in backlog/
 description: "SEO description for this part of the series"
+image: "filename.jpg"
 ---
+```
+
+Series landing pages are defined in `src/content/series/`.
+
+### Linking to an Unpublished Next Part
+
+Put a placeholder in the earlier post. The publish workflow replaces it with a
+"Next in Series" link when the target post goes live:
+
+```markdown
+<!-- NEXT_PART: next-post-slug.md -->Coming soon<!-- END_NEXT_PART -->
 ```
 
 ## Image Workflow
 
 ```bash
 # 1. Download from Unsplash
-# 2. Optimize (TinyPNG, ImageOptim, or ImageMagick):
-convert input.jpg -resize 1200x630^ -gravity center -extent 1200x630 -quality 85 output.jpg
+# 2. Crop/resize to 1200x630:
+magick input.jpg -resize 1200x630^ -gravity center -extent 1200x630 -quality 85 filename.jpg
 
-# 3. Save to img/
-cp optimized-image.jpg img/
+# 3. Save the original to public/img/
+cp filename.jpg public/img/
 
-# 4. Add to front matter
-image: optimized-image.jpg
+# 4. Add optimized variants (OptimizedImage.astro serves these):
+#    public/img/optimized/filename.avif
+#    public/img/optimized/filename.webp
+#    public/img/optimized/filename.jpg
 
-# 5. Add attribution at end of post
+# 5. Reference it in front matter
+image: "filename.jpg"
+
+# 6. Add attribution at end of post
 ```
 
 ## Unsplash Attribution Template
@@ -92,6 +115,10 @@ image: optimized-image.jpg
 
 ```bicep
 // Bicep/ARM templates
+```
+
+```kql
+// KQL queries
 ```
 
 ```yaml
@@ -138,22 +165,19 @@ Horizontal rule for section breaks
 # Create feature branch
 git checkout -b post/new-post-title
 
-# Check status
-git status
-
-# Stage changes
-git add file.md
-
-# Commit with conventional commit message
+# Stage and commit with a conventional commit message
+git add src/content/backlog/new-post-title.md
 git commit -m "post: add new post about topic"
 
 # Push and create PR
 git push origin post/new-post-title
 
-# After PR merged, update main
-git checkout main
-git pull origin main
+# After PR merged, update master
+git checkout master
+git pull origin master
 ```
+
+Pushes to `master` deploy to Azure Static Web Apps. PRs get a staging preview.
 
 ## Conventional Commit Types
 
@@ -166,32 +190,23 @@ git pull origin main
 - `refactor:` - Code refactoring
 - `chore:` - Maintenance tasks
 
-## Jekyll Commands
+## Astro Commands
 
 ```bash
-# Start dev server
-bundle exec jekyll serve --livereload
-
-# Build site
-bundle exec jekyll build
-
-# Build with future posts
-bundle exec jekyll build --future
-
-# Clean build
-bundle exec jekyll clean && bundle exec jekyll build
-
-# Update dependencies
-bundle update
-
-# Check for outdated gems
-bundle outdated
+npm run dev            # Dev server at http://localhost:4321
+npm run build          # Production build to dist/
+npm run preview        # Serve the built site
+npm run check          # Type and content-schema check
+npm test               # Vitest suite
+npm run deploy:check   # check + test + build (run before pushing)
+npx markdownlint "src/content/**/*.md"   # Lint posts
+npm outdated           # Check for outdated packages
 ```
 
 ## Pre-Publish Checklist
 
 - [ ] Front matter complete (title, date, image, tags, description)
-- [ ] Image optimized and in /img/
+- [ ] Image in `public/img/` with variants in `public/img/optimized/`
 - [ ] Image attribution at end of post
 - [ ] Code blocks have language tags
 - [ ] Links tested
@@ -199,15 +214,23 @@ bundle outdated
 - [ ] SEO description 150-160 characters
 - [ ] Tags match existing taxonomy
 - [ ] Series metadata (if applicable)
+- [ ] `npm run deploy:check` passes
 
 ## Existing Tags
 
-- Anxiety
+Most used, in order:
+
 - Leadership
+- AI
 - Azure
-- Governance
 - Operations
+- Governance
+- Architecture
+- Anxiety
+- Development
+- Observability
 - Log Analytics
+- Infrastructure
 
 ## Target Metrics
 
@@ -221,7 +244,7 @@ bundle outdated
 ## Useful Links
 
 - **Live Site**: https://technicalanxiety.com
-- **GitHub Repo**: https://github.com/technicalanxiety/technicalanxiety.github.io
+- **GitHub Repo**: https://github.com/technicalanxiety/technicalanxiety
 - **Unsplash**: https://unsplash.com
 - **TinyPNG**: https://tinypng.com
-- **Jekyll Docs**: https://jekyllrb.com/docs/
+- **Astro Docs**: https://docs.astro.build/

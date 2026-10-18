@@ -78,7 +78,7 @@ Create or edit `~/.kiro/settings/mcp.json`:
       "args": [
         "-y",
         "@modelcontextprotocol/server-filesystem",
-        "/home/anxiety/technicalanxiety.github.io",
+        "/home/anxiety/technicalanxiety",
         "/home/anxiety/.kiro"
       ],
       "env": {
@@ -204,7 +204,7 @@ npx --version
 If filesystem server can't access directories:
 ```bash
 # Check directory permissions
-ls -la ~/technicalanxiety.github.io
+ls -la ~/technicalanxiety
 ls -la ~/.kiro
 
 # Ensure you have read/write access
