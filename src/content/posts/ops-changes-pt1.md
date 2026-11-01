@@ -8,8 +8,6 @@ series: "Operational Change"
 series_part: 1
 ---
 
-# The Translation Problem
-
 You're monitoring your cloud infrastructure. Your dashboards are green. Alerts are under control. Customers aren't complaining.
 
 And you're blind to 90% of what's actually happening.

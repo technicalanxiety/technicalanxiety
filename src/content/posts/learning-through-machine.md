@@ -6,8 +6,6 @@ description: "AI can accelerate your growth or replace it. The productivity disc
 image: "learning-through-machine.jpg"
 ---
 
-# Learning Through the Machine: The Hollow Promise of AI Productivity
-
 ## The Metric Everyone Celebrates
 
 Open any article about AI productivity. Scroll through LinkedIn posts from consultants and technologists. Attend any conference session on AI adoption.

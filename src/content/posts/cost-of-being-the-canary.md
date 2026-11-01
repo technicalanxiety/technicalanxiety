@@ -6,8 +6,6 @@ image: cost-of-being-the-canary.jpg
 tags: ["Leadership", "Anxiety"]
 ---
 
-# The Cost of Being the Canary
-
 Everyone knows what the canary is for. You put it in the mine because it dies before you do. The warning is in the dying. The whole system depends on the canary not surviving.
 
 I've never been that canary.

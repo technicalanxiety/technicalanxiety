@@ -6,8 +6,6 @@ tags: [AI, Architecture, Governance, Observability]
 description: "Three frameworks built separately turned out to be one system. A real question about agent memory forced them to interoperate."
 ---
 
-# Three Frameworks Walk Into an Agent
-
 ---
 
 ## The Trigger

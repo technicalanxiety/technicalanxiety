@@ -8,8 +8,6 @@ series: "Operational Change"
 series_part: 2
 ---
 
-# The Operations Waterline
-
 Early AIOps was expensive vendor theater.
 
 I watched it fail to deliver on promises that a properly instrumented Azure Monitor platform and someone who understood KQL could already achieve. The tooling was different. The outcome was the same. Except one cost six figures and the other cost knowledge.

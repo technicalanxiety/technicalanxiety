@@ -9,8 +9,6 @@ series_part: 4
 draft: false
 ---
 
-# AI Observability, Part 4: The Governance Layer
-
 ## Where Confidence Meets Accountability
 
 ---

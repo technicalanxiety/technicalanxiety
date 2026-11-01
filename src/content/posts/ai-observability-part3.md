@@ -9,8 +9,6 @@ series_part: 3
 draft: false
 ---
 
-# AI Observability, Part 3: The Orchestration Layer
-
 ## Monitoring Meaning
 
 ---

@@ -6,8 +6,6 @@ tags: [Azure, KQL, Operations, Infrastructure]
 description: "Master KQL from an infrastructure perspective. Learn to write queries that solve real operational problems, from capacity planning to incident response."
 ---
 
-# KQL for Infrastructure Teams - Beyond Basic Queries
-
 ## Writing Queries That Actually Solve Problems
 
 *KQL syntax is critical, but this guide assumes you already have that foundation. This is about what to do with it: how to think like infrastructure.*

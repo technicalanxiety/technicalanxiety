@@ -8,8 +8,6 @@ series: "Weaving Memory"
 series_part: 1
 ---
 
-# The Invisible Layer
-
 ## Weaving Memory, Part 1 of 3
 
 Moving between AI tools and copy-pasting context is painful and mostly unusable. I said this already, in different words, when I wrote Value of Context. The honest response, the one I actually made, was to stop trying. I have almost abandoned serious use of any tool other than the one I have built the most context and memory with. The tool is not the point. The accumulated understanding is.

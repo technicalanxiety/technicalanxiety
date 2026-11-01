@@ -6,8 +6,6 @@ image: a-thousand-acres.jpeg
 tags: ["Leadership", "Anxiety", "Architecture"]
 ---
 
-# A Thousand Acres
-
 My dad is a painter and contractor. Long retired now, but in his working years he owned his own crew. He built the house I grew up in on a thousand acres in Holdenville, Oklahoma. Drafted the blueprint himself. Did almost everything with his own hands, his crew assisting where needed. From the design on paper to the last coat of paint, a lifetime of trade knowledge applied to the most personal structure a person can create.
 
 He built it because my mom wanted to go home. She wanted to return to her roots, to the place where she grew up, and they both believed it would be the best environment for me to grow up in. The blueprint existed because of her vision. The house existed because of his hands. The whole thing was an act of provision disguised as construction.

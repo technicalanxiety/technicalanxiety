@@ -6,8 +6,6 @@ description: "Why AI doom narratives distract from real risks and real opportuni
 image: "ai-doom.jpg"
 ---
 
-# The End of Humanity Won't Be Caused by AI
-
 <iframe style="border-radius:12px" src="https://open.spotify.com/embed/episode/385cTNhMRRzJlhe6smMeNB?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
 
 ## It Never Was Going to Be

@@ -6,8 +6,6 @@ description: "The system doesn't just fail architects. It teaches them to fail. 
 image: "architects-stop-translating.jpg"
 ---
 
-# Why Architects Stop Translating
-
 In the companion piece to this one, I argued that migrations fail when architects don't translate. The architect's job is to force conversations, end misconceptions, and make the invisible visible. When translation doesn't happen, the architect failed.
 
 That's true. And it's incomplete.

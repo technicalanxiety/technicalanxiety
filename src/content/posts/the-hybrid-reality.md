@@ -6,8 +6,6 @@ image: hybrid-reality.jpg
 tags: [Infrastructure, Operations, Governance]
 ---
 
-# You've Always Been Hybrid
-
 I'm not sure why we're still having this conversation in 2025. But here we are.
 
 Organizations still ask "are we hybrid or not?" as if it's a strategic decision they haven't made yet. It's not. The decision was made years ago. The answer is yes. The only question left is whether you're operating like it.

@@ -7,8 +7,6 @@ series: "Beyond Azure Monitor"
 series_part: 1
 description: "Azure Monitor is just the starting point. Real enterprise monitoring requires custom solutions, advanced KQL, and architectural thinking beyond the basics."
 ---
-# Beyond Azure Monitor - Part 1: The Reality of Enterprise Monitoring
-
 ## When Defaults Aren't Enough
 
 ---
