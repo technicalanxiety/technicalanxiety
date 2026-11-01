@@ -68,6 +68,25 @@ function isAlreadyOptimized(filename) {
 // Maximum width for article images (per blog standards: 1200x630 featured)
 const MAX_WIDTH = 1200;
 
+// Featured images (front matter `image:`) are cropped to the social card size
+const FEATURED_WIDTH = 1200;
+const FEATURED_HEIGHT = 630;
+const CONTENT_DIRS = ['posts', 'backlog', 'series'].map(dir => path.join(__dirname, 'src', 'content', dir));
+
+function getFeaturedImages() {
+  const featured = new Set();
+  for (const dir of CONTENT_DIRS) {
+    if (!fs.existsSync(dir)) continue;
+    for (const file of fs.readdirSync(dir).filter(f => f.endsWith('.md'))) {
+      const match = fs.readFileSync(path.join(dir, file), 'utf8').match(/^image:\s*["']?([^"'\n]+?)["']?\s*$/m);
+      if (match) featured.add(match[1]);
+    }
+  }
+  return featured;
+}
+
+const featuredImages = getFeaturedImages();
+
 async function optimizeImage(inputPath, filename) {
   const baseName = path.parse(filename).name;
   const ext = path.parse(filename).ext.toLowerCase();
@@ -81,13 +100,20 @@ async function optimizeImage(inputPath, filename) {
     
     console.log(`   Original: ${metadata.width}x${metadata.height}, ${Math.round(inputStats.size / 1024)}KB`);
     
-    // Resize if wider than MAX_WIDTH (preserves aspect ratio)
-    const needsResize = metadata.width > MAX_WIDTH && !criticalImages.includes(filename);
-    const pipeline = needsResize 
-      ? image.resize(MAX_WIDTH, null, { withoutEnlargement: true })
-      : image;
-    
-    if (needsResize) {
+    // Crop featured images from the full-size original to 1200x630 (centered)
+    const needsCrop = featuredImages.has(filename) && !criticalImages.includes(filename) &&
+      (metadata.width !== FEATURED_WIDTH || metadata.height !== FEATURED_HEIGHT);
+    // Otherwise resize if wider than MAX_WIDTH (preserves aspect ratio)
+    const needsResize = !needsCrop && metadata.width > MAX_WIDTH && !criticalImages.includes(filename);
+    const pipeline = needsCrop
+      ? image.resize(FEATURED_WIDTH, FEATURED_HEIGHT, { fit: 'cover', position: 'centre' })
+      : needsResize
+        ? image.resize(MAX_WIDTH, null, { withoutEnlargement: true })
+        : image;
+
+    if (needsCrop) {
+      console.log(`   Cropping featured image to ${FEATURED_WIDTH}x${FEATURED_HEIGHT}...`);
+    } else if (needsResize) {
       console.log(`   Resizing to ${MAX_WIDTH}px wide...`);
     }
     
@@ -127,7 +153,22 @@ async function optimizeImage(inputPath, filename) {
       const optimizedStats = fs.statSync(optimizedPath);
       console.log(`   Optimized ${ext}: ${Math.round(optimizedStats.size / 1024)}KB (${Math.round((1 - optimizedStats.size / inputStats.size) * 100)}% smaller)`);
     }
-    
+
+    // Replace the full-size original with the cropped version, since /img/<image>
+    // is served directly (og:image, card backgrounds). Variants were already
+    // encoded from the original, so they never get compressed twice.
+    if (needsCrop && optimizedPath) {
+      fs.copyFileSync(optimizedPath, inputPath);
+      // Give the replaced source and its variants the same timestamp so they
+      // aren't regenerated from the cropped copy (copyFileSync sets a sub-ms
+      // mtime that a later Date-based timestamp can fall short of)
+      const now = new Date();
+      for (const file of [inputPath, webpPath, avifPath, optimizedPath]) {
+        fs.utimesSync(file, now, now);
+      }
+      console.log(`   Replaced original with ${FEATURED_WIDTH}x${FEATURED_HEIGHT} version`);
+    }
+
     // Generate responsive sizes for critical images
     if (criticalImages.includes(filename)) {
       console.log(`   Generating responsive sizes...`);

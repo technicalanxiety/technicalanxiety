@@ -70,23 +70,34 @@ Put a placeholder in the earlier post. The publish workflow replaces it with a
 ## Image Workflow
 
 ```bash
-# 1. Download from Unsplash
-# 2. Crop/resize to 1200x630:
-magick input.jpg -resize 1200x630^ -gravity center -extent 1200x630 -quality 85 filename.jpg
+# 1. Download from Unsplash and save the full-size original, uncropped
+cp ~/Downloads/photo.jpg public/img/filename.jpg
 
-# 3. Save the original to public/img/
-cp filename.jpg public/img/
-
-# 4. Add optimized variants (OptimizedImage.astro serves these):
-#    public/img/optimized/filename.avif
-#    public/img/optimized/filename.webp
-#    public/img/optimized/filename.jpg
-
-# 5. Reference it in front matter
+# 2. Reference it in front matter (before step 3, so it's treated as featured)
 image: "filename.jpg"
 
-# 6. Add attribution at end of post
+# 3. Optimize
+node optimize-images.js
+
+# 4. Add attribution at end of post
 ```
+
+`optimize-images.js` only processes images that are new or newer than their
+optimized versions. For a featured image (any file named in a post's `image:`
+front matter) that isn't already 1200x630, it:
+
+- Center-crops the full-size original to 1200x630
+- Writes `public/img/optimized/filename.{avif,webp,jpg}` (OptimizedImage.astro
+  serves these), each encoded once from the original
+- Replaces `public/img/filename.jpg` with the 1200x630 version, since that path
+  is served directly as `og:image` and as card backgrounds
+
+The crop keeps the center of the frame. If the subject is off-center, check
+`public/img/filename.jpg` after running, and crop the original yourself to
+roughly 1.9:1 around the subject before step 3.
+
+Other images in `public/img/` (in-post screenshots, diagrams) are never cropped,
+only scaled down to 1200px wide.
 
 ## Unsplash Attribution Template
 

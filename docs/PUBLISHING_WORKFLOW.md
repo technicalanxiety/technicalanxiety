@@ -51,9 +51,9 @@ Your content here using Markdown...
 
 #### 3. Add Images (Optional)
 If your post includes images:
-1. Add original image to `public/img/your-image.jpg`
-2. Run image optimization: `node optimize-images.js`
-3. Reference in frontmatter: `image: "your-image.jpg"`
+1. Add the full-size original to `public/img/your-image.jpg` (don't crop it)
+2. Reference in frontmatter: `image: "your-image.jpg"`
+3. Run image optimization: `node optimize-images.js` (crops featured images to 1200x630; see `.github/QUICK_REFERENCE.md`)
 
 #### 4. Preview Locally
 ```bash
