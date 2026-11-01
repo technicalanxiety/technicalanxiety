@@ -8,8 +8,6 @@ tags: ["Anxiety"]
 
 > **Updated December 2024**: This post has been completely rewritten to reflect my evolved understanding of anxiety and to match the voice and insights developed over the past few years. The core experiences and tactics remain the same, but the storytelling and context have been significantly improved. The original was written in survival mode. This version is written with perspective.
 
-# Pandemic Recovery
-
 ## PURPOSE
 
 I thought I was having a heart attack.

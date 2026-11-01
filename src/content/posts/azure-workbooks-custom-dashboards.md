@@ -6,8 +6,6 @@ tags: [Azure, Workbooks, Operations, Dashboards]
 description: "Stop building useless dashboards. Learn to create Azure Workbooks that actually help your team make decisions and solve problems faster."
 ---
 
-# Azure Workbooks: Custom Dashboards That Don't Suck
-
 ## Building Dashboards That People Actually Use
 
 *Most dashboards are digital wallpaper. Here's how to build ones that drive action.*

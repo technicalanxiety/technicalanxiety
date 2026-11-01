@@ -6,8 +6,6 @@ description: "The category error behind every AI trust debate. Confidence is the
 image: "confidence-not-feeling.jpg"
 ---
 
-# Confidence Is Not a Feeling
-
 ## The Category Error Behind Every AI Trust Debate
 
 ---

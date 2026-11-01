@@ -8,8 +8,6 @@ series: "Weaving Memory"
 series_part: 3
 ---
 
-# Memory Isn't RAG, and RAG Isn't Memory
-
 My friend Justin sent me a document very recently. Ten pages on how biological memory architecture maps to data storage patterns. No preamble, just a link and "this might be useful for Loom."
 
 I did not know what to expect. By the time I finished, I read it again to make sure I had actually understood it.

@@ -6,8 +6,6 @@ image: victory.jpg
 tags: ["Anxiety", "Leadership"]
 ---
 
-# Debugging Myself
-
 ## PURPOSE
 
 Five years ago, I wrote about surviving anxiety during the pandemic. That was the survival guide, written from inside the storm. This is different. This is written from the other side.

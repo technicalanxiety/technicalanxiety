@@ -6,8 +6,6 @@ description: "The architect is the accountable party for migration success or fa
 image: "modernization-leadership.jpg"
 ---
 
-# Migrations Fail When Architects Don't Translate
-
 I helped build assessment machinery that set organizations up to fail.
 
 At Avanade, I was on the tiger team that developed the assessment practice. We built the models, refined the presentations, worked directly with customers on migration planning. The deliverables were polished. The financial projections were compelling. The roadmaps looked achievable, yet they were all unicorns.

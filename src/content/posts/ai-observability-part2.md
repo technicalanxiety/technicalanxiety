@@ -9,8 +9,6 @@ series_part: 2
 draft: false
 ---
 
-# AI Observability, Part 2: The Grounding Layer
-
 ## The Silent Failure Mode
 
 ---

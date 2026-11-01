@@ -9,8 +9,6 @@ series_part: 1
 draft: false
 ---
 
-# AI Observability, Part 1: The Model Layer
-
 ## You Can't Monitor What You Don't Understand
 
 ---

@@ -6,8 +6,6 @@ description: "Context is the real product of AI collaboration. It's also the rea
 image: "the-value-of-context.jpg"
 ---
 
-# The Value of Context
-
 ## What Happens to the Digital Self When the Mirror Changes
 
 We rolled out ChatGPT at work recently. Enterprise deployment, proper licensing, the whole thing. I installed it, opened a fresh conversation, and typed a prompt I've run through Claude dozens of times.

@@ -6,8 +6,6 @@ image: marching-band.jpg
 tags: ["Leadership"]
 ---
 
-# Leadership, Drum Major Style
-
 ## PURPOSE
 
 I found my leadership philosophy in a box of childhood junk.

@@ -6,8 +6,6 @@ tags: [Azure, Operations, Chaos Engineering, Resilience]
 description: "Skip the Netflix-scale chaos. Learn to start chaos engineering in Azure with simple, safe experiments that actually improve your systems without breaking production."
 ---
 
-# Chaos Engineering on Azure: Controlled Vandalism
-
 ## Building Resilience Without Breaking Everything
 
 *Take that impulse to break things and aim it somewhere useful.*

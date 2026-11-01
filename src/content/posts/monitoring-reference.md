@@ -6,8 +6,6 @@ description: "Deploy the Beyond Azure Monitor patterns as infrastructure code. C
 image: "monitoring-reference.jpg"
 ---
 
-# Monitoring Foundation: The Reference Implementation
-
 ## Putting Beyond Azure Monitor Into Practice
 
 *Companion to the "Beyond Azure Monitor" series. [Part 1](/beyond-azure-monitor-pt1/) covered context-aware monitoring. [Part 2](/beyond-azure-monitor-pt2/) covered correlation and anomaly detection. [Part 3](/beyond-azure-monitor-pt3/) covered automation and alerting strategies.*

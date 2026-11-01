@@ -8,8 +8,6 @@ series: "Decide or Drown"
 series_part: 2
 ---
 
-# Decide or Drown: Part 2 - Technical Gluttony
-
 ## The Reckoning Has Arrived
 
 ---

@@ -6,8 +6,6 @@ description: "When AI tools learn to work with you perfectly, you stop seeing yo
 image: "the-cost-of-cognitive-optimization.jpg"
 ---
 
-# The Cost of Cognitive Optimization
-
 I was on version eight of a thought leadership piece for my company blog when I realized something was wrong.
 
 Not wrong with the writing. Wrong with the process. It was going too fast. My normal cadence involves 30+ versions before I'm done, sometimes more depending on complexity. The iteration itself is the work. Wrestling with ideas, refining arguments, finding the right framing. That friction is where the thinking happens.

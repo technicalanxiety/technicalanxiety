@@ -8,8 +8,6 @@ series: "Weaving Memory"
 series_part: 2
 ---
 
-# The Groove Problem
-
 ## Weaving Memory, Part 2 of 3
 
 In Part 1 I said Loom was mechanically a comfort-groove amplifier if I built it wrong. That was the line I was most afraid of getting right. The whole point of the memory compiler was that the accumulated understanding between you and the tool was the product. The same accumulated understanding that made the collaboration valuable was the thing that filed down the pushback you actually needed. A faster, better accommodation engine.

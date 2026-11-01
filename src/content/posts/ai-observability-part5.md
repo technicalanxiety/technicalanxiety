@@ -9,8 +9,6 @@ series_part: 5
 draft: false
 ---
 
-# AI Observability, Part 5: Making It Operational
-
 ## From Queries to Alerts to Action
 
 ---

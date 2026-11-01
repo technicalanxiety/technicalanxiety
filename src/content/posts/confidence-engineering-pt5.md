@@ -8,8 +8,6 @@ series: "Confidence Engineering"
 series_part: 5
 ---
 
-# Confidently Execute Authority
-
 ## When the Gate Becomes the Bottleneck, Just Open the Gate
 
 ---
