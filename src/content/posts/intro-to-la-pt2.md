@@ -135,11 +135,7 @@ If you have an awesome query, click save, give it a name and it'll not be forgot
 
 ## What's Next?
 
-<!-- NEXT_PART: 2024-2-18-la-view-logs.md -->
-**Coming Next:** Part 3: Using Log Analytics to View Logs (Published February 18, 2024)
-
-In the final part of this series, we'll show how to use Log Analytics as an actual log aggregation tool, building human-readable tables to view VM status with KQL functions.
-<!-- END_NEXT_PART -->
+**Next in Series:** [Using Log Analytics to ... view logs →](/la-view-logs/)
 
 ---
 

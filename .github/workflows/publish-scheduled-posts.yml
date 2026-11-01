@@ -33,8 +33,8 @@ jobs:
           node-version: '24'
           cache: 'npm'
           
-      # Run Python script to move posts from backlog and update series links
-      - name: Publish scheduled posts and update series links
+      # Run Python script to move posts from backlog
+      - name: Publish scheduled posts
         run: |
           python3 << 'EOF'
           import os
@@ -46,8 +46,7 @@ jobs:
           posts_dir = Path('src/content/posts')
           today = datetime.now(timezone.utc).date()
           published_posts = []
-          updated_links = []
-          
+
           if not backlog_dir.exists():
               print("No backlog directory found")
               exit(0)
@@ -68,41 +67,18 @@ jobs:
                       post_file.rename(destination)
                       published_posts.append(post_file.name)
                       print(f"Published: {post_file.name} (dated {post_date_str})")
-                      
-                      # Extract slug from filename (Astro uses filename as slug)
-                      slug = post_file.stem  # filename without extension
-                      title_match = re.search(r'^title:\s*["\']?(.+?)["\']?\s*$', content, re.MULTILINE)
-                      title = title_match.group(1) if title_match else "Next Part"
-                      
-                      # Update series links in existing posts
-                      for existing_post in posts_dir.glob('*.md'):
-                          if existing_post.name == post_file.name:
-                              continue
-                          
-                          existing_content = existing_post.read_text(encoding='utf-8')
-                          placeholder_pattern = f'<!-- NEXT_PART: {post_file.name} -->.*?<!-- END_NEXT_PART -->'
-                          
-                          if re.search(placeholder_pattern, existing_content, re.DOTALL):
-                              new_content = re.sub(
-                                  placeholder_pattern,
-                                  f'**Next in Series:** [{title} →](/{slug}/)',
-                                  existing_content,
-                                  flags=re.DOTALL
-                              )
-                              existing_post.write_text(new_content, encoding='utf-8')
-                              updated_links.append(existing_post.name)
-                              print(f"Updated series link in: {existing_post.name}")
-          
+
           if published_posts:
               print(f"\n✓ Published {len(published_posts)} post(s)")
-              if updated_links:
-                  print(f"✓ Updated series links in {len(updated_links)} post(s)")
-              exit(0)
           else:
               print("No posts ready to publish")
-              exit(0)
           EOF
-          
+
+      # Replace "What's Next" placeholders whose target post is now published.
+      # Sweeps all posts, so it also catches parts published manually.
+      - name: Update series links
+        run: node scripts/update-series-links.js
+
       # Install dependencies and build site if posts were published
       - name: Install dependencies and build
         if: success()

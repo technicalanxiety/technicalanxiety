@@ -177,11 +177,7 @@ That's confidence engineering applied to confidence engineering itself. Observe.
 
 ## What's Next?
 
-<!-- NEXT_PART: confidence-engineering-pt3.md -->
-**Coming Next:** Part 3: Adoption Déjà Vu (Published December 24, 2025)
-
-You'll build the instrumentation. Leadership will nod at the dashboard. Then nothing will happen. The same organizational failure that killed SRE adoption.
-<!-- END_NEXT_PART -->
+**Next in Series:** [Confidence Engineering - Part 3: Adoption Déjà Vu →](/confidence-engineering-pt3/)
 
 ---
 

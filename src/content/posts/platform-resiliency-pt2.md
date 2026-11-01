@@ -156,11 +156,7 @@ Be water, my friend. That's always been how good engineering works.
 
 ## What's Next?
 
-<!-- NEXT_PART: 2025-12-15-platform-resiliency-pt3.md -->
-**Coming Next:** Part 3: Promises Made, Promises Kept (Published December 15, 2025)
-
-Parts 1 and 2 gave you the model. Part 3 is about Monday morning - the practical first moves that start building the muscle. If you read Parts 1 and 2 and thought "this makes sense but I don't know where to start," Part 3 is where to start.
-<!-- END_NEXT_PART -->
+**Next in Series:** [Platform Resiliency - Part 3: Promises Made, Promises Kept →](/platform-resiliency-pt3/)
 
 ---
 

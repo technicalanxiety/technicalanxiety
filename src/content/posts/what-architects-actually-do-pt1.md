@@ -126,11 +126,7 @@ For now, start listening differently. The gap between C-suite and practitioners 
 
 ## What's Next?
 
-<!-- NEXT_PART: 2025-12-22-what-architects-actually-do-pt2.md -->
-**Coming Next:** Part 2: Translation in Practice (Publishing December 22, 2025)
-
-In the next part, we'll get concrete with real scenarios and frameworks for bridging the gap between business and technology.
-<!-- END_NEXT_PART -->
+**Next in Series:** [What Architects Actually Do - Part 2: The Framework →](/what-architects-actually-do-pt2/)
 
 ---
 

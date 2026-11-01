@@ -104,11 +104,7 @@ The reckoning has arrived. What you do with it is up to you.
 
 ## What's Next?
 
-<!-- NEXT_PART: 2025-12-15-decide-or-drown-pt3.md -->
-**Coming Next:** Part 3: The Four Pillars (Publishing December 15, 2025)
-
-In the next part, we move from diagnosis to action - a repeatable framework for evaluating technology decisions that accounts for your people, your customers, your business, and the measurement criteria that most organizations skip entirely.
-<!-- END_NEXT_PART -->
+**Next in Series:** [Decide or Drown - Part 3: The Four Pillars →](/decide-or-drown-pt3/)
 
 ---
 

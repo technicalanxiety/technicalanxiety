@@ -100,11 +100,7 @@ Your teams will thank you for it. Even if they never know what you took off thei
 
 ## What's Next?
 
-<!-- NEXT_PART: 2025-12-08-decide-or-drown-pt2.md -->
-**Coming Next:** Part 2: Decision Frameworks (Publishing December 8, 2025)
-
-In the next part, we'll explore practical frameworks for making these upstream decisions and how to communicate them effectively to your teams.
-<!-- END_NEXT_PART -->
+**Next in Series:** [Decide or Drown - Part 2: Technical Gluttony →](/decide-or-drown-pt2/)
 
 ---
 

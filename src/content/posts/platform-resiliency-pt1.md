@@ -160,11 +160,7 @@ Part 2 makes that concrete.
 
 ## What's Next?
 
-<!-- NEXT_PART: 2025-12-15-platform-resiliency-pt2.md -->
-**Coming Next:** Part 2: The Promise That Can (Published December 15, 2025)
-
-In Part 2, I'll lay out what Platform Resiliency looks like in practice. How operations and platform teams share responsibility without fighting over boundaries. Where AI tooling fits as platform infrastructure rather than SRE replacement. And why this model is more adaptable than what came before.
-<!-- END_NEXT_PART -->
+**Next in Series:** [Platform Resiliency - Part 2: The Promise That Can →](/platform-resiliency-pt2/)
 
 ---
 

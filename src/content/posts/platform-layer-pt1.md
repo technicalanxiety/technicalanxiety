@@ -138,11 +138,7 @@ In Part 2 of this series, we'll explore why this matters in practice - what happ
 
 ## What's Next?
 
-<!-- NEXT_PART: 2025-12-13-platform-layer-part2.md -->
-**Coming Next:** Part 2: Why the Platform Layer Matters (Publishing December 13, 2025)
-
-In the next part, we'll explore the consequences of strong and weak platforms, and how platform decisions compound over time to shape organizational capability.
-<!-- END_NEXT_PART -->
+**Next in Series:** [The Platform Layer - Part 2: Why It Matters →](/platform-layer-pt2/)
 
 ---
 

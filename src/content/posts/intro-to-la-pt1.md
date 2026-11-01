@@ -145,11 +145,7 @@ Now that you've seen how I work my way into a Log query, hopefully this should h
 
 ## What's Next?
 
-<!-- NEXT_PART: 2020-2-10-intro-to-la-pt2.md -->
-**Coming Next:** Part 2: More Advanced Queries (Published February 10, 2020)
-
-In the next part, we'll explore joining tables and creating more complex visualizations to get even more insights from your Log Analytics data.
-<!-- END_NEXT_PART -->
+**Next in Series:** [Intro to Log Analytics - Part 2 →](/intro-to-la-pt2/)
 
 ---
 

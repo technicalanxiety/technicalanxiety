@@ -150,11 +150,7 @@ The platform is the base. What you build on it depends entirely on how solid you
 
 ## What's Next?
 
-<!-- NEXT_PART: 2025-12-16-platform-layer-part3.md -->
-**Coming Next:** Part 3: Building the Platform Function (Publishing December 16, 2025)
-
-In the final part, we'll cover how to operationalize platform architecture in your organization - from defining scope to sustaining the function over time.
-<!-- END_NEXT_PART -->
+**Next in Series:** [The Platform Layer - Part 3: How Do You Do It →](/platform-layer-pt3/)
 
 ---
 

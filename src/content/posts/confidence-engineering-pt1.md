@@ -165,11 +165,7 @@ That's how every platform you've ever operated earned its place in production. A
 
 ## What's Next?
 
-<!-- NEXT_PART: confidence-engineering-pt2.md -->
-**Coming Next:** Part 2: The Practice (Published December 23, 2025)
-
-A framework for building confidence in AI-enabled systems through observable criteria, instrumentation, and staged authority expansion. Theory meets practice.
-<!-- END_NEXT_PART -->
+**Next in Series:** [Confidence Engineering - Part 2: The Practice →](/confidence-engineering-pt2/)
 
 ---
 

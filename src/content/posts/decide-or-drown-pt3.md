@@ -132,11 +132,7 @@ Your organization is waiting for someone to clear the path. Now you have the too
 
 ## What's Next?
 
-<!-- NEXT_PART: 2025-12-09-decide-or-drown-pt4.md -->
-**Coming Next:** Part 4: Why Organizations Won't Do It (Published December 9, 2025)
-
-The framework is clear. The method is proven. So why don't organizations implement it? The final part explores the organizational preconditions that enable good decision-making - and what to do when you can't build them.
-<!-- END_NEXT_PART -->
+**Next in Series:** [Decide or Drown - Part 4: Feedback →](/decide-or-drown-pt4/)
 
 ---
 

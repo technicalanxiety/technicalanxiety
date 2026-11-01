@@ -50,7 +50,7 @@ title: "Series Name, Part 1"
 date: 2026-01-15
 tags: [Azure, Governance]
 series: "Series Name"
-series_part: 1          # use series_order while the post is in backlog/
+series_part: 1          # same field in backlog/ and posts/
 description: "SEO description for this part of the series"
 image: "filename.jpg"
 ---
@@ -60,11 +60,33 @@ Series landing pages are defined in `src/content/series/`.
 
 ### Linking to an Unpublished Next Part
 
-Put a placeholder in the earlier post. The publish workflow replaces it with a
-"Next in Series" link when the target post goes live:
+End every part except the last with this block, just before the `---` and
+photo attribution. `NEXT_PART` must be the next part's exact filename in
+`src/content/backlog/` (no date prefix):
 
 ```markdown
-<!-- NEXT_PART: next-post-slug.md -->Coming soon<!-- END_NEXT_PART -->
+## What's Next?
+
+<!-- NEXT_PART: next-post-slug.md -->
+**Coming Next:** Part 2: Part Title (Publishing January 22, 2026)
+
+One or two sentences teasing what the next part covers.
+<!-- END_NEXT_PART -->
+```
+
+Once the next part is published, `scripts/update-series-links.js` replaces
+everything between the markers with:
+
+```markdown
+**Next in Series:** [Next Post Title →](/next-post-slug/)
+```
+
+It runs after every scheduled publish and after `npm run backlog publish`, and
+checks every published post each time. Run it yourself after publishing any
+other way:
+
+```bash
+node scripts/update-series-links.js
 ```
 
 ## Image Workflow

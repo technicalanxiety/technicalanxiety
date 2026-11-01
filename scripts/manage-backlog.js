@@ -13,6 +13,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { updateSeriesLinks } from './update-series-links.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -137,6 +138,7 @@ function publishPost(filename) {
   fs.renameSync(backlogPath, postsPath);
   console.log(`✅ Published: ${filename}`);
   console.log(`📍 Moved to: src/content/posts/${filename}`);
+  updateSeriesLinks(POSTS_DIR);
 }
 
 // Main script logic

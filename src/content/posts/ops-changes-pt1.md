@@ -96,12 +96,7 @@ You won't know the gap exists until you're standing in it.
 
 ## What’s Next?
 
-<!-- NEXT_PART: 2025-11-14-ops-changes-pt2.md -->
-**Coming Next:** Part 2: The AI Revolution in Service Management (Published November 14, 2025)
-
-In the next part, we’ll explore what changes when you've made the translation. Operations built on real observability. The expensive lessons of early AIOps, and why intelligent operations might finally be ready to deliver. And what it means when the operations waterline moves the same way the infrastructure waterline did.
-
-<!-- END_NEXT_PART -->
+**Next in Series:** [Operational Change - Part 2: The Operations Waterline →](/ops-changes-pt2/)
 
 ---
 
