@@ -1,8 +1,6 @@
----
-inclusion: manual
----
-
 # KQL Writing Standards
+
+How KQL is written in posts on this site (Log Analytics, Azure Monitor and workbook content).
 
 ## Code Formatting
 

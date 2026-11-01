@@ -491,7 +491,7 @@ That's the power of proper configuration. Not making you something you're not, b
 
 - [Kiro Documentation](https://kiro.ai/docs)
 - [MCP Protocol](https://modelcontextprotocol.io/)
-- [My Kiro Config](https://github.com/technicalanxiety/technicalanxiety/tree/master/.kiro) (public repo)
+- [My Kiro Config](https://github.com/technicalanxiety/technicalanxiety/tree/e238c8454fe320d4da085e6c3328846ee6e2eeb6/.kiro) (public repo)
 
 ## Final Thoughts
 

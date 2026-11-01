@@ -1,6 +1,5 @@
 /**
  * Base Styles - Modern CSS Reset and Typography
- * Maintains visual parity with Jekyll while using modern CSS
  */
 
 /* Modern CSS Reset */
@@ -33,7 +32,7 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* Typography - Jekyll Fonts */
+/* Typography */
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Orbitron', 'Rajdhani', -apple-system, BlinkMacSystemFont, sans-serif;
   font-weight: 700;
@@ -77,7 +76,7 @@ li {
   color: var(--text-primary);
 }
 
-/* Code - Jekyll Fonts */
+/* Code */
 code {
   font-family: 'Fira Code', 'Courier New', monospace;
   font-size: 0.9em;

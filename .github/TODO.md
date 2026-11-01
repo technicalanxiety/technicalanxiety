@@ -18,7 +18,6 @@ Tasks and improvements for the blog. Not content - technical/maintenance items.
 
 ## Low Priority
 
-- [ ] Explore Jekyll plugins for better SEO
 - [ ] Consider adding newsletter (maybe?)
 - [ ] Add print stylesheet
 - [ ] Improve mobile navigation
@@ -27,7 +26,6 @@ Tasks and improvements for the blog. Not content - technical/maintenance items.
 
 - [x] Remove newsletter config
 - [x] Create development backlog
-- [x] Set up Kiro steering rules
 - [x] Configure SSH for WSL
 
 ## Notes

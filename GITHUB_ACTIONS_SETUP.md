@@ -1,8 +1,6 @@
-# GitHub Actions Setup - Astro Migration
+# GitHub Actions Setup
 
-## ✅ Completed Setup
-
-The GitHub Actions workflows have been updated for the Astro migration with automated publishing and deployment.
+Two workflows handle publishing and deployment.
 
 ## 📋 Workflows
 
@@ -15,37 +13,23 @@ The GitHub Actions workflows have been updated for the Astro migration with auto
 **What it does**:
 1. Checks `src/content/backlog/` for posts ready to publish
 2. Moves posts with dates <= today to `src/content/posts/`
-3. Updates series navigation links automatically
+3. Runs `scripts/update-series-links.js` to turn "What's Next" placeholders into links
 4. Commits and pushes changes (triggers deployment)
-
-**Key Changes from Jekyll**:
-- ✅ Updated paths: `_posts/backlog` → `src/content/backlog`
-- ✅ Added Node.js setup for Astro
-- ✅ Added build step after publishing
-- ✅ Updated slug extraction for Astro (no date prefix)
-- ✅ Added `[skip ci]` to commit message to prevent double builds
 
 ### 2. **Azure Static Web Apps CI/CD** (`.github/workflows/azure-static-web-apps-*.yml`)
 **Purpose**: Build and deploy Astro site to Azure
 
-**Trigger**: Push to `master` or `astro-migration` branches  
+**Trigger**: Push to `master`, or a pull request  
 **Deployment**: 
 - `master` → Production
-- `astro-migration` → Staging
+- Pull requests → preview environment (removed when the PR closes)
 
 **What it does**:
 1. Checks out repository
-2. Sets up Node.js 18
+2. Sets up Node.js 24
 3. Installs dependencies (`npm ci`)
 4. Builds Astro site (`npm run build`)
-5. Deploys to Azure Static Web Apps
-
-**Key Changes from Jekyll**:
-- ✅ Added Node.js setup
-- ✅ Added npm install step
-- ✅ Added Astro build step
-- ✅ Points to `dist/` directory (Astro output)
-- ✅ Staging environment for `astro-migration` branch
+5. Deploys `dist/` to Azure Static Web Apps
 
 ## 🛠️ Management Tools
 
@@ -85,17 +69,13 @@ tags: [Tag1, Tag2]
 description: "SEO description"
 image: "image.jpg"
 series: "Series Name"        # Optional
-series_order: 1              # Optional
+series_part: 1               # Optional
 ---
 ```
 
-### Key Differences from Jekyll
-| Jekyll | Astro |
-|--------|-------|
-| `2024-12-25-post-title.md` | `post-title.md` |
-| Date in filename | Date in frontmatter |
-| `tags: [Tag1, Tag2]` | `tags: [Tag1, Tag2]` (same) |
-| `_posts/` directory | `src/content/posts/` |
+### File Naming
+- Filename is the URL slug: `post-title.md` → `/post-title/`, no date prefix
+- The publish date comes from front matter
 
 ## 🔄 Workflow Process
 
@@ -154,10 +134,10 @@ npm run dev
 - **URL**: https://technicalanxiety.com
 - **Trigger**: Push to `master` or scheduled post publish
 
-### Staging
-- **Branch**: `astro-migration`
-- **URL**: Azure staging slot
-- **Trigger**: Push to `astro-migration`
+### Pull Request Previews
+- **Branch**: any branch with an open pull request
+- **URL**: posted on the pull request by the deploy workflow
+- **Trigger**: Pull request opened or updated; removed when it closes
 
 ## 📊 Monitoring
 
@@ -182,7 +162,6 @@ The following secrets must be configured in GitHub repository settings:
 
 - **Publishing Workflow**: `docs/PUBLISHING_WORKFLOW.md`
 - **Backlog Management**: This file
-- **Astro Migration**: `.kiro/specs/astro-migration/`
 
 ## ✨ Benefits
 
@@ -202,14 +181,7 @@ The following secrets must be configured in GitHub repository settings:
 - ✅ Simple CLI tools
 - ✅ Clear documentation
 - ✅ Easy testing
-- ✅ Staging environment
-
-## 🎯 Next Steps
-
-1. ✅ **Setup Complete** - Workflows are ready
-2. 📝 **Copy Backlog Posts** - Move any existing scheduled posts
-3. 🧪 **Test Workflow** - Create a test post and verify
-4. 🚀 **Merge to Master** - Deploy to production when ready
+- ✅ Preview environment for every pull request
 
 ## 🆘 Troubleshooting
 

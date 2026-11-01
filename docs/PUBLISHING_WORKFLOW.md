@@ -1,8 +1,8 @@
-# Publishing Workflow - Astro Migration
+# Publishing Workflow Guide
 
 ## Overview
 
-The site now uses Astro with an automated publishing workflow for scheduled posts. This document explains how to manage content and the publishing process.
+The site uses Astro with an automated publishing workflow for scheduled posts. This document explains how to manage content and the publishing process.
 
 ## Directory Structure
 
@@ -35,16 +35,15 @@ tags: [Azure, Leadership, Operations] # Use existing tags when possible
 description: "Clear SEO description that explains what readers will learn (150-160 chars)"
 image: "your-image.jpg"             # Optional: image in public/img/
 series: "Series Name"               # Optional: for multi-part content
-series_order: 1                     # Optional: part number in series
+series_part: 1                      # Optional: part number in series
 ---
 
-# Your Post Title
-
-Your content here using Markdown...
+Your content here using Markdown. Don't add a `# Title` heading: the layout
+renders the title from front matter.
 
 ## Section Headers
 
-- Use proper heading hierarchy (H1 for title, H2 for sections, etc.)
+- Use proper heading hierarchy (H2 for sections, H3 below that)
 - Include code blocks with language specification
 - Add internal links with trailing slashes: [link text](/other-post/)
 ```
@@ -101,9 +100,37 @@ After publishing (automatic or manual):
 #### Optional Fields
 - `image`: Featured image filename (stored in `public/img/`)
 - `series`: Series name for multi-part content
-- `series_order`: Part number (backlog posts) or `series_part` (published posts)
+- `series_part`: Part number in the series (backlog and published posts)
 - `author`: Defaults to "Jason Rinehart"
 - `draft`: Set to `true` to exclude from build
+
+#### Content Standards
+
+- **Voice**: Direct, honest, sometimes raw. No corporate speak.
+- **Practical over theoretical**: Real-world experience, not textbook theory.
+  Real examples, not toy problems.
+- **Help others**: If one person solves a problem faster, it matters.
+- **Length**: Aim for under 10 minutes (about 1,500-2,500 words). Let the
+  content dictate structure; use headers, short paragraphs and blockquotes.
+- **Code**: Every code block gets a language tag. Explain what the code does,
+  not just show it. KQL follows `docs/KQL_WRITING_STANDARDS.md`.
+- **Tags**: Use existing tags (Leadership, AI, Azure, Operations, Governance,
+  Architecture, Anxiety, Development, Observability, Log Analytics,
+  Infrastructure, Productivity, Platform, ...). Create new ones sparingly,
+  in PascalCase, 3-4 tags per post at most.
+- **Titles**: 50-60 characters reads best in search results and social cards.
+- **File format**: UTF-8 without BOM, LF line endings, straight quotes
+  (`'` `"`) rather than smart quotes. Check with `file post.md`: it should say
+  "UTF-8 text" and not "CRLF". Fix CRLF with
+  `tr -d '\r' < post.md > fixed.md && mv fixed.md post.md`.
+- **Spotify episodes**: When a post has a companion podcast episode, embed the
+  player as the first thing in the body:
+
+  ```html
+  <iframe style="border-radius:12px" src="https://open.spotify.com/embed/episode/EPISODE_ID?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+  ```
+
+  Preview with `npm run dev` to check the sizing.
 
 #### Content Best Practices
 1. **SEO Optimization**
@@ -129,6 +156,49 @@ After publishing (automatic or manual):
    - Use consistent naming: "Series Name - Part 1", etc.
    - Add navigation placeholders for upcoming parts
    - Ensure logical progression between parts
+
+### Publishing Gate
+
+The gate exists because the hunger is infinite and capacity is not. AI tools
+removed the speed limit; the body still has one. Before a post goes into the
+backlog, answer these honestly:
+
+**Time**
+
+- Has the idea survived at least 72 hours in Cold?
+- Did it earn Warming by passing the memory test (restate it without
+  re-reading)?
+- Has it been in Pull long enough to prove it's worth finishing?
+
+**Quality**
+
+- Can you state the core claim in one sentence?
+- Does it solve a real problem, or just feed momentum?
+- Would you still publish it if nobody read it?
+- Is it a question (personal writing) or an answer (work artifact)?
+
+**Machine check**
+
+- Is it ready, or does the calendar just say so?
+- Is Pull at 3 items or fewer?
+- Is it earning its place, or filling a slot?
+
+A "no" or a hesitation means it sits longer. Red flags: publishing on a
+schedule instead of when ready, feeling obligated because it was announced,
+rushing to get it out there, checking metrics before writing, treating the
+backlog as a queue instead of a filter.
+
+**Incubation** (`INCUBATION.md`, kept local and out of git):
+
+- Entries are one claim, one tension, one question, in 4 lines or fewer.
+  Never park full drafts; drafts create obligation.
+- Date every entry. Status is only Cold, Warming or Pull. No tags or
+  categories.
+- Cold → Warming only if you still care and can restate it without
+  re-reading. Warming → Pull only if it's worth the energy and Pull has room
+  (max 3). Pull → Backlog only when finished, not when impatient.
+- Most ideas should die in Cold. Tidying the incubation file is optimizing
+  for output.
 
 ### Automated Publishing
 
@@ -168,30 +238,71 @@ tags: [Azure, Leadership]
 description: "SEO description 150-160 characters"
 image: "image-filename.jpg"
 series: "Series Name"        # Optional
-series_order: 1              # Optional (for backlog posts)
-# OR
-series_part: 1               # Optional (for published posts)
+series_part: 1               # Optional
 ---
 ```
 
-### Key Differences from Jekyll
-- **No date prefix** in filename (Astro uses frontmatter date)
+### File Naming
+- **No date prefix** in filename (the date comes from front matter)
 - **Filename becomes slug** (e.g., `my-post.md` → `/my-post/`)
 - **Tags as array** format: `[Tag1, Tag2]`
 - **Images** referenced without path: `"image.jpg"` (stored in `public/img/`)
 
 ## Series Management
 
+### Series Landing Pages
+
+Every series needs a page in `src/content/series/`. Posts join it by exact
+text match: each post's `series:` value must equal the page's `title:`
+character for character (case and spacing included), or the post silently
+drops out of the series page and navigation.
+
+```yaml
+---
+title: "Series Name"
+description: "What the series covers"
+image: "series-image.jpg"
+tags: [Tag1, Tag2]
+order: 7                    # Position on /series/; don't reuse another page's number
+featured: false             # Show in the featured series list
+---
+
+## Overview
+
+## The Core Problem
+
+## What You'll Learn
+
+**Part 1: Part Title**
+One-line summary of the part.
+
+**Part 2: Part Title**
+One-line summary of the part.
+
+## Who This Is For
+```
+
+Add a `**Part N: Title**` entry each time a new part is written. Run the
+series page image through `node optimize-images.js` like a post image.
+
 ### Creating Series Links
-To link to the next post in a series, add this placeholder in your current post:
+To link to the next post in a series, end your current post with this block,
+just before the photo attribution (`NEXT_PART` is the next part's exact
+filename, no date prefix):
 
 ```markdown
+## What's Next?
+
 <!-- NEXT_PART: next-post-filename.md -->
-*Next part coming soon...*
+**Coming Next:** Part 2: Part Title (Publishing January 22, 2026)
+
+One or two sentences teasing what the next part covers.
 <!-- END_NEXT_PART -->
 ```
 
-When the next post is published, this will automatically be replaced with:
+Once the next post is published, `scripts/update-series-links.js` (run by the
+scheduled workflow and by `npm run backlog publish`) replaces the placeholder
+with:
 ```markdown
 **Next in Series:** [Next Post Title →](/next-post-slug/)
 ```
@@ -222,20 +333,6 @@ You can manually trigger the publishing workflow from GitHub:
 1. Go to Actions tab in GitHub
 2. Select "Publish Scheduled Posts (Astro)"
 3. Click "Run workflow"
-
-## Migration Notes
-
-### From Jekyll
-- Old Jekyll posts are already migrated to Astro format
-- Backlog directory moved from `_posts/backlog/` to `src/content/backlog/`
-- Build process changed from Jekyll to `npm run build`
-- URLs remain the same (`:title/` format preserved)
-- Duplicate ID warnings resolved with separate backlog collection
-
-### Performance
-- Astro builds are faster than Jekyll
-- Static site generation with modern optimizations
-- All Lighthouse requirements met (90+ scores)
 
 ## Troubleshooting
 
@@ -274,14 +371,13 @@ You can manually trigger the publishing workflow from GitHub:
 **Solutions**:
 1. Verify image exists in `public/img/` directory
 2. Check image filename in frontmatter (no path, just filename)
-3. Remove quotes around image filename if present
-4. Run image optimization: `node optimize-images.js`
+3. Run image optimization: `node optimize-images.js`
 
 #### Local Development Issues
 **Symptoms**: Site won't start or shows errors locally
 **Solutions**:
 1. Install dependencies: `npm install`
-2. Clear cache: `rm -rf node_modules/.astro`
+2. Clear cache: `rm -rf .astro node_modules/.astro`, then restart `npm run dev`
 3. Check Node.js version (requires Node 18+)
 4. Verify all frontmatter is valid
 

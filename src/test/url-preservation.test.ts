@@ -7,7 +7,7 @@ import path from 'path';
  * Feature: astro-migration, Property 12: URL Structure Preservation
  * 
  * Property 12: URL Structure Preservation
- * For any post, the Astro URL SHALL follow the Jekyll URL format (:title/), 
+ * For any post, the URL SHALL keep the original /:slug/ format (:title/), 
  * ensuring consistent URL structure and no broken links.
  * 
  * Validates: Requirements 4.3
@@ -134,13 +134,13 @@ describe('URL Structure Preservation Property Tests', () => {
 
   // Helper function to validate URL format
   function validateUrlFormat(url: string) {
-    // Jekyll permalink format: /:title/ 
+    // Original permalink format: /:title/ 
     // Should start with /, end with /, and contain only the slug
     const urlPattern = /^\/[a-z0-9-]+\/$/;
     return urlPattern.test(url);
   }
 
-  test('Property 12: Astro URLs match Jekyll URL format for all posts', () => {
+  test('Property 12: post URLs keep the original /:slug/ format', () => {
     const expectedUrls = getExpectedPostUrls();
     const astroPages = getAstroPageUrls();
     
@@ -163,7 +163,7 @@ describe('URL Structure Preservation Property Tests', () => {
           // Verify URL matches exactly
           expect(astroPage.actualUrl).toBe(expectedPost.expectedUrl);
           
-          // Verify URL follows Jekyll permalink format
+          // Verify URL follows the original permalink format
           expect(validateUrlFormat(astroPage.actualUrl)).toBe(true);
           
           return true;
@@ -173,10 +173,10 @@ describe('URL Structure Preservation Property Tests', () => {
     );
   });
 
-  test('Property 12 Verification: All Astro post URLs follow Jekyll format', () => {
+  test('Property 12 Verification: all post URLs follow the original format', () => {
     const astroPages = getAstroPageUrls();
     
-    // Verify all Astro post URLs follow the Jekyll permalink format
+    // Verify all post URLs follow the original permalink format
     for (const page of astroPages) {
       expect(validateUrlFormat(page.actualUrl)).toBe(true);
       
@@ -234,10 +234,10 @@ describe('URL Structure Preservation Property Tests', () => {
     }
   });
 
-  test('Property 12 Consistency: Astro slug generation follows Jekyll format', () => {
+  test('Property 12 Consistency: slug generation follows the original format', () => {
     const expectedUrls = getExpectedPostUrls();
     
-    // Verify Astro slug generation is consistent with Jekyll format
+    // Verify slug generation is consistent with the original format
     for (const post of expectedUrls) {
       // Slug should be derived from filename by removing .md extension
       const expectedSlug = post.originalFile.replace('.md', '');
@@ -247,7 +247,7 @@ describe('URL Structure Preservation Property Tests', () => {
       // Expected URL should be /:slug/
       expect(post.expectedUrl).toBe(`/${expectedSlug}/`);
       
-      // Verify slug follows Jekyll naming conventions (lowercase, hyphens)
+      // Verify slug follows naming conventions (lowercase, hyphens)
       expect(post.slug).toMatch(/^[a-z0-9-]+$/);
     }
   });

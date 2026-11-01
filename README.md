@@ -48,10 +48,8 @@ A technical blog covering Azure, cloud architecture, leadership, and navigating 
 │   ├── utils/posts.ts           # Post query and filtering utilities
 │   ├── config.ts                # Site configuration
 │   └── content.config.ts        # Content collection schemas (Content Layer API)
-├── .kiro/
-│   ├── hooks/                   # Agent hooks (lint, validation, changelog)
-│   ├── steering/                # Steering files (coding standards, publishing gates)
-│   └── settings/                # MCP and editor settings
+├── .claude/
+│   └── skills/prepare-post/     # Claude Code skill: get a backlog post ready to publish
 ├── astro.config.mjs
 └── package.json
 ```
@@ -137,7 +135,7 @@ series_part: 1
 Defined in `src/content.config.ts` using Astro's Content Layer API with Zod schemas:
 
 - **posts** — Published articles with title, date, tags, optional series membership
-- **backlog** — Scheduled posts (uses `series_order` instead of `series_part`)
+- **backlog** — Scheduled posts (same fields as posts; `series_order` fails the build, use `series_part`)
 - **series** — Series metadata with title, description, image, tags, display order, featured flag
 
 ### Series
@@ -226,22 +224,22 @@ npm run test:cross-browser # Puppeteer cross-browser tests
 - **Base styles**: `src/styles/base.css`, `src/styles/layout.css`
 - **Critical CSS**: Inlined in `BaseLayout.astro` for fastest paint
 
-## Kiro Integration
+## Claude Code
 
-The project uses Kiro steering files (`.kiro/steering/`) for consistent AI-assisted development:
+Development and publishing prep run through Claude Code.
 
-- Coding standards, anti-patterns, security practices
-- Astro technical guide, publishing gates
-- Blog content standards, KQL writing standards
-- Git workflow, testing strategy
-
-Agent hooks (`.kiro/hooks/`) automate validation on file save, pre-commit checks, changelog updates, and image optimization checks.
+- **`prepare-post` skill** (`.claude/skills/prepare-post/`): gets a backlog post
+  ready to publish (front matter, internal links, Unsplash attribution, featured
+  image, series wiring). Its checker can also be run on its own:
+  `node .claude/skills/prepare-post/scripts/check-post.mjs <slug>`
+- Content standards and the publishing gate live in `docs/PUBLISHING_WORKFLOW.md`.
 
 ## Documentation
 
 | Document | Location |
 |:---------|:---------|
 | Publishing workflow | `docs/PUBLISHING_WORKFLOW.md` |
+| KQL writing standards | `docs/KQL_WRITING_STANDARDS.md` |
 | Cross-browser testing | `docs/CROSS_BROWSER_TESTING.md` |
 | Recruiter chat setup | `docs/RECRUITER_CHAT_SETUP.md` |
 | GitHub Actions setup | `GITHUB_ACTIONS_SETUP.md` |

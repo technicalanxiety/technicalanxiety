@@ -7,26 +7,24 @@ Common text blocks, code examples, and templates for blog posts.
 ### Standard Post
 ```yaml
 ---
-layout: post
 title: "Post Title"
-date: YYYY-MM-DD HH:MM -0600
-image: filename.jpg
+date: YYYY-MM-DD
 tags: [Tag1, Tag2]
 description: "SEO description 150-160 characters"
+image: "filename.jpg"
 ---
 ```
 
 ### Series Post
 ```yaml
 ---
-layout: post
 title: "Series Name, Part 1"
-date: YYYY-MM-DD HH:MM -0600
-image: filename.jpg
+date: YYYY-MM-DD
 tags: [Tag1, Tag2]
 series: "Series Name"
 series_part: 1
 description: "SEO description"
+image: "filename.jpg"
 ---
 ```
 
