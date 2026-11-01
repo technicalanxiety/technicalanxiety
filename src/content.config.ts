@@ -6,7 +6,7 @@ const postsCollection = defineCollection({
   loader: glob({ pattern: '**/[^_]*.md', base: './src/content/posts' }),
   schema: z.object({
     title: z.string(),
-    date: z.coerce.date(), // Handle Jekyll date strings
+    date: z.coerce.date(),
     tags: z.array(z.string()).optional(),
     series: z.string().optional(),
     series_part: z.number().optional(),
@@ -21,10 +21,12 @@ const backlogCollection = defineCollection({
   loader: glob({ pattern: '**/[^_]*.md', base: './src/content/backlog' }),
   schema: z.object({
     title: z.string(),
-    date: z.coerce.date(), // Handle Jekyll date strings
+    date: z.coerce.date(),
     tags: z.array(z.string()).optional(),
     series: z.string().optional(),
-    series_order: z.number().optional(), // Backlog uses series_order instead of series_part
+    series_part: z.number().optional(), // Same as posts: publishing only moves the file
+    // series_order was never renamed on publish, leaving published parts unnumbered
+    series_order: z.never({ error: 'Use series_part instead of series_order' }).optional(),
     image: z.string().optional(),
     description: z.string().optional(),
     author: z.string().default('Jason Rinehart'),

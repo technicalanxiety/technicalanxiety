@@ -8,7 +8,7 @@ import path from 'path';
  * 
  * Property 2: Series Navigation Consistency
  * For any post that belongs to a series, the series navigation component SHALL 
- * display correct previous/next links based on series_order, and all links 
+ * display correct previous/next links based on series_part, and all links 
  * SHALL resolve to valid pages.
  * 
  * Validates: Requirements 1.3
