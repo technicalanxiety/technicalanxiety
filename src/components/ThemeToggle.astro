@@ -116,25 +116,9 @@
     
     if (!themeToggle) return;
     
-    // Check for saved theme preference, system preference, or default to dark
-    function getInitialTheme() {
-      const savedTheme = localStorage.getItem('theme');
-      if (savedTheme) return savedTheme;
-      
-      // Check system preference
-      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
-        return 'light';
-      }
-      
-      return 'dark';
-    }
-    
-    const currentTheme = getInitialTheme();
-    htmlElement.setAttribute('data-theme', currentTheme);
-    
-    // Force a reflow to ensure CSS is applied
-    htmlElement.offsetHeight;
-    
+    // The inline script in BaseLayout <head> has already set data-theme before first paint
+    const currentTheme = htmlElement.getAttribute('data-theme') || 'dark';
+
     // Update aria-label based on current theme
     function updateAriaLabel(theme: string) {
       if (themeToggle) {

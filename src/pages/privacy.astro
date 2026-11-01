@@ -47,7 +47,7 @@ const description = 'Privacy policy for Technical Anxiety website - how we colle
                 <h3>Cookies</h3>
                 <p>Our site uses cookies for:</p>
                 <ul>
-                  <li><strong>Analytics:</strong> Google Analytics uses cookies to track visitor behavior</li>
+                  <li><strong>Analytics:</strong> Google Analytics uses cookies to track visitor behavior. These are only set if you click Accept on the consent banner, and are never set if your browser sends a Do Not Track or Global Privacy Control signal.</li>
                   <li><strong>Functionality:</strong> Theme preferences (light/dark mode)</li>
                   <li><strong>Consent:</strong> Cookie consent banner preferences</li>
                 </ul>
@@ -91,11 +91,18 @@ const description = 'Privacy policy for Technical Anxiety website - how we colle
                   <li><strong>Access:</strong> Request information about data we collect</li>
                   <li><strong>Deletion:</strong> Request deletion of your data</li>
                   <li><strong>Opt-out:</strong> Disable cookies or use browser privacy features</li>
-                  <li><strong>Do Not Track:</strong> We respect Do Not Track browser settings</li>
+                  <li><strong>Do Not Track:</strong> We respect Do Not Track and Global Privacy Control browser settings</li>
                 </ul>
 
                 <h3>How to Opt Out</h3>
                 <div class="opt-out-methods">
+                  <div class="opt-out-item">
+                    <h4>This Site</h4>
+                    <p>Change or withdraw your analytics consent at any time.</p>
+                    <button type="button" class="cookie-preferences-btn" data-cookie-preferences>
+                      Cookie preferences
+                    </button>
+                  </div>
                   <div class="opt-out-item">
                     <h4>Google Analytics</h4>
                     <p>Use the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">Google Analytics Opt-out Browser Add-on</a></p>
@@ -301,6 +308,30 @@ const description = 'Privacy policy for Technical Anxiety website - how we colle
   .opt-out-item p {
     margin-bottom: 0;
     font-size: 0.9rem;
+  }
+
+  .cookie-preferences-btn {
+    margin-top: var(--space-sm);
+    padding: var(--space-xs) var(--space-md);
+    background: transparent;
+    color: var(--accent-color);
+    border: 1px solid var(--accent-color);
+    border-radius: var(--radius-sm);
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+  }
+
+  .cookie-preferences-btn:hover,
+  .cookie-preferences-btn:focus-visible {
+    background: var(--accent-color);
+    color: var(--bg-primary);
+  }
+
+  .cookie-preferences-btn:focus-visible {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
   }
 
   /* Footer */
