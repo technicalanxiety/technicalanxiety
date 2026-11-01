@@ -56,5 +56,10 @@
     "puppeteer": "^25.4.0",
     "sharp": "^0.35.3",
     "vitest": "^4.1.10"
+  },
+  "allowScripts": {
+    "@parcel/watcher@2.6.0": true,
+    "fsevents@2.3.3": true,
+    "puppeteer@25.14.0": true
   }
 }
