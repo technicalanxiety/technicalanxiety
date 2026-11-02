@@ -62,7 +62,7 @@ a {
 }
 
 a:hover {
-  color: var(--link-hover);
+  color: var(--accent-color);
 }
 
 /* Lists */
@@ -95,7 +95,7 @@ pre {
   color: var(--text-primary);
   padding: 15px;
   border-radius: var(--radius-md);
-  border-left: 4px solid var(--color-accent);
+  border-left: 4px solid var(--accent-color);
   overflow: auto;
   margin-bottom: 15px;
   white-space: pre-wrap;
@@ -110,7 +110,7 @@ pre code {
 
 /* Blockquotes */
 blockquote {
-  border-left: 4px solid var(--color-accent);
+  border-left: 4px solid var(--accent-color);
   background: rgba(33, 150, 243, 0.05);
   padding: var(--space-md);
   margin: var(--space-md) 0;
@@ -156,13 +156,13 @@ hr {
 
 /* Selection */
 ::selection {
-  background-color: var(--color-accent);
+  background-color: var(--accent-color);
   color: var(--bg-primary);
 }
 
 /* Focus styles */
 :focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline: 2px solid var(--accent-color);
   outline-offset: 2px;
 }
 

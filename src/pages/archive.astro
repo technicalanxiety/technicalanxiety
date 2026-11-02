@@ -195,7 +195,7 @@ const postsByYearAndMonth = Object.entries(postsByYear)
     border-radius: var(--radius-sm);
     overflow: hidden;
     flex-shrink: 0;
-    box-shadow: var(--shadow-sm);
+    box-shadow: var(--shadow);
     transition: transform var(--transition-fast);
   }
 
@@ -233,7 +233,7 @@ const postsByYearAndMonth = Object.entries(postsByYear)
     font-size: 0.75rem;
     padding: 4px 10px;
     background: rgba(33, 150, 243, 0.9);
-    color: #ffffff;
+    color: var(--text-on-accent);
     border-radius: 3px;
     border: none;
     font-weight: 600;
@@ -245,7 +245,7 @@ const postsByYearAndMonth = Object.entries(postsByYear)
 
   /* Light mode override */
   [data-theme="light"] .archive-tag {
-    color: #ffffff;
+    color: var(--text-on-accent);
   }
 
   /* Mobile adjustments */

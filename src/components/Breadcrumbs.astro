@@ -78,19 +78,19 @@ breadcrumbs.push({
   }
 
   .breadcrumb-link {
-    color: var(--link-color, #007acc);
+    color: var(--link-color);
     text-decoration: none;
     transition: color 0.2s ease;
     padding: 0.25rem 0;
   }
 
   .breadcrumb-link:hover {
-    color: var(--link-hover-color, #005a9e);
+    color: var(--accent-color);
     text-decoration: underline;
   }
 
   .breadcrumb-current {
-    color: var(--text-muted, #666666);
+    color: var(--text-secondary);
     font-weight: 500;
     max-width: 300px;
     overflow: hidden;
@@ -99,17 +99,11 @@ breadcrumbs.push({
   }
 
   .breadcrumb-separator {
-    color: var(--text-muted, #666666);
+    color: var(--text-secondary);
     font-weight: 300;
     user-select: none;
   }
 
-  /* Dark theme support */
-  :global([data-theme="dark"]) .breadcrumbs {
-    --link-color: #4da6ff;
-    --link-hover-color: #66b3ff;
-    --text-muted: #a0a0a0;
-  }
 
   /* Responsive design */
   @media (max-width: 768px) {
@@ -132,12 +126,9 @@ breadcrumbs.push({
 
   /* Focus styles for keyboard navigation */
   .breadcrumb-link:focus {
-    outline: 2px solid var(--focus-color, #007acc);
+    outline: 2px solid var(--accent-color);
     outline-offset: 2px;
     border-radius: 2px;
   }
 
-  :global([data-theme="dark"]) .breadcrumb-link:focus {
-    --focus-color: #4da6ff;
-  }
 </style>

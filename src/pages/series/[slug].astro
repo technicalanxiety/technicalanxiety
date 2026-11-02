@@ -158,7 +158,7 @@ const totalParts = seriesPosts.length;
 
   .series-badge {
     display: inline-block;
-    background: var(--accent-color, #007acc);
+    background: var(--accent-color);
     color: white;
     padding: 0.5rem 1rem;
     border-radius: 20px;
@@ -173,13 +173,13 @@ const totalParts = seriesPosts.length;
     font-size: 3rem;
     font-weight: 700;
     margin: 0 0 1rem 0;
-    color: var(--text-color, #333);
+    color: var(--text-primary);
     line-height: 1.2;
   }
 
   .series-description {
     font-size: 1.25rem;
-    color: var(--text-muted, #666);
+    color: var(--text-secondary);
     margin: 0 0 2rem 0;
     line-height: 1.6;
     max-width: 800px;
@@ -198,7 +198,7 @@ const totalParts = seriesPosts.length;
   .series-count {
     font-size: 1rem;
     font-weight: 600;
-    color: var(--text-color, #333);
+    color: var(--text-primary);
   }
 
   .series-tags {
@@ -209,8 +209,8 @@ const totalParts = seriesPosts.length;
   }
 
   .series-tag {
-    background: var(--tag-bg, #f0f0f0);
-    color: var(--tag-color, #333);
+    background: var(--bg-tertiary);
+    color: var(--text-secondary);
     padding: 0.25rem 0.75rem;
     border-radius: 4px;
     font-size: 0.875rem;
@@ -219,7 +219,7 @@ const totalParts = seriesPosts.length;
   }
 
   .series-tag:hover {
-    background: var(--tag-hover-bg, #e0e0e0);
+    background: var(--bg-tertiary);
   }
 
   /* Overview Content */
@@ -227,7 +227,7 @@ const totalParts = seriesPosts.length;
     max-width: 800px;
     margin: 0 auto 4rem;
     padding: 2rem;
-    background: var(--content-bg, #f9f9f9);
+    background: var(--bg-secondary);
     border-radius: 8px;
     line-height: 1.8;
   }
@@ -235,13 +235,13 @@ const totalParts = seriesPosts.length;
   .series-overview :global(h2) {
     font-size: 1.75rem;
     margin: 2rem 0 1rem 0;
-    color: var(--text-color, #333);
+    color: var(--text-primary);
   }
 
   .series-overview :global(h3) {
     font-size: 1.25rem;
     margin: 1.5rem 0 0.75rem 0;
-    color: var(--text-color, #333);
+    color: var(--text-primary);
   }
 
   .series-overview :global(ul) {
@@ -262,7 +262,7 @@ const totalParts = seriesPosts.length;
     font-size: 2rem;
     font-weight: 700;
     margin: 0 0 2rem 0;
-    color: var(--text-color, #333);
+    color: var(--text-primary);
     text-align: center;
   }
 
@@ -273,8 +273,8 @@ const totalParts = seriesPosts.length;
   }
 
   .series-post-card {
-    background: var(--card-bg, white);
-    border: 1px solid var(--card-border, #e0e0e0);
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
@@ -304,7 +304,7 @@ const totalParts = seriesPosts.length;
     position: absolute;
     top: 1rem;
     left: 1rem;
-    background: var(--accent-color, #007acc);
+    background: var(--accent-color);
     color: white;
     padding: 0.5rem 1rem;
     border-radius: 4px;
@@ -336,18 +336,18 @@ const totalParts = seriesPosts.length;
     font-size: 1.25rem;
     font-weight: 600;
     margin: 0 0 0.75rem 0;
-    color: var(--text-color, #333);
+    color: var(--text-primary);
     line-height: 1.3;
     transition: color 0.2s ease;
   }
 
   .series-post-card:hover .series-post-title {
-    color: var(--accent-color, #007acc);
+    color: var(--accent-color);
   }
 
   .series-post-description {
     font-size: 0.95rem;
-    color: var(--text-muted, #666);
+    color: var(--text-secondary);
     margin: 0 0 auto 0;
     line-height: 1.5;
     padding-bottom: 1rem;
@@ -355,7 +355,7 @@ const totalParts = seriesPosts.length;
 
   .series-post-meta {
     font-size: 0.875rem;
-    color: var(--text-muted, #999);
+    color: var(--text-secondary);
     margin-top: auto;
   }
 
@@ -365,34 +365,20 @@ const totalParts = seriesPosts.length;
     justify-content: space-between;
     gap: 1rem;
     padding-top: 2rem;
-    border-top: 1px solid var(--border-color, #e0e0e0);
+    border-top: 1px solid var(--border-color);
   }
 
   .series-nav-link {
-    color: var(--accent-color, #007acc);
+    color: var(--accent-color);
     text-decoration: none;
     font-weight: 500;
     transition: color 0.2s;
   }
 
   .series-nav-link:hover {
-    color: var(--link-hover-color, #005a9e);
+    color: var(--accent-color);
   }
 
-  /* Dark Theme */
-  :global([data-theme="dark"]) .series-landing {
-    --text-color: #e0e0e0;
-    --text-muted: #a0a0a0;
-    --content-bg: #2d2d2d;
-    --card-bg: #1a1a1a;
-    --card-border: #404040;
-    --tag-bg: #333;
-    --tag-color: #e0e0e0;
-    --tag-hover-bg: #444;
-    --accent-color: #4da6ff;
-    --link-hover-color: #66b3ff;
-    --border-color: #404040;
-  }
 
   /* Responsive */
   @media (max-width: 768px) {

@@ -38,7 +38,7 @@
   }
 
   .back-to-top:hover {
-    background: var(--accent-color-dark, #005a9e);
+    background: var(--accent-color);
     transform: translateY(-2px);
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
   }
@@ -49,12 +49,12 @@
 
   /* Dark theme support */
   :global([data-theme="dark"]) .back-to-top {
-    background: var(--accent-color, #4da6ff);
+    background: var(--accent-color);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   }
 
   :global([data-theme="dark"]) .back-to-top:hover {
-    background: var(--accent-color-light, #66b3ff);
+    background: var(--accent-color);
   }
 
   /* Mobile adjustments */

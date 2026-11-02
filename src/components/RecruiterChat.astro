@@ -69,11 +69,11 @@ const greeting = articleContext
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background: var(--accent-color, #0066cc);
-    color: var(--bg-primary, white);
+    background: var(--accent-color);
+    color: var(--bg-primary);
     border: none;
     cursor: pointer;
-    box-shadow: 0 4px 12px var(--shadow, rgba(0, 0, 0, 0.15));
+    box-shadow: 0 4px 12px var(--shadow);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -82,7 +82,7 @@ const greeting = articleContext
 
   .chat-toggle:hover {
     transform: scale(1.1);
-    box-shadow: 0 6px 16px var(--shadow, rgba(0, 0, 0, 0.2));
+    box-shadow: 0 6px 16px var(--shadow);
   }
 
   .chat-window {
@@ -92,9 +92,9 @@ const greeting = articleContext
     width: 380px;
     max-width: calc(100vw - 40px);
     height: 500px;
-    background: var(--bg-primary, white);
+    background: var(--bg-primary);
     border-radius: 12px;
-    box-shadow: 0 8px 24px var(--shadow, rgba(0, 0, 0, 0.15));
+    box-shadow: 0 8px 24px var(--shadow);
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -113,7 +113,7 @@ const greeting = articleContext
   }
 
   .chat-header {
-    background: var(--accent-color, #0066cc);
+    background: var(--accent-color);
     color: white;
     padding: 16px;
     display: flex;
@@ -153,7 +153,7 @@ const greeting = articleContext
     display: flex;
     flex-direction: column;
     gap: 12px;
-    background: var(--bg-secondary, #f8f9fa);
+    background: var(--bg-secondary);
   }
 
   .chat-message {
@@ -164,16 +164,16 @@ const greeting = articleContext
   }
 
   .chat-message.user {
-    background: #e3f2fd;
+    background: var(--accent-subtle);
     align-self: flex-end;
     margin-left: auto;
-    color: var(--text-primary, #212529);
+    color: var(--text-primary);
   }
 
   .chat-message.assistant {
-    background: var(--bg-tertiary, #f5f5f5);
+    background: var(--bg-tertiary);
     align-self: flex-start;
-    color: var(--text-primary, #212529);
+    color: var(--text-primary);
   }
 
   .chat-message.error {
@@ -191,29 +191,29 @@ const greeting = articleContext
     display: flex;
     gap: 8px;
     padding: 12px;
-    border-top: 1px solid var(--border-color, #e0e0e0);
-    background: var(--bg-primary, white);
+    border-top: 1px solid var(--border-color);
+    background: var(--bg-primary);
   }
 
   .chat-input {
     flex: 1;
-    border: 1px solid var(--border-color, #ddd);
+    border: 1px solid var(--border-color);
     border-radius: 8px;
     padding: 8px 12px;
     font-size: 14px;
     font-family: inherit;
     resize: none;
-    background: var(--bg-primary, white);
-    color: var(--text-primary, #212529);
+    background: var(--bg-primary);
+    color: var(--text-primary);
   }
 
   .chat-input:focus {
     outline: none;
-    border-color: var(--accent-color, #0066cc);
+    border-color: var(--accent-color);
   }
 
   .chat-send {
-    background: var(--accent-color, #0066cc);
+    background: var(--accent-color);
     color: white;
     border: none;
     border-radius: 8px;
@@ -235,13 +235,13 @@ const greeting = articleContext
 
   .chat-footer {
     padding: 8px 16px;
-    background: var(--bg-tertiary, #f9f9f9);
-    border-top: 1px solid var(--border-color, #e0e0e0);
+    background: var(--bg-tertiary);
+    border-top: 1px solid var(--border-color);
     text-align: center;
   }
 
   .chat-footer small {
-    color: var(--text-secondary, #666);
+    color: var(--text-secondary);
     font-size: 12px;
   }
 

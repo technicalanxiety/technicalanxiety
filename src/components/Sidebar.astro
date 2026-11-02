@@ -114,12 +114,6 @@ const allTags = [...new Set(posts.flatMap(post => post.data.tags || []))].sort()
     text-decoration: none;
   }
 
-  /* Light mode styling for social links */
-  [data-theme="light"] .social-link {
-    background: #f8f9fa;
-    border: 2px solid #e1e4e8;
-  }
-
   .social-link:hover {
     border-color: var(--accent-color);
     color: var(--accent-color);
@@ -150,12 +144,6 @@ const allTags = [...new Set(posts.flatMap(post => post.data.tags || []))].sort()
     text-decoration: none;
     font-size: 0.875rem;
     font-weight: 600;
-  }
-
-  /* Light mode styling for connect links */
-  [data-theme="light"] .connect-link {
-    background: #f8f9fa;
-    border: 2px solid #e1e4e8;
   }
 
   .connect-link:hover {
@@ -208,7 +196,7 @@ const allTags = [...new Set(posts.flatMap(post => post.data.tags || []))].sort()
   }
 
   .recent-title a:hover {
-    color: var(--color-accent);
+    color: var(--accent-color);
   }
 
   .recent-date {
@@ -373,7 +361,7 @@ const allTags = [...new Set(posts.flatMap(post => post.data.tags || []))].sort()
   }
 
   .view-all-link:hover {
-    color: var(--link-hover);
+    color: var(--accent-color);
     text-decoration: underline;
   }
 

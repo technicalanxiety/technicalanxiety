@@ -37,7 +37,7 @@ const showTOC = tocHeadings.length >= 2;
     font-size: 0.875rem;
     font-weight: 600;
     margin: 0 0 0.75rem 0;
-    color: var(--text-color, #666);
+    color: var(--text-primary);
     text-transform: uppercase;
     letter-spacing: 0.05em;
   }
@@ -53,7 +53,7 @@ const showTOC = tocHeadings.length >= 2;
   }
 
   .toc-link {
-    color: var(--link-color, #666);
+    color: var(--link-color);
     text-decoration: none;
     display: block;
     padding: 0.25rem 0;
@@ -63,21 +63,14 @@ const showTOC = tocHeadings.length >= 2;
   }
 
   .toc-link:hover {
-    color: var(--link-hover-color, #007acc);
+    color: var(--accent-color);
   }
 
   .toc-link.active {
-    color: var(--link-active-color, #007acc);
+    color: var(--accent-color);
     font-weight: 500;
   }
 
-  /* Dark theme support */
-  :global([data-theme="dark"]) .table-of-contents {
-    --text-color: #999;
-    --link-color: #aaa;
-    --link-hover-color: #4da6ff;
-    --link-active-color: #4da6ff;
-  }
 
   /* Sticky positioning for larger screens */
   @media (min-width: 1200px) {
