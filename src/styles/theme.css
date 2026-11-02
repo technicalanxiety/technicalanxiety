@@ -1,67 +1,65 @@
 /**
- * Theme Variables - Modern CSS Custom Properties
+ * Theme Variables - the single source of truth for design tokens.
+ *
+ * Components and pages use these directly (no per-component color aliases,
+ * no hardcoded fallbacks). The inline script in BaseLayout <head> always sets
+ * data-theme before first paint; :root carries the dark theme (the default)
+ * so the site still renders sensibly without JavaScript.
+ *
+ * Contrast (WCAG 2.1 AA): --accent-color is used for text and for button
+ * backgrounds with --text-on-accent, so each theme's accent must clear 4.5:1
+ * against its background and against white.
  */
 
-:root {
-  /* Color Palette */
-  --color-primary: #2196F3;
-  --color-secondary: #C19CD8;
-  --color-accent: #2196F3;
-  --accent-color: #2196F3;
-
-  /* Accent scale */
-  --color-accent-300: #66B3FF;
-  --color-accent-400: #4DA6FF;
-  --color-accent-500: #2196F3;
-  --color-accent-600: #1976D2;
-  --color-accent-secondary: #C19CD8;
-
-  /* Neutral scale */
-  --neutral-0:   #0d1117;
-  --neutral-50:  #1a1c1f;
-  --neutral-100: #161b22;
-  --neutral-150: #21262d;
-  --neutral-200: #232427;
-  --neutral-250: #2C2F36;
-  --neutral-300: #2d2d2d;
-  --neutral-450: #3E4250;
-  --neutral-500: #7d8590;
-  --neutral-600: #9BA3B8;
-  --neutral-800: #E8E6E3;
-  --neutral-900: #F0EEE9;
-
-  /* Status / semantic */
-  --status-error:        #FF5F56;
-  --status-warn:         #FFBD2E;
-  --status-ok:           #27CA3F;
-  --status-code-string:  #4EC9B0;
-  --status-code-keyword: #569CD6;
-  
-  /* Dark Theme (Default) */
-  --bg-primary: #2C2F36;
-  --bg-secondary: #232427;
-  --bg-tertiary: #1a1c1f;
+:root,
+[data-theme="dark"] {
+  /* Surfaces */
+  --bg-primary: #0d1117;
+  --bg-secondary: #161b22;
+  --bg-tertiary: #21262d;
   --bg-code: #1a1c1f;
-  
-  --text-primary: #E8E6E3;
-  --text-secondary: #9BA3B8;
-  --text-heading: #F0EEE9;
-  
-  --link-color: #9BA3B8;
-  --link-hover: #2196F3;
-  
-  --border-color: #3E4250;
-  
-  --shadow: rgba(0, 0, 0, 0.25);
-  --shadow-lg: 0 9px 18px 0 rgba(0, 0, 0, 0.25);
-  --shadow-terminal: 0 8px 24px rgba(0, 0, 0, 0.3);
-  --shadow-accent-hover: 0 16px 32px rgba(33, 150, 243, 0.25);
-  
+
+  /* Text */
+  --text-primary: #e6edf3;
+  /* 4.9:1 on --bg-tertiary (tag pills); #7d8590 was 4.1:1 */
+  --text-secondary: #8b949e;
+  --text-heading: #f0f6fc;
+  --text-on-accent: #ffffff;
+
+  /* Links and accent */
+  --link-color: #9ba3b8;
+  --accent-color: #2196f3;
+  --accent-subtle: rgba(33, 150, 243, 0.15);
+
+  --border-color: #30363d;
+}
+
+[data-theme="light"] {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --bg-tertiary: #e9ecef;
+  --bg-code: #f6f8fa;
+
+  --text-primary: #212529;
+  /* 5.1:1 on --bg-tertiary (tag pills); #6c757d was 3.9:1 */
+  --text-secondary: #5c636a;
+  --text-heading: #343a40;
+  --text-on-accent: #ffffff;
+
+  --link-color: #0366d6;
+  /* Darker than the dark-theme accent: #2196f3 on white is only 3.1:1 */
+  --accent-color: #1976d2;
+  --accent-subtle: rgba(25, 118, 210, 0.1);
+
+  --border-color: #dee2e6;
+}
+
+:root {
   /* Typography */
-  --font-display: 'Orbitron', 'Rajdhani', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-sans: 'Rajdhani', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Orbitron', 'Rajdhani', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'Fira Code', 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, monospace;
-  
+
   /* Spacing */
   --space-xs: 0.25rem;
   --space-sm: 0.5rem;
@@ -69,44 +67,19 @@
   --space-lg: 1.5rem;
   --space-xl: 2rem;
   --space-2xl: 3rem;
-  
-  /* Border Radius */
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  
-  /* Transitions */
-  --transition-fast: 150ms ease;
-  --transition-base: 250ms ease;
-  --transition-slow: 350ms ease;
-  
-  /* Breakpoints (for reference in JS) */
-  --breakpoint-mobile: 576px;
-  --breakpoint-tablet: 768px;
-  --breakpoint-desktop: 992px;
-  --breakpoint-wide: 1200px;
-}
 
-/* Light Theme */
-[data-theme="light"] {
-  --bg-primary: #FFFFFF;
-  --bg-secondary: #FAFBFC;
-  --bg-tertiary: #F6F8FA;
-  --bg-code: #F6F8FA;
-  
-  --text-primary: #24292E;
-  --text-secondary: #586069;
-  --text-heading: #1B1F23;
-  
-  --link-color: #0366D6;
-  --link-hover: #1976D2;
-  
-  --border-color: #E1E4E8;
-  --color-accent: #1976D2;
-  --accent-color: #1976D2;
-  
-  --shadow: rgba(27, 31, 35, 0.15);
-  --shadow-lg: 0 9px 18px 0 rgba(27, 31, 35, 0.15);
+  /* Border radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 1rem;
+
+  /* Shadows (complete box-shadow values) */
+  --shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.15);
+
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.3s ease;
 }
 
 /* Smooth theme transitions */

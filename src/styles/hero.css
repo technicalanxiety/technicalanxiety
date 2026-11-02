@@ -91,7 +91,7 @@
 
 .hero-subtitle {
   display: block;
-  color: var(--color-accent);
+  color: var(--accent-color);
   font-size: 42px;
   margin-top: 10px;
 }
@@ -141,14 +141,14 @@
 
 .button-primary {
   background: var(--accent-color);
-  color: #ffffff;
+  color: var(--text-on-accent);
   border: 2px solid var(--accent-color);
 }
 
 .button-primary:hover {
-  background: var(--link-hover);
-  border-color: var(--link-hover);
-  color: #ffffff;
+  background: var(--accent-color);
+  border-color: var(--accent-color);
+  color: var(--text-on-accent);
   transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(33, 150, 243, 0.3);
 }
@@ -189,7 +189,7 @@
 .stat-number {
   font-size: 32px;
   font-weight: 700;
-  color: var(--color-accent);
+  color: var(--accent-color);
   line-height: 1;
 }
 
@@ -274,7 +274,7 @@
 
 .terminal-cursor {
   animation: blink 1s infinite;
-  color: var(--color-accent);
+  color: var(--accent-color);
 }
 
 @keyframes blink {
@@ -326,20 +326,20 @@
 
 /* Light mode specific styling for better contrast */
 [data-theme="light"] .hero-topic-card {
-  background: #ffffff;
-  border: 2px solid #e1e4e8;
+  background: var(--bg-primary);
+  border: 2px solid var(--border-color);
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
 }
 
 .hero-topic-card:hover {
-  border-color: var(--color-accent);
+  border-color: var(--accent-color);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 /* Light mode hover styling */
 [data-theme="light"] .hero-topic-card:hover {
-  border-color: var(--color-accent);
+  border-color: var(--accent-color);
   box-shadow: 0 6px 20px rgba(33, 150, 243, 0.15);
 }
 
