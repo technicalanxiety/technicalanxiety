@@ -1,0 +1,119 @@
+---
+// macOS-style terminal window chrome (frame, title bar, traffic-light buttons).
+// The page supplies the body as the default slot and styles it, along with any
+// sizing via `class`. Always dark, regardless of site theme.
+import type { HTMLAttributes } from 'astro/types';
+
+export interface Props extends HTMLAttributes<'div'> {
+  title: string;
+}
+
+const { title, class: className, ...rest } = Astro.props;
+---
+
+<div class:list={['terminal', className]} {...rest}>
+  <div class="terminal-header">
+    <div class="terminal-buttons">
+      <span class="terminal-button terminal-close"></span>
+      <span class="terminal-button terminal-minimize"></span>
+      <span class="terminal-button terminal-maximize"></span>
+    </div>
+    <span class="terminal-title">{title}</span>
+  </div>
+  <slot />
+</div>
+
+<style>
+  .terminal {
+    background: #1a1c1f;
+    border: 1px solid #3a3a3a;
+    border-radius: 8px;
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+    text-align: left;
+    font-family: var(--font-mono);
+  }
+
+  .terminal-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: #2d2d2d;
+    border-bottom: 1px solid #3a3a3a;
+  }
+
+  .terminal-buttons {
+    display: flex;
+    gap: 8px;
+  }
+
+  .terminal-button {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+
+  .terminal-close {
+    background: #ff5f56;
+  }
+
+  .terminal-minimize {
+    background: #ffbd2e;
+  }
+
+  .terminal-maximize {
+    background: #27ca3f;
+  }
+
+  .terminal-title {
+    color: #c4c4c4;
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  /* Stack typed lines with the cursor on its own line below them */
+  .terminal :global(.terminal-body) {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Lines are created by each page's typing script (innerHTML), so they
+     carry no scope attribute: style them with :global under .terminal. */
+  .terminal :global(.terminal-line) {
+    margin-bottom: 4px;
+    line-height: 1.4;
+    font-size: 14px;
+  }
+
+  .terminal :global(.terminal-command) {
+    color: #e8e6e3;
+  }
+
+  .terminal :global(.terminal-info) {
+    color: #2196f3;
+  }
+
+  .terminal :global(.terminal-success) {
+    color: #4caf50;
+  }
+
+  .terminal :global(.terminal-error) {
+    color: #ff4444;
+  }
+
+  .terminal :global(.terminal-package) {
+    color: #9ba3b8;
+    padding-left: 8px;
+  }
+
+  .terminal :global(.terminal-blank) {
+    height: 4px;
+  }
+
+  @media (max-width: 767px) {
+    .terminal :global(.terminal-line) {
+      font-size: 12px;
+    }
+  }
+</style>

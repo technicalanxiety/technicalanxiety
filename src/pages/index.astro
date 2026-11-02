@@ -216,31 +216,6 @@ const allPostsData = sortedPosts.map(post => ({
     top: calc(60px + var(--space-lg)); /* Below header */
   }
 
-  .section-heading {
-    text-align: center;
-    margin-bottom: var(--space-2xl);
-  }
-
-  .section-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--text-heading);
-    margin-bottom: var(--space-sm);
-  }
-
-  .section-description {
-    font-size: 1.125rem;
-    color: var(--text-secondary);
-  }
-
-  /* Featured Article */
-  .featured-article {
-    margin-bottom: var(--space-2xl);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    box-shadow: var(--shadow-lg);
-  }
-
   .featured-image {
     position: relative;
     min-height: 450px;
@@ -257,37 +232,9 @@ const allPostsData = sortedPosts.map(post => ({
     width: 100%;
   }
 
-  .featured-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-xs);
-    margin-bottom: var(--space-sm);
-  }
-
-  .featured-tags .tag {
-    background: rgba(33, 150, 243, 0.9);
-    color: white;
-    border-color: transparent;
-  }
-
-  .featured-date {
-    font-size: 0.875rem;
-    color: rgba(255, 255, 255, 0.9);
-    margin-bottom: var(--space-md);
-  }
-
   .featured-title {
     font-size: 2.5rem;
     margin-bottom: var(--space-md);
-  }
-
-  .featured-title a {
-    color: white;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  }
-
-  .featured-title a:hover {
-    color: var(--accent-color);
   }
 
   .featured-excerpt {
@@ -318,19 +265,6 @@ const allPostsData = sortedPosts.map(post => ({
     background-position: center;
     border-radius: var(--radius-lg) var(--radius-lg) 0 0;
     overflow: hidden;
-  }
-
-  /* Image hover effect without overlay text */
-  .image-link {
-    display: block;
-    width: 100%;
-    height: 100%;
-    transition: transform var(--transition-base);
-    overflow: hidden;
-  }
-
-  .image-link:hover {
-    transform: scale(1.02);
   }
 
   /* Explore More Section */
@@ -474,16 +408,7 @@ const allPostsData = sortedPosts.map(post => ({
     font-size: 0.875rem;
   }
 
-  .view-more {
-    text-align: center;
-    margin-top: var(--space-xl);
-  }
-
   @media (max-width: 767px) {
-    .section-title {
-      font-size: 2rem;
-    }
-
     .featured-title {
       font-size: 1.75rem;
     }

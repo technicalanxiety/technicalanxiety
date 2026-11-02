@@ -1,0 +1,154 @@
+---
+// Two-column grid of post cards (image, date, read time, title, excerpt, tags).
+// Used by the topic pages and Start Here.
+import type { CollectionEntry } from 'astro:content';
+
+export interface Props {
+  posts: CollectionEntry<'posts'>[];
+}
+
+const { posts } = Astro.props;
+---
+
+<div class="posts-grid">
+  {posts.map((post) => (
+    <article class="post-card">
+      <div class="post-image" style={`background-image: url(/img/${post.data.image || 'article-header.jpg'})`}>
+        <a href={`/${post.id}/`} class="image-link"></a>
+      </div>
+      <div class="post-content">
+        <div class="post-meta">
+          <time datetime={post.data.date.toISOString()}>
+            {post.data.date.toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'short',
+              day: 'numeric'
+            })}
+          </time>
+          <span class="read-time">
+            {Math.ceil((post.body || '').split(' ').length / 225)} min read
+          </span>
+        </div>
+        <h4 class="post-title">
+          <a href={`/${post.id}/`}>{post.data.title}</a>
+        </h4>
+        <p class="post-excerpt">
+          {post.data.description || 'Read more about this article...'}
+        </p>
+        <div class="post-tags">
+          {post.data.tags && post.data.tags.map((tag) => (
+            <a href={`/tags/${tag}/`} class="tag">{tag}</a>
+          ))}
+        </div>
+      </div>
+    </article>
+  ))}
+</div>
+
+<style>
+  .posts-grid {
+    display: grid;
+    gap: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .posts-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .posts-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .post-card {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+    transition: box-shadow var(--transition-base);
+  }
+
+  .post-card:hover {
+    box-shadow: var(--shadow-lg);
+  }
+
+  .post-image {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  }
+
+  .image-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    transition: transform var(--transition-base);
+  }
+
+  .image-link:hover {
+    transform: scale(1.02);
+  }
+
+  .post-content {
+    padding: 1.5rem;
+  }
+
+  .post-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+  }
+
+  .post-title {
+    margin-bottom: 0.75rem;
+  }
+
+  .post-title a {
+    color: var(--text-heading);
+    text-decoration: none;
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  .post-title a:hover {
+    color: var(--accent-color);
+  }
+
+  .post-excerpt {
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin-bottom: 1rem;
+  }
+
+  .post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tag {
+    background: rgba(33, 150, 243, 0.1);
+    color: var(--accent-color);
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 500;
+    border: 1px solid rgba(33, 150, 243, 0.2);
+    transition: all var(--transition-fast);
+  }
+
+  .tag:hover {
+    background: var(--accent-color);
+    color: white;
+    border-color: var(--accent-color);
+  }
+</style>
