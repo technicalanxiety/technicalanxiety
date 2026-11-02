@@ -1,0 +1,62 @@
+/*
+ * Giscus theme matched to the site's light mode.
+ * Starts from Giscus's stock light theme and overrides fonts and accent colors
+ * with the site tokens (see [data-theme="light"] in src/styles/theme.css).
+ * Loaded by GiscusComments.astro as an absolute URL; served with CORS for giscus.app.
+ */
+@import url('https://giscus.app/themes/light.css');
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Fira+Code:wght@400;500&display=swap');
+
+main {
+  /* Surfaces */
+  --color-canvas-default: #ffffff;
+  --color-canvas-subtle: #fafbfc;
+  --color-canvas-inset: #f6f8fa;
+  --color-border-default: #e1e4e8;
+
+  /* Text */
+  --color-fg-default: #24292e;
+  --color-fg-muted: #586069;
+
+  /* Accent: site blue */
+  --color-accent-fg: #1976d2;
+  --color-accent-emphasis: #1976d2;
+  --color-accent-muted: #1976d266;
+  --color-accent-subtle: #1976d21a;
+
+  /* Primary button (Sign in / Comment): site blue instead of GitHub green */
+  --color-btn-primary-text: #ffffff;
+  --color-btn-primary-bg: #1976d2;
+  --color-btn-primary-border: #1565c0;
+  --color-btn-primary-hover-bg: #1565c0;
+  --color-btn-primary-hover-border: #0d47a1;
+  --color-btn-primary-selected-bg: #1565c0;
+  --color-btn-primary-disabled-bg: #1976d299;
+
+  --color-social-reaction-bg-reacted-hover: #1976d233;
+
+  font-family: 'Rajdhani', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 16px;
+}
+
+/* Rajdhani runs small and light; give comment text the post body's weight */
+main .gsc-comment .markdown,
+main .gsc-comment-box-textarea {
+  font-size: 1.05rem;
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+main .gsc-header,
+main .gsc-left-header,
+main .gsc-comments-count,
+main .gsc-reactions-count {
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+main code,
+main pre,
+main .gsc-comment .markdown code {
+  font-family: 'Fira Code', 'SF Mono', Monaco, Consolas, monospace;
+}
