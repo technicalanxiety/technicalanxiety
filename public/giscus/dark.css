@@ -1,0 +1,65 @@
+/*
+ * Giscus theme matched to the site's dark mode.
+ * Starts from Giscus's stock dark theme and overrides fonts and accent colors
+ * with the site tokens (see the [data-theme="dark"] values in BaseLayout.astro).
+ * Loaded by GiscusComments.astro as an absolute URL; served with CORS for giscus.app.
+ */
+@import url('https://giscus.app/themes/dark.css');
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Fira+Code:wght@400;500&display=swap');
+
+main {
+  /* Surfaces: match the page so the widget doesn't read as a separate box */
+  --color-canvas-default: #0d1117;
+  --color-canvas-subtle: #161b22;
+  --color-canvas-overlay: #161b22;
+  --color-canvas-inset: #0d1117;
+  --color-border-default: #30363d;
+  --color-border-muted: #21262d;
+  --color-segmented-control-button-bg: #161b22;
+
+  /* Text */
+  --color-fg-default: #e6edf3;
+  --color-fg-muted: #9ba3b8;
+
+  /* Accent: site blue instead of GitHub blue */
+  --color-accent-fg: #4da6ff;
+  --color-accent-emphasis: #2196f3;
+  --color-accent-muted: #2196f366;
+  --color-accent-subtle: #2196f31a;
+
+  /* Primary button (Sign in / Comment): site blue instead of GitHub green */
+  --color-btn-primary-text: #ffffff;
+  --color-btn-primary-bg: #1976d2;
+  --color-btn-primary-border: #2196f3;
+  --color-btn-primary-hover-bg: #2196f3;
+  --color-btn-primary-hover-border: #4da6ff;
+  --color-btn-primary-selected-bg: #1976d2;
+  --color-btn-primary-disabled-bg: #1976d299;
+
+  --color-social-reaction-bg-reacted-hover: #2196f333;
+
+  font-family: 'Rajdhani', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 16px;
+}
+
+/* Rajdhani runs small and light; give comment text the post body's weight */
+main .gsc-comment .markdown,
+main .gsc-comment-box-textarea {
+  font-size: 1.05rem;
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+main .gsc-header,
+main .gsc-left-header,
+main .gsc-comments-count,
+main .gsc-reactions-count {
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+main code,
+main pre,
+main .gsc-comment .markdown code {
+  font-family: 'Fira Code', 'SF Mono', Monaco, Consolas, monospace;
+}
