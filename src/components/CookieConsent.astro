@@ -1,13 +1,23 @@
 ---
-// Cookie consent component for GDPR compliance
+// Cookie consent banner. Google Analytics is only loaded after the visitor
+// clicks Accept (loader lives in BaseLayout as window.taLoadAnalytics).
+// Any element with [data-cookie-preferences] reopens the banner.
+import { siteConfig } from '../config';
 ---
 
-<div id="cookie-consent" class="cookie-consent" style="display: none;">
+<div
+  id="cookie-consent"
+  class="cookie-consent"
+  style="display: none;"
+  role="region"
+  aria-label="Cookie consent"
+  data-ga-id={siteConfig.googleAnalytics}
+>
   <div class="cookie-consent-content">
     <div class="cookie-consent-text">
       <p>
-        This website uses cookies to enhance your browsing experience and provide personalized content. 
-        By continuing to use this site, you consent to our use of cookies.
+        This site would like to use Google Analytics cookies to see which posts get read.
+        Nothing is loaded unless you accept.{' '}
         <a href="/privacy/" class="cookie-consent-link">Learn more</a>
       </p>
     </div>
@@ -19,35 +29,44 @@
 </div>
 
 <script>
+  type ConsentValue = 'accepted' | 'declined';
+
+  interface AnalyticsWindow extends Window {
+    taPrivacySignal?: boolean;
+    taLoadAnalytics?: () => void;
+    [key: `ga-disable-${string}`]: boolean;
+  }
+
   class CookieConsent {
     private consentKey = 'cookie-consent';
     private banner: HTMLElement | null = null;
-    private acceptBtn: HTMLElement | null = null;
-    private declineBtn: HTMLElement | null = null;
+    private gaId = '';
 
     constructor() {
       this.banner = document.getElementById('cookie-consent');
-      this.acceptBtn = document.getElementById('cookie-accept');
-      this.declineBtn = document.getElementById('cookie-decline');
-      
+      this.gaId = this.banner?.dataset.gaId ?? '';
+
       this.init();
     }
 
+    private get win(): AnalyticsWindow {
+      return window as unknown as AnalyticsWindow;
+    }
+
     private init() {
-      // Check if consent has already been given
-      const consent = this.getConsent();
-      
-      if (consent === null) {
-        // No consent recorded, show banner
+      // Show the banner only if no choice is recorded and the browser isn't
+      // already sending Do Not Track / Global Privacy Control
+      if (this.getConsent() === null && !this.win.taPrivacySignal) {
         this.showBanner();
-      } else if (consent === 'accepted') {
-        // Consent given, enable analytics
-        this.enableAnalytics();
       }
-      
-      // Set up event listeners
-      this.acceptBtn?.addEventListener('click', () => this.acceptCookies());
-      this.declineBtn?.addEventListener('click', () => this.declineCookies());
+
+      document.getElementById('cookie-accept')?.addEventListener('click', () => this.acceptCookies());
+      document.getElementById('cookie-decline')?.addEventListener('click', () => this.declineCookies());
+
+      // "Change cookie preferences" controls (e.g. on the privacy page)
+      document.querySelectorAll('[data-cookie-preferences]').forEach((el) => {
+        el.addEventListener('click', () => this.showBanner());
+      });
     }
 
     private showBanner() {
@@ -73,7 +92,7 @@
 
     private acceptCookies() {
       this.setConsent('accepted');
-      this.enableAnalytics();
+      this.win.taLoadAnalytics?.();
       this.hideBanner();
     }
 
@@ -83,7 +102,7 @@
       this.hideBanner();
     }
 
-    private setConsent(value: 'accepted' | 'declined') {
+    private setConsent(value: ConsentValue) {
       try {
         localStorage.setItem(this.consentKey, value);
       } catch (e) {
@@ -96,41 +115,42 @@
       }
     }
 
-    private getConsent(): 'accepted' | 'declined' | null {
+    private getConsent(): ConsentValue | null {
       try {
-        return localStorage.getItem(this.consentKey) as 'accepted' | 'declined' | null;
+        return (localStorage.getItem(this.consentKey) ||
+          sessionStorage.getItem(this.consentKey)) as ConsentValue | null;
       } catch (e) {
-        try {
-          return sessionStorage.getItem(this.consentKey) as 'accepted' | 'declined' | null;
-        } catch (e) {
-          return null;
-        }
+        return null;
       }
     }
 
-    private enableAnalytics() {
-      // Enable Google Analytics if consent is given
-      if (typeof (window as any).gtag !== 'undefined') {
-        (window as any).gtag('consent', 'update', {
-          'analytics_storage': 'granted'
-        });
-      }
-    }
-
+    // Handles withdrawing consent after GA was already running on this page:
+    // stop further hits and remove the cookies GA set.
     private disableAnalytics() {
-      // Disable Google Analytics if consent is declined
-      if (typeof (window as any).gtag !== 'undefined') {
-        (window as any).gtag('consent', 'update', {
-          'analytics_storage': 'denied'
-        });
+      if (this.gaId) {
+        this.win[`ga-disable-${this.gaId}`] = true;
       }
+
+      // GA sets _ga and _ga_<container> on the registrable domain (e.g. .technicalanxiety.com)
+      const host = location.hostname;
+      const domains = ['', host, `.${host.replace(/^www\./, '')}`];
+      document.cookie.split(';').forEach((cookie) => {
+        const name = cookie.split('=')[0].trim();
+        if (!name.startsWith('_ga')) return;
+        domains.forEach((domain) => {
+          const domainAttr = domain ? `; domain=${domain}` : '';
+          document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/${domainAttr}`;
+        });
+      });
     }
   }
 
   // Initialize cookie consent when DOM is loaded
-  document.addEventListener('DOMContentLoaded', () => {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => new CookieConsent());
+  } else {
     new CookieConsent();
-  });
+  }
 </script>
 
 <style>
@@ -139,9 +159,9 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background: var(--bg-color, #ffffff);
-    border-top: 1px solid var(--border-color, #e1e5e9);
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border-color);
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
     z-index: 1000;
     transform: translateY(100%);
     transition: transform 0.3s ease-in-out;
@@ -167,13 +187,13 @@
 
   .cookie-consent-text p {
     margin: 0;
-    font-size: 0.9rem;
+    font-size: 1rem;
     line-height: 1.4;
-    color: var(--text-color, #333333);
+    color: var(--text-primary);
   }
 
   .cookie-consent-link {
-    color: var(--accent-color, #007acc);
+    color: var(--accent-color);
     text-decoration: underline;
   }
 
@@ -189,48 +209,31 @@
 
   .cookie-btn {
     padding: 0.5rem 1rem;
-    border: 1px solid var(--border-color, #e1e5e9);
-    border-radius: 4px;
-    font-size: 0.9rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    font: inherit;
+    font-weight: 600;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all var(--transition-fast);
     background: transparent;
-    color: var(--text-color, #333333);
+    color: var(--text-primary);
   }
 
-  .cookie-btn-accept {
-    background: var(--accent-color, #007acc);
-    color: white;
-    border-color: var(--accent-color, #007acc);
+  .cookie-btn:focus-visible {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
   }
 
-  .cookie-btn-accept:hover {
-    background: var(--accent-color-hover, #005a9e);
-    border-color: var(--accent-color-hover, #005a9e);
+  /* Accept and Decline get equal visual weight: no nudging toward Accept */
+  .cookie-btn:hover {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
   }
 
-  .cookie-btn-decline:hover {
-    background: var(--bg-color-hover, #f5f5f5);
-  }
-
-  /* Dark theme styles */
-  [data-theme="dark"] .cookie-consent {
-    background: var(--bg-color-dark, #1a1a1a);
-    border-top-color: var(--border-color-dark, #30363d);
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
-  }
-
-  [data-theme="dark"] .cookie-consent-text p {
-    color: var(--text-color-dark, #e6e6e6);
-  }
-
-  [data-theme="dark"] .cookie-btn {
-    color: var(--text-color-dark, #e6e6e6);
-    border-color: var(--border-color-dark, #30363d);
-  }
-
-  [data-theme="dark"] .cookie-btn-decline:hover {
-    background: var(--bg-color-hover-dark, #2a2a2a);
+  @media (prefers-reduced-motion: reduce) {
+    .cookie-consent {
+      transition: none;
+    }
   }
 
   /* Mobile responsive */

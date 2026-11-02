@@ -1,6 +1,7 @@
 ---
 import { siteConfig } from '../config';
 import ThemeToggle from '../components/ThemeToggle.astro';
+import CookieConsent from '../components/CookieConsent.astro';
 import '../styles/theme.css';
 import '../styles/base.css';
 import '../styles/layout.css';
@@ -35,7 +36,24 @@ const imageURL = new URL(image, siteOrigin).href;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
+
+    <!-- Set the theme before first paint so pages don't flash the wrong theme.
+         ThemeToggle.astro handles switching after load. -->
+    <script is:inline>
+      (function () {
+        var theme = null;
+        try {
+          theme = localStorage.getItem('theme');
+        } catch (e) {
+          // Storage blocked: fall through to system preference
+        }
+        if (theme !== 'light' && theme !== 'dark') {
+          theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        }
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
+
     <!-- Primary Meta Tags -->
     <title>{pageTitle}</title>
     <meta name="title" content={pageTitle} />
@@ -199,29 +217,52 @@ const imageURL = new URL(image, siteOrigin).href;
     
     <!-- Global Styles -->
     
-    <!-- Google Analytics - Deferred Loading -->
+    <!-- Google Analytics - loaded only after explicit consent (see CookieConsent.astro) -->
     {siteConfig.googleAnalytics && (
-      <>
-        <script is:inline define:vars={{ GA_MEASUREMENT_ID: siteConfig.googleAnalytics }}>
-          // Defer Google Analytics loading
-          window.addEventListener('load', function() {
-            const script = document.createElement('script');
-            script.async = true;
-            script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
-            document.head.appendChild(script);
-            
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', GA_MEASUREMENT_ID);
-          });
-        </script>
-      </>
+      <script is:inline define:vars={{ GA_MEASUREMENT_ID: siteConfig.googleAnalytics }}>
+        // Do Not Track / Global Privacy Control are treated as a standing "decline":
+        // analytics never load and the consent banner is not shown.
+        window.taPrivacySignal = navigator.doNotTrack === '1' || navigator.globalPrivacyControl === true;
+
+        // Idempotent loader, also called by the consent banner when the visitor accepts.
+        window.taLoadAnalytics = function () {
+          if (window.taAnalyticsLoaded || window.taPrivacySignal) return;
+          window.taAnalyticsLoaded = true;
+          window['ga-disable-' + GA_MEASUREMENT_ID] = false;
+
+          const script = document.createElement('script');
+          script.async = true;
+          script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
+          document.head.appendChild(script);
+
+          window.dataLayer = window.dataLayer || [];
+          window.gtag = function () { window.dataLayer.push(arguments); };
+          window.gtag('js', new Date());
+          window.gtag('config', GA_MEASUREMENT_ID);
+        };
+
+        let consent = null;
+        try {
+          consent = localStorage.getItem('cookie-consent') || sessionStorage.getItem('cookie-consent');
+        } catch (e) {
+          // Storage blocked: treat as no consent
+        }
+
+        if (consent === 'accepted') {
+          // Defer until after page load so analytics never compete with content
+          if (document.readyState === 'complete') {
+            window.taLoadAnalytics();
+          } else {
+            window.addEventListener('load', window.taLoadAnalytics);
+          }
+        }
+      </script>
     )}
   </head>
   <body>
     <div class="tron-bg" id="tron-bg" aria-hidden="true"></div>
     <slot />
+    {siteConfig.googleAnalytics && <CookieConsent />}
     <ThemeToggle />
   </body>
 </html>
