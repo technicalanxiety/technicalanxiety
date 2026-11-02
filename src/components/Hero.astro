@@ -1,9 +1,5 @@
 ---
-import { siteConfig } from '../config';
-import { getPublishedPosts } from '../utils/posts';
-
-const posts = await getPublishedPosts();
-const postCount = posts.length;
+// Home page hero: title, tagline, Start Here button, one-line description.
 ---
 
 <section class="hero">
@@ -21,7 +17,7 @@ const postCount = posts.length;
         </a>
       </div>
       
-      <p class="hero-description" style="text-align: center !important; margin: 0 auto; max-width: 800px;">
+      <p class="hero-description">
         Azure, governance, and platform patterns. I'm taking notes.
       </p>
     </div>
@@ -30,42 +26,95 @@ const postCount = posts.length;
 
 <style>
   .hero {
-    padding: 1rem 0 !important;
-    text-align: center !important;
+    position: relative;
+    overflow: hidden;
+    padding: 1rem 0;
+    text-align: center;
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+    border-bottom: 1px solid var(--border-color);
   }
-  
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    pointer-events: none;
+    background-image:
+      radial-gradient(circle at 20% 50%, rgba(33, 150, 243, 0.03) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(33, 150, 243, 0.03) 0%, transparent 50%);
+  }
+
   .hero-wrapper {
-    text-align: center !important;
-    max-width: 1200px !important;
-    margin: 0 auto !important;
-    padding: 1rem 0 !important;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 0;
+    text-align: center;
   }
-  
+
   .hero-title {
-    text-align: center !important;
-    margin-bottom: 0.5rem !important;
+    margin: 0 0 0.5rem 0;
+    font-size: 48px;
+    font-weight: 800;
+    line-height: 1.2;
+    color: var(--text-heading);
+    text-align: center;
   }
-  
+
   .hero-subtitle {
-    text-align: center !important;
-    display: block !important;
-    margin-bottom: var(--space-lg) !important;
+    display: block;
+    margin-top: 10px;
+    margin-bottom: var(--space-lg);
+    font-size: 42px;
+    color: var(--accent-color);
+    text-align: center;
   }
-  
+
   .hero-buttons {
-    text-align: center !important;
-    display: flex !important;
-    justify-content: center !important;
-    gap: 1rem !important;
-    margin-top: 2rem !important;
-    margin-bottom: 2rem !important;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
   }
-  
+
+  .hero-buttons .button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .hero-buttons .button ion-icon {
+    font-size: 20px;
+  }
+
   .hero-description {
-    font-size: 1.25rem !important;
-    font-weight: 500 !important;
-    color: var(--text-secondary) !important;
-    line-height: 1.6 !important;
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    text-align: center;
+  }
+
+  @media (max-width: 767px) {
+    .hero-title {
+      font-size: 36px;
+    }
+
+    .hero-subtitle {
+      font-size: 32px;
+    }
   }
 </style>
-

@@ -1,0 +1,122 @@
+---
+// Frame shared by the topic pages and Start Here: header, centered hero,
+// main column (default slot) beside the sidebar, footer.
+import BaseLayout from './BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Sidebar from '../components/Sidebar.astro';
+
+export interface Props {
+  /** Page <title> without the site name (BaseLayout appends it) */
+  title: string;
+  description: string;
+  heading: string;
+  subtitle: string;
+  /** Text under the subtitle; defaults to the meta description */
+  lede?: string;
+  /** Optional emoji shown above the heading */
+  icon?: string;
+}
+
+const { title, description, heading, subtitle, lede = description, icon } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <Header />
+
+  <main class="topic-page">
+    <div class="container">
+      <div class="topic-hero">
+        {icon && <div class="topic-icon">{icon}</div>}
+        <h1 class="topic-title">{heading}</h1>
+        <h2 class="topic-subtitle">{subtitle}</h2>
+        <p class="topic-description">
+          {lede}
+        </p>
+      </div>
+
+      <div class="content-grid">
+        <section class="topic-content">
+          <slot />
+        </section>
+
+        <Sidebar />
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .topic-page {
+    padding: 2rem 0;
+  }
+
+  .topic-hero {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 3rem 0;
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
+  }
+
+  .topic-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+  }
+
+  .topic-title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--text-heading);
+    margin-bottom: 0.5rem;
+  }
+
+  .topic-subtitle {
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    font-weight: 400;
+  }
+
+  .topic-description {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  .content-grid {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  @media (max-width: 1024px) {
+    .content-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+
+  /* Section headings inside the main column (slotted content) */
+  .topic-page :global(.posts-section h3) {
+    font-size: 2rem;
+    color: var(--text-heading);
+    margin-bottom: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    .topic-title {
+      font-size: 2.5rem;
+    }
+
+    .topic-hero {
+      padding: 2rem 1rem;
+    }
+  }
+</style>
