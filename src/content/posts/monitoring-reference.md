@@ -12,8 +12,6 @@ image: "monitoring-reference.jpg"
 
 ---
 
-## PURPOSE
-
 The Beyond Azure Monitor series gave you patterns. KQL queries that understand business hours, detect anomalies against dynamic baselines, and predict capacity issues before they become incidents.
 
 But patterns embedded in blog posts don't deploy themselves.
@@ -24,7 +22,7 @@ This isn't a product. It's a starting point. Your environment has its own shape,
 
 ---
 
-## WHAT THE FOUNDATION DEPLOYS
+## What the Foundation Deploys
 
 One command deploys a complete monitoring stack:
 
@@ -52,7 +50,7 @@ What you get:
 
 ---
 
-## ENVIRONMENT-AWARE THRESHOLDS
+## Environment-Aware Thresholds
 
 One of the recurring themes in the series: thresholds should match operational context.
 
@@ -68,7 +66,7 @@ Production gets tighter thresholds and higher severity. Dev gets more tolerance.
 
 ---
 
-## THE ITSM INTEGRATION POINT
+## The ITSM Integration Point
 
 Part 3 discussed ServiceNow integration patterns. The foundation includes the webhook plumbing but stops short of the ServiceNow-specific configuration.
 
@@ -87,7 +85,7 @@ The automation boundary is intentional. Everything inside Azure deploys as code.
 
 ---
 
-## ADAPTING FOR YOUR ENVIRONMENT
+## Adapting for Your Environment
 
 The foundation assumes certain table names and field patterns. Your environment might differ.
 
@@ -103,7 +101,7 @@ The code is intentionally readable. No clever abstractions that require reverse 
 
 ---
 
-## THE REPOSITORY
+## The Repository
 
 Everything lives in my cloudthings repo:
 
@@ -125,7 +123,7 @@ Clone it. Read it. Break it. Fix it. Make it yours.
 
 ---
 
-## WHAT THIS ISN'T
+## What This Isn't
 
 This isn't a managed product with support contracts and SLAs.
 
@@ -135,7 +133,7 @@ This isn't production-ready for your specific environment. It's reference code. 
 
 ---
 
-## WHAT THIS IS
+## What This Is
 
 This is the code I wish existed when I started building intelligent monitoring.
 

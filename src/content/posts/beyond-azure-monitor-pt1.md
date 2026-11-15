@@ -9,9 +9,17 @@ description: "Azure Monitor is just the starting point. Real enterprise monitori
 ---
 ## When Defaults Aren't Enough
 
+In Platform Resiliency, I argued that the feedback loop between operations and platform teams is what turns incidents into improvements. That loop requires signal. Observability is how it sees.
+
+This series is about building monitoring that produces signal instead of noise. The patterns here come from years of tuning observability across managed services environments, where alert fatigue wasn't theoretical. It was the thing that made customers leave. These queries are what I built when the alternative was waking up operations teams for problems that weren't problems and watching them stop trusting alerts entirely.
+
+Part 1 covers why default Azure Monitor isn't enough and introduces context-aware monitoring patterns. Part 2 goes deeper on correlation and anomaly detection. Part 3 operationalizes everything through automation and alerting strategies.
+
+**Fair Warning:** The KQL examples are production-tested but not plug-and-play. Your environment has its own shape. Adapt accordingly. If you're new to KQL and need to build fundamentals first, start with my [Intro to Log Analytics](/intro-to-la-pt1/) series from 2020. This series assumes you're comfortable with the basics and ready to go deeper.
+
 ---
 
-## PREREQUISITES
+## Prerequisites
 
 The queries in this series require specific data sources configured in your Log Analytics workspace. Before diving in, verify you have the following:
 
@@ -48,21 +56,7 @@ If either query returns no results, the corresponding data source isn't configur
 
 ---
 
-## PURPOSE
-
-In Platform Resiliency, I argued that the feedback loop between operations and platform teams is what turns incidents into improvements. That loop requires signal. Observability is how it sees.
-
-This series is about building monitoring that produces signal instead of noise. The patterns here come from years of tuning observability across managed services environments, where alert fatigue wasn't theoretical. It was the thing that made customers leave. These queries are what I built when the alternative was waking up operations teams for problems that weren't problems and watching them stop trusting alerts entirely.
-
-Part 1 covers why default Azure Monitor isn't enough and introduces context-aware monitoring patterns. Part 2 goes deeper on correlation and anomaly detection. Part 3 operationalizes everything through automation and alerting strategies.
-
-**Fair Warning:** The KQL examples are production-tested but not plug-and-play. Your environment has its own shape. Adapt accordingly. If you're new to KQL and need to build fundamentals first, start with my [Intro to Log Analytics](/intro-to-la-pt1/) series from 2020. This series assumes you're comfortable with the basics and ready to go deeper.
-
----
-
-## WALKTHROUGH
-
-### What Azure Monitor Actually Gives You
+## What Azure Monitor Actually Gives You
 
 Azure Monitor is Microsoft's answer to every monitoring question. Check the docs for any observability problem and there it is, waiting for you like a golden retriever with a tennis ball.
 
@@ -105,7 +99,7 @@ This query doesn't monitor your systems. It monitors whether a number crossed a 
 
 ---
 
-### The Enterprise Reality
+## The Enterprise Reality
 
 The gap between Azure Monitor's capabilities and what enterprises actually need isn't a bug. It's a design choice. Microsoft built a platform. You have to build the intelligence.
 
@@ -123,7 +117,7 @@ The rest of this post introduces patterns that address these gaps.
 
 ---
 
-### Pattern: Context-Aware Monitoring
+## Pattern: Context-Aware Monitoring
 
 The first pattern comes from a simple question I started asking: why are we alerting on things we already know about?
 
@@ -183,7 +177,7 @@ The `['Sample Count'] >= 3` filter is the difference between actionable alerts a
 
 ---
 
-### Pattern: Dynamic Baselines
+## Pattern: Dynamic Baselines
 
 Static thresholds assume your environment never changes. That assumption is wrong the moment you deploy it.
 
@@ -247,7 +241,7 @@ The `['Request Count'] > 10` filter prevents low-traffic periods from generating
 
 ---
 
-## CONCLUSION
+## Encoding Operational Knowledge
 
 Default Azure Monitor gets you started. These patterns get you to monitoring that actually works. If you're looking at AIOps and wondering whether it's ready, I cover that evolution in [Operational Change](/ops-changes-pt1/). Spoiler: the technology finally caught up, but it still needs observability that produces signal instead of noise.
 

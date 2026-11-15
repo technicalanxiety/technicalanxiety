@@ -9,8 +9,6 @@ series_part: 1
 ---
 Stop asking if you can trust AI. Start building confidence in systems you understand.
 
-## PURPOSE
-
 Part of my role is evaluating build, buy, and partner decisions for AI-enabled operations tooling. I'm deep in the AIOps space right now, and the topic surfaces in almost every conversation I have. Daily.
 
 Here's what I've noticed: when we evaluate vendors, partners, and internal capabilities, we never ask about trust. We ask about engineering practices. Roadmap and backlog. Integration paths. API coverage. Deployment models. Support structures. Future investment areas. We build evaluation criteria around capabilities, maturity, and fit.
@@ -31,9 +29,7 @@ That distinction isn't semantic. It's operationally meaningful. And until we get
 
 ---
 
-## WALKTHROUGH
-
-### The Category Error
+## The Category Error
 
 Trust is a relational concept. It belongs between humans. You extend trust to people based on character, history, and shared values. Trust can be betrayed. It can be rebuilt. It implies vulnerability to someone else's choices.
 
@@ -45,7 +41,7 @@ When that same executive says "I don't have confidence in this system," the conv
 
 The industry chose the wrong word, and now we're stuck solving an emotional problem with technical tools.
 
-### Where This Framing Came From
+## Where This Framing Came From
 
 The "trust" discourse around AI didn't emerge from nowhere. It's a response to real fears, and those fears deserve acknowledgment before we move past them.
 
@@ -61,7 +57,7 @@ The job displacement fear is about economics and organizational change, not tech
 
 By collapsing all of these into "trust," we've created a catch-all term that obscures what we're actually dealing with. And worse, we've given people permission to stall indefinitely. "We're not ready to trust AI yet" is unfalsifiable. It's a feeling masquerading as a decision criterion.
 
-### What Confidence Actually Looks Like
+## What Confidence Actually Looks Like
 
 In Platform Resiliency, I argued that AI tools belong in the platform layer, consumed by operations as capabilities rather than adopted tactically as point solutions. The platform owns selection, integration, and governance. Operations consumes the capability and provides feedback. The loop closes through demonstrated outcomes.
 
@@ -75,7 +71,7 @@ The suggest-to-approve-to-auto progression that vendors describe isn't about bui
 
 None of this requires trust. All of it requires engineering discipline.
 
-### We Forgot the Fundamentals
+## We Forgot the Fundamentals
 
 Here's a story from long ago.
 
@@ -95,7 +91,7 @@ Somewhere along the way, AI got exempted from these principles. Instead of apply
 
 The fundamentals didn't change. We just stopped applying them.
 
-### The Organizational Pattern
+## The Organizational Pattern
 
 Here's what I've watched happen, repeatedly, across organizations:
 
@@ -109,7 +105,7 @@ Eventually, one of two things happens. Either the practitioners give up and the 
 
 Both outcomes are failure modes. Both trace back to the framing error.
 
-### The Disclaimer Problem
+## The Disclaimer Problem
 
 You see the trust framing embedded everywhere, often without recognizing it.
 
@@ -125,7 +121,7 @@ Compare that to the disclaimer approach: we're telling you upfront this might fa
 
 The disclaimer culture trains users to approach AI with suspicion rather than with the engineering mindset of test, observe, refine. It's the trust frame made visible in every interaction. In fact, the typical warning actually undermines both trust and confidence by creating this weird cognitive dissonance where you're supposed to rely on something while constantly doubting it.
 
-### Confidence Is Falsifiable
+## Confidence Is Falsifiable
 
 The practical advantage of confidence over trust: confidence has criteria.
 
@@ -141,7 +137,7 @@ Push for specificity. What would give you confidence? That question has an answe
 
 ---
 
-## CONCLUSION
+## Confidence Is the Right Frame
 
 The concerns driving the AI trust discourse are legitimate. Job displacement anxiety is real. Uncertainty about AI behavior is real. The need for governance and accountability is real.
 

@@ -9,8 +9,6 @@ series_part: 2
 ---
 A framework for building confidence in AI-enabled systems through observable criteria, instrumentation, and staged authority expansion.
 
-## PURPOSE
-
 In Part 1, I argued that trust is the wrong frame for AI adoption. Trust is relational and emotional. It has no engineering solution. Confidence is empirical, earned through observation and demonstrated outcomes. The shift from "can we trust this?" to "what would give us confidence?" changes the conversation from feelings to engineering.
 
 That piece generated a predictable response: okay, smarty pants, what does it actually mean in practice?
@@ -25,9 +23,7 @@ What follows is a framework, not a prescription. It's a work in progress because
 
 ---
 
-## WALKTHROUGH
-
-### Where Confidence Engineering Lives
+## Where Confidence Engineering Lives
 
 Confidence engineering belongs in the platform layer.
 
@@ -37,7 +33,7 @@ AI-enabled tooling is no different. The platform owns selection, integration, ob
 
 When AI tooling gets adopted tactically, outside the platform, you get what I called "autonomy debt" in Part 1: automation without the observability, controls, and criteria to support it. Shadow AI usage. Inconsistent outcomes. No organizational learning. That's not confidence engineering. That's hope masquerading as strategy.
 
-### The Framework
+## The Framework
 
 Confidence engineering has five components. Each builds on the previous. Skip one and the framework weakens.
 
@@ -105,7 +101,7 @@ Those are sentiment indicators. They're lagging and they're influenced by factor
 
 Confidence metrics are leading indicators. They tell you whether the system is performing against criteria, which predicts whether sentiment will eventually follow. Fix the metrics and sentiment catches up. Chase sentiment directly and you end up managing perceptions instead of engineering confidence.
 
-### Where This Comes From
+## Where This Comes From
 
 My approach stems from two decades in managed services and observability platforms. That background shapes how I see this problem.
 
@@ -127,7 +123,7 @@ Choose the engineering frame. Make the system observable. Define criteria. Measu
 
 That's what observability taught me. That's what confidence engineering applies to AI.
 
-### We're All Building the Plane While Flying It
+## We're All Building the Plane While Flying It
 
 Microsoft released new Cloud Adoption Framework guidance for AI agents in December 2025. As a Microsoft Azure architect, this matters to me. I pay attention when Microsoft publishes adoption guidance because it shapes how enterprises approach these capabilities.
 
@@ -145,7 +141,7 @@ This isn't a criticism of Microsoft specifically. It's an observation about the 
 
 Confidence engineering isn't competing with Microsoft's CAF. It's complementary. The CAF tells you what structures to build. Confidence engineering tells you how to know if those structures are actually working.
 
-### The Honest Caveat
+## The Honest Caveat
 
 This framework is emerging from practice, not descended from theory. I'm applying it now, learning what works, discovering what's missing.
 
@@ -161,7 +157,7 @@ I'm sharing this anyway because frameworks get better through use and feedback, 
 
 ---
 
-## CONCLUSION
+## A Starting Point
 
 Confidence engineering is the practice of building confidence in AI-enabled systems through observable criteria, instrumentation, staged authority, closed feedback loops, and empirical metrics.
 

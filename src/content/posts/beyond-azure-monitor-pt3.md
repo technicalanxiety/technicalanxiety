@@ -9,10 +9,6 @@ description: "Transform advanced KQL patterns into production monitoring systems
 ---
 ## Automation, Alerting Strategies, and Integration
 
----
-
-## PURPOSE
-
 Parts 1 and 2 gave you the patterns. Queries that build confidence in your alerts and confidence that you're seeing the whole picture. But patterns that run manually are just tools sitting in a drawer. This part makes them operational: automated deployment, intelligent alerting strategies, and integration with the systems your team already uses.
 
 The goal isn't more dashboards. It's monitoring that runs without you, escalates appropriately, and fixes what it can fix so your teams aren't constantly worn out.
@@ -21,9 +17,7 @@ The goal isn't more dashboards. It's monitoring that runs without you, escalates
 
 ---
 
-## WALKTHROUGH
-
-### Pattern: Infrastructure-as-Code Alert Deployment
+## Pattern: Infrastructure-as-Code Alert Deployment
 
 Here's a pattern I've seen kill monitoring programs: alerts created manually in the portal, configured differently across environments, undocumented, and impossible to reproduce when something breaks.
 
@@ -192,7 +186,7 @@ The `customProperties` block is important. Those tags enable downstream automati
 
 ---
 
-### Pattern: PowerShell Deployment Automation
+## Pattern: PowerShell Deployment Automation
 
 Bicep gets you consistent deployment. PowerShell gets you lifecycle management: deploy new alerts, update existing ones, validate changes before committing, report on what changed and why.
 
@@ -374,7 +368,7 @@ The script manages alert lifecycle: create new alerts, update existing ones, val
 
 ---
 
-### Pattern: Alert Suppression and Correlation
+## Pattern: Alert Suppression and Correlation
 
 Alert storms are real. I've seen 200 alerts fire in 10 minutes during a single incident, each one yelling like it's the most important, each one creating noise that makes the actual problem harder to find. By the time you've acknowledged all the alerts, the incident is over and you've learned nothing except that your monitoring needs work.
 
@@ -452,7 +446,7 @@ The `externaldata` approach is intentional. Your maintenance windows should live
 
 ---
 
-### Pattern: Business Impact Scoring
+## Pattern: Business Impact Scoring
 
 Not all alerts are equal. An authentication service at 50% error rate affects everyone. A reporting service with the same error rate affects five people who can wait.
 
@@ -542,7 +536,7 @@ The `['Escalation Level']` column is where this pays off. When authentication is
 
 ---
 
-### Pattern: ServiceNow Integration
+## Pattern: ServiceNow Integration
 
 Events from alerts that don't create incidents get forgotten. Incidents that don't have context take longer to resolve. This pattern bridges Azure Monitor and your ITSM platform with intelligent routing and full alert context.
 
@@ -682,7 +676,7 @@ The `u_alert_id` and `u_correlation_id` custom fields are critical for closing t
 
 ---
 
-### Pattern: Self-Resolving Automation
+## Pattern: Self-Resolving Automation
 
 This is where monitoring becomes operations.
 
@@ -764,7 +758,7 @@ The frequency limits are non-negotiable. If a service restart didn't fix the pro
 
 ---
 
-## CONCLUSION
+## Operational Infrastructure
 
 Queries that run manually are useful. Queries that deploy automatically, suppress noise during maintenance, score business impact, and trigger remediation are operational infrastructure.
 

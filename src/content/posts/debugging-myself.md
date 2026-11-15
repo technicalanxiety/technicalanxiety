@@ -6,8 +6,6 @@ image: victory.jpg
 tags: ["Anxiety", "Leadership"]
 ---
 
-## PURPOSE
-
 Five years ago, I wrote about surviving anxiety during the pandemic. That was the survival guide, written from inside the storm. This is different. This is written from the other side.
 
 I've won the battle for my mind. I've beaten my greatest foe: myself.
@@ -18,9 +16,7 @@ It started with a single sentence from my therapist during our first visit. She 
 
 Understanding reality became the key to escaping.
 
-## WALKTHROUGH
-
-### The Circle
+## The Circle
 
 The thing about the anxiety circle is you never really know when you're in it.
 
@@ -44,7 +40,7 @@ You see, I'm a problem solver. Everything is a puzzle for me to put together or 
 
 This would become the biggest problem I would ever solve. The most personal one. The one that mattered most.
 
-### The Glasses of Perception
+## The Glasses of Perception
 
 My therapist gave me the first clue: I was intelligent, and that was both the trap and the exit.
 
@@ -58,7 +54,7 @@ What does this look like practically? Naming what's actually happening versus wh
 
 The glasses of perception let you see which is which. And at the very least, they allow you to look at it from a different angle, gain a different perspective. This is a powerful weapon.
 
-### The Invisible Trigger
+## The Invisible Trigger
 
 My particular anxiety is a physical manifestation of a psychological trigger. My body reacts before my conscious mind knows why. The trigger is invisible because it's rarely the obvious thing. It's not the deadline. It's not the difficult conversation. It's the meaning my brain assigns to them, the imagined consequences, the weight of expectations I've constructed.
 
@@ -66,7 +62,7 @@ Learning to identify what's actually setting me off versus what I think is setti
 
 Outside influence and pressure became the inputs I learned to manage. Not the stressors themselves, but my interpretation of them. Once I understood that, I had something to work with. A system I could actually debug.
 
-### The Formula
+## The Formula
 
 My band camp notes from 1994 had a line I dismissed for decades:
 
@@ -82,9 +78,7 @@ This is a skill, not a trait. It requires practice. Thousands of repetitions. An
 
 The framework is only half of it. You also need weapons. The tactical tools that keep you functional while you're learning to see clearly. For me, that was diet, exercise, sleep, human contact, music, and professional help. I wrote about all of them in my [Pandemic Recovery](/pandemic-recovery/) post when I was still in the thick of it. Those weren't the cure. But they were the ammunition that kept me in the fight long enough to find one.
 
-## CONCLUSION
-
-### The Victory
+## The Victory
 
 Freedom. It feels like freedom.
 
@@ -94,7 +88,7 @@ I don't suffer anymore. The circle doesn't own me. I own it. When something trie
 
 Everything around me is bright now. Hopeful. Not because life got easier, but because I'm not fighting my own mind while trying to live it.
 
-### The Truth About Time
+## The Truth About Time
 
 Five years. That's the gap between my [pandemic survival post](/pandemic-recovery/) and this one.
 
@@ -120,7 +114,7 @@ Because it does.
 
 Everything worth doing is hard. This is worth doing. Fighting for your own mind is worth it.
 
-### Why This Matters for Leadership
+## Why This Matters for Leadership
 
 You cannot lead others if you cannot lead yourself.
 

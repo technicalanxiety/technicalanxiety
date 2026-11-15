@@ -9,10 +9,6 @@ description: "Master advanced KQL techniques for correlation analysis, anomaly d
 ---
 ## Correlation, Anomaly Detection, and Predictive Monitoring
 
----
-
-## PURPOSE
-
 Part 1 introduced context-aware monitoring and dynamic baselines. The patterns that stop you from drowning in noise. This part goes deeper: correlation analysis to see across systems, anomaly detection to surface what's genuinely unusual, and predictive patterns to catch problems before they arrive.
 
 Part 1 built confidence that your alerts mean something. Part 2 builds confidence that you're seeing the whole picture.
@@ -21,9 +17,7 @@ Part 1 built confidence that your alerts mean something. Part 2 builds confidenc
 
 ---
 
-## WALKTHROUGH
-
-### Pattern: Cross-Service Impact Analysis
+## Pattern: Cross-Service Impact Analysis
 
 Here's a scenario I've lived through too many times: an alert fires for a failing API endpoint. You investigate. Meanwhile, three other teams are investigating their own alerts, not realizing they're all looking at the same incident from different angles. Thirty minutes later, someone figures out the failures are correlated. By then, the blast radius has expanded and leadership is asking why it took so long.
 
@@ -85,7 +79,7 @@ This is the query I wish I'd had during every major incident I've worked. Instea
 
 ---
 
-### Pattern: Infrastructure Correlation Mapping
+## Pattern: Infrastructure Correlation Mapping
 
 Single-metric alerts tell you something is wrong. They don't tell you why.
 
@@ -163,7 +157,7 @@ Three separate queries capture issues in CPU, memory, and disk. The joins correl
 
 ---
 
-### Pattern: Statistical Anomaly Detection
+## Pattern: Statistical Anomaly Detection
 
 This is where we move from "did a number cross a line" to "is this actually unusual."
 
@@ -233,7 +227,7 @@ Notice that `['Anomaly Type']` includes "Unusual Improvement." I added this afte
 
 ---
 
-### Pattern: Volume Anomaly Detection
+## Pattern: Volume Anomaly Detection
 
 Traffic volume anomalies can indicate attacks, upstream failures, or marketing events your team forgot to mention. I've seen all three, sometimes in the same week.
 
@@ -314,7 +308,7 @@ The "Business Context" column in the output is there for a reason. When you're t
 
 ---
 
-### Pattern: Capacity Trend Forecasting
+## Pattern: Capacity Trend Forecasting
 
 The best alert is one that fires before the problem arrives.
 
@@ -425,9 +419,7 @@ The `['Projected Date']` column is what makes this actionable. "6.2 days until 8
 
 ---
 
-## CONCLUSION
-
-These are my examples. They're the patterns that made sense in the environments I've managed, solving the problems I kept running into. They're not meant to be copied verbatim. They're frameworks. The concept is identical; the implementation will be different.
+## Take the Structure, Adapt the Details
 
 Correlation shows you the blast radius. Anomaly detection separates signal from noise. Predictive patterns give you lead time. How you express those concepts in KQL depends on your service dependencies, your traffic patterns, your thresholds, your business context. Take the structure. Adapt the details. Build something that fits your environment.
 

@@ -6,10 +6,6 @@ image: pandemic.jpg
 tags: ["Anxiety"]
 ---
 
-> **Updated December 2024**: This post has been completely rewritten to reflect my evolved understanding of anxiety and to match the voice and insights developed over the past few years. The core experiences and tactics remain the same, but the storytelling and context have been significantly improved. The original was written in survival mode. This version is written with perspective.
-
-## PURPOSE
-
 I thought I was having a heart attack.
 
 Sharp pains in my chest. Weird sensations in my extremities. The kind of symptoms that make you drive to the emergency room at 2am convinced something is seriously wrong.
@@ -28,9 +24,7 @@ This post is what I learned in the process. Not a cure. Not a fix. Survival tact
 
 > If you're in crisis or experiencing a mental health emergency, please stop reading and get help. Call or text **988** (Suicide and Crisis Lifeline) or visit [Panic & Anxiety Community Support Emergency Help Lines](https://panicandanxiety.org/find-help/emergency-help-lines/) for immediate resources.
 
-## WALKTHROUGH
-
-### We Figured This Out Together
+## We Figured This Out Together
 
 Before I get into tactics, I need to tell you about my wife.
 
@@ -40,7 +34,7 @@ But what she didn't have in answers, she had in strength. The strength I lacked.
 
 If you have someone like that, lean on them. If you don't, find professional support immediately. You cannot fight this alone.
 
-### Professional Help First
+## Professional Help First
 
 I have Generalized Anxiety Disorder. Your anxiety might be different. The tactics that work for me might not work for you. That's why the first thing I did was seek professional help.
 
@@ -50,7 +44,7 @@ My therapist helped me understand the [anxiety circle](https://projectenergise.c
 
 I didn't understand it fully then. I do now. But even partial understanding gave me something to work with.
 
-### The Ammunition
+## The Ammunition
 
 Professional help gave me the framework. The tactics below gave me the ammunition to stay in the fight while the framework developed. Think of these as survival tools, not solutions.
 
@@ -64,7 +58,7 @@ Professional help gave me the framework. The tactics below gave me the ammunitio
 
 **Music and Stillness.** Music is my personal anchor. It allows me to focus, settle down, and drown out the noise around me. Especially in a busy household with kids everywhere. But the real principle is intentional breaks. Scheduled moments where you turn everything off and find stillness. I use music to get there. Find what works for you.
 
-### The Question I Couldn't Answer
+## The Question I Couldn't Answer
 
 Underneath all of it, the ER visits, the panic attacks, the tactics that kept me functional, was a question I couldn't escape:
 
@@ -74,7 +68,7 @@ I'm a problem solver. I've spent my career breaking down complex systems, findin
 
 At this point in my story, I didn't have the answer. I had tactics. I had support. I had professionals helping me understand. But the deeper question of what was actually driving this, what the real trigger was, that took years to figure out.
 
-## CONCLUSION
+## Survival Is Enough
 
 If you're new to anxiety or haven't yet realized you have it, my hope is that this gives you somewhere to start.
 
@@ -88,7 +82,7 @@ For now, if you're in the storm, know that survival is enough. Stay in the fight
 
 ---
 
-### Resources That Helped Me
+## Resources That Helped Me
 
 - [Anxiety & Depression Association of America](https://adaa.org/)
 - [Hope and Help For Your Nerves](https://www.amazon.com/Hope-Help-Your-Nerves-Anxiety/dp/0593201906/) by Dr. Claire Weekes
@@ -100,6 +94,8 @@ For now, if you're in the storm, know that survival is enough. Stay in the fight
 *[Debugging Myself](/debugging-myself/) was written five years later, from the other side. If you want to know how the story ends, start there.*
 
 *If you're struggling, please reach out to a professional. This is my story, not medical advice. But know that survival is possible, and so is victory.*
+
+*Updated December 2024: This post has been completely rewritten to reflect my evolved understanding of anxiety and to match the voice and insights developed over the past few years. The core experiences and tactics remain the same, but the storytelling and context have been significantly improved. The original was written in survival mode. This version is written with perspective.*
 
 ---
 

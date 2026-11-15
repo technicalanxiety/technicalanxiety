@@ -6,8 +6,6 @@ image: marching-band.jpg
 tags: ["Leadership"]
 ---
 
-## PURPOSE
-
 I found my leadership philosophy in a box of childhood junk.
 
 Not long ago, I was at my dad's house cleaning out my old closet, reliving memories through the various things my parents kept for me. That's when I found the aged notes from when I'd attended Drum Major Camp. Before I started reading the handwritten pages, circa 1994, I chuckled thinking, *oh, this will be good*.
@@ -18,9 +16,7 @@ At seventeen, standing on a practice field in Oklahoma, I wrote down ideas about
 
 This post isn't about drum majoring. It's about what a bunch of band kids understood about leadership that your organization probably doesn't.
 
-## WALKTHROUGH
-
-### Leaders Are Driven by "We," Not "What's In It For Me"
+## Leaders Are Driven by "We," Not "What's In It For Me"
 
 My notes made a distinction that still holds: followers are driven by ego and feeling good. Leaders are driven by the mission and by knowing, not feeling.
 
@@ -28,7 +24,7 @@ I've watched this play out in every organization I've touched. The person chasin
 
 In my technology career, I've seen this constantly. The engineer who designs for their resume builds complexity. The engineer who designs for the team that inherits it builds clarity. One is leading. One isn't.
 
-### You Cannot Lead Unless You Can Lead Yourself
+## You Cannot Lead Unless You Can Lead Yourself
 
 This was one of the "Four Pillars" in my notes, and it's the one I've violated most often in my career.
 
@@ -36,7 +32,7 @@ I deal with Generalized Anxiety Disorder. For years, I didn't manage it. I pushe
 
 Leading yourself means knowing your limits, managing your energy, and being honest about your capacity. It means the self-discipline my notes listed under "Drum Major Attitude" isn't about grinding harder. It's about grinding smarter so you're still standing when your team needs you.
 
-### People Don't Get Better by Making Them Feel Worse
+## People Don't Get Better by Making Them Feel Worse
 
 My seventeen-year-old self wrote: "Leading is about Forgiving and For Giving."
 
@@ -59,7 +55,7 @@ Good leaders build loyalty to themselves. Great leaders build people who don't n
 
 This is the real work. Not managing tasks. Building people's self-image so they carry their own worth instead of borrowing it from someone else.
 
-### Inspiration Over Enthusiasm
+## Inspiration Over Enthusiasm
 
 Here's where my camp notes got surprisingly philosophical. They distinguished between enthusiasm and inspiration. Enthusiasm, from the Greek "en theos" or "in the presence of the divine," sounds impressive. But my notes warned that enthusiasm fosters feelings of superiority and showmanship. Inspiration fosters cooperation and creation.
 
@@ -67,13 +63,13 @@ I've seen enthusiastic leaders. They're exhausting. They pump up rooms and burn 
 
 Inspirational leaders are different. They make you believe you can do something you didn't think possible. Not because they hyped you up, but because they showed you it was real.
 
-### Maintain Control Over Tempo
+## Maintain Control Over Tempo
 
 This one was specific to conducting, but it translates perfectly: stay the course, do not get ahead or fall behind.
 
 Every failed project I've seen has been a tempo problem. Leaders who sprint ahead of their team's capacity. Leaders who fall behind on decisions and create bottlenecks. The job isn't to go fast. The job is to set a pace that the whole organization can sustain.
 
-## CONCLUSION
+## The North Star
 
 After reflecting on all of this, two commands from my notes stand out as the north star:
 
