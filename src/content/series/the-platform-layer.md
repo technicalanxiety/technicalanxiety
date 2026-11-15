@@ -1,7 +1,7 @@
 ---
 title: "The Platform Layer"
 description: "The platform is what holds everything together. When it's solid, teams build confidently. When it's shaky, everything falls apart slowly."
-image: "platform-layer-2.jpg"
+image: "../../assets/img/platform-layer-2.jpg"
 tags: ["Leadership", "Architecture", "Platform"]
 order: 7
 featured: false

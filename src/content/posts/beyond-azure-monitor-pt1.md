@@ -1,7 +1,7 @@
 ---
 title: "Beyond Azure Monitor - Part 1: The Reality of Enterprise Monitoring"
 date: 2026-01-02
-image: beyond-azure-monitor-pt1.jpg
+image: "../../assets/img/beyond-azure-monitor-pt1.jpg"
 tags: [Azure, Operations, Monitoring]
 series: "Beyond Azure Monitor"
 series_part: 1

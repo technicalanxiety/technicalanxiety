@@ -3,7 +3,7 @@ title: "You Can't Solve Reliability Without Governance"
 date: 2026-06-03
 tags: [AI, Governance, Leadership, Operations]
 description: "The current generation of AI reliability tooling solves a hard problem. It stops at the code boundary. What lives on the other side is why AI adoption actually fails."
-image: reliability-governance.jpg
+image: "../../assets/img/reliability-governance.jpg"
 ---
 
 I'm at Microsoft Build 2026 and one theme keeps surfacing in every conversation I have. Not observability. Not tooling. Not model selection. Organizations aren't failing AI adoption because they can't see what's happening. They're failing because they can't act on what they see.

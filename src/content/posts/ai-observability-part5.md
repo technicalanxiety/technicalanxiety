@@ -3,7 +3,7 @@ title: "AI Observability, Part 5: Making It Operational"
 date: 2026-02-17
 tags: [AI, Azure, Operations, Observability]
 description: "Turn observability patterns into operational infrastructure with alert rules, workbooks, and deployment guidance that makes AI monitoring actionable."
-image: ai-observability.jpg
+image: "../../assets/img/ai-observability.jpg"
 series: "AI Observability"
 series_part: 5
 draft: false

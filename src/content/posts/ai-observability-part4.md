@@ -3,7 +3,7 @@ title: "AI Observability, Part 4: The Governance Layer"
 date: 2026-02-10
 tags: [AI, Azure, Governance, Observability]
 description: "Technical observability tells you what happened. Governance observability tells you whether it was acceptable and proves you're governing responsibly."
-image: ai-observability.jpg
+image: "../../assets/img/ai-observability.jpg"
 series: "AI Observability"
 series_part: 4
 draft: false

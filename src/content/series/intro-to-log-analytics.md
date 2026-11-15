@@ -1,7 +1,7 @@
 ---
 title: "Intro to Log Analytics"
 description: "Azure Monitor Logs is quite possibly one of the most powerful log aggregation platforms out there. The hardest part isn't the syntax. It's understanding the data you're working with."
-image: "la-view-logs.jpg"
+image: "../../assets/img/la-view-logs.jpg"
 tags: ["Log Analytics", "Azure", "Operations"]
 order: 8
 featured: false

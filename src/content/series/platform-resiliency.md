@@ -1,7 +1,7 @@
 ---
 title: "Platform Resiliency"
 description: "SRE failed outside Google because the promise couldn't travel. Here's a promise that can."
-image: "resiliency-part1.jpg"
+image: "../../assets/img/resiliency-part1.jpg"
 tags: ["Operations", "Leadership", "Platform", "Architecture"]
 order: 3
 featured: true

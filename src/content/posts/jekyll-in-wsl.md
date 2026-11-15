@@ -2,7 +2,7 @@
 title: "Jekyll in WSL"
 date: 2020-02-05
 description: "A complete walkthrough for setting up Jekyll in Windows Subsystem for Linux to edit and preview your GitHub Pages site locally."
-image: jekyll-in-wsl.jpg
+image: "../../assets/img/jekyll-in-wsl.jpg"
 tags: [Archive]
 ---
 
@@ -57,7 +57,7 @@ First things first, prepare for Jekyll and install a few programs in your subsys
 
     * This is what it should look like:
 
-    ![IPV6 and Ruby Fixed](/img/ipv6-fixed.jpg)
+    ![IPV6 and Ruby Fixed](../../assets/img/ipv6-fixed.jpg)
 
 1. Now install Bundler:
 
@@ -78,7 +78,7 @@ First things first, prepare for Jekyll and install a few programs in your subsys
 
     * It should look something like this:
 
-    ![Jekyll running](/img/jekyll-running.jpg)
+    ![Jekyll running](../../assets/img/jekyll-running.jpg)
 
 <br>
 
@@ -86,7 +86,7 @@ First things first, prepare for Jekyll and install a few programs in your subsys
 
 If all went well, you should see your site being regenerated each time you save your changes.
 
-![Jekyll working](/img/jekyll-working.jpg)
+![Jekyll working](../../assets/img/jekyll-working.jpg)
 
 Could you have just as easily installed Ruby on Windows? Sure. However, this is way more fun! Also, to easily transfer files between Windows and WSL, from inside WSL simply type the below and the file system opens in a file explorer window. Enjoy!
 

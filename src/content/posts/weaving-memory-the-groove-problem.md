@@ -3,7 +3,7 @@ title: "Weaving Memory Part 2: The Groove Problem"
 date: 2026-05-04
 tags: [AI, Architecture, Memory]
 description: "The second part of Weaving Memory. What the build taught me about the comfort-amplifier risk I named in Part 1, and why grounding memory outside the probabilistic system was the move I did not see in the spec."
-image: "weaving-memory.jpg"
+image: "../../assets/img/weaving-memory.jpg"
 series: "Weaving Memory"
 series_part: 2
 ---

@@ -1,7 +1,7 @@
 ---
 title: "The Poetry of Code"
 description: "The poetry isn't in the syntax. It's in the vision. These tools let you express that vision faster than ever before."
-image: "ai-collaboration.jpg"
+image: "../../assets/img/ai-collaboration.jpg"
 tags: ["Leadership", "Anxiety", "AI"]
 order: 10
 featured: false

@@ -2,7 +2,7 @@
 title: "You've Always Been Hybrid"
 date: 2025-12-26
 description: "Organizations ask 'are we hybrid or not?' as if it's a strategic decision they haven't made yet. The answer is yes. The question is whether you're operating like it."
-image: hybrid-reality.jpg
+image: "../../assets/img/hybrid-reality.jpg"
 tags: [Infrastructure, Operations, Governance]
 ---
 

@@ -3,7 +3,7 @@ title: "A Year in Eight Weeks"
 date: 2026-11-01
 tags: [Leadership, Anxiety]
 description: "I left the toxic place and landed the best role of my career. The weight came with me anyway. It never lightened. What changed is who helps me lift it."
-image: "a-year-in-eight-weeks.jpg"
+image: "../../assets/img/a-year-in-eight-weeks.jpg"
 ---
 
 Not long ago I wrote about leaving. I ended that piece late at night, unemployed, calling it freedom, and I meant every word. The mine was behind me and I felt more alive than I had in years.

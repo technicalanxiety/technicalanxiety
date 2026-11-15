@@ -3,7 +3,7 @@ title: "The Value of Context"
 date: 2026-03-02
 tags: [AI, Leadership, Development]
 description: "Context is the real product of AI collaboration. It's also the real risk. What happens to the digital self when the mirror changes."
-image: "the-value-of-context.jpg"
+image: "../../assets/img/the-value-of-context.jpg"
 ---
 
 ## What Happens to the Digital Self When the Mirror Changes

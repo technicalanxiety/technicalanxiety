@@ -1,7 +1,7 @@
 ---
 title: "Confidence Engineering - Part 5: Confidently Execute Authority"
 date: 2026-06-12
-image: confidence-engineering-pt1.jpg
+image: "../../assets/img/confidence-engineering-pt1.jpg"
 tags: [Leadership, Governance, Operations, AI]
 description: "When the gate becomes the bottleneck, just open the gate."
 series: "Confidence Engineering"
@@ -52,7 +52,7 @@ That's three variables. A confidence score derived from observed outcomes for th
 
 Three routing lanes emerge from this logic. Work with no calibration history, where the task type is novel or the context is unfamiliar, always routes to a human. That's the mandatory gate. It exists because confidence without evidence is assumption, and assumption does not get to auto-pass into production. Work below the threshold routes to human review. The reviewer is targeted rather than saturated, seeing the work that actually needs judgment rather than drowning in a queue of work that doesn't. Work above the threshold, where the task type has demonstrated across engagements that its output holds downstream, proceeds automatically with logged sampling for audit and outcome measurement.
 
-![Confidence-routed gate reference architecture. Orchestrator dispatches task units through a confidence-routed gate that evaluates confidence score multiplied by blast radius. Three routing lanes: mandatory gate for novel task types, auto-pass for calibrated work above threshold, and human review for work below threshold or high blast radius. Approved output ships, outcomes are measured downstream, and results feed back to a cross-engagement confidence store that recalibrates the gate. Confidence Engineering governs the two nodes the loop cannot self-protect: Decision Authority owns thresholds and accountability, Measurement Honesty keeps the outcomes node truthful.](/img/crg-reference-architecture.png)
+![Confidence-routed gate reference architecture. Orchestrator dispatches task units through a confidence-routed gate that evaluates confidence score multiplied by blast radius. Three routing lanes: mandatory gate for novel task types, auto-pass for calibrated work above threshold, and human review for work below threshold or high blast radius. Approved output ships, outcomes are measured downstream, and results feed back to a cross-engagement confidence store that recalibrates the gate. Confidence Engineering governs the two nodes the loop cannot self-protect: Decision Authority owns thresholds and accountability, Measurement Honesty keeps the outcomes node truthful.](../../assets/img/crg-reference-architecture.png)
 
 The proportions shift over time. Early in an engagement, most work is novel. The mandatory gate dominates. As task types accumulate outcome history and earn their thresholds, the calibrated majority migrates toward auto-pass and the human reviewer concentrates on the genuinely risky minority. The system gets faster as it gets smarter, not because anyone lowered the bar, but because evidence accumulated to justify the speed.
 

@@ -19,7 +19,7 @@ npm run backlog:check    # see what's ready to publish
 npm run backlog publish post-slug.md
 
 # 4. Commit and push
-git add src/content/backlog/post-slug.md public/img/
+git add src/content/backlog/post-slug.md src/assets/img/
 git commit -m "post: schedule new post about topic"
 git push
 ```
@@ -38,7 +38,7 @@ title: "Post Title"
 date: 2026-01-15
 tags: [Azure, Leadership]
 description: "SEO description 150-160 characters that entices clicks from search results and social media"
-image: "filename.jpg"
+image: "../../assets/img/filename.jpg"
 ---
 ```
 
@@ -52,7 +52,7 @@ tags: [Azure, Governance]
 series: "Series Name"
 series_part: 1          # same field in backlog/ and posts/
 description: "SEO description for this part of the series"
-image: "filename.jpg"
+image: "../../assets/img/filename.jpg"
 ---
 ```
 
@@ -93,33 +93,37 @@ node scripts/update-series-links.js
 
 ```bash
 # 1. Download from Unsplash and save the full-size original, uncropped
-cp ~/Downloads/photo.jpg public/img/filename.jpg
+cp ~/Downloads/photo.jpg src/assets/img/filename.jpg
 
-# 2. Reference it in front matter (before step 3, so it's treated as featured)
-image: "filename.jpg"
+# 2. Reference it in front matter, relative to the post file
+image: "../../assets/img/filename.jpg"
 
-# 3. Optimize
-node optimize-images.js
-
-# 4. Add attribution at end of post
+# 3. Add attribution at end of post
 ```
 
-`optimize-images.js` only processes images that are new or newer than their
-optimized versions. For a featured image (any file named in a post's `image:`
-front matter) that isn't already 1200x630, it:
+There's no optimize step. Images in `src/assets/img/` are processed by Astro at
+build time (`image()` in `src/content.config.ts` validates the path, so a typo
+fails the build):
 
-- Center-crops the full-size original to 1200x630
-- Writes `public/img/optimized/filename.{avif,webp,jpg}` (OptimizedImage.astro
-  serves these), each encoded once from the original
-- Replaces `public/img/filename.jpg` with the 1200x630 version, since that path
-  is served directly as `og:image` and as card backgrounds
+- Post header and cards: AVIF/WebP at the size each layout displays
+- `og:image`: a 1200x630 JPEG, center-cropped from the original
+- Only the original is committed; generated files live in `dist/`
 
-The crop keeps the center of the frame. If the subject is off-center, check
-`public/img/filename.jpg` after running, and crop the original yourself to
-roughly 1.9:1 around the subject before step 3.
+The crop keeps the center of the frame. If the subject is off-center, check the
+post's `og:image` after `npm run build` and, if needed, crop the original to
+roughly 1.9:1 around the subject.
 
-Other images in `public/img/` (in-post screenshots, diagrams) are never cropped,
-only scaled down to 1200px wide.
+In-post images (screenshots, diagrams) go in `src/assets/img/` too, linked
+relatively so Astro optimizes them:
+
+```markdown
+![Query results](../../assets/img/query-results.png)
+```
+
+`public/img/` only holds the site's default social image. Old image URLs from
+before the move (`/img/<name>.jpg`, `/img/optimized/<name>.{avif,webp,jpg}`)
+keep working: `src/pages/img/[...path].ts` writes a web-sized copy at each one
+during the build, for hotlinks and image-search results.
 
 ## Unsplash Attribution Template
 
@@ -239,7 +243,7 @@ npm outdated           # Check for outdated packages
 ## Pre-Publish Checklist
 
 - [ ] Front matter complete (title, date, image, tags, description)
-- [ ] Image in `public/img/` with variants in `public/img/optimized/`
+- [ ] Image in `src/assets/img/`, referenced as `../../assets/img/<file>`
 - [ ] Image attribution at end of post
 - [ ] Code blocks have language tags
 - [ ] Links tested

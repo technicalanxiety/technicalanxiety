@@ -2,7 +2,7 @@
 title: "Intro to Log Analytics - Part 1"
 date: 2020-02-07
 description: "Getting started with Azure Log Analytics and KQL - learn to write your first queries and create visualizations from VM performance data."
-image: la-view-logs.jpg
+image: "../../assets/img/la-view-logs.jpg"
 tags: [Archive]
 series: "Intro to Log Analytics"
 series_part: 1
@@ -28,21 +28,21 @@ Let me just get this out there, Azure Monitor Logs (formerly OMS, formerly Log A
 
 There are quite a few ways to get to the log workspace: from Monitor, from the VM blade, from All Resources, etc. I like to add Log Analytics as a favorite on my side bar (I'm in log analytics A LOT) for easy finding. Also, the new Azure Portal homepage has a really cool history Home page now that remembers your most used resource types.
 
-![Home](/img/azure-home.jpg)
+![Home](../../assets/img/azure-home.jpg)
 
 
 <br>
 
 Now that we're in the workspace, it's time to write your first query! Type this in the query box: **InsightsMetrics** and then click the RUN button
 
-![Query](/img/first-query.jpg)
+![Query](../../assets/img/first-query.jpg)
 
 
 <br>
 
 Congradulations! You've just run your first query. You're also probably not very impressed with the results.
 
-![Is This Excel?](/img/excel.jpg)
+![Is This Excel?](../../assets/img/excel.jpg)
 
 
 <br>
@@ -58,7 +58,7 @@ The hardest part of creating queries is understanding the data you're working wi
 
 The *summarize* option filters the table *by* the chosen column. In this case, we're filtering on *Namespace* to understand all the different metric types we can visualize.
 
-![Namespace](/img/namespace.jpg)
+![Namespace](../../assets/img/namespace.jpg)
 
 
 <br>
@@ -102,7 +102,7 @@ This still isn't exactly what we want so let's continue. We have narrowed down t
 
 Now we're getting somewhere, finally. So what's going on here. Let me explain. Believe it or not, you can actually *create* columns on the fly. What we've done here is create a column named 'AverageUtilization' that contains the average values of the 'Val' column data. To ultimately get to the actualy pretty graph, you need to **BIN** the data into buckets of time. The *bin(TimeGenerated, 15m)* does exactly that. It takes the 'AverageUtilization' data and converts it into 15 minute bucket averages. You can see that in the output below:
 
-![Finally](/img/finally.jpg)
+![Finally](../../assets/img/finally.jpg)
 
 
 <br>
@@ -118,7 +118,7 @@ In order to view time related data on a graph, you must *bin* your data into tim
 
 That's pretty cool right?
 
-![Pretty Graph](/img/pretty-graph.jpg)
+![Pretty Graph](../../assets/img/pretty-graph.jpg)
 
 
 <br>

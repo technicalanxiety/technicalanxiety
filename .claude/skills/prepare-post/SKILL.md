@@ -1,6 +1,6 @@
 ---
 name: prepare-post
-description: Prepare a technicalanxiety.com backlog post for publishing - clean up front matter, fix internal links, add the Unsplash photo attribution, process the featured image with optimize-images.js, and check series wiring (series page, series_part, What's Next / NEXT_PART block, previous part's link). Use this whenever Jason asks to prepare, clean up, finish, ready, or schedule a post in src/content/backlog/, gives an Unsplash photo/author link for a post, swaps a post's photo, or adds a new part to a series - even if he doesn't say "prepare".
+description: Prepare a technicalanxiety.com backlog post for publishing - clean up front matter, fix internal links, add the Unsplash photo attribution, check the featured image (src/assets/img/, optimized by Astro at build), and check series wiring (series page, series_part, What's Next / NEXT_PART block, previous part's link). Use this whenever Jason asks to prepare, clean up, finish, ready, or schedule a post in src/content/backlog/, gives an Unsplash photo/author link for a post, swaps a post's photo, or adds a new part to a series - even if he doesn't say "prepare".
 ---
 
 # Prepare a backlog post for publishing
@@ -22,8 +22,8 @@ Usually given in the request; ask for anything missing before you start:
 - Unsplash **photo link** (`https://unsplash.com/photos/...`), **author link**
   (`https://unsplash.com/@...`) and **author name**
 - The image: normally Jason has already saved the downloaded original to
-  `public/img/<slug>.jpg`. Check the front matter `image:` and `public/img/`
-  rather than asking.
+  `src/assets/img/<slug>.jpg`. Check the front matter `image:` and
+  `src/assets/img/` rather than asking.
 
 ## Step 1: Run the checker
 
@@ -48,10 +48,13 @@ tags: [Leadership, Anxiety]
 series: "Series Name"        # series posts only
 series_part: 2               # series posts only; never series_order
 description: "150-160 characters"
-image: "slug.jpg"
+image: "../../assets/img/slug.jpg"
 ---
 ```
 
+- `image` is a path relative to the post file. Posts in `backlog/` and
+  `posts/` sit at the same depth, so the path survives publishing. A wrong
+  path fails the build (`image()` in the schema), which is the point.
 - Tags unquoted, from existing tags where possible (the checker lists new ones;
   a new tag is fine if Jason means it, so ask).
 - Description 150-160 characters. If it's outside that range, propose a
@@ -83,36 +86,32 @@ When the photo changes, replace the existing line instead of adding another.
 
 ## Step 5: Image
 
-`public/img/` holds the **uncropped original**. Don't crop or resize it
-yourself, because `optimize-images.js` needs the full-size file:
+`src/assets/img/` holds the **uncropped original** (`<slug>.jpg`). Don't crop,
+resize or compress it: Astro does that at build time. From the original it
+generates AVIF/WebP for the post header and cards, and a center-cropped
+1200x630 JPEG for `og:image`. Nothing is committed except the original.
 
-```bash
-node optimize-images.js
-```
+Images inside the post body work the same way: save them to
+`src/assets/img/` and link them relatively, `![Alt text](../../assets/img/name.png)`.
+Never `/img/...`: that's `public/`, which Astro doesn't optimize. The checker
+flags it.
 
-For any image named in a post's `image:` front matter that isn't already
-1200x630, it center-crops from the original, writes
-`public/img/optimized/<slug>.{avif,webp,jpg}`, and replaces the original with
-the 1200x630 version (that path is the og:image and card background). So the
-`image:` front matter must be in place before you run it, or the image is only
-resized, not cropped.
-
-Then **look at the crop**: the center crop can cut off an off-center subject.
-Read `public/img/<slug>.jpg` as an image and describe what's in frame. If the
-subject is clipped, say so. The fix is for Jason to crop the original to about
-1.9:1 around the subject, then rerun.
+Then **look at the crop**. The social image is a center crop to 1.91:1, which
+can cut off an off-center subject. After `npm run build`, open the post's
+`og:image` file (the URL is in `dist/<slug>/index.html`, under `dist/_astro/`;
+a post in `backlog/` isn't built, so check it after it moves, or temporarily
+copy it into `posts/` locally and delete the copy). Describe what's in frame.
+If the subject is clipped, say so: the fix is for Jason to crop the original
+to about 1.91:1 around the subject.
 
 Things to know:
 
-- The script skips images whose optimized versions are newer than the source,
-  using file timestamps. After a `git checkout` or `git restore`, it may redo
-  unrelated images. Only `.avif` files actually change (the bytes differ by
-  encoder version), so run `git restore public/img/optimized/` on anything
-  that isn't this post's image.
-- If the post's photo changed, the new original just replaces
-  `public/img/<slug>.jpg`. Its newer timestamp makes the script reprocess it.
-- Report the output sizes. Over 200KB for a featured image deserves a mention;
-  grainy photos can make AVIF bigger than the JPG.
+- The checker warns when an original is smaller than 1200x630 (Astro won't
+  upscale, so the social image comes out soft) or far from 1.91:1 (heavier crop).
+- Replacing the photo: overwrite `src/assets/img/<slug>.jpg`, or point
+  `image:` at the new file and delete the old one if nothing else uses it.
+- Astro caches generated images between builds, so only new or changed
+  images add build time.
 
 ## Step 6: Series posts
 
@@ -126,7 +125,8 @@ Mismatches silently drop the post from series navigation:
    existing page (`title`, `description`, `image`, `tags`, `order`, `featured`;
    body sections Overview, The Core Problem, What You'll Learn, ...). Ask Jason
    for the content rather than writing it, and pick an `order` no other page
-   uses. Its image goes through `optimize-images.js` the same way.
+   uses. Its image goes in `src/assets/img/` the same way, referenced as
+   `image: "../../assets/img/<name>.jpg"`.
 2. **Part number.** Use `series_part: N`, the next number with no gap or
    duplicate. `series_order` fails the build on purpose.
 3. **What You'll Learn.** The series page lists every part as
@@ -175,6 +175,6 @@ schema errors in front matter and series pages.
 Keep it short. List what changed (front matter, links, attribution, image
 sizes and what the crop shows, series edits), any warnings Jason needs to
 decide on, and when the post will publish. Don't commit or push unless he asks.
-When he does, the post and its images
-(`public/img/<slug>.jpg`, `public/img/optimized/<slug>.*`) go in one commit:
+When he does, the post and its image
+(`src/assets/img/<slug>.jpg`, plus any body images) go in one commit:
 `post: schedule "<Title>"`, with the photo credit in the body.

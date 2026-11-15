@@ -1,7 +1,7 @@
 ---
 title: "Three Frameworks Walk Into an Agent"
 date: 2026-07-10
-image: three-frameworks.jpg
+image: "../../assets/img/three-frameworks.jpg"
 tags: [AI, Architecture, Governance, Observability]
 description: "Three frameworks built separately turned out to be one system. A real question about agent memory forced them to interoperate."
 ---

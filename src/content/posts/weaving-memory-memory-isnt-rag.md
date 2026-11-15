@@ -3,7 +3,7 @@ title: "Weaving Memory Part 3: Memory Isn't RAG, and RAG Isn't Memory"
 date: 2026-06-15
 tags: [AI, Architecture, Memory]
 description: "The final part of Weaving Memory. A neuroscience document mapped biological memory onto data storage. Loom had six of eight principles. The two it missed changed the spec."
-image: "weaving-memory.jpg"
+image: "../../assets/img/weaving-memory.jpg"
 series: "Weaving Memory"
 series_part: 3
 ---

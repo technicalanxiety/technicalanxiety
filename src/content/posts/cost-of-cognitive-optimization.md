@@ -3,7 +3,7 @@ title: "The Cost of Cognitive Optimization"
 date: 2026-03-15
 tags: [AI, Development, Leadership]
 description: "When AI tools learn to work with you perfectly, you stop seeing your own gaps. The mirror that learns becomes the mirror that accommodates."
-image: "the-cost-of-cognitive-optimization.jpg"
+image: "../../assets/img/the-cost-of-cognitive-optimization.jpg"
 ---
 
 I was on version eight of a thought leadership piece for my company blog when I realized something was wrong.

@@ -1,7 +1,7 @@
 ---
 title: "Confidence Engineering - Part 1: Why the Trust Discourse Is Sabotaging Itself"
 date: 2025-12-21
-image: confidence-engineering-pt1.jpg
+image: "../../assets/img/confidence-engineering-pt1.jpg"
 tags: [Leadership, Operations, Anxiety]
 description: "Stop asking if you can trust AI. Start building confidence in systems you understand. The trust discourse is sabotaging adoption with the wrong frame."
 series: "Confidence Engineering"

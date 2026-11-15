@@ -3,7 +3,7 @@ title: "Thinking Through the Machine"
 date: 2026-01-12
 tags: [AI, Development, Leadership]
 description: "AI as a writing partner, not a ghostwriter. How to use AI to think better, not to avoid thinking entirely."
-image: "ai-writing.jpg"
+image: "../../assets/img/ai-writing.jpg"
 ---
 
 <iframe style="border-radius:12px" src="https://open.spotify.com/embed/episode/4ycD1ev7uUAYr0wbRAy4J5?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>

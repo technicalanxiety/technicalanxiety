@@ -2,18 +2,20 @@
 // Two-column grid of post cards (image, date, read time, title, excerpt, tags).
 // Used by the topic pages and Start Here.
 import type { CollectionEntry } from 'astro:content';
+import { backgroundImageUrl } from '../utils/images';
 
 export interface Props {
   posts: CollectionEntry<'posts'>[];
 }
 
 const { posts } = Astro.props;
+const cardImages = await Promise.all(posts.map((post) => backgroundImageUrl(post.data.image, 800)));
 ---
 
 <div class="posts-grid">
-  {posts.map((post) => (
+  {posts.map((post, i) => (
     <article class="post-card">
-      <div class="post-image" style={`background-image: url(/img/${post.data.image || 'article-header.jpg'})`}>
+      <div class="post-image" style={`background-image: url(${cardImages[i]})`}>
         <a href={`/${post.id}/`} class="image-link"></a>
       </div>
       <div class="post-content">

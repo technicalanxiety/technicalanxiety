@@ -2,7 +2,7 @@
 title: "Using Log Analytics to ... view logs"
 date: 2024-02-18
 description: "Using Log Analytics as an actual log aggregation tool - building human-readable tables to view VM status with KQL functions."
-image: la-view-logs.jpg
+image: "../../assets/img/la-view-logs.jpg"
 tags: [Archive]
 series: "Intro to Log Analytics"
 series_part: 3
@@ -115,7 +115,7 @@ Now for the fun part. The query itself.
 
 ## CONCLUSION
 
-![The Result](/img/log-results-formatted.png)
+![The Result](../../assets/img/log-results-formatted.png)
 
 ---
 

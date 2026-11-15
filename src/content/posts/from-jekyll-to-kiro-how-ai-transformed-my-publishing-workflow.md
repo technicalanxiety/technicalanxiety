@@ -1,7 +1,7 @@
 ---
 title: "From Jekyll to Kiro: How AI Transformed My Publishing Workflow"
 date: 2025-12-23
-image: publish-transformation.jpg
+image: "../../assets/img/publish-transformation.jpg"
 tags: [AI, Development, Productivity]
 description: "Five years ago I was manually running Jekyll in WSL. Now I have an AI-assisted, fully automated publishing platform. Here's the journey."
 ---

@@ -1,7 +1,7 @@
 ---
 title: "Beyond Azure Monitor - Part 2: Advanced KQL Patterns for Real-World Monitoring"
 date: 2026-01-05
-image: beyond-azure-monitor-pt1.jpg
+image: "../../assets/img/beyond-azure-monitor-pt1.jpg"
 tags: [Azure, Operations, Log Analytics]
 series: "Beyond Azure Monitor"
 series_part: 2

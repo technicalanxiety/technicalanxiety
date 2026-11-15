@@ -3,7 +3,7 @@ title: "The Storage Architect's Curse"
 date: 2026-02-24
 tags: [Anxiety, Leadership, Infrastructure]
 description: "When professional survival instincts that propel your career become pathological in personal life. How over-preparation became armor, then identity, then curse."
-image: "storage-architects-curse.jpg"
+image: "../../assets/img/storage-architects-curse.jpg"
 ---
 
 I spent Saturday afternoon sitting in my office chair, staring at a museum I didn't mean to build.

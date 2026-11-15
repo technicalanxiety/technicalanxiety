@@ -3,7 +3,7 @@ title: "Into The AI Governance Trap: The Beaten Path"
 date: 2026-02-04
 tags: [Leadership, Architecture, AI, Governance]
 description: "We're rushing toward AI governance as the solution to AI chaos. I've watched this movie before. Here's the map, here's where you are, and here's what happens next if you don't change course."
-image: "governance-failure-spiral.jpg"
+image: "../../assets/img/governance-failure-spiral.jpg"
 series: "AI Governance"
 series_part: 1
 draft: false
@@ -27,7 +27,7 @@ Here's the map. Here's where most organizations are right now. And here's what h
 
 ## The Nine Stages of Governance Failure
 
-![The AI Governance Failure Spiral](/img/failure-spiral-drawing.png)
+![The AI Governance Failure Spiral](../../assets/img/failure-spiral-drawing.png)
 
 ### Stage 1: New Capability Creates Chaos
 

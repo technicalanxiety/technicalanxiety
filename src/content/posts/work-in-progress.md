@@ -2,7 +2,7 @@
 title: "Work in Progress"
 date: 2020-01-14
 description: "Still deciding on themes and design. This site is a work in progress - check back for updates."
-image: workinprogress.jpg
+image: "../../assets/img/workinprogress.jpg"
 tags: [Archive]
 ---
 

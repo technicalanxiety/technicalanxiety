@@ -2,7 +2,7 @@
 title: "Intro to Log Analytics - Part 2"
 date: 2020-02-10
 description: "Advanced KQL techniques - learn to join tables, use project statements, and convert legacy Perf queries to the new InsightsMetrics format."
-image: la-view-logs.jpg
+image: "../../assets/img/la-view-logs.jpg"
 tags: [Archive]
 series: "Intro to Log Analytics"
 series_part: 2
@@ -91,7 +91,7 @@ The join feature is awesome all by itself and could probably be a post on it's o
 
 As before, the first line is identical to the top half of the query. The second line adds the newly created value *PercentFree* to the joined data containing free megabytes. Now, we have a table that shows average % free space against free megabytes. The next line calculates the average free megabytes, just as before on free space. And lastly, a final projection showing the data all together.
 
-![Old Query](/img/old-query.jpg)
+![Old Query](../../assets/img/old-query.jpg)
 
 
 <br>
@@ -118,7 +118,7 @@ Now that we know what the query is doing, it can be adapted to work in the new I
 
 And here is the output
 
-![New Query](/img/new-query.jpg)
+![New Query](../../assets/img/new-query.jpg)
 
 <br>
 
@@ -129,7 +129,7 @@ While this was really cool joining the same table on different values to view di
 >Pro tip:
 If you have an awesome query, click save, give it a name and it'll not be forgotten.
 
-![Save the Query](/img/save-the-query.jpg)
+![Save the Query](../../assets/img/save-the-query.jpg)
 
 <br>
 

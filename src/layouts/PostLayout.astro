@@ -9,7 +9,8 @@ import SeriesNavigation from '../components/SeriesNavigation.astro';
 import BackToTop from '../components/BackToTop.astro';
 import GiscusComments from '../components/GiscusComments.astro';
 import RecruiterChat from '../components/RecruiterChat.astro';
-import OptimizedImage from '../components/OptimizedImage.astro';
+import { Picture } from 'astro:assets';
+import { FEATURED, socialImageSrc } from '../utils/images';
 import { siteConfig } from '../config';
 import type { CollectionEntry } from 'astro:content';
 import { render } from 'astro:content';
@@ -41,7 +42,7 @@ const publishDate = new Date(post.data.date).toLocaleDateString('en-US', {
 // Construct page title and description
 const pageTitle = post.data.title;
 const pageDescription = post.data.description || `${post.data.title} - ${siteConfig.description}`;
-const pageImage = post.data.image ? `/img/${post.data.image}` : '/img/social-share-default.png';
+const pageImage = post.data.image ? await socialImageSrc(post.data.image) : '/img/social-share-default.png';
 
 // Generate canonical URL
 const canonicalURL = new URL(`/${post.id}/`, Astro.site).href;
@@ -99,10 +100,12 @@ const canonicalURL = new URL(`/${post.id}/`, Astro.site).href;
                 
                 {post.data.image && (
                   <div class="post-image">
-                    <OptimizedImage 
-                      src={`/img/${post.data.image}`}
+                    <Picture
+                      src={post.data.image}
                       alt={post.data.title}
-                      width={1200}
+                      formats={['avif', 'webp']}
+                      {...FEATURED}
+                      fit="cover"
                       loading="lazy"
                     />
                   </div>

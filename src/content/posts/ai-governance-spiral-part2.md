@@ -3,7 +3,7 @@ title: "Escaping the AI Governance Spiral: The Road Less Traveled"
 date: 2026-02-05
 tags: [Leadership, Architecture, AI, Governance]
 description: "You've seen the map. You know where you are. Here's the work that actually prevents the spiral - the requirements, the cost, and why most won't do it."
-image: "governance-failure-spiral.jpg"
+image: "../../assets/img/governance-failure-spiral.jpg"
 series: "AI Governance"
 series_part: 2
 draft: false

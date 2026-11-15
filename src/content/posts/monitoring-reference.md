@@ -3,7 +3,7 @@ title: "Monitoring Foundation: The Reference Implementation"
 date: 2026-01-09
 tags: [Azure, Operations, Infrastructure]
 description: "Deploy the Beyond Azure Monitor patterns as infrastructure code. Complete monitoring stack with intelligent alerts, workbooks, and ITSM integration."
-image: "monitoring-reference.jpg"
+image: "../../assets/img/monitoring-reference.jpg"
 ---
 
 ## Putting Beyond Azure Monitor Into Practice

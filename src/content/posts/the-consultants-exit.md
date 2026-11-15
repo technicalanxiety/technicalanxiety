@@ -3,7 +3,7 @@ title: "The Consultant's Exit: Why Recommendations Outlive Accountability"
 date: 2026-04-02
 tags: [Leadership, Architecture, Governance]
 description: "The consultant exits. The operator inherits. Four structural asymmetries explain why recommendations outlive the accountability of those who made them."
-image: the-consultants-exit.jpg
+image: "../../assets/img/the-consultants-exit.jpg"
 ---
 
 You spend 120 hours putting together everything you've collected. You've followed the prescribed methods and frameworks. It's nice and polished. All documentation is sitting on the desk of the single point of contact you've been working with. You feel great, as if you've accomplished something. You leave and on to the next. You don't even think about what comes next. What happens after the "work" is done. Does that document go in the trash? Does it live on? Does it get added to? Changed? Your job was the artifact.

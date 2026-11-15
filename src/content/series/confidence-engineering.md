@@ -1,7 +1,7 @@
 ---
 title: "Confidence Engineering"
 description: "Stop asking if you can trust AI. Start asking what would give you confidence in systems you've built, observed, and refined."
-image: "confidence-engineering-pt1.jpg"
+image: "../../assets/img/confidence-engineering-pt1.jpg"
 tags: ["Leadership", "Operations", "AI", "Governance"]
 order: 2
 featured: true
