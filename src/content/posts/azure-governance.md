@@ -6,7 +6,7 @@ image: az-guardrails.jpg
 tags: ["Archive"]
 ---
 
-> For a deeper look at how landing zones implement these governance concepts based on lessons from 100+ production environments, see [From Base Camp to Summit](https://www.technicalanxiety.com/basecamp-summit/).
+> For a deeper look at how landing zones implement these governance concepts based on lessons from 100+ production environments, see [From Base Camp to Summit](/basecamp-summit/).
 
 ## PURPOSE
 

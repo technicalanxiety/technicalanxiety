@@ -10,7 +10,7 @@ series_part: 2
 
 ## PURPOSE
 
-In this post, I'll be taking the query at the end of [Intro to Log Analytics](https://technicalanxiety.com/intro-to-la/), converting it to the new InsightsMetric format and walking through the more complex KQL language.
+In this post, I'll be taking the query at the end of [Intro to Log Analytics](/intro-to-la-pt1/), converting it to the new InsightsMetric format and walking through the more complex KQL language.
 
 Here is what we'll be starting with:
 
