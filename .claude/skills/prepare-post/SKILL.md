@@ -88,16 +88,18 @@ When the photo changes, replace the existing line instead of adding another.
 
 `src/assets/img/` holds the **uncropped original** (`<slug>.jpg`). Don't crop,
 resize or compress it: Astro does that at build time. From the original it
-generates AVIF/WebP for the post header and cards, and a center-cropped
-1200x630 JPEG for `og:image`. Nothing is committed except the original.
+generates AVIF/WebP for the post header (full image, its own shape) and the
+cards, and a 1200x630 JPEG for `og:image`, cropped toward the most salient
+part of the frame (sharp's "attention" strategy, not a blind center crop). Nothing is committed except the original.
 
 Images inside the post body work the same way: save them to
 `src/assets/img/` and link them relatively, `![Alt text](../../assets/img/name.png)`.
 Never `/img/...`: that's `public/`, which Astro doesn't optimize. The checker
 flags it.
 
-Then **look at the crop**. The social image is a center crop to 1.91:1, which
-can cut off an off-center subject. After `npm run build`, open the post's
+Then **look at the crop**. The social image is a 1.91:1 crop that aims for
+the most salient region, which usually keeps the subject, but can still miss
+it on busy or very tall photos. After `npm run build`, open the post's
 `og:image` file (the URL is in `dist/<slug>/index.html`, under `dist/_astro/`;
 a post in `backlog/` isn't built, so check it after it moves, or temporarily
 copy it into `posts/` locally and delete the copy). Describe what's in frame.

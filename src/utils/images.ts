@@ -11,16 +11,17 @@ import defaultPostImage from '../assets/img/article-header.jpg';
 
 export { defaultPostImage };
 
-/**
- * Featured image box: the 1.91:1 social card size. Originals are stored
- * uncropped and center-cropped to this at build time, which is what
- * optimize-images.js used to do to the source file.
- */
-export const FEATURED = { width: 1200, height: 630 } as const;
+/** Social card size (og:image): 1.91:1. */
+export const SOCIAL_IMAGE = { width: 1200, height: 630 } as const;
 
-/** Path of a 1200x630 JPEG for og:image (BaseLayout makes it absolute). */
+/**
+ * Path of a 1200x630 JPEG for og:image (BaseLayout makes it absolute).
+ * Originals come in any shape (portrait included), so crop toward the most
+ * salient region (sharp's 'attention') rather than the center: a center crop
+ * of a portrait sign cuts off its top lines.
+ */
 export async function socialImageSrc(image: ImageMetadata): Promise<string> {
-  const result = await getImage({ src: image, ...FEATURED, fit: 'cover', position: 'center', format: 'jpg' });
+  const result = await getImage({ src: image, ...SOCIAL_IMAGE, fit: 'cover', position: 'attention', format: 'jpg' });
   return result.src;
 }
 

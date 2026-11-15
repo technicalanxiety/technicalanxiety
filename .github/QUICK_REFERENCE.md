@@ -105,13 +105,15 @@ There's no optimize step. Images in `src/assets/img/` are processed by Astro at
 build time (`image()` in `src/content.config.ts` validates the path, so a typo
 fails the build):
 
-- Post header and cards: AVIF/WebP at the size each layout displays
-- `og:image`: a 1200x630 JPEG, center-cropped from the original
+- Post header: the full image at its own shape (never cropped)
+- Cards: AVIF/WebP at the size each layout displays
+- `og:image`: a 1200x630 JPEG, cropped toward the most salient part of the frame
 - Only the original is committed; generated files live in `dist/`
 
-The crop keeps the center of the frame. If the subject is off-center, check the
-post's `og:image` after `npm run build` and, if needed, crop the original to
-roughly 1.9:1 around the subject.
+The social crop aims for the most salient region (sharp's "attention"), not the
+center. For very tall or busy photos, check the post's `og:image` after
+`npm run build` and, if it misses, crop the original to roughly 1.9:1 around
+the subject.
 
 In-post images (screenshots, diagrams) go in `src/assets/img/` too, linked
 relatively so Astro optimizes them:

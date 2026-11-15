@@ -144,7 +144,8 @@ else error('Missing Unsplash attribution');
 
 // --- Image --------------------------------------------------------------------
 // Astro optimizes the image at build time (image() in content.config.ts) and
-// center-crops it to 1200x630 for og:image and the post header.
+// crops a 1200x630 og:image toward the most salient region; the post header
+// shows the full image.
 if (data.image) {
   const src = path.resolve(path.dirname(file), data.image);
   const shown = path.relative(ROOT, src);
@@ -161,7 +162,7 @@ if (data.image) {
       warn(`${shown} is ${size.width}x${size.height}: smaller than 1200x630, so the social image and header will be soft`);
     } else {
       const ratio = size.width / size.height;
-      const note = Math.abs(ratio - 1200 / 630) > 0.15 ? ' (center-cropped to 1.91:1 at build: check the subject is in frame)' : '';
+      const note = Math.abs(ratio - 1200 / 630) > 0.15 ? ' (cropped to 1.91:1 for og:image at build: check the subject is in frame)' : '';
       (note ? warn : ok)(`Image: ${shown}, ${size.width}x${size.height}, ${kb}KB${note}`);
     }
   }

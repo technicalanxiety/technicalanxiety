@@ -10,7 +10,7 @@ import BackToTop from '../components/BackToTop.astro';
 import GiscusComments from '../components/GiscusComments.astro';
 import RecruiterChat from '../components/RecruiterChat.astro';
 import { Picture } from 'astro:assets';
-import { FEATURED, socialImageSrc } from '../utils/images';
+import { socialImageSrc } from '../utils/images';
 import { siteConfig } from '../config';
 import type { CollectionEntry } from 'astro:content';
 import { render } from 'astro:content';
@@ -104,8 +104,7 @@ const canonicalURL = new URL(`/${post.id}/`, Astro.site).href;
                       src={post.data.image}
                       alt={post.data.title}
                       formats={['avif', 'webp']}
-                      {...FEATURED}
-                      fit="cover"
+                      width={1200}
                       loading="lazy"
                     />
                   </div>
