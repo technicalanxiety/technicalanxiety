@@ -36,7 +36,6 @@
   },
   "//overrides": "Remove yaml override when yaml-language-server ships with yaml >= 2.8.3 (GHSA-48c2-rrv3-qjmp). Remove markdownlint-cli overrides when it allows minimatch >= 11.0.1 (GHSA-g3hv-75wg-m249) , katex >= 0.18.2 (GHSA-238p-pmpm-9mq7) and re2js >= 2.8.7 (GHSA-gg6h-894w-4m9c)",
   "overrides": {
-    "fast-xml-parser": "5.7.0",
     "markdownlint-cli": {
       "katex": "0.19.1",
       "minimatch": "11.0.3",
