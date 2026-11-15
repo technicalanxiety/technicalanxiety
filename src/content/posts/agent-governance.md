@@ -3,7 +3,7 @@ title: "Governance of Agents: Why Agent 365 Changes Everything"
 date: 2025-12-11
 description: "Microsoft gave agents human identity in Entra ID. Your governance framework just developed a hole you didnt know existed. Heres how to prepare for it."
 image: agent-governance.jpg
-tags: ["Azure", "Governance"]
+tags: [Azure, Governance]
 ---
 
 *This post extends the governance framework established in [From Base Camp to Summit](/basecamp-summit/) and [Governance Disciplines Deep Dive](/gov-deep-dive/). If you're not familiar with the Five Disciplines, start there - this builds on that foundation.*

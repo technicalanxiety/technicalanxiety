@@ -3,7 +3,7 @@ title: "The Cost of Being the Canary"
 date: 2026-03-27
 description: "What it's like being stuck in a place where I still care enough for it to cost me something."
 image: cost-of-being-the-canary.jpg
-tags: ["Leadership", "Anxiety"]
+tags: [Leadership, Anxiety]
 ---
 
 Everyone knows what the canary is for. You put it in the mine because it dies before you do. The warning is in the dying. The whole system depends on the canary not surviving.

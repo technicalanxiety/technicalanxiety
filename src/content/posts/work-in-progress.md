@@ -3,7 +3,7 @@ title: "Work in Progress"
 date: 2020-01-14
 description: "Still deciding on themes and design. This site is a work in progress - check back for updates."
 image: workinprogress.jpg
-tags: ["Post"]
+tags: [Post]
 ---
 
 So I'm still deciding on an overall Jekyll theme and there will be content soon.

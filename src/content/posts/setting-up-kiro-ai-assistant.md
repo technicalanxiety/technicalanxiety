@@ -3,7 +3,7 @@ title: "How Kiro Turned an Architect Into a Developer"
 date: 2025-12-07
 description: "Im not a software developer. But with Kiro AI assistant properly configured, I can take a vision and make it reality. Heres how I set it up."
 image: kiro-brain.jpg
-tags: ["AI", "Development", "Productivity"]
+tags: [AI, Development, Productivity]
 ---
 
 Let me be clear: I'm not a software developer. I'm an architect. I spent 20 years climbing from helpdesk to infrastructure to cloud architecture. I can design systems, write infrastructure as code, and script automation. But building actual applications? That was always someone else's job.

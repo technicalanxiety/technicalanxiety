@@ -3,7 +3,7 @@ title: "Your Cluster Knows Who Acted. It Has No Idea Who's Accountable."
 date: 2026-03-09
 description: "Every Kubernetes governance model rests on an invisible assumption: humans are accountable at the end of every thread. Autonomous agents just severed it."
 image: k8s-accountability.jpg
-tags: ["AI", "Architecture", "Governance"]
+tags: [AI, Architecture, Governance]
 ---
 
 *This post connects directly to the framing established in the [Confidence Engineering series](/confidence-engineering-pt1/). If you haven't read it, the trust vs. confidence distinction matters here.*

@@ -3,7 +3,7 @@ title: "Decide or Drown - Part 2: Technical Gluttony"
 date: 2025-12-03
 description: "The technical debt collector is calling. What happens when organizations avoid making strategic technology decisions upstream."
 image: drown-pt1.jpg
-tags: ["Leadership"]
+tags: [Leadership]
 series: "Decide or Drown"
 series_part: 2
 ---

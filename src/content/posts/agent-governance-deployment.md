@@ -3,7 +3,7 @@ title: "Agent Governance Deployment: Bridging the IaC Gap"
 date: 2025-12-18
 description: "Microsoft gave you agent governance tools but no IaC support. Heres how to automate agent governance with PowerShell and Graph API until Bicep catches up."
 image: agent-governance-code.jpg
-tags: ["Azure", "Governance"]
+tags: [Azure, Governance]
 ---
 
 *This post provides practical implementation for the governance framework discussed in [Governance of Agents](/agent-governance/). If you haven't read that post, start there for context on why agent governance matters.*

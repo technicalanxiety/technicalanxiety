@@ -3,7 +3,7 @@ title: "The Platform Layer - Part 2: Why It Matters"
 date: 2025-12-13
 description: "The consequences of strong and weak platforms - why platform decisions compound over time."
 image: platform-layer-2.jpg
-tags: ["Leadership", "Architecture"]
+tags: [Leadership, Architecture]
 series: "The Platform Layer"
 series_part: 2
 ---

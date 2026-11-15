@@ -3,7 +3,7 @@ title: "A Thousand Acres"
 date: 2026-06-14
 description: "Cal Newport wrote a book about the craftsman mindset. My dad built a house. One of them taught me what the other left out."
 image: a-thousand-acres.jpeg
-tags: ["Leadership", "Anxiety", "Architecture"]
+tags: [Leadership, Anxiety, Architecture]
 ---
 
 My dad is a painter and contractor. Long retired now, but in his working years he owned his own crew. He built the house I grew up in on a thousand acres in Holdenville, Oklahoma. Drafted the blueprint himself. Did almost everything with his own hands, his crew assisting where needed. From the design on paper to the last coat of paint, a lifetime of trade knowledge applied to the most personal structure a person can create.
