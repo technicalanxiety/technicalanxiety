@@ -12,6 +12,14 @@ export default defineConfig({
     sitemap(), // Generate sitemap.xml
     react(),
   ],
+  vite: {
+    build: {
+      // Never inline fonts as data: URIs. The CSP allows fonts from 'self'
+      // only, and separate files get long-lived caching. Other assets keep
+      // Vite's default 4 KB inline limit.
+      assetsInlineLimit: (filePath) => (/\.(woff2?|ttf|otf)$/.test(filePath) ? false : undefined),
+    },
+  },
   markdown: {
     shikiConfig: {
       // Use Shiki for syntax highlighting (built into Astro)
