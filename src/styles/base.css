@@ -178,3 +178,11 @@ hr {
   white-space: nowrap;
   border: 0;
 }
+/* Inline SVG icons (Icon.astro): same box as the <ion-icon> element they
+   replaced. :where() keeps specificity at zero so sizing rules elsewhere win. */
+:where(.icon) {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  box-sizing: content-box;
+}
