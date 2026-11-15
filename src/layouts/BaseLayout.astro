@@ -2,6 +2,21 @@
 import { siteConfig } from '../config';
 import ThemeToggle from '../components/ThemeToggle.astro';
 import CookieConsent from '../components/CookieConsent.astro';
+// Self-hosted fonts (Fontsource): only the weights the site renders.
+// Orbitron has no 600 file on purpose: 600 headings resolve to 700, as they did with Google Fonts.
+import '@fontsource/rajdhani/300.css';
+import '@fontsource/rajdhani/400.css';
+import '@fontsource/rajdhani/500.css';
+import '@fontsource/rajdhani/600.css';
+import '@fontsource/rajdhani/700.css';
+import '@fontsource/orbitron/400.css';
+import '@fontsource/orbitron/700.css';
+import '@fontsource/orbitron/800.css';
+import '@fontsource/orbitron/900.css';
+import '@fontsource/fira-code/400.css';
+import '@fontsource/fira-code/500.css';
+import '@fontsource/fira-code/600.css';
+import '@fontsource/fira-code/700.css';
 import '../styles/theme.css';
 import '../styles/base.css';
 import '../styles/layout.css';
@@ -100,28 +115,6 @@ const imageURL = new URL(image, siteOrigin).href;
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="theme-color" content="#2196f3" />
-    
-    <!-- Fonts and Styles - Optimized for Performance -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Orbitron:wght@400;700;800;900&family=Fira+Code:wght@300;400;500;600;700&display=swap" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Orbitron:wght@400;700;800;900&family=Fira+Code:wght@300;400;500;600;700&display=swap" rel="stylesheet" /></noscript>
-    
-    <!-- Ionicons - Deferred Loading -->
-    <script is:inline>
-      // Defer Ionicons loading
-      window.addEventListener('load', function() {
-        const script1 = document.createElement('script');
-        script1.type = 'module';
-        script1.src = 'https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js';
-        document.head.appendChild(script1);
-        
-        const script2 = document.createElement('script');
-        script2.noModule = true;
-        script2.src = 'https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js';
-        document.head.appendChild(script2);
-      });
-    </script>
     
     <!-- Tron reactive background -->
     <style>

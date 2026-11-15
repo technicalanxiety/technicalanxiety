@@ -2,6 +2,7 @@
 // Content Flow Visualization
 // Manual updates only - no automation
 // Shows the incubation system in action
+import Icon from './Icon.astro';
 ---
 
 <div class="content-flow">
@@ -23,7 +24,7 @@
     <div class="stage-label">Backlog</div>
     <button class="stage-button" id="backlog-toggle">
       <div class="stage-value">0 scheduled</div>
-      <ion-icon name="chevron-down-outline" class="expand-icon"></ion-icon>
+      <Icon name="chevron-down-outline" class="expand-icon" />
     </button>
     <div class="stage-details" id="backlog-details">
       <ul class="backlog-list">
