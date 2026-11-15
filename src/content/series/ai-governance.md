@@ -1,7 +1,7 @@
 ---
 title: "AI Governance"
 description: "Most organizations are at Stage 2 right now: leadership knows there's chaos, someone's been tasked with 'figuring out governance.' The spiral from here is predictable. The escape is possible. The cost is real."
-image: "governance-failure-spiral.jpg"
+image: "../../assets/img/governance-failure-spiral.jpg"
 tags: [Leadership, Architecture, AI, Governance]
 order: 1
 featured: true

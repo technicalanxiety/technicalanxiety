@@ -3,7 +3,7 @@ title: "Learning Through the Machine: The Hollow Promise of AI Productivity"
 date: 2026-01-21
 tags: [AI, Leadership, Development]
 description: "AI can accelerate your growth or replace it. The productivity discourse gives you metrics that feel good but tell you nothing about what's happening to your capability."
-image: "learning-through-machine.jpg"
+image: "../../assets/img/learning-through-machine.jpg"
 ---
 
 ## The Metric Everyone Celebrates

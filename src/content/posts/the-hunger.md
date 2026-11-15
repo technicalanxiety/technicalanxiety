@@ -3,7 +3,7 @@ title: "The Hunger"
 date: 2026-02-01
 tags: [AI, Productivity, Leadership]
 description: "AI tools removed the speed limit on learning and creation. Then my body sent the invoice for months of borrowing against a balance that never existed."
-image: "the-hunger.jpg"
+image: "../../assets/img/the-hunger.jpg"
 ---
 
 Yesterday my body said "hold my beer."

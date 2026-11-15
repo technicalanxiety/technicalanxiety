@@ -3,7 +3,7 @@ title: "Why Architects Stop Translating"
 date: 2026-01-16
 tags: [Leadership, Architecture, Azure, Governance]
 description: "The system doesn't just fail architects. It teaches them to fail. Here's how institutional capture turns truth-tellers into artifact producers."
-image: "architects-stop-translating.jpg"
+image: "../../assets/img/architects-stop-translating.jpg"
 ---
 
 In the companion piece to this one, I argued that migrations fail when architects don't translate. The architect's job is to force conversations, end misconceptions, and make the invisible visible. When translation doesn't happen, the architect failed.

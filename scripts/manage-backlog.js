@@ -107,7 +107,7 @@ title: "${title}"
 date: ${dateStr}
 tags: []
 description: ""
-image: ""
+# image: "../../assets/img/${slug}.jpg"  (save the photo there, then uncomment)
 ---
 
 # ${title}

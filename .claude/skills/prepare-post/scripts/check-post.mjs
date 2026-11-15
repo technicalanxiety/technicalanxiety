@@ -15,7 +15,8 @@ import path from 'path';
 
 const ROOT = process.cwd();
 const CONTENT = path.join(ROOT, 'src', 'content');
-const IMG = path.join(ROOT, 'public', 'img');
+// Content images: src/assets/img/, referenced relative to the .md file
+const IMAGE_PREFIX = '../../assets/img/';
 const FIELD_ORDER = ['title', 'date', 'tags', 'series', 'series_part', 'description', 'image', 'author', 'draft'];
 
 const results = [];
@@ -142,28 +143,33 @@ else if (/unsplash/i.test(body)) error('Unsplash attribution is not in the stand
 else error('Missing Unsplash attribution');
 
 // --- Image --------------------------------------------------------------------
+// Astro optimizes the image at build time (image() in content.config.ts) and
+// crops a 1200x630 og:image toward the most salient region; the post header
+// shows the full image.
 if (data.image) {
-  const src = path.join(IMG, data.image);
-  const stem = path.parse(data.image).name;
-  if (!fs.existsSync(src)) {
-    error(`Image not found: public/img/${data.image}`);
+  const src = path.resolve(path.dirname(file), data.image);
+  const shown = path.relative(ROOT, src);
+  if (!data.image.startsWith(IMAGE_PREFIX)) {
+    error(`Image path should be relative to the post: image: "${IMAGE_PREFIX}${path.basename(data.image)}"`);
+  } else if (!fs.existsSync(src)) {
+    error(`Image not found: ${shown}`);
   } else {
-    const size = /\.jpe?g$/i.test(data.image) ? jpegSize(src) : null;
+    const size = /\.jpe?g$/i.test(src) ? jpegSize(src) : null;
     const kb = Math.round(fs.statSync(src).size / 1024);
-    if (size && (size.width !== 1200 || size.height !== 630)) {
-      error(`public/img/${data.image} is ${size.width}x${size.height}, ${kb}KB: run node optimize-images.js`);
-    } else if (size) {
-      ok(`Image is 1200x630, ${kb}KB`);
-    }
-    const variants = ['avif', 'webp', path.parse(data.image).ext.slice(1)].map(ext => path.join(IMG, 'optimized', `${stem}.${ext}`));
-    const missing = variants.filter(v => !fs.existsSync(v));
-    if (missing.length) error(`Missing optimized versions: ${missing.map(v => path.relative(ROOT, v)).join(', ')}`);
-    else {
-      const sizes = variants.map(v => `${path.extname(v).slice(1)} ${Math.round(fs.statSync(v).size / 1024)}KB`);
-      const big = variants.filter(v => fs.statSync(v).size > 200 * 1024);
-      (big.length ? warn : ok)(`Optimized versions: ${sizes.join(', ')}${big.length ? ' (over the 200KB target)' : ''}`);
+    if (!size) {
+      ok(`Image: ${shown}, ${kb}KB`);
+    } else if (size.width < 1200 || size.height < 630) {
+      warn(`${shown} is ${size.width}x${size.height}: smaller than 1200x630, so the social image and header will be soft`);
+    } else {
+      const ratio = size.width / size.height;
+      const note = Math.abs(ratio - 1200 / 630) > 0.15 ? ' (cropped to 1.91:1 for og:image at build: check the subject is in frame)' : '';
+      (note ? warn : ok)(`Image: ${shown}, ${size.width}x${size.height}, ${kb}KB${note}`);
     }
   }
+}
+const legacyBodyImages = [...body.matchAll(/!\[[^\]]*\]\(\/img\/([^)\s]+)\)/g)].map(m => m[1]);
+if (legacyBodyImages.length) {
+  error(`Body images use /img/ paths (not optimized, and the files moved): use ${IMAGE_PREFIX}${legacyBodyImages[0]}`);
 }
 
 // --- Series -------------------------------------------------------------------
@@ -195,7 +201,7 @@ if (data.series) {
       (listed ? ok : error)(listed
         ? `Series page lists Part ${part}`
         : `Series page ${page.file} has no "**Part ${part}: ...**" entry under What You'll Learn`);
-      if (page.data.image && !fs.existsSync(path.join(IMG, page.data.image))) error(`Series page image not found: public/img/${page.data.image}`);
+      if (page.data.image && !fs.existsSync(path.resolve(CONTENT, 'series', page.data.image))) error(`Series page image not found: ${page.data.image} (relative to src/content/series/)`);
     }
 
     const prev = siblings.find(p => Number(p.data.series_part) === part - 1);

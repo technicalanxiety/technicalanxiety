@@ -33,7 +33,7 @@ title: "Your Compelling Post Title"
 date: 2024-12-25                    # Future date for scheduling
 tags: [Azure, Leadership, Operations] # Use existing tags when possible
 description: "Clear SEO description that explains what readers will learn (150-160 chars)"
-image: "your-image.jpg"             # Optional: image in public/img/
+image: "../../assets/img/your-image.jpg" # Optional: relative to this file
 series: "Series Name"               # Optional: for multi-part content
 series_part: 1                      # Optional: part number in series
 ---
@@ -50,9 +50,11 @@ renders the title from front matter.
 
 #### 3. Add Images (Optional)
 If your post includes images:
-1. Add the full-size original to `public/img/your-image.jpg` (don't crop it)
-2. Reference in frontmatter: `image: "your-image.jpg"`
-3. Run image optimization: `node optimize-images.js` (crops featured images to 1200x630; see `.github/QUICK_REFERENCE.md`)
+1. Add the full-size original to `src/assets/img/your-image.jpg` (don't crop it)
+2. Reference in frontmatter: `image: "../../assets/img/your-image.jpg"`
+3. For images in the post body, link them relatively too: `![Alt](../../assets/img/name.png)`
+
+Astro optimizes and crops images at build time (see `.github/QUICK_REFERENCE.md`); there's no separate optimize step.
 
 #### 4. Preview Locally
 ```bash
@@ -98,7 +100,7 @@ After publishing (automatic or manual):
 - `description`: SEO description (150-160 characters)
 
 #### Optional Fields
-- `image`: Featured image filename (stored in `public/img/`)
+- `image`: Featured image path relative to the post, e.g. `../../assets/img/name.jpg` (validated at build)
 - `series`: Series name for multi-part content
 - `series_part`: Part number in the series (backlog and published posts)
 - `author`: Defaults to "Jason Rinehart"
@@ -246,7 +248,7 @@ series_part: 1               # Optional
 - **No date prefix** in filename (the date comes from front matter)
 - **Filename becomes slug** (e.g., `my-post.md` → `/my-post/`)
 - **Tags as array** format: `[Tag1, Tag2]`
-- **Images** referenced without path: `"image.jpg"` (stored in `public/img/`)
+- **Images** in `src/assets/img/`, referenced relatively: `"../../assets/img/image.jpg"`
 
 ## Series Management
 
@@ -282,8 +284,8 @@ One-line summary of the part.
 ## Who This Is For
 ```
 
-Add a `**Part N: Title**` entry each time a new part is written. Run the
-series page image through `node optimize-images.js` like a post image.
+Add a `**Part N: Title**` entry each time a new part is written. The
+series page image goes in `src/assets/img/` like a post image.
 
 ### Creating Series Links
 To link to the next post in a series, end your current post with this block,
@@ -369,9 +371,9 @@ You can manually trigger the publishing workflow from GitHub:
 #### Images Not Loading
 **Symptoms**: Broken image icons or missing images
 **Solutions**:
-1. Verify image exists in `public/img/` directory
-2. Check image filename in frontmatter (no path, just filename)
-3. Run image optimization: `node optimize-images.js`
+1. Verify the image exists in `src/assets/img/`
+2. Check the front matter path is relative to the post: `../../assets/img/<file>`
+3. Run `npm run build`: a wrong path fails with the post and field named
 
 #### Local Development Issues
 **Symptoms**: Site won't start or shows errors locally
@@ -448,7 +450,7 @@ npm run backlog publish your-post.md
 5. **Internal Linking**: Connect related posts to keep readers engaged
 
 ### Technical Standards
-1. **Image Optimization**: Always run `node optimize-images.js` for new images
+1. **Image Optimization**: Automatic at build time for images in `src/assets/img/`
 2. **Performance**: Keep images under 1MB, optimize for web
 3. **Accessibility**: Use descriptive alt text and proper heading hierarchy
 4. **Mobile-First**: Preview on mobile devices during writing
@@ -487,14 +489,12 @@ npm run dev                       # Start local development server
 npm run build                     # Test production build
 npm run preview                   # Preview production build locally
 
-# Image optimization
-node optimize-images.js           # Optimize images in public/img/
 ```
 
 ### File Locations
 - **Published Posts**: `src/content/posts/`
 - **Scheduled Posts**: `src/content/backlog/`
-- **Images**: `public/img/` (originals) and `public/img/optimized/` (processed)
+- **Images**: `src/assets/img/` (originals; Astro generates optimized versions at build)
 - **Configuration**: `src/config.ts`, `astro.config.mjs`
 - **Workflows**: `.github/workflows/`
 

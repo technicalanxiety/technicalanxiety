@@ -1,7 +1,7 @@
 ---
 title: "Azure Workbooks: Custom Dashboards That Don't Suck"
 date: 2026-01-22
-image: azure-workbooks.jpg
+image: "../../assets/img/azure-workbooks.jpg"
 tags: [Azure, Workbooks, Operations, Dashboards]
 description: "Stop building useless dashboards. Learn to create Azure Workbooks that actually help your team make decisions and solve problems faster."
 ---

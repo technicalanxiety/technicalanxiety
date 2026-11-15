@@ -3,7 +3,7 @@ title: "Confidence Is Not a Feeling"
 date: 2026-03-20
 tags: [AI, Architecture, Leadership]
 description: "The category error behind every AI trust debate. Confidence is the measured basis for authority delegation decisions."
-image: "confidence-not-feeling.jpg"
+image: "../../assets/img/confidence-not-feeling.jpg"
 ---
 
 ## The Category Error Behind Every AI Trust Debate

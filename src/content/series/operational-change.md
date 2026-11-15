@@ -1,7 +1,7 @@
 ---
 title: "Operational Change"
 description: "Your dashboards are green. Your customers aren't complaining. And you might still be blind to 90% of what's actually happening."
-image: "ops-changes-1.jpg"
+image: "../../assets/img/ops-changes-1.jpg"
 tags: ["Governance", "Operations", "Leadership"]
 order: 9
 featured: false

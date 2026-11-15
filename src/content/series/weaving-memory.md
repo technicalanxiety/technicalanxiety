@@ -1,7 +1,7 @@
 ---
 title: "Weaving Memory"
 description: "The seventy percent of AI context that cannot be exported. A practitioner journal of building Loom, the tradeoffs that shaped it, and what a neuroscience paper changed about the spec."
-image: "weaving-memory.jpg"
+image: "../../assets/img/weaving-memory.jpg"
 tags: [AI, Architecture, Memory, Leadership]
 order: 2
 featured: true

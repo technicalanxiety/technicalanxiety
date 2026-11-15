@@ -2,7 +2,7 @@
 title: "Operational Change - Part 2: The Operations Waterline"
 date: 2025-11-14
 description: "Large language models changed AIOps from expensive vendor theater to genuine operational intelligence that can absorb the toil."
-image: ops-changes-2.jpg
+image: "../../assets/img/ops-changes-2.jpg"
 tags: [Governance, Operations]
 series: "Operational Change"
 series_part: 2

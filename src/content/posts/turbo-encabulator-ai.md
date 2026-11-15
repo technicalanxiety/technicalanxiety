@@ -3,7 +3,7 @@ title: "Achieving Modal Inference Coherence Through Hydrostatically-Balanced Tok
 date: 2026-01-18
 tags: [AI, Azure, Architecture]
 description: "A satirical look at AI architecture complexity theater, followed by a practical guide to what Azure AI Landing Zones actually do—no token valves required."
-image: turbo-encabulator-ai.jpg
+image: "../../assets/img/turbo-encabulator-ai.jpg"
 author: "Jason Rinehart"
 draft: false
 ---
@@ -42,7 +42,7 @@ The reticulation network is further enhanced by the addition of a phasic normali
 
 *Figure 1: Responsible AI Landing Zone Accelerator — Logical Architecture View*
 
-![Responsible AI Landing Zone Accelerator Architecture Diagram](/img/turbo-encabulator-architecture.jpeg)
+![Responsible AI Landing Zone Accelerator Architecture Diagram](../../assets/img/turbo-encabulator-architecture.jpeg)
 
 At the center of the diagram, you will observe the Cognitive Inference Nucleus, represented by a hexagon to convey both stability and the six primary embedding dimensions discussed previously. From this nucleus, seventeen arrows radiate outward in a carefully randomized pattern, each terminating at a component box of varying size and color significance.
 

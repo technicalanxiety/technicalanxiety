@@ -1,7 +1,7 @@
 ---
 title: "Decide or Drown"
 description: "Your engineers are drowning in decisions that don't matter. The chaos isn't a failure of governance. It's a failure of leadership."
-image: "drown-pt1.jpg"
+image: "../../assets/img/drown-pt1.jpg"
 tags: ["Leadership", "Anxiety"]
 order: 4
 featured: false

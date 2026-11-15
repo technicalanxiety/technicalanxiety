@@ -1,7 +1,7 @@
 ---
 title: "Beyond Azure Monitor"
 description: "Azure Monitor isn't broken. Your implementation of it is. Here's how to build monitoring that produces signal instead of noise."
-image: "beyond-azure-monitor-pt1.jpg"
+image: "../../assets/img/beyond-azure-monitor-pt1.jpg"
 tags: ["Azure", "Operations", "Monitoring", "Log Analytics"]
 order: 6
 featured: false

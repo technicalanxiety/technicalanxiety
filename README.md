@@ -26,7 +26,7 @@ A technical blog covering Azure, cloud architecture, leadership, and navigating 
 │   │   ├── Header.astro         # Site navigation and search
 │   │   ├── Footer.astro         # Site footer
 │   │   ├── Hero.astro           # Homepage hero section
-│   │   ├── OptimizedImage.astro # Image optimization wrapper
+│   │   ├── Icon.astro           # Inline SVG icons
 │   │   ├── Pagination.astro     # Post list pagination
 │   │   ├── ReadingProgress.astro # Reading progress bar
 │   │   ├── RecruiterChat.astro  # AI recruiter chat widget
@@ -144,7 +144,7 @@ Each series has a landing page at `/series/[slug]/` with overview content, tag l
 
 ### Content Guidelines
 
-- **Images**: Place in `public/img/`, run `node optimize-images.js` to generate optimized versions
+- **Images**: Place in `src/assets/img/` and reference relatively (`../../assets/img/name.jpg`); Astro optimizes them at build time
 - **Tags**: PascalCase format — `[Azure, Leadership, Anxiety]`
 - **Internal links**: Always use trailing slashes — `/post-slug/`
 - **Series**: Series name in post frontmatter must match the series title exactly
@@ -256,7 +256,7 @@ npm run build
 
 **Content not showing**: Check frontmatter syntax, verify the file is in the correct directory, and confirm the date format is `YYYY-MM-DD`.
 
-**Images not loading**: Verify images are in `public/img/`, use filename only in frontmatter (no path prefix), and run `node optimize-images.js` after adding new images.
+**Images not loading**: Verify images are in `src/assets/img/` and the front matter path is relative to the post (`../../assets/img/name.jpg`). A wrong path fails `npm run build` with the post named.
 
 **Auto-publish not working**: Check the GitHub Actions logs for the "Publish Scheduled Posts" workflow. Verify `PAT_TOKEN` is configured in repository secrets.
 

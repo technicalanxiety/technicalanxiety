@@ -2,7 +2,7 @@
 title: "Debugging Myself"
 date: 2025-12-04
 description: "Five years after writing about surviving anxiety, this is the victory post. How I won the battle for my mind and what it means for leadership."
-image: victory.jpg
+image: "../../assets/img/victory.jpg"
 tags: [Anxiety, Leadership]
 ---
 

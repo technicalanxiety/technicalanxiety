@@ -4,7 +4,6 @@ export const siteConfig = {
   url: 'https://www.technicalanxiety.com',
   author: {
     name: 'Jason Rinehart',
-    avatar: '/img/me.jpg',
     bio: 'Cloud architect and technical leader sharing experiences with Azure, leadership, and mental health in tech.',
     twitter: 'anxiouslytech',
     linkedin: 'rinehart76',

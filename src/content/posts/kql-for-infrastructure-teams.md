@@ -1,7 +1,7 @@
 ---
 title: "KQL for Infrastructure Teams - Beyond Basic Queries"
 date: 2026-01-12
-image: kql-infrastructure.jpg
+image: "../../assets/img/kql-infrastructure.jpg"
 tags: [Azure, KQL, Operations, Infrastructure]
 description: "Master KQL from an infrastructure perspective. Learn to write queries that solve real operational problems, from capacity planning to incident response."
 ---

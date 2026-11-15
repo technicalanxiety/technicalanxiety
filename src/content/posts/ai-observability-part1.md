@@ -3,7 +3,7 @@ title: "AI Observability, Part 1: The Model Layer"
 date: 2026-01-20
 tags: [AI, Azure, Operations, Observability]
 description: "Stop monitoring AI infrastructure like web servers. Learn to instrument Azure OpenAI with queries that reveal token consumption, content filters, and cost attribution."
-image: ai-observability.jpg
+image: "../../assets/img/ai-observability.jpg"
 series: "AI Observability"
 series_part: 1
 draft: false

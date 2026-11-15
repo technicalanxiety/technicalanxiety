@@ -1,7 +1,7 @@
 ---
 title: "AI Observability"
 description: "A request that completes in 800ms, uses 1,200 tokens, and passes content filters might still produce a response that's confidently wrong. That gap is where most AI observability stops and most AI value leaks away."
-image: "ai-observability.jpg"
+image: "../../assets/img/ai-observability.jpg"
 tags: ["AI", "Azure", "Operations", "Monitoring"]
 order: 1
 featured: true

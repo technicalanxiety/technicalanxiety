@@ -1,7 +1,7 @@
 ---
 title: "Confidence Engineering - Part 4: The Variable Nobody Measures"
 date: 2026-06-08
-image: confidence-engineering-pt1.jpg
+image: "../../assets/img/confidence-engineering-pt1.jpg"
 tags: [Leadership, Governance, Operations, AI]
 description: "You measured confidence. You never measured what failure costs. That's the variable that was driving every component of the framework from the start."
 series: "Confidence Engineering"
@@ -174,7 +174,7 @@ These four dimensions produce a consequence profile per capability, per authorit
 
 Grant more authority and every consequence dimension climbs together. The confidence bar has to climb with it.
 
-![Consequence exposure by authority stage](/img/confidence-vs-consequence-graph.png)
+![Consequence exposure by authority stage](../../assets/img/confidence-vs-consequence-graph.png)
 
 The graph reveals something the component descriptions alone can't show. As authority increases from suggest through approve to auto, every consequence dimension rises. Impact becomes unmediated. Blast radius expands to the full scope of the system. Velocity accelerates from human speed to machine speed. Reversibility risk grows as the window to intervene shrinks.
 

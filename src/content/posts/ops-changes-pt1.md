@@ -2,7 +2,7 @@
 title: "Operational Change - Part 1: The Translation Problem"
 date: 2025-10-31
 description: "The shift from monitoring servers to observing user experience isn't obvious until a cloud-native customer exposes your blind spots."
-image: ops-changes-1.jpg
+image: "../../assets/img/ops-changes-1.jpg"
 tags: [Governance, Operations]
 series: "Operational Change"
 series_part: 1

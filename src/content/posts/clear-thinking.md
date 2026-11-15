@@ -3,7 +3,7 @@ title: "You Can't Train Clear Thinking"
 date: 2026-01-24
 tags: [AI, Leadership, Development]
 description: "Spec quality isn't a skill you can workshop. It's an emergent property of organizational health. Why training fails and what actually produces clarity."
-image: "clear-thinking.jpg"
+image: "../../assets/img/clear-thinking.jpg"
 ---
 
 ## Spec Quality Is an Emergent Property of Organizational Health
