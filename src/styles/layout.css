@@ -76,6 +76,9 @@
 
 .logo-title {
   flex: 1;
+  /* Never let the nav squeeze the logo; the nav breakpoint keeps room for both */
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .logo-text {
@@ -114,13 +117,30 @@
   visibility: visible;
 }
 
+/* Icon-only header controls are real <button>s for keyboard access;
+   strip UA button chrome so they render like the bare icons they replaced. */
+.menu-close,
+.menu-button,
+.search-button,
+.search-close-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  line-height: 1;
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
 .menu-close {
   position: absolute;
   top: 20px;
   right: 20px;
   font-size: 2rem;
-  color: var(--text-primary);
-  cursor: pointer;
   z-index: 1001;
 }
 
@@ -158,7 +178,9 @@
   color: var(--accent-color);
 }
 
-@media (min-width: 992px) {
+/* Full nav needs ~1110px (7 links at 5px letter-spacing + logo); below 1200
+   it collided with the logo and overflowed, so use the hamburger until then. */
+@media (min-width: 1200px) {
   .nav-menu {
     display: flex;
     position: static;
@@ -197,11 +219,7 @@
 
 .menu-button,
 .search-button {
-  background: none;
-  border: none;
-  color: var(--text-primary);
   font-size: 20px;
-  cursor: pointer;
   padding: var(--space-xs);
   border-radius: var(--radius-sm);
   transition: color var(--transition-fast);
@@ -212,7 +230,7 @@
   color: var(--accent-color);
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
   .d-hide {
     display: none !important;
   }
@@ -240,6 +258,10 @@
 .search.is-visible {
   opacity: 1;
   visibility: visible;
+  /* Flip visibility instantly on open (fade opacity only): while visibility
+     is mid-transition the input can't take focus, so focus() was a no-op.
+     Closing uses the base `transition: all`, so the fade-out still plays. */
+  transition: opacity 0.3s ease;
 }
 
 .search-box {
@@ -258,8 +280,6 @@
   top: 1rem;
   right: 1rem;
   font-size: 1.5rem;
-  color: var(--text-primary);
-  cursor: pointer;
   transition: color var(--transition-fast);
 }
 

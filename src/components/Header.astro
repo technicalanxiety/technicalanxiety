@@ -12,8 +12,10 @@ import Icon from './Icon.astro';
             <a href="/" class="logo-text">TECHNICAL_ANXIETY</a>
           </div>
 
-          <nav class="nav-menu">
-            <Icon name="close-outline" class="menu-close" label="Close navigation menu" />
+          <nav class="nav-menu" id="site-nav" aria-label="Main">
+            <button type="button" class="menu-close" aria-label="Close navigation menu">
+              <Icon name="close-outline" />
+            </button>
             <ul class="menu-list">
               <li class="menu-item"><a href="/" class="menu-link">Home</a></li>
               <li class="menu-item"><a href="/archive/" class="menu-link">Archive</a></li>
@@ -26,17 +28,23 @@ import Icon from './Icon.astro';
           </nav>
           
           <div class="nav-buttons">
-            <Icon name="menu-outline" class="menu-button d-hide" label="Open navigation menu" />
-            <Icon name="search-outline" class="search-button" label="Open search" />
+            <button type="button" class="menu-button d-hide" aria-label="Open navigation menu" aria-controls="site-nav" aria-expanded="false">
+              <Icon name="menu-outline" />
+            </button>
+            <button type="button" class="search-button" aria-label="Open search" aria-controls="site-search" aria-expanded="false">
+              <Icon name="search-outline" />
+            </button>
           </div>
         </div>
       </div>
     </div>
   </div>
   
-  <div class="search">
+  <div class="search" id="site-search" role="dialog" aria-modal="true" aria-label="Search posts">
     <div class="search-box">
-      <Icon name="close-outline" class="search-close-button" label="Close search" />
+      <button type="button" class="search-close-button" aria-label="Close search">
+        <Icon name="close-outline" />
+      </button>
       <div class="search-hint">Press <kbd>Ctrl</kbd> + <kbd>K</kbd> to search (or <kbd>⌘</kbd> + <kbd>K</kbd> on Mac)</div>
       <label for="search-input" class="screen-reader-text">Search</label>
       <input type="text" id="search-input" class="search-text" autocomplete="off" placeholder="Search posts by title, content, or tags...">
@@ -60,22 +68,33 @@ import Icon from './Icon.astro';
 
   // Mobile menu toggle
   document.addEventListener('DOMContentLoaded', () => {
-    const menuButton = document.querySelector('.menu-button');
-    const menuClose = document.querySelector('.menu-close');
+    const menuButton = document.querySelector<HTMLButtonElement>('.header .menu-button');
+    const menuClose = document.querySelector<HTMLButtonElement>('.header .menu-close');
     const navMenu = document.querySelector('.nav-menu');
-    
-    menuButton?.addEventListener('click', () => {
+
+    function openMenu() {
       navMenu?.classList.add('is-open');
-    });
-    
-    menuClose?.addEventListener('click', () => {
-      navMenu?.classList.remove('is-open');
-    });
-    
-    // Search functionality
-    const searchButton = document.querySelector('.search-button');
-    const searchClose = document.querySelector('.search-close-button');
-    const search = document.querySelector('.search');
+      menuButton?.setAttribute('aria-expanded', 'true');
+      menuClose?.focus();
+    }
+
+    // Only return focus when the menu was actually open, so Escape on a
+    // page with the menu closed doesn't yank focus to the hamburger.
+    function closeMenu() {
+      if (!navMenu?.classList.contains('is-open')) return;
+      navMenu.classList.remove('is-open');
+      menuButton?.setAttribute('aria-expanded', 'false');
+      menuButton?.focus();
+    }
+
+    menuButton?.addEventListener('click', openMenu);
+    menuClose?.addEventListener('click', closeMenu);
+
+    // Search functionality. Scoped to .header: SearchBox.astro also has a
+    // .search-button (its submit button) on some pages.
+    const searchButton = document.querySelector<HTMLButtonElement>('.header .search-button');
+    const searchClose = document.querySelector('.header .search-close-button');
+    const search = document.querySelector('.header .search');
     const searchInput = document.getElementById('search-input') as HTMLInputElement;
     const resultsContainer = document.getElementById('search-results-list');
     
@@ -160,31 +179,43 @@ import Icon from './Icon.astro';
       performSearch(query);
     });
     
-    // Search toggle
-    searchButton?.addEventListener('click', () => {
+    // Search toggle. Remember what had focus so closing returns there
+    // (the search button, or wherever Ctrl+K was pressed).
+    let searchReturnFocus: HTMLElement | null = null;
+
+    function openSearch() {
+      if (search?.classList.contains('is-visible')) {
+        searchInput?.focus();
+        return;
+      }
+      searchReturnFocus = document.activeElement as HTMLElement | null;
       search?.classList.add('is-visible');
+      searchButton?.setAttribute('aria-expanded', 'true');
       searchInput?.focus();
-    });
-    
-    searchClose?.addEventListener('click', () => {
-      search?.classList.remove('is-visible');
+    }
+
+    function closeSearch() {
+      if (!search?.classList.contains('is-visible')) return;
+      search.classList.remove('is-visible');
+      searchButton?.setAttribute('aria-expanded', 'false');
       if (searchInput) searchInput.value = '';
       if (resultsContainer) resultsContainer.innerHTML = '';
-    });
-    
+      searchReturnFocus?.focus();
+    }
+
+    searchButton?.addEventListener('click', openSearch);
+    searchClose?.addEventListener('click', closeSearch);
+
     // Keyboard shortcut for search
     document.addEventListener('keydown', (e) => {
       if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
         e.preventDefault();
-        search?.classList.add('is-visible');
-        searchInput?.focus();
+        openSearch();
       }
-      
+
       if (e.key === 'Escape') {
-        search?.classList.remove('is-visible');
-        navMenu?.classList.remove('is-open');
-        if (searchInput) searchInput.value = '';
-        if (resultsContainer) resultsContainer.innerHTML = '';
+        closeSearch();
+        closeMenu();
       }
     });
     
