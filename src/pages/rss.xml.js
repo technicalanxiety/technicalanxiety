@@ -44,7 +44,8 @@ export async function GET(context) {
       title: post.data.title,
       pubDate: post.data.date,
       description: post.data.description || `Read "${post.data.title}" on Technical Anxiety`,
-      author: `${siteConfig.author.name}@technicalanxiety.com (${siteConfig.author.name})`,
+      // RSS <author> must be an email address; dc:creator carries just the name.
+      customData: `<dc:creator>${siteConfig.author.name}</dc:creator>`,
       link: `/${post.id}/`,
       content: absolutizeUrls(html, context.site),
       categories: post.data.tags || [],
@@ -56,6 +57,13 @@ export async function GET(context) {
     description: siteConfig.description,
     site: context.site,
     items,
-    customData: `<language>en-us</language>`,
+    xmlns: {
+      atom: 'http://www.w3.org/2005/Atom',
+      dc: 'http://purl.org/dc/elements/1.1/',
+    },
+    customData: [
+      '<language>en-us</language>',
+      `<atom:link href="${new URL('rss.xml', context.site)}" rel="self" type="application/rss+xml"/>`,
+    ].join(''),
   });
 }
