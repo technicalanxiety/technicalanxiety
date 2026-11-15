@@ -3,7 +3,7 @@ title: "Governance in Azure?"
 date: 2024-02-14
 description: "What is Azure Governance and why is it critical? Learn how to steer your cloud environment with management groups, policies, and proper foundations."
 image: az-guardrails.jpg
-tags: ["Archive"]
+tags: [Archive]
 ---
 
 > For a deeper look at how landing zones implement these governance concepts based on lessons from 100+ production environments, see [From Base Camp to Summit](/basecamp-summit/).
